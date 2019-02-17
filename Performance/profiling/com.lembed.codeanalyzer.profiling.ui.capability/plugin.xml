@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension point="org.eclipse.ui.activities">
+        <category
+            name="%category.name"
+            id="com.lembed.codeanalyzer.activities.category">
+        </category>
+        <activity
+                name="%activity.name.profiling"
+                description="%activity.description.profiling"
+                id="com.lembed.codeanalyzer.profiling.ui.capabilities">
+        </activity>
+        <activity
+                name="%activity.name.general"
+                description="%activity.description.general"
+                id="com.lembed.codeanalyzer.profiling.general.ui.capabilities">
+        </activity>
+
+        <categoryActivityBinding
+      activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+      categoryId="com.lembed.codeanalyzer.activities.category"/>
+
+      <categoryActivityBinding
+      activityId="com.lembed.codeanalyzer.profiling.general.ui.capabilities"
+      categoryId="com.lembed.codeanalyzer.activities.category"/>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.profiling\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.profiling/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.callgraph\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.callgraph/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.oprofile\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.oprofile/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.valgrind\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.valgrind/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.lttng\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.lttng/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.tmf\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.tmf/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.gcov\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.gcov/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.dataviewers\..*/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.gprof\..*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.gprof/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.dataviewers/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.systemtap\.ui\.graphing.*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.systemtap\.ui\/dashboard.*/*">
+        </activityPatternBinding>
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.systemtap\.ui\.ide.*/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.general.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.changelog.*/*">
+        </activityPatternBinding>
+
+        <activityPatternBinding
+            activityId="com.lembed.codeanalyzer.profiling.general.ui.capabilities"
+            pattern="org\.eclipse\.linuxtools\.rpm.*/*">
+        </activityPatternBinding>
+
+        <defaultEnablement id="com.lembed.codeanalyzer.profiling.ui.capabilities"/>
+        <defaultEnablement id="com.lembed.codeanalyzer.profiling.general.ui.capabilities"/>
+
+   </extension>
+</plugin>

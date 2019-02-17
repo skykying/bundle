@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='3'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.segmentstore.core' version='2.0.1.201808221550'>
+    <properties size='5'>
+      <property name='artifact.size' value='54267'/>
+      <property name='download.size' value='54267'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.segmentstore.core'/>
+      <property name='maven-version' value='2.0.1-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.segmentstore.core' version='2.0.1.201808221550'>
+    <processing size='1'>
+      <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
+    </processing>
+    <properties size='8'>
+      <property name='artifact.size' value='54267'/>
+      <property name='download.size' value='14828'/>
+      <property name='format' value='packed'/>
+      <property name='maven-version' value='2.0.1-SNAPSHOT'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.segmentstore.core'/>
+      <property name='maven-extension' value='jar.pack.gz'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-classifier' value='pack200'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.segmentstore.core.source' version='2.0.1.201808221550'>
+    <properties size='6'>
+      <property name='artifact.size' value='36055'/>
+      <property name='download.size' value='36055'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.segmentstore.core'/>
+      <property name='maven-version' value='2.0.1-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+  </artifact>
+</artifacts>

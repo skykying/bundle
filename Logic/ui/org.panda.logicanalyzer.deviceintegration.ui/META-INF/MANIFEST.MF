@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LA DeviceIntegration UI
+Bundle-SymbolicName: org.panda.logicanalyzer.deviceintegration.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.panda.logicanalyzer.deviceintegration.ui.internal.Activator
+Bundle-Vendor: panda
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.panda.logicanalyzer.ui;bundle-version="1.0.0",
+ org.eclipse.ui.forms;bundle-version="3.4.1",
+ org.panda.logicanalyzer.deviceintegration.core;bundle-version="1.0.0",
+ org.panda.logicanalyzer.io;bundle-version="2.1.7"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy

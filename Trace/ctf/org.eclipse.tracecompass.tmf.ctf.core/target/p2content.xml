@@ -1,0 +1,85 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='2'>
+  <unit id='org.eclipse.tracecompass.tmf.ctf.core' version='4.0.0.201808221550'>
+    <update id='org.eclipse.tracecompass.tmf.ctf.core' range='[0.0.0,4.0.0.201808221550)' severity='0'/>
+    <properties size='8'>
+      <property name='df_LT.Bundle-Name' value='CTF support for TMF Core Plug-in'/>
+      <property name='df_LT.Bundle-Vendor' value='Eclipse Trace Compass'/>
+      <property name='org.eclipse.equinox.p2.name' value='%Bundle-Name'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%Bundle-Vendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.ctf.core'/>
+      <property name='maven-version' value='4.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='12'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.tracecompass.tmf.ctf.core' version='4.0.0.201808221550'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.tracecompass.tmf.ctf.core' version='4.0.0.201808221550'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.ctf.core' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.ctf.core.trace.iterator' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.ctf.core' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.ctf.core.context' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.ctf.core.event' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.ctf.core.event.aspect' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.ctf.core.event.lookup' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.ctf.core.trace' version='0.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <requires size='11'>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.common.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.ctf.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.tmf.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.antlr.runtime' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.google.guava' range='21.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.jdt.annotation' range='0.0.0'/>
+      <required namespace='java.package' name='com.google.common.collect' range='0.0.0'/>
+      <required namespace='java.package' name='com.google.common.primitives' range='0.0.0'/>
+      <required namespace='java.package' name='org.eclipse.emf.common.util' range='0.0.0'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.ctf.core' version='4.0.0.201808221550'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.tracecompass.tmf.ctf.core;singleton:=true&#xA;Bundle-Version: 4.0.0.201808221550&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+  <unit id='org.eclipse.tracecompass.tmf.ctf.core.source' version='4.0.0.201808221550' singleton='false'>
+    <update id='org.eclipse.tracecompass.tmf.ctf.core.source' range='[0.0.0,4.0.0.201808221550)' severity='0'/>
+    <properties size='9'>
+      <property name='df_LT.bundleVendor' value='Eclipse Trace Compass'/>
+      <property name='df_LT.bundleName' value='CTF support for TMF Core Plug-in Source'/>
+      <property name='org.eclipse.equinox.p2.name' value='%bundleName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%bundleVendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='OSGI-INF/l10n/bundle-src'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.ctf.core'/>
+      <property name='maven-version' value='4.0.0-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+    <provides size='4'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.tracecompass.tmf.ctf.core.source' version='4.0.0.201808221550'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.tracecompass.tmf.ctf.core.source' version='4.0.0.201808221550'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='source' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.ctf.core.source' version='4.0.0.201808221550'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.tracecompass.tmf.ctf.core.source&#xA;Bundle-Version: 4.0.0.201808221550&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

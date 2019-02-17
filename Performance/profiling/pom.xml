@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (C) 2011, Red Hat, Inc.
+
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.lembed.lite.studio</groupId>
+    <artifactId>com.lembed.lite.studio</artifactId>
+    <version>0.1.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>com.lembed.lite.studio.profiling-parent</artifactId>
+  <packaging>pom</packaging>
+
+  <name>Linux Tools Profiling Framework Parent</name>
+
+  <licenses>
+    <license>
+      <name>Eclipse Public License v1.0</name>
+      <comments>
+       All rights reserved.
+
+       This program and the accompanying materials are made
+       available under the terms of the Eclipse Public License v1.0
+       which accompanies this distribution, and is available at
+       http://www.eclipse.org/legal/epl-v10.htm
+      </comments>
+    </license>
+  </licenses>
+
+  <modules>
+    <module>com.lembed.codeanalyzer.tools.launch.core</module>
+    <!-- <module>com.lembed.codeanalyzer.tools.launch.core.tests</module> -->
+    <module>com.lembed.codeanalyzer.tools.launch.ui</module>
+    <module>com.lembed.codeanalyzer.binutils</module>
+    <module>com.lembed.codeanalyzer.dataviewers</module>
+    <module>com.lembed.codeanalyzer.dataviewers.piechart</module>
+    <module>com.lembed.codeanalyzer.dataviewers.charts</module>
+    <module>com.lembed.codeanalyzer.dataviewers.feature</module>
+    <module>com.lembed.codeanalyzer.profiling.docs</module>
+    <module>com.lembed.codeanalyzer.profiling.feature</module>
+    <module>com.lembed.codeanalyzer.profiling.launch</module>
+    <module>com.lembed.codeanalyzer.profiling.launch.ui.rdt.proxy</module>
+    <!-- <module>com.lembed.codeanalyzer.profiling.provider.tests</module> -->
+    <module>com.lembed.codeanalyzer.profiling.remote.feature</module>
+    <!-- <module>com.lembed.codeanalyzer.profiling.tests</module> -->
+    <module>com.lembed.codeanalyzer.profiling.ui</module>
+    <module>com.lembed.codeanalyzer.profiling.ui.capability</module>
+    <module>com.lembed.codeanalyzer.rdt.proxy</module>
+    <!-- <module>com.lembed.codeanalyzer.rdt.proxy.tests</module> -->
+    <module>com.lembed.codeanalyzer.ssh.proxy</module>
+    <!-- <module>com.lembed.codeanalyzer.remote.proxy.tests</module> -->
+  </modules>
+
+</project>

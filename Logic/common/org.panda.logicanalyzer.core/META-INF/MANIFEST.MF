@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LogicAnalyzer Core
+Bundle-SymbolicName: org.panda.logicanalyzer.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.panda.logicanalyzer.core.Activator
+Bundle-Vendor: panda
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.ui.console
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: org.panda.logicanalyzer.core,
+ org.panda.logicanalyzer.core.analyzer,
+ org.panda.logicanalyzer.core.analyzer.i2c,
+ org.panda.logicanalyzer.core.pipeline,
+ org.panda.logicanalyzer.core.util,
+ org.panda.logicanalyzer.core.util.byteInterpreter

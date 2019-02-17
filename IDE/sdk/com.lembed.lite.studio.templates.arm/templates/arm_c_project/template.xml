@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<template type="ProjTempl" version="1.0" supplier="lembed.org"
+	revision="1.0" author="lembed.org"
+	copyright="Copyright (c) 2017 Lembed Electronic Ltd. and others. All rights reserved.\
+This program and the accompanying materials are made available under the terms \
+of the Eclipse Public License v1.0 which accompanies this distribution, \
+and is available at http://www.eclipse.org/legal/epl-v10.html"
+	id="ARM_Project" label="%ARM.template.label" description="%ARM.template.description"
+	help="help.html">
+
+	<property-group id="arm" label="group"
+		description="description" type="PAGES-ONLY" help="help.html">
+
+		<property id="fileExtension" label="Source file extension"
+			description="Will be set to cpp for ccnature" mandatory="true"
+			hidden="true" default="c" persist="false" />
+
+		<property id="commonDir" label="common files"
+			description="Will be set to ...templates.core/templates/common/ folder"
+			mandatory="true" hidden="true" default="undefined" persist="false" />
+
+	</property-group>
+
+
+	<!-- Note: the redundant 'condition="1==1"' is a workaround to control the 
+		evaluation order. Without it, processes are evaluated after all ifs. -->
+
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.managedbuilder.core.NewManagedProject">
+			<simple name="name" value="$(projectName)" />
+			<simple name="artifactExtension" value="$(Textension)" />
+			<simple name="isCProject" value="true" />
+		</process>
+
+		<process type="org.eclipse.cdt.core.AddNature">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="natureId" value="org.eclipse.cdt.core.cnature" />
+		</process>
+		
+		<process type="org.eclipse.cdt.core.AddNature">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="natureId" value="com.lembed.lite.studio.device.project.impl.LiteProjectNature" />
+		</process>
+
+		<process type="com.lembed.lite.studio.templates.processor.SetPropertyToPluginResource">
+			<simple name="pluginId" value="com.lembed.lite.studio.templates.core" />
+			<simple name="relativePath" value="templates/common" />
+			<simple name="propertyName" value="commonDir" />
+		</process>
+
+	</if>
+
+
+	<!-- ================================================================== -->
+
+	<!-- Create include header folders -->
+
+	<if condition="1==1">
+		<!-- include -->
+		<process type="org.eclipse.cdt.core.CreateSourceFolder">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="path" value="$(TIncludeDir)" />
+		</process>
+
+		<!-- add to include paths -->
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TIncludeDir)&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+
+	<!-- Create source folders -->
+	<if condition="1==1">
+		<!-- src -->
+		<process type="org.eclipse.cdt.core.CreateSourceFolder">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="path" value="$(TSourceDir)" />
+		</process>
+
+		<process type="org.eclipse.cdt.core.CreateSourceFolder">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="path" value="$(TSystemDir)" />
+		</process>
+
+	</if>
+
+	<if condition="1==1">
+		<!-- include -->
+		<process type="org.eclipse.cdt.core.CreateFolder">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="path" value="$(TSystemDir)/$(TIncludeDir)" />
+		</process>
+		<process type="org.eclipse.cdt.core.CreateFolder">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="path" value="$(TSystemDir)/$(TSourceDir)" />
+		</process>
+
+		<!-- add to include paths -->
+		<process	type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TSystemDir)/$(TIncludeDir)&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TGCoverage)==true">
+
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/Gcov" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/Gcov" />
+					<simple name="pattern" value=".*[.](c.*|S|s|txt|md)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/Gprof" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/Gprof" />
+					<simple name="pattern" value=".*[.](c.*|S|s|txt|md)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/include/Gprof" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/Gprof" />
+					<simple name="pattern" value=".*[.](h|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/include/Gcov" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/Gcov" />
+					<simple name="pattern" value=".*[.](h|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TSystemDir)/$(TIncludeDir)/Gprof&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TSystemDir)/$(TIncludeDir)/Gcov&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="com.lembed.lite.studio.templates.processor.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">	
+						<element value="ENABLE_GCOV" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">	
+						<element value="ENABLE_GPROF" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.linker.profilearcs" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.linker.generatetestcoverage" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<!-- ================================================================== -->
+
+	<!-- Linker files -->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.core.AddFiles">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="files">
+				<element>
+					<simple name="source" value="ldscripts/linker.ld" />
+					<simple name="target" value="$(TScriptDir)/linker.ld" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	<!-- ================================================================== -->
+
+	<!-- Global options -->
+	<if condition="1==1">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="$(TUseSomeWarnings) == true" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.warnings.allwarn" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.warnings.extrawarn" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="$(TUseMostWarnings) == true" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.unused" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.uninitialized" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.missingdeclaration" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.conversion" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.pointerarith" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.padded" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.shadow" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.logicalop" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.agreggatereturn" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.floatequal" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="1==1">
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="$(TUseWerror) == true" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.warnings.toerrors" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TSyscall)==none">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.SetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.optimization.freestanding" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TSyscall)!=none">		
+
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/newlib" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/newlib" />
+					<simple name="pattern" value=".*[.](c.*|txt|md)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TSyscall)==semihosting">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="OS_USE_SEMIHOSTING" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process type="com.lembed.lite.studio.templates.processor.AddAbsolutePathFiles">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="files">
+				<element>
+					<simple name="source" value="$(commonDir)/include/Trace/semihosting.h" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/Trace/semihosting.h" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TSystemDir)/$(TIncludeDir)/Trace&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+	</if>
+
+	<if condition="$(TTrace)!=NONE">
+		<!-- Define TRACE only if one of the devices is selected -->
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="TRACE" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process type="com.lembed.lite.studio.templates.processor.AddAbsolutePathFiles">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="files">
+				<element>
+					<simple name="source" value="$(commonDir)/include/Trace/Trace.h" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/Trace/Trace.h" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/Trace" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/Trace" />
+					<simple name="pattern" value=".*[.](c.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TTrace)==ITM">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="OS_USE_TRACE_ITM" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	<if condition="$(TTrace)==STDOUT">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="OS_USE_TRACE_SEMIHOSTING_STDOUT" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+	<if condition="$(TTrace)==DEBUG">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="OS_USE_TRACE_SEMIHOSTING_DEBUG" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TUseOg)== true">
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.optimization.level" />
+					<simple name="value"
+						value="com.lembed.lite.studio.managedbuild.cross.option.optimization.level.debug" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TUseOg)!= true">
+		<process	type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.optimization.level" />
+					<simple name="value"	value="com.lembed.lite.studio.managedbuild.cross.option.optimization.level.none" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TRtos)==FreeRTOS">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/FreeRTOS" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/FreeRTOS" />
+					<simple name="pattern" value=".*[.](h.*|c.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/include/FreeRTOS" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/FreeRTOS" />
+					<simple name="pattern" value=".*[.](h.*|c.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TSystemDir)/$(TIncludeDir)/FreeRTOS&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TRtos)==mNuttx">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/mNuttx" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/mNuttx" />
+					<simple name="pattern" value=".*[.](h.*|c.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/include/mNuttx" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/mNuttx" />
+					<simple name="pattern" value=".*[.](h.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process	type="org.eclipse.cdt.managedbuilder.core.AppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.include.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TSystemDir)/$(TIncludeDir)/mNuttx&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TUtils)==BuiltIn">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/source/Utils" />
+					<simple name="target" value="$(TSystemDir)/$(TSourceDir)/Utils" />
+					<simple name="pattern" value=".*[.](h.*|c.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalCopyFolders">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="folders">
+				<element>
+					<simple name="source" value="$(commonDir)/include/Utils" />
+					<simple name="target" value="$(TSystemDir)/$(TIncludeDir)/Utils" />
+					<simple name="pattern" value=".*[.](h.*|txt)" />
+					<simple name="replaceable" value="true" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="1==1">
+		<process	type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.optimization.nomoveloopinvariants" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="1==1">
+		<process type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.debugging.format" />
+					<simple name="value"	value="com.lembed.lite.studio.managedbuild.cross.option.debugging.format.default" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="1==1">
+		<process	type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.optimization.level" />
+					<simple name="value"	value="com.lembed.lite.studio.managedbuild.cross.option.optimization.level.size" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="release" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<!-- ================================================================== -->
+
+	<!-- C options -->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.managedbuilder.core.SetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.c.compiler.std" />
+					<simple name="value"	value="com.lembed.lite.studio.managedbuild.cross.option.c.compiler.std.gnu11" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="$(TUseMostWarnings) == true" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.c.compiler.warning.missingprototypes" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.c.compiler.warning.strictprototypes" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.c.compiler.warning.badfunctioncast" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<!-- ================================================================== -->
+
+	<!-- C++ options -->
+	<if condition="1==1">
+		<process type="org.eclipse.cdt.managedbuilder.core.SetMBSStringOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.std" />
+					<simple name="value"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.std.gnucpp11" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.SetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.noexceptions" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.nortti" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.nousecxaatexit" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.nothreadsafestatics" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="$(TUseMostWarnings) == true" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.warnabi" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.warning.ctordtorprivacy" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.warning.noexcept" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.warning.nonvirtualdtor" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.warning.strictnullsentinel" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+				<element>
+					<simple name="id"
+						value="com.lembed.lite.studio.managedbuild.cross.option.cpp.compiler.warning.signpromo" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+		<!-- ================================================================== -->
+
+	<!-- Linker options -->
+	<if condition="1==1">
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.SetMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.linker.paths" />
+					<simple-array name="values">
+						<element value="&quot;../$(TScriptDir)&quot;" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="org.eclipse.cdt.managedbuilder.core.SetMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.linker.scriptfile" />
+					<simple-array name="values">
+						<element value="linker.ld" />
+					</simple-array>
+					<simple name="path" value="" />
+				</element>
+			</complex-array>
+		</process>
+
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id"	value="com.lembed.lite.studio.managedbuild.cross.option.*.linker.nostart" />
+					<simple name="value" value="false" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TUseNano)== true">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.linker.usenewlibnano" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<if condition="$(TUseLto)== true">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalSetMBSBooleanOptionValue">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.optimization.lto" />
+					<simple name="value" value="true" />
+					<simple name="path" value="" />
+					<simple name="buildType" value="" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<!-- ================================================================== -->
+
+	<!-- Macro definitions -->
+	<if condition="1==1">
+		<process
+			type="com.lembed.lite.studio.templates.processor.ConditionalAppendToMBSStringListOptionValues">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="condition" value="" />
+			<complex-array name="resourcePaths">
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="DEBUG" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+				<element>
+					<simple name="id" value="com.lembed.lite.studio.managedbuild.cross.option.*.defs" />
+					<simple-array name="values">
+						<element value="USE_FULL_ASSERT" />
+					</simple-array>
+					<simple name="path" value="" />
+					<simple name="buildType" value="debug" />
+				</element>
+			</complex-array>
+		</process>
+	</if>
+
+	<!-- ================================================================== -->
+
+	<if condition="1==1">
+
+		<process type="com.lembed.lite.studio.device.project.CreateLiteProject">
+			<simple name="projectName" value="$(projectName)" />
+			<simple name="compiler" value="$(Tcompiler)" />
+			<simple name="output" 	value="$(Toutput)" />
+			<simple name="toolChainAdapter" value="$(Tadapter)"  />
+			<simple name="lastStep" value="$(Tlast)"  />
+			<simple name="includePath" value="$(TIncludeDir)"  />
+		</process>
+
+	</if>
+
+	<if condition="$(Tmain)==1">
+		<process type="org.eclipse.cdt.core.AddFile">
+			<simple name="projectName" value="$(projectName)" />
+			<complex name="file">
+				<simple name="source" value="main/main_$(TGCoverage).c" />
+				<simple name="target" value="$(TSourceDir)/main.$(fileExtension)" />
+				<simple name="replaceable" value="true" />
+			</complex>
+		</process>
+	</if>
+
+
+	<!-- Open editor -->
+	<process type="org.eclipse.cdt.ui.OpenFiles">
+		<simple name="projectName" value="$(projectName)" />
+		<complex-array name="files">
+			<element>
+				<simple name="target" value="$(TSourceDir)/main.$(fileExtension)" />
+			</element>
+		</complex-array>
+	</process>
+
+</template>

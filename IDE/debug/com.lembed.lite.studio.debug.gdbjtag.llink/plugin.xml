@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            id="com.lembed.lite.studio.debug.gdbjtag.llink.launchConfigurationType"
+            modes="debug,run"
+            name="%launchConfig.name"
+            public="true"/>
+   </extension>
+
+   <!-- LaunchConfigurationDelegate.java is where fun starts -->
+   <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="com.lembed.lite.studio.debug.gdbjtag.llink.dsf.LaunchConfigurationDelegate"
+            delegateDescription="%launchDelegate.jtagDsf.description"
+            id="com.lembed.lite.studio.debug.gdbjtag.llink.core.dsfLaunchDelegate"
+            modes="debug,run"
+            name="%launchDelegate.jtagDsf.name"
+            sourceLocatorId="org.eclipse.cdt.debug.core.sourceLocator"
+            sourcePathComputerId="org.eclipse.cdt.debug.core.sourcePathComputer"
+            type="com.lembed.lite.studio.debug.gdbjtag.llink.launchConfigurationType">
+      </launchDelegate>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="com.lembed.lite.studio.debug.gdbjtag.llink.launchConfigurationType"
+            icon="icons/obj16/debugger.gif"
+            id="com.lembed.lite.studio.debug.gdbjtag.llink.launchConfigurationTypeImage"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="com.lembed.lite.studio.debug.gdbjtag.llink.ui.TabGroupLaunchConfiguration"
+            id="com.lembed.lite.studio.debug.gdbjtag.llink.launchConfigurationTabGroup"
+            type="com.lembed.lite.studio.debug.gdbjtag.llink.launchConfigurationType"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.cdt.debug.gdbjtag.core.JTagDevice">
+      <device
+            class="com.lembed.lite.studio.debug.gdbjtag.llink.LinkDevice"
+            id="com.lembed.lite.studio.debug.gdbjtag.llink.LinkDevice"
+            name="%JTagDevice.generic.name">
+      </device>
+   </extension>
+
+   <!-- legacy from early versions -->
+
+   <extension
+         point="org.eclipse.core.variables.valueVariables">
+      <variable
+            description="Path to llink installation folder" 
+            initializerClass="com.lembed.lite.studio.debug.gdbjtag.llink.VariableInitializer" 
+            name="l_link_path" />
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.variables.valueVariables">
+      <variable
+            description="Name of the L-Link GDB server executable"
+            initializerClass="com.lembed.lite.studio.debug.gdbjtag.llink.VariableInitializer"
+            name="l_link_gdbserver"/>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.lembed.lite.studio.debug.gdbjtag.llink.DefaultPreferenceInitializer">
+      </initializer>
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.debug.ui.DebugPreferencePage"
+            class="com.lembed.lite.studio.debug.gdbjtag.llink.preferences.LLinkPage"
+            id="com.lembed.lite.studio.debug.gdbjtag.llink.preferencePage"
+            name="%preferences.llink">
+      </page>
+   </extension>
+      
+</plugin>

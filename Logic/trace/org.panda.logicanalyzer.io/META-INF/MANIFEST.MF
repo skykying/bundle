@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: rxtx
+Bundle-SymbolicName: org.panda.logicanalyzer.io
+Bundle-Version: 2.1.7.qualifier
+Bundle-Vendor: org
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: gnu.io
+Bundle-NativeCode: 
+ lib/Linux/i686-unknown-linux-gnu/librxtxParallel.so;
+ lib/Linux/i686-unknown-linux-gnu/librxtxSerial.so;
+ osname=Linux; processor=x86,
+ 
+ lib/Linux/x86_64-unknown-linux-gnu/librxtxSerial.so;
+ osname=Linux; processor=x86-64,
+ 
+ lib/mac/librxtxSerial.jnilib;
+ osname=Mac OS X; processor=x86; processor=PowerPC; processor=x86-64,
+ 
+ lib/win32/rxtxSerial.dll; osname=Win32; processor=x86,
+ lib/win64/rxtxSerial.dll; osname=Win32; processor=x86_64

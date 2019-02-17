@@ -1,0 +1,2 @@
+only for LiteSTUDIO Pro
+

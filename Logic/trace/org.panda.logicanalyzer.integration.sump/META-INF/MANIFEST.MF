@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: SUMP Core
+Bundle-SymbolicName: org.panda.logicanalyzer.integration.sump;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.panda.logicanalyzer.integration.sump.Activator
+Require-Bundle: org.eclipse.core.runtime,
+ org.panda.logicanalyzer.core;bundle-version="1.0.0",
+ org.panda.logicanalyzer.deviceintegration.core;bundle-version="1.0.0"
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Export-Package: org.panda.logicanalyzer.integration.sump,
+ org.panda.logicanalyzer.integration.sump.configuration

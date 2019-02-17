@@ -1,0 +1,2 @@
+# Control if trace messages are shown.
+com.lembed.lite.studio.debug.gdbjtag/debug=false

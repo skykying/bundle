@@ -1,0 +1,1 @@
+update.matchExp=providedCapabilities.exists(pc | pc.namespace == 'org.eclipse.equinox.p2.iu' && (pc.name == 'com.lembed.lite.studio.rcp.branding.feature.feature.group'))

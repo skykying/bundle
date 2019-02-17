@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="ToolChainAdapter" name="Toolchain Adapter for CMSIS C/C++ projects" schema="schema/ToolChainAdapter.exsd"/>
+   <extension-point id="ToolChainAdapterAssociation" name="Toolchain adapter associations" schema="schema/ToolChainAdapterAssociation.exsd"/>
+   <extension  point="com.lembed.lite.studio.device.toolchain.ToolChainAdapter">
+         <!-- @2017.4.12
+	      <toolChainAdapter
+	            Description="Simple toolchain adapter that only sets include paths and macros. Other setting such as CPU type, FPU usage and endianess must be set manually."
+	            class="com.lembed.lite.studio.device.toolchain.LiteToolChainAdapter"
+	            id="com.lembed.lite.studio.device.toolchain.GenericToolChainAdapter"
+	            name="Generic toolchain adapter">
+	      </toolChainAdapter>
+      	 -->
+      <toolChainAdapter
+            Description="Toolchain Adapter for gcc Cross Compiler"
+            class="com.lembed.lite.studio.device.toolchain.litestudio.LiteStudioToolChainAdapter"
+            id="com.lembed.lite.studio.device.toolchain.default.toolChainAdapter"
+            name="Cross ARM GCC Toolchain Adapter "
+            toolChainFamily="GCC">
+         <toolChain
+               id="com.lembed.lite.studio.managedbuild.cross.toolchain.base">
+         </toolChain>
+      </toolChainAdapter>
+   </extension>
+
+</plugin>

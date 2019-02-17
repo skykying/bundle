@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LiteSTUDIO RCP Application
+Bundle-SymbolicName: com.lembed.lite.studio.rcp.ui;singleton:=true
+Bundle-Version: 1.0.3.qualifier
+Bundle-Activator: com.lembed.lite.studio.rcp.ui.LiteRcpUiPlugin
+Bundle-Vendor: Lembed Electronic
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.core.resources,
+ org.eclipse.ui.ide,
+ org.eclipse.ui.intro
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy

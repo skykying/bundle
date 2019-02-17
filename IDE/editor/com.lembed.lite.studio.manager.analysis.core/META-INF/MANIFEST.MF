@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Core
+Bundle-SymbolicName: com.lembed.lite.studio.manager.analysis.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.lembed.lite.studio.manager.analysis.core.Activator
+Bundle-Vendor: LEMBED
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.antlr.runtime;bundle-version="4.5.1",
+ org.eclipse.cdt.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.lembed.lite.studio.manager.analysis.core;uses:="org.osgi.framework,org.eclipse.ui.plugin",
+ com.lembed.lite.studio.manager.analysis.core.datetime,
+ com.lembed.lite.studio.manager.analysis.core.linker

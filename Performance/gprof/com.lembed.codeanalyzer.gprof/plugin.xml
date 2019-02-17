@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            default="true"
+            filenames="gmon.out, gmon.sum"
+            icon="icons/toggle.gif"
+            id="com.lembed.codeanalyzer.gprof.editor.single"
+            launcher="com.lembed.codeanalyzer.internal.gprof.action.OpenGmonAction"
+            name="%gprofEditor">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            category="com.lembed.codeanalyzer.profiling.ui"
+            class="com.lembed.codeanalyzer.internal.gprof.view.GmonView"
+            icon="icons/colors_view.gif"
+            id="com.lembed.codeanalyzer.gprof.view"
+            name="%gprof"
+            restorable="false">
+         <description>
+            %gprofDescription
+         </description>
+      </view>
+   </extension>
+
+</plugin>

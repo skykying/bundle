@@ -1,0 +1,55 @@
++ ... Done   - ... dismissed   * ... TODO
+
+bugfixing:
+==========
+*) get MISession on view open if debug is already active
+   *  currently miSession is only updated when debug event received (next debug step after view open)
+
+*) ERROR: org.eclipse.cdt.debug.mi.core.cdi.MI2CDIException: Target is not suspended[]
+
+*) TODO: update all registers ...if the edited Register affects others
+   + update all activated fields if changed field is WriteOnly
+
+enhancements:
+=============
+*) High DPI support
+*) Project specific settings vs. Workspace settings
+   * on a project basis would mean the view has to switch 
+     to the other chip on the fly if you select the other project 
+     (and remember all the opened/selected registers).
+     
+*) Merge shipped xml with xml in home dir
+   * to extend existing xml
+   * to correct xml
+   * even to write xml that way
+   
+   1) only shipped xml -> simple load
+   2) only home xml -> simple load
+   3) shipped and home xml -> load shipped & insert home tags into dom
+   
+   xml chooser has to search shipped & home dir
+   
+*) add optional tag for xml open nameddest
+   * doc.pdf#nameddest=Chapter6
+   * where to find pdf (its too big for download on klick)
+   
+*) editing support
+   * new dialog ...
+   * right klick popupmenu->add group/registergroup/register/field
+     /* MenuManager menuManager = new MenuManager();
+        menuManager.add(new Separator(IWorkbenchActionConstants.MB_ADDITIONS));
+        viewer.getTree().setMenu(menuManager.createContextMenu(viewer.getTree()));
+        getSite().registerContextMenu(menuManager, viewer);*/
+      * adds to bottom of list
+      * (rearange via drag & drop -> complex & requires separate edit mode)
+   * possibility to send in created files (direct/link/mail)
+
++) Binary column input "Set" button Preference Setting
+   + with or without set button ...without ... bitbuttons have direct effect
+
++) DSF-GDB interface -> implement GDBInterfaceDSF
+   + contributed via patch "#5 DSF Framework Integration" by "edubec"
++) SVD Support 
+   + add SVD Support
+   - change everything to SVD
+   - write SVD converter

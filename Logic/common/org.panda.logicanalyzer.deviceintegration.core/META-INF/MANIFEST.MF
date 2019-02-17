@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: DeviceIntegration
+Bundle-SymbolicName: org.panda.logicanalyzer.deviceintegration.core;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.panda.logicanalyzer.deviceintegration.internal.Activator
+Bundle-Vendor: panda
+Require-Bundle: org.eclipse.core.runtime;bundle-version="3.12.0",
+ org.panda.logicanalyzer.core;bundle-version="1.0.0",
+ org.panda.logicanalyzer.io;bundle-version="2.1.7"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: org.panda.logicanalyzer.deviceintegration.core

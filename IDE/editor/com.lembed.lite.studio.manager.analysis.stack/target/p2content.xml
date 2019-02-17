@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='2'>
+  <unit id='com.lembed.lite.studio.manager.analysis.memory' version='1.0.0.201808221550'>
+    <update id='com.lembed.lite.studio.manager.analysis.memory' range='[0.0.0,1.0.0.201808221550)' severity='0'/>
+    <properties size='8'>
+      <property name='df_LT.bundle.vendor' value='Lembed Electronic'/>
+      <property name='df_LT.bundle.name' value='LiteSTUDIO Stack Analysis Plugin'/>
+      <property name='org.eclipse.equinox.p2.name' value='%bundle.name'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%bundle.vendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='com.lembed.lite.studio.manager.analysis.memory'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='5'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='com.lembed.lite.studio.manager.analysis.memory' version='1.0.0.201808221550'/>
+      <provided namespace='osgi.bundle' name='com.lembed.lite.studio.manager.analysis.memory' version='1.0.0.201808221550'/>
+      <provided namespace='java.package' name='com.lembed.lite.studio.manager.analysis.stack' version='0.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <requires size='8'>
+      <required namespace='osgi.bundle' name='org.eclipse.ui' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.antlr.runtime' range='4.5.1'/>
+      <required namespace='osgi.bundle' name='org.eclipse.cdt.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.lembed.lite.studio.manager.analysis.core' range='1.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.jface' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.apache.commons.io' range='0.0.0'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.manager.analysis.memory' version='1.0.0.201808221550'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: com.lembed.lite.studio.manager.analysis.memory;singleton:=true&#xA;Bundle-Version: 1.0.0.201808221550&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+  <unit id='com.lembed.lite.studio.manager.analysis.memory.source' version='1.0.0.201808221550' singleton='false'>
+    <update id='com.lembed.lite.studio.manager.analysis.memory.source' range='[0.0.0,1.0.0.201808221550)' severity='0'/>
+    <properties size='9'>
+      <property name='df_LT.bundleVendor' value='Lembed Electronic'/>
+      <property name='df_LT.bundleName' value='LiteSTUDIO Stack Analysis Plugin Source'/>
+      <property name='org.eclipse.equinox.p2.name' value='%bundleName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%bundleVendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='OSGI-INF/l10n/bundle-src'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='com.lembed.lite.studio.manager.analysis.memory'/>
+      <property name='maven-version' value='1.0.0-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+    <provides size='4'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='com.lembed.lite.studio.manager.analysis.memory.source' version='1.0.0.201808221550'/>
+      <provided namespace='osgi.bundle' name='com.lembed.lite.studio.manager.analysis.memory.source' version='1.0.0.201808221550'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='source' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.manager.analysis.memory.source' version='1.0.0.201808221550'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: com.lembed.lite.studio.manager.analysis.memory.source&#xA;Bundle-Version: 1.0.0.201808221550&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

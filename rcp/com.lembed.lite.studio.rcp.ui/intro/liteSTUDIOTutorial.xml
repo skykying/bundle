@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<introContent>
+    <extensionContent id="litestudiodocuserwelcome-introExtension"  alt-style="swt/tutorial.properties" style="css/sample.css" 
+    			name="LiteSTUDIO tutorial" path="tutorials/@">
+		<group style-id="content-group" id="litestudiodocuserwelcome-introLink-group">
+       		<link label="LiteSTUDIO Manual" 
+       		url="http://org.eclipse.ui.intro/showHelpTopic?id=/com.lembed.lite.studio.doc.user/getting_started/tutorial.html"
+       		id="litestudiodocuserwelcome-introLink" style-id="content-link">
+          		<text>LiteSTUDIO User's Guide</text>
+       		</link>
+       	</group>
+  	</extensionContent>
+</introContent>

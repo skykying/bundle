@@ -1,0 +1,21 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.tracecompass.btf.ui
+Bundle-SymbolicName: org.eclipse.tracecompass.btf.ui;singleton:=true
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,or
+ g.eclipse.tracecompass.tmf.core,org.eclipse.tracecompass.tmf.ui,org.e
+ clipse.swt,org.eclipse.jface,org.eclipse.ui.ide,org.eclipse.tracecomp
+ ass.btf.core,org.eclipse.tracecompass.tmf.analysis.xml.core,com.googl
+ e.guava;bundle-version="21.0.0",org.swtchart,org.eclipse.tracecompass
+ .common.core;bundle-version="3.1.0",org.eclipse.tracecompass.analysis
+ .counters.core
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %Bundle-Vendor
+Import-Package: com.google.common.collect
+Export-Package: org.eclipse.tracecompass.btf.ui
+Bundle-Name: %Bundle-Name
+Bundle-Version: 1.0.1.201808221550
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.tracecompass.btf.ui.Activator
+

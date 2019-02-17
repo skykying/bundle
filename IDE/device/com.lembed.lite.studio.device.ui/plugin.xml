@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.cdt.ui.preferences.CPluginPreferencePage"
+            class="com.lembed.lite.studio.device.ui.preferences.CpPreferencePage"
+            id="com.lembed.lite.studio.device.ui.CpPreferencePage"
+            name="%CMSISpage.name">
+      </page>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.lembed.lite.studio.device.ui.editors.LiteEditor"
+            contributorClass="com.lembed.lite.studio.device.ui.editors.LiteEditorContributor"
+            default="true"
+            filenames="components.h"
+            icon="icons/cmsis.png"
+            id="com.lembed.lite.studio.device.ui.editors.LiteConfigurationEditor"
+            name="%editor.LiteConfiguration">
+      </editor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.ui.views">
+      <category
+            id="com.lembed.lite.studio.device.category"
+            name="Device Pack Manager"
+            parentCategory="org.eclipse.cdt.ui.views">
+      </category>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.lembed.lite.studio.device.ui.preferences.CpUIPreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>

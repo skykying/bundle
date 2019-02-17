@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+    <extension
+         point="org.eclipse.ui.views">
+       <view
+             allowMultiple="true"
+             category="org.eclipse.cdt.ui.views"
+             class="com.lembed.lite.studio.report.core.views.BuildAnalyzerView"
+             icon="icons/view16/build_ico.png"
+             id="com.lembed.lite.studio.report.core.views.BuildAnalyzerView"
+             inject="true"
+             name="%view.buildanalyzer.name"
+             restorable="true">
+       </view>
+   </extension>
+    <extension
+          point="org.eclipse.ui.perspectiveExtensions">
+       <perspectiveExtension
+             targetID="org.eclipse.cdt.ui.CPerspective">
+          <viewShortcut
+                id="com.lembed.lite.studio.report.core.views.BuildAnalyzerView">
+          </viewShortcut>
+          <view
+                id="com.lembed.lite.studio.report.core.views.BuildAnalyzerView"
+                minimized="false"
+                relationship="stack"
+                relative="org.eclipse.ui.editorss"
+                visible="false">
+          </view>
+       </perspectiveExtension>
+    </extension>
+  
+</plugin>

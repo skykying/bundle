@@ -1,0 +1,25 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.tracecompass.common.core
+Bundle-SymbolicName: org.eclipse.tracecompass.common.core;singleton:=t
+ rue
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %Bundle-Vendor
+Import-Package: com.google.common.base,com.google.common.collect
+Export-Package: org.antlr,org.antlr.analysis,org.antlr.codegen,org.ant
+ lr.grammar.v3,org.antlr.misc,org.antlr.runtime, org.antlr.runtime.deb
+ ug,org.antlr.runtime.misc,org.antlr.runtime.tree,org.antlr.tool,org.e
+ clipse.tracecompass.common.core,org.eclipse.tracecompass.common.core.
+ collect,org.eclipse.tracecompass.common.core.format,org.eclipse.trace
+ compass.common.core.log,org.eclipse.tracecompass.common.core.math,org
+ .eclipse.tracecompass.common.core.process,org.eclipse.tracecompass.in
+ ternal.common.core;x-internal:=true
+Bundle-Name: %Bundle-Name
+Bundle-Version: 3.1.0.201808221550
+Bundle-Localization: plugin
+Bundle-ClassPath: library/antlr-runtime-3.5.2.jar,.
+Bundle-Activator: org.eclipse.tracecompass.internal.common.core.Activa
+ tor
+

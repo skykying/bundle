@@ -1,0 +1,65 @@
+/*******************************************************************************
+ * Copyright (C) 2017 Lembed Electronic.
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *     Lembed Electronic - initial API and implementation
+ ******************************************************************************/
+package com.lembed.lite.studio.manager.analysis.editor.linker.scanner;
+
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
+import org.eclipse.jface.text.rules.ICharacterScanner;
+import org.eclipse.jface.text.rules.IRule;
+import org.eclipse.jface.text.rules.IToken;
+import org.eclipse.jface.text.rules.Token;
+
+/**
+ * Scanner rule for matching whitespace characters. The rule will match consecutive
+ * Whitespace as a single whitespace token.
+ */
+
+public class WhitespaceRule implements IRule {
+
+    private IToken token;
+    
+    private static final Pattern WHITESPACE_PATTERN = Pattern.compile("\\s");
+    
+    public WhitespaceRule( IToken token ){
+        this.token = token;
+    }
+    
+    
+    public IToken evaluate(ICharacterScanner scanner) {
+     
+        int c = scanner.read();
+        boolean atLeastOneMatch = false;
+
+        
+        while( c != ICharacterScanner.EOF  ){                    
+            String character = "" + (char) c;     
+
+            Matcher m = WHITESPACE_PATTERN.matcher(character);
+            if( !m.matches()){
+                scanner.unread();     
+                break;
+            } else {
+                atLeastOneMatch = true;
+            }
+            c = scanner.read();            
+        }  
+
+        //when at least one whitespace was found it means we have a whitespace
+        //token
+        if( atLeastOneMatch ){
+            return token;
+        } else {
+            return Token.UNDEFINED;
+        }
+    }
+
+}

@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.panda.logicanalyzer.deviceintegration.core.device">
+      <device
+            class="org.panda.logicanalyzer.integration.arduinoLogicCapture.internal.ArduinoLogicCaptureDevice"
+            name="Arduino Logic Capture">
+         <configuration
+               initializer="org.panda.logicanalyzer.integration.arduinoLogicCapture.internal.ArduinoLogicCaptureDeviceConfigurationManager"
+               validator="org.panda.logicanalyzer.integration.arduinoLogicCapture.internal.ArduinoLogicCaptureDeviceConfigurationManager">
+            <group
+                  expanded="true"
+                  id="analyzer"
+                  name="Analyzer">
+               <text
+                     id="time"
+                     mandatory="true"
+                     name="Capture time [ms]">
+               </text>
+               <choice
+                     id="mode"
+                     mandatory="true"
+                     name="Mode">
+                  <item
+                        label="State change"
+                        value="stateChange">
+                  </item>
+                  <item
+                        label="Clocked"
+                        value="Clocked">
+                  </item>
+               </choice>
+               <choice
+                     id="level"
+                     name="State change trigger level">
+                  <item
+                        label="Falling"
+                        value="0">
+                  </item>
+                  <item
+                        label="Rising"
+                        value="1">
+                  </item>
+                  <item
+                        label="Both"
+                        value="x">
+                  </item>
+               </choice>
+               <choice
+                     id="prescaler"
+                     mandatory="true"
+                     name="Sample rate">
+				 <item value="1" label="16 MHz" />
+				 <item value="8" label="2 MHz" />
+				 <item value="64" label="250 kHz" />
+				 <item value="256" label="62.5 kHz" />
+				 <item value="1024" label="15.625 kHz" />
+               </choice>
+               <choice
+                     id="clockSpeed"
+                     mandatory="true"
+                     name="Clock speed">
+                  <item
+                        label="8 Mhz"
+                        value="8000000">
+                  </item>
+                  <item
+                        label="16 Mhz"
+                        value="16000000">
+                  </item>
+               </choice>
+            </group>
+         </configuration>
+      </device>
+   </extension>
+
+</plugin>

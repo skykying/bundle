@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2017 Lembed Electronic
+ All rights reserved. This program and the accompanying materials
+ are made available under the terms of the Eclipse Public License v1.0
+ which accompanies this distribution, and is available at
+ http://www.eclipse.org/legal/epl-v10.html
+-->
+
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <parent>
+    <groupId>com.lembed.lite.studio</groupId>
+    <artifactId>com.lembed.lite.studio</artifactId>
+    <version>0.1.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>com.lembed.lite.studio.license-parent</artifactId>
+  <version>1.0.0-SNAPSHOT</version>
+  <packaging>pom</packaging>
+
+  <name>Lite studio license Parent</name>
+
+  <modules>
+    <!-- <module>com.lembed.lite.studio.licensing.app</module> -->
+    <module>com.lembed.lite.studio.licensing.base</module>
+    <module>com.lembed.lite.studio.licensing.core</module>
+    <module>com.lembed.lite.studio.licensing.ui</module>
+    <module>com.lembed.lite.studio.licensing.feature</module>
+  </modules>
+
+</project>

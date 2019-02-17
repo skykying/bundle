@@ -1,0 +1,9 @@
+apt-get install python bzip2 make gcc g++ wget git xz-utils 
+
+
+
+
+apt-get install clang
+
+
+18763607248

@@ -1,0 +1,154 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='2'>
+  <unit id='org.eclipse.tracecompass.tmf.core' version='4.0.0.201808221550'>
+    <update id='org.eclipse.tracecompass.tmf.core' range='[0.0.0,4.0.0.201808221550)' severity='0'/>
+    <properties size='8'>
+      <property name='df_LT.Bundle-Name' value='Trace Compass TMF Core Plug-in'/>
+      <property name='df_LT.Bundle-Vendor' value='Eclipse Trace Compass'/>
+      <property name='org.eclipse.equinox.p2.name' value='%Bundle-Name'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%Bundle-Vendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='plugin'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.core'/>
+      <property name='maven-version' value='4.0.0-SNAPSHOT'/>
+    </properties>
+    <provides size='79'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.tracecompass.tmf.core' version='4.0.0.201808221550'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.tracecompass.tmf.core' version='4.0.0.201808221550'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.provisional.tmf.core.model.events' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.provisional.tmf.core.model.filter.parser' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.provisional.tmf.core.model.filters' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.provisional.tmf.core.model.table' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.provisional.tmf.core.model.timegraph' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.analysis' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.callstack' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.callstack.provider' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.component' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.filter' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.histogram' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.markers' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.model' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.model.filters' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.model.timegraph' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.model.tree' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.model.xy' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.parsers.custom' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.presentation' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.project.model' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.request' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.statesystem.backends.partial' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.statesystem.mipmap' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.synchronization' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.synchronization.graph' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.timestamp' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.trace.experiment' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.tmf.core.trace.indexer' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.internal.util' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.analysis' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.analysis.ondemand' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.analysis.requirements' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.callstack' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.component' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.dataprovider' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.event' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.event.aspect' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.event.collapse' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.event.lookup' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.event.matching' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.exceptions' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.filter' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.filter.model' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.filter.xml' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.io' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.model' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.model.filters' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.model.timegraph' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.model.tree' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.model.xy' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.parsers.custom' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.presentation' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.project.model' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.request' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.resources' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.response' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.segment' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.signal' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.statesystem' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.statistics' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.symbols' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.synchronization' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.timestamp' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace.experiment' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace.indexer' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace.indexer.checkpoint' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace.location' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace.text' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.trace.trim' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.uml2sd' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.util' version='0.0.0'/>
+      <provided namespace='java.package' name='org.eclipse.tracecompass.tmf.core.viewmodel' version='0.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <requires size='13'>
+      <required namespace='osgi.bundle' name='org.eclipse.core.runtime' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.core.resources' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.common.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.segmentstore.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.statesystem.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.cdt.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.datastore.core' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.tracecompass.tmf.filter.parser' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='com.google.gson' range='2.7.0'/>
+      <required namespace='osgi.bundle' name='com.google.guava' range='21.0.0'/>
+      <required namespace='osgi.bundle' name='org.eclipse.jdt.annotation' range='0.0.0'/>
+      <required namespace='osgi.bundle' name='org.apache.commons.io' range='2.2.0'/>
+      <required namespace='osgi.bundle' name='org.apache.commons.lang3' range='3.1.0'/>
+    </requires>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.core' version='4.0.0.201808221550'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.tracecompass.tmf.core;singleton:=true&#xA;Bundle-Version: 4.0.0.201808221550&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+  <unit id='org.eclipse.tracecompass.tmf.core.source' version='4.0.0.201808221550' singleton='false'>
+    <update id='org.eclipse.tracecompass.tmf.core.source' range='[0.0.0,4.0.0.201808221550)' severity='0'/>
+    <properties size='9'>
+      <property name='df_LT.bundleVendor' value='Eclipse Trace Compass'/>
+      <property name='df_LT.bundleName' value='Trace Compass TMF Core Plug-in Source'/>
+      <property name='org.eclipse.equinox.p2.name' value='%bundleName'/>
+      <property name='org.eclipse.equinox.p2.provider' value='%bundleVendor'/>
+      <property name='org.eclipse.equinox.p2.bundle.localization' value='OSGI-INF/l10n/bundle-src'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.core'/>
+      <property name='maven-version' value='4.0.0-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+    <provides size='4'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.eclipse.tracecompass.tmf.core.source' version='4.0.0.201808221550'/>
+      <provided namespace='osgi.bundle' name='org.eclipse.tracecompass.tmf.core.source' version='4.0.0.201808221550'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='source' version='1.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
+    </provides>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.core.source' version='4.0.0.201808221550'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.eclipse.tracecompass.tmf.core.source&#xA;Bundle-Version: 4.0.0.201808221550&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

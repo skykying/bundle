@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+	<extension point="org.eclipse.ui.views">
+    	<view
+            allowMultiple="false"
+            category="org.eclipse.debug.ui"
+            class="com.lembed.lite.studio.debug.gdbjtag.render.peripherals.PeripheralsView"
+            icon="icons/peripheral.png"
+            id="com.lembed.lite.studio.debug.gdbjtag.ui.views.PeripheralsView"
+            name="%views.peripheral.name">
+		</view>
+     <view
+           allowMultiple="false"
+           category="org.eclipse.debug.ui"
+           class="com.lembed.lite.studio.debug.gdbjtag.views.LiveExpressionsView"
+           icon="icons/live_expressions.gif"
+           id="com.lembed.lite.studio.debug.gdbjtag.views.LiveExpressionsView"
+           name="%views.liveexpressions.name"
+           restorable="false">
+     </view>
+     <view
+           category="org.eclipse.debug.ui"
+           class="com.lembed.lite.studio.debug.gdbjtag.views.FaultsView"
+           icon="icons/icon_fault.png"
+           id="com.lembed.lite.studio.debug.gdbjtag.views.FaultsView"
+           name="%views.faults.name"
+           restorable="true">
+     </view>
+     <view
+           category="org.eclipse.debug.ui"
+           class="com.lembed.lite.studio.debug.gdbjtag.views.EOSResourceView"
+           icon="icons/field.png"
+           id="com.lembed.lite.studio.debug.gdbjtag.views.LembedOSResourceView"
+           name="%views.osresource.name"
+           restorable="true">
+     </view>
+	</extension>
+
+	<extension point="org.eclipse.ui.perspectiveExtensions">
+		<perspectiveExtension
+			targetID="org.eclipse.debug.ui.DebugPerspective">
+			<view
+			     id="com.lembed.lite.studio.debug.gdbjtag.ui.views.PeripheralsView"
+			     minimized="false"
+			     relationship="stack"
+			     relative="org.eclipse.debug.ui.VariableView"
+			     visible="true">
+			</view>
+			<viewShortcut
+			     id="com.lembed.lite.studio.debug.gdbjtag.ui.views.PeripheralsView">
+			</viewShortcut>
+   <view
+         id="com.lembed.lite.studio.debug.gdbjtag.views.LiveExpressionsView"
+         minimized="false"
+         relationship="stack"
+         relative="org.eclipse.debug.ui.VariableView"
+         visible="true">
+   </view>
+   <viewShortcut
+         id="com.lembed.lite.studio.debug.gdbjtag.views.LiveExpressionsView">
+   </viewShortcut>
+   <view
+         id="com.lembed.lite.studio.debug.gdbjtag.views.FaultsView"
+         minimized="false"
+         relationship="stack"
+         relative="org.eclipse.debug.ui.VariableView"
+         visible="true">
+   </view>
+   <viewShortcut
+         id="com.lembed.lite.studio.debug.gdbjtag.views.FaultsView">
+   </viewShortcut>
+   <view
+         id="org.eclipse.ui.navigator.ProjectExplorer"
+         minimized="false"
+         relationship="stack"
+         relative="org.eclipse.debug.ui.DebugView"
+         visible="true">
+   </view>
+   <view
+         id="org.eclipse.ui.views.PropertySheet"
+         minimized="false"
+         relationship="stack"
+         relative="org.eclipse.ui.console.ConsoleView"
+         visible="true">
+   </view>
+   <viewShortcut
+         id="org.eclipse.ui.views.PropertySheet">
+   </viewShortcut>
+   <view
+         id="org.eclipse.tm.terminal.view.ui.TerminalsView"
+         minimized="false"
+         relationship="stack"
+         relative="org.eclipse.ui.console.ConsoleView"
+         visible="true">
+   </view>
+		</perspectiveExtension>
+    </extension>
+
+	<extension point="org.eclipse.debug.ui.contextViewBindings">
+		<contextViewBinding
+			contextId="org.eclipse.cdt.debug.ui.debugging"
+			viewId="com.lembed.lite.studio.debug.gdbjtag.ui.views.PeripheralsView" 
+			autoOpen="true"
+			autoClose="true">
+		</contextViewBinding>
+  <contextViewBinding
+        autoClose="true"
+        autoOpen="true"
+        contextId="org.eclipse.cdt.debug.ui.debugging"
+        viewId="com.lembed.lite.studio.debug.gdbjtag.views.FaultsView">
+  </contextViewBinding>
+  <contextViewBinding
+        autoClose="true"
+        autoOpen="true"
+        contextId="org.eclipse.cdt.debug.ui.debugging"
+        viewId="com.lembed.lite.studio.debug.gdbjtag.views.LiveExpressionsView">
+  </contextViewBinding>
+	</extension>
+
+	<extension point="org.eclipse.core.runtime.adapters">
+	    <factory
+	          adaptableType="com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmLaunch"
+	          class="com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmAdapterFactory">
+	         <!-- this list needs to match the list of adapters that GnuArmAdapterFactory's super class
+	              can adapt to, see org.eclipse.cdt.dsf.gdb.ui/plugin.xml for reference list -->
+	         <adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IElementContentProvider"/>
+	         <adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IModelProxyFactory"/>
+	         <adapter type="org.eclipse.debug.ui.contexts.ISuspendTrigger"/>
+	         <adapter type="org.eclipse.debug.internal.ui.viewers.model.provisional.IColumnPresentationFactory"/>
+	         <adapter type="org.eclipse.debug.core.commands.ITerminateHandler"/>
+	         <adapter type="org.eclipse.cdt.debug.core.model.IConnectHandler"/>
+	         <adapter type="org.eclipse.debug.core.commands.IDisconnectHandler"/>
+	         <adapter type="org.eclipse.cdt.debug.core.model.IDebugNewExecutableHandler"/>
+	    </factory>
+	</extension>
+	
+    <extension
+          point="org.eclipse.debug.ui.memoryRenderings">
+       <renderingType
+             class="com.lembed.lite.studio.debug.gdbjtag.render.peripheral.PeripheralRenderingDelegate"
+             id="com.lembed.lite.studio.debug.gdbjtag.memoryRendering"
+             name="Peripheral">
+       </renderingType>
+       <renderingBindings
+             defaultIds="com.lembed.lite.studio.debug.gdbjtag.memoryRendering"
+             primaryId="com.lembed.lite.studio.debug.gdbjtag.memoryRendering"
+             renderingIds="com.lembed.lite.studio.debug.gdbjtag.memoryRendering">
+             <!-- org.eclipse.debug.ui.rendering.raw_memory not yet functional -->
+			<enablement>
+			<or>
+				<!-- Without this instanceof, adding memory renderings fail with NPE -->
+				<instanceof 
+					value="com.lembed.lite.studio.debug.gdbjtag.memory.PeripheralMemoryBlockExtension" />
+			</or>
+			</enablement>
+       </renderingBindings>
+    </extension>
+    <extension
+          point="org.eclipse.ui.themes">
+       <themeElementCategory
+             id="com.lembed.lite.studio.debug.gdbjtag.peripheral.colors"
+             label="Peripherals views">
+          <description>
+             Colors used in the peripherals views.
+          </description>
+       </themeElementCategory>
+       <colorDefinition
+             categoryId="com.lembed.lite.studio.debug.gdbjtag.peripheral.colors"
+             colorFactory="com.lembed.lite.studio.debug.gdbjtag.preferences.ColorReadOnlyFactory"
+             id="com.lembed.lite.studio.debug.gdbjtag.peripherals.color.readonly"
+             isEditable="true"
+             label="Read only background">
+          <description>
+             Color for the read only peripherals/registers.
+          </description>
+       </colorDefinition>
+       <colorDefinition
+             categoryId="com.lembed.lite.studio.debug.gdbjtag.peripheral.colors"
+             colorFactory="com.lembed.lite.studio.debug.gdbjtag.preferences.ColorWriteOnlyFactory"
+             id="com.lembed.lite.studio.debug.gdbjtag.peripherals.color.writeonly"
+             isEditable="true"
+             label="Write only background">
+          <description>
+             Color for the write only peripherals/registers.
+          </description>
+       </colorDefinition>
+       <colorDefinition
+             categoryId="com.lembed.lite.studio.debug.gdbjtag.peripheral.colors"
+             colorFactory="com.lembed.lite.studio.debug.gdbjtag.preferences.ColorChangedFactory"
+             id="com.lembed.lite.studio.debug.gdbjtag.peripherals.color.changed"
+             isEditable="true"
+             label="Changed background">
+          <description>
+             Color for the value fields that changed during edit.
+          </description>
+       </colorDefinition>
+       <colorDefinition
+             categoryId="com.lembed.lite.studio.debug.gdbjtag.peripheral.colors"
+             colorFactory="com.lembed.lite.studio.debug.gdbjtag.preferences.ColorChangedLightFactory"
+             id="com.lembed.lite.studio.debug.gdbjtag.peripherals.color.changed.light"
+             isEditable="true"
+             label="Changed background (light)">
+          <description>
+             Color for the value fields that changed during edit, light contrast.
+          </description>
+       </colorDefinition>
+       <colorDefinition
+             categoryId="com.lembed.lite.studio.debug.gdbjtag.peripheral.colors"
+             colorFactory="com.lembed.lite.studio.debug.gdbjtag.preferences.ColorChangedMediumFactory"
+             id="com.lembed.lite.studio.debug.gdbjtag.peripherals.color.changed.medium"
+             isEditable="true"
+             label="Changed background (medium)">
+          <description>
+             Color for the value fields that changed during edit, medium contrast.
+          </description>
+       </colorDefinition>
+    </extension>
+    <extension
+          point="org.eclipse.ui.preferencePages">
+       <page
+             category="org.eclipse.debug.ui.DebugPreferencePage"
+             class="com.lembed.lite.studio.debug.gdbjtag.preferences.PeripheralsPage"
+             id="com.lembed.lite.studio.debug.gdbjtag.jlink.preferencePage.peripherals"
+             name="%preferences.peripherals">
+       </page>
+    </extension>
+   
+   
+</plugin>

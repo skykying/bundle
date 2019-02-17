@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="dataSourceFactory" name="DataSource factory" schema="schema/dataSourceFactory.exsd"/>
+   <extension-point id="dataSinkFactory" name="DataSink factory" schema="schema/dataSinkFactory.exsd"/>
+   <extension-point id="filterFactory" name="Filter factory" schema="schema/filterFactory.exsd"/>
+   <extension
+         point="org.panda.logicanalyzer.core.dataSinkFactory">
+      <factory
+            class="org.panda.logicanalyzer.core.internal.sinks.FileSink$FileSinkFactory"
+            id="org.panda.logicanalyzer.core.internal.sinks.FileSink"
+            name="FileSink">
+         <description>
+            FileSink
+         </description>
+      </factory>
+   </extension>
+   <extension
+         point="org.panda.logicanalyzer.core.dataSourceFactory">
+      <factory
+            class="org.panda.logicanalyzer.core.internal.sources.RandomDataSource$RandomDataSourceFactory"
+            id="org.panda.logicanalyzer.core.internal.sources.RandomDataSource"
+            name="RandomDataSource">
+         <description>
+            RandomDataSource
+         </description>
+      </factory>
+   </extension>
+
+</plugin>

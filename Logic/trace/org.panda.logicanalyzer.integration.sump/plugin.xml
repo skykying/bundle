@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.panda.logicanalyzer.deviceintegration.core.device">
+      <device
+            class="org.panda.logicanalyzer.integration.sump.internal.SUMPDevice"
+            name="SUMP">
+         <configuration
+               initializer="org.panda.logicanalyzer.integration.sump.internal.ConfigurationInitializer">
+            <group
+                  expanded="true"
+                  id="analyzer"
+                  name="Analyzer">
+               <choice
+                     id="samplingClock"
+                     name="Sampling clock">
+                  <item
+                        label="Internal"
+                        value="Internal">
+                  </item>
+                  <item
+                        label="External - Falling Edge"
+                        value="ExternalFallingEdge">
+                  </item>
+                  <item
+                        label="External - Rising Edge"
+                        value="ExternalRisingEdge">
+                  </item>
+               </choice>
+               <choice
+                     id="samplingRate"
+                     name="Sampling rate">
+                  <item value="200000000" label="200 MHz" />
+				  <item value="100000000" label="100 MHz" />
+				  <item value="50000000" label="50 MHz" />
+				  <item value="20000000" label="20MHz" />
+				  <item value="10000000" label="10MHz" />
+				  <item value="5000000" label="5MHz" />
+				  <item value="2000000" label="2MHz" />
+				  <item value="1000000" label="1MHz" />
+				  <item value="500000" label="500kHz" />
+				  <item value="200000" label="200kHz" />
+				  <item value="100000" label="100kHz" />
+				  <item value="50000" label="50kHz" />
+				  <item value="20000" label="20kHz" />
+				  <item value="10000" label="10kHz" />
+				  <item value="1000" label="1kHz" />
+				  <item value="500" label="500Hz" />
+				  <item value="200" label="200Hz" />
+				  <item value="100" label="100Hz" />
+				  <item value="50" label="50Hz" />
+				  <item value="20" label="20Hz" />
+				  <item value="10" label="10Hz" />
+               </choice>
+               <check
+                     id="channelGroup00"
+                     name="Enable channel group 01">
+               </check>
+               <check
+                     id="channelGroup01"
+                     name="Enable channel group 02">
+               </check>
+               <check
+                     id="channelGroup02"
+                     name="Enable channel group 03">
+               </check>
+               <check
+                     id="channelGroup03"
+                     name="Enable channel group 04">
+               </check>
+               <choice
+                     id="recordingSize"
+                     name="Recording size">
+				   <item value="16384" label="16k" />
+				   <item value="8192" label="8k" />
+				   <item value="4096" label="4k" />
+				   <item value="2048" label="2k" />
+				   <item value="1024" label="1k" />
+				   <item value="512" label="512" />
+				   <item value="256" label="256" />
+				   <item value="128" label="128" />
+				   <item value="64" label="64" />
+               </choice>
+               <check
+                     id="noiseFilter"
+                     name="Enable noise filter">
+               </check>
+            </group>
+            <group
+                  id="trigger"
+                  name="Trigger">
+               <check
+                     id="enable"
+                     name="Enable trigger">
+               </check>
+               <choice
+                     id="ratio"
+                     name="Ratio">
+				  <item value="1.0" label="  0/100" />
+				  <item value="0.75" label="25/75" />
+				  <item value="0.50" label="50/50" />
+				  <item value="0.25" label="75/25" />
+               </choice>
+            </group>
+            <group
+                  id="triggerStage00"
+                  name="Trigger Stage 01">
+               <choice
+                     id="enablement"
+                     name=" ">
+				 <item value="Disabled" label="Disabled" />
+				 <item value="Parallel" label="Parallel trigger" />
+				 <item value="Serial" label="Serial trigger" />
+               </choice>
+               <choice
+                     id="mode"
+                     name="Mode">
+				 <item value="false" label="Capture data" />
+				 <item value="true" label="Advance to next stage" />
+               </choice>
+               <text
+                     id="delay"
+                     name="Delay">
+               </text>
+               <text
+                     id="channelNr"
+                     mandatory="false"
+                     name="Channel nr">
+               </text>
+               <bits
+                     id="mask"
+                     name="Mask">
+               </bits>
+               <bits
+                     id="value"
+                     name="Value">
+               </bits>
+            </group>
+            <group
+                  id="triggerStage01"
+                  name="Trigger Stage 02">
+               <choice
+                     id="enablement"
+                     name=" ">
+                  <item
+                        label="Disabled"
+                        value="Disabled">
+                  </item>
+                  <item
+                        label="Parallel trigger"
+                        value="Parallel">
+                  </item>
+                  <item
+                        label="Serial trigger"
+                        value="Serial">
+                  </item>
+               </choice>
+               <choice
+                     id="mode"
+                     name="Mode">
+                  <item
+                        label="Capture data"
+                        value="false">
+                  </item>
+                  <item
+                        label="Advance to next stage"
+                        value="true">
+                  </item>
+               </choice>
+               <text
+                     id="delay"
+                     name="Delay">
+               </text>
+               <text
+                     id="channelNr"
+                     mandatory="false"
+                     name="Channel nr">
+               </text>
+               <bits
+                     id="mask"
+                     name="Mask">
+               </bits>
+               <bits
+                     id="value"
+                     name="Value">
+               </bits>
+            </group>
+            <group
+                  id="triggerStage02"
+                  name="Trigger Stage 03">
+               <choice
+                     id="enablement"
+                     name=" ">
+                  <item
+                        label="Disabled"
+                        value="Disabled">
+                  </item>
+                  <item
+                        label="Parallel trigger"
+                        value="Parallel">
+                  </item>
+                  <item
+                        label="Serial trigger"
+                        value="Serial">
+                  </item>
+               </choice>
+               <choice
+                     id="mode"
+                     name="Mode">
+                  <item
+                        label="Capture data"
+                        value="false">
+                  </item>
+                  <item
+                        label="Advance to next stage"
+                        value="true">
+                  </item>
+               </choice>
+               <text
+                     id="delay"
+                     name="Delay">
+               </text>
+               <text
+                     id="channelNr"
+                     mandatory="false"
+                     name="Channel nr">
+               </text>
+               <bits
+                     id="mask"
+                     name="Mask">
+               </bits>
+               <bits
+                     id="value"
+                     name="Value">
+               </bits>
+            </group>
+            <group
+                  id="triggerStage03"
+                  name="Trigger Stage 04">
+               <choice
+                     id="enablement"
+                     name=" ">
+                  <item
+                        label="Disabled"
+                        value="Disabled">
+                  </item>
+                  <item
+                        label="Parallel trigger"
+                        value="Parallel">
+                  </item>
+                  <item
+                        label="Serial trigger"
+                        value="Serial">
+                  </item>
+               </choice>
+               <choice
+                     id="mode"
+                     name="Mode">
+                  <item
+                        label="Capture data"
+                        value="false">
+                  </item>
+                  <item
+                        label="Advance to next stage"
+                        value="true">
+                  </item>
+               </choice>
+               <text
+                     id="delay"
+                     name="Delay">
+               </text>
+               <text
+                     id="channelNr"
+                     mandatory="false"
+                     name="Channel nr">
+               </text>
+               <bits
+                     id="mask"
+                     name="Mask">
+               </bits>
+               <bits
+                     id="value"
+                     name="Value">
+               </bits>
+            </group>
+         </configuration>
+      </device>
+   </extension>
+
+</plugin>

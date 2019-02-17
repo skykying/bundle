@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='3'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.chart.ui' version='1.0.4.201808221550'>
+    <properties size='5'>
+      <property name='artifact.size' value='105982'/>
+      <property name='download.size' value='105982'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.chart.ui'/>
+      <property name='maven-version' value='1.0.4-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.chart.ui' version='1.0.4.201808221550'>
+    <processing size='1'>
+      <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
+    </processing>
+    <properties size='8'>
+      <property name='artifact.size' value='105982'/>
+      <property name='download.size' value='27085'/>
+      <property name='format' value='packed'/>
+      <property name='maven-version' value='1.0.4-SNAPSHOT'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.chart.ui'/>
+      <property name='maven-extension' value='jar.pack.gz'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-classifier' value='pack200'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.tmf.chart.ui.source' version='1.0.4.201808221550'>
+    <properties size='6'>
+      <property name='artifact.size' value='62637'/>
+      <property name='download.size' value='62637'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='org.eclipse.tracecompass.tmf.chart.ui'/>
+      <property name='maven-version' value='1.0.4-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
+    </properties>
+  </artifact>
+</artifacts>

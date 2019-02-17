@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.cdt.core.templateProcessTypes">
+      <processType
+            name="SetMBSStringOptionValue"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.SetMBSStringOptionValue">
+         <simple name="projectName"/>
+         <complexArray name="resourcePaths">
+            <baseType>
+               <simple name="id"/>
+               <simple name="value"/>
+               <simple name="path"/>
+               <simple name="buildType"/>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="SetMBSStringListOptionValues"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.SetMBSStringListOptionValues">
+         <simple name="projectName"/>
+         <complexArray name="resourcePaths">
+            <baseType>
+               <simple name="id"/>
+               <simpleArray name="values"/>
+               <simple name="path"/>
+               <simple name="buildType"/>
+            </baseType>
+         </complexArray>
+      </processType>
+     <processType
+            name="SetMBSBooleanOptionValue"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.SetMBSBooleanOptionValue">
+         <simple name="projectName"/>
+         <complexArray name="resourcePaths">
+            <baseType>
+               <simple name="id"/>
+               <simple name="value"/>
+               <simple name="path"/>
+               <simple name="buildType"/>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="AppendToMBSStringOptionValue"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.AppendToMBSStringOptionValue">
+         <simple name="projectName"/>
+         <complexArray name="resourcePaths">
+            <baseType>
+               <simple name="id"/>
+               <simple name="value"/>
+               <simple name="path"/>
+               <simple name="buildType"/>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="AppendToMBSStringListOptionValues"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.AppendToMBSStringListOptionValues">
+         <simple name="projectName"/>
+         <complexArray name="resourcePaths">
+            <baseType>
+               <simple name="id"/>
+               <simpleArray name="values"/>
+               <simple name="path"/>
+               <simple
+                     name="buildType"
+                     nullable="true"/>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="ConditionalSetMBSStringOptionValue"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalSetMBSStringOptionValue">
+         <simple
+               name="projectName">
+         </simple>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray
+               name="resourcePaths">
+            <baseType>
+               <simple
+                     name="id">
+               </simple>
+               <simple
+                     name="value">
+               </simple>
+               <simple
+                     name="path">
+               </simple>
+               <simple
+                     name="buildType">
+               </simple>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="ConditionalAppendToMBSStringOptionValue"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalAppendToMBSStringOptionValue">
+         <simple
+               name="projectName">
+         </simple>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray
+               name="resourcePaths">
+            <baseType>
+               <simple
+                     name="id">
+               </simple>
+               <simple
+                     name="value">
+               </simple>
+               <simple
+                     name="path">
+               </simple>
+               <simple
+                     name="buildType"
+                     nullable="true">
+               </simple>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="ConditionalAppendToMBSStringListOptionValues"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalAppendToMBSStringListOptionValues">
+         <simple
+               name="projectName">
+         </simple>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray
+               name="resourcePaths">
+            <baseType>
+               <simple
+                     name="id">
+               </simple>
+               <simpleArray
+                     name="values">
+               </simpleArray>
+               <simple
+                     name="path">
+               </simple>
+               <simple
+                     name="buildType"
+                     nullable="true">
+               </simple>
+            </baseType>
+         </complexArray>
+      </processType>
+      <processType
+            name="ConditionalSetMBSBooleanOptionValue"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalSetMBSBooleanOptionValue">
+         <simple
+               name="projectName">
+         </simple>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray
+               name="resourcePaths">
+            <baseType>
+               <simple
+                     name="id">
+               </simple>
+               <simple
+                     name="value">
+               </simple>
+               <simple
+                     name="path">
+               </simple>
+               <simple
+                     name="buildType">
+               </simple>
+            </baseType>
+         </complexArray>
+      </processType>
+      
+      <processType
+            name="ConditionalAddFiles"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalAddFiles">
+         <simple name="projectName"/>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray name="files">
+            <baseType>
+               <simple name="source"/>
+               <simple name="target"/>
+               <simple name="replaceable"/>
+            </baseType>
+         </complexArray>
+      </processType>
+  
+      <processType
+            name="ConditionalAppendCreate"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalAppendCreate">
+         <simple name="projectName"/>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray name="files">
+            <baseType>
+               <simple name="source"/>
+               <simple name="target"/>
+               <simple name="replaceable"/>
+            </baseType>
+         </complexArray>
+      </processType>
+
+      <processType
+            name="SetPropertyIfHasNature"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.SetPropertyIfHasNature">
+         <simple name="projectName"/>
+         <simple name="natureString"/>
+         <simple name="propertyName"/>
+         <simple name="propertyValue"/>
+      </processType>
+
+      <processType
+            name="ConditionalSetProperty"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalSetProperty">
+         <simple name="projectName"/>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <simple name="propertyName"/>
+         <simple name="propertyValue"/>
+      </processType>
+
+      <processType
+            name="SetPropertyToPluginResource"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.SetPropertyToPluginResource">
+         <simple name="pluginId"/>
+         <simple name="relativePath"/>
+         <simple name="propertyName"/>
+      </processType>
+
+      <processType
+            name="AddAbsolutePathFiles"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.AddAbsolutePathFiles">
+         <simple name="projectName"/>
+         <complexArray name="files">
+            <baseType>
+               <simple name="source"/>
+               <simple name="target"/>
+               <simple name="replaceable"/>
+            </baseType>
+         </complexArray>
+      </processType>
+ 
+       <processType
+            name="ConditionalCopyFolders"
+            processRunner="com.lembed.lite.studio.templates.processor.processes.ConditionalCopyFolders">
+         <simple name="projectName"/>
+         <simple
+               name="condition"
+               nullable="true">
+         </simple>
+         <complexArray name="folders">
+            <baseType>
+               <simple name="source"/>
+               <simple name="target"/>
+               <simple name="pattern"/>
+               <simple name="replaceable"/>
+            </baseType>
+         </complexArray>
+      </processType>
+      
+   </extension>
+
+ <extension
+         point="org.eclipse.cdt.core.templates">
+      <template
+      		filterPattern=".*gcc"
+            id="com.lembed.lite.studio.templates.sdk.project.arm_c"
+            location="$nl$/templates/arm_c_project/template.xml"
+            pagesAfterTemplateSelectionProvider="com.lembed.lite.studio.device.project.template.LiteProjectTemplateProvider"
+            projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+      </template>
+      <template
+      		filterPattern=".*g\+\+"
+            id="com.lembed.lite.studio.templates.sdk.project.arm_cpp"
+            location="$nl$/templates/arm_cpp_project/template.xml"
+            pagesAfterTemplateSelectionProvider="com.lembed.lite.studio.device.project.template.LiteProjectTemplateProvider"
+            projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+      </template>
+   </extension>
+   <extension point="org.eclipse.cdt.core.templateAssociations">
+      <template
+         id="com.lembed.lite.studio.templates.sdk.project.arm_cpp">
+         <toolChain 
+         	id="com.lembed.lite.studio.managedbuild.cross.toolchain.base">
+         </toolChain>
+      </template>
+      <template
+         id="com.lembed.lite.studio.templates.sdk.project.arm_c">
+         <toolChain 
+         	id="com.lembed.lite.studio.managedbuild.cross.toolchain.base">
+         </toolChain>
+      </template>
+   </extension>
+</plugin>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature url="features/com.lembed.lite.studio.managedbuild.cross.feature_2.2.1.qualifier.jar" id="com.lembed.lite.studio.managedbuild.cross.feature" version="2.2.1.qualifier"/>
+   <feature url="features/com.lembed.lite.studio.device.feature_1.0.0.qualifier.jar" id="com.lembed.lite.studio.device.feature" version="1.0.0.qualifier"/>
+   <feature url="features/com.lembed.lite.studio.templates.arm.feature_2.5.1.qualifier.jar" id="com.lembed.lite.studio.templates.arm.feature" version="2.5.1.qualifier"/>
+   <feature url="features/com.lembed.lite.studio.manager.analysis.feature_2.2.1.qualifier.jar" id="com.lembed.lite.studio.manager.analysis.feature" version="2.2.1.qualifier"/>
+   <feature url="features/com.lembed.lite.studio.debug.gdbjtag.device.feature_4.1.1.qualifier.jar" id="com.lembed.lite.studio.debug.gdbjtag.device.feature" version="4.1.1.qualifier"/>
+   <feature url="features/com.lembed.lite.studio.debug.peripheralregview.feature_0.1.1.qualifier.jar" id="com.lembed.lite.studio.debug.peripheralregview.feature" version="0.1.1.qualifier"/>
+   <feature url="features/com.lembed.lite.studio.project.crosslibrary.feature_0.1.1.qualifier.jar" id="com.lembed.lite.studio.project.crosslibrary.feature" version="0.1.1.qualifier"/>
+   <category-def name="com.lembed.lite.studio.category" label="Lite Studio C/C++ Cross Development Tools"/>
+</site>

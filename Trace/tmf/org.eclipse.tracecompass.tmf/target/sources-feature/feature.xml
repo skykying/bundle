@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.eclipse.tracecompass.tmf.source" version="4.0.0.201808221550" label="%featureName" provider-name="%featureProvider">
+  <description>
+      %description
+   </description>
+  <copyright>
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.eclipse.tracecompass.tmf.core.source" version="4.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.tmf.ui.source" version="4.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.tmf.analysis.xml.core.source" version="3.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.tmf.analysis.xml.ui.source" version="2.1.5.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.statesystem.core.source" version="4.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.segmentstore.core.source" version="2.0.1.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.graph.core.source" version="2.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.graph.ui.source" version="1.0.6.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.timing.core.source" version="4.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.timing.ui.source" version="3.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.tmf.chart.core.source" version="1.0.1.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.tmf.chart.ui.source" version="1.0.4.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.datastore.core.source" version="1.1.2.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.counters.core.source" version="2.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.counters.ui.source" version="0.0.4.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.profiling.core.source" version="1.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.analysis.profiling.ui.source" version="1.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.tmf.filter.parser.source" version="1.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+</feature>

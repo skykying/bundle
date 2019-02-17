@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='1'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.201702040353'>
+    <properties size='5'>
+      <property name='artifact.size' value='383338'/>
+      <property name='download.size' value='383338'/>
+      <property name='maven-groupId' value='org.panda.logicanalyzer'/>
+      <property name='maven-artifactId' value='org.panda.logicanalyzer.io'/>
+      <property name='maven-version' value='2.1.7-SNAPSHOT'/>
+    </properties>
+  </artifact>
+</artifacts>

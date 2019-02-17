@@ -1,0 +1,479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.cdt.core.BinaryParser">
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.lembed.lite.studio.manager.analysis.editor.elf.ElfEditor"
+            contributorClass="com.lembed.lite.studio.manager.analysis.editor.elf.ElfFileEditorContributor"
+            default="true"
+            extensions="elf"
+            icon="icons/file.gif"
+            id="com.lembed.lite.studio.manager.analysis.editor.elf.ElfFileEditor"
+            name="Elf File Editor">
+      </editor>
+   </extension>
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.lembed.lite.studio.manager.analysis.editor.linkerfile.LinkerFileEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="true"
+            extensions="ld,LD"
+            icon="icons/file.gif"
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.LinkerFileEditor"
+            name="Linkerfile Editor">
+      </editor>
+      <editor
+            class="com.lembed.lite.studio.manager.analysis.editor.map.MapFileEditor"
+            contributorClass="com.lembed.lite.studio.manager.analysis.editor.map.MapEditorContributor"
+            default="true"
+            extensions="map"
+            icon="icons/file.gif"
+            id="com.lembed.lite.studio.manager.analysis.editor.map.MapFileEditor"
+            name="Map File Editor">
+      </editor>
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.LinkerFileEditorPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.preferences.ColorPreferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.ColorPreferences"
+            name="Color Preferences">
+      </page>
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.LinkerFileEditorPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.preferences.TemplatePreferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.TemplatePreferences"
+            name="Templates">
+      </page>
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.LinkerFileEditorPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.preferences.FormatterPreferencePage"
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.FormatterPreferences"
+            name="Formatter preferences">
+      </page>
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.LinkerFileEditorPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.preferences.TaskTagPreferencePage"
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.TaskTagPreferences"
+            name="Task Tag Preferences">
+      </page>
+      <page
+            category="org.eclipse.cdt.ui.preferences.CPluginPreferencePage"
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.preferences.LinkerFileEditorPreferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.preferences.LinkerFileEditorPreferences"
+            name="Linker File Editor">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="Commands related to the LinkerEditor plugin"
+            id="com.lembed.lite.studio.manager.analysis.editor.linker.commands.category"
+            name="LinkerEditor">
+      </category>
+      <command
+            categoryId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.category"
+            description="Turn comments on/off for a selection"
+            id="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleComment"
+            name="Toggle Comment">
+      </command>
+      <command
+            description="Toggle if the outline should be collapse or not"
+            id="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleCollapse"
+            name="Toggle Collapse">
+      </command>
+      <command
+            categoryId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.category"
+            description="Format the document according to format preferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.linker.command.formatDocument"
+            name="Format">
+      </command>
+   </extension>
+  
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               label="LinkerEditor">
+            <command
+                  commandId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleComment"
+                  label="Toggle Comment"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.lembed.lite.studio.manager.analysis.editor.linker.command.formatDocument"
+                  label="Format"
+                  style="push">
+            </command>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activePartId">
+                  <equals
+                        value="com.lembed.lite.studio.manager.analysis.editor.linker.linkerEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.views.ContentOutline?after=additions">
+         <command
+               commandId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleCollapse"
+               label="Toggle collapse"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="com.lembed.lite.studio.manager.analysis.editor.linker.LinkerEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+    <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.handlers.ToggleCommentHandler"
+            commandId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleComment">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.handlers.ToggleCollapseHandler"
+            commandId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleCollapse">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.manager.analysis.editor.linker.handlers.FormatDocumentHandler"
+            commandId="com.lembed.lite.studio.manager.analysis.editor.linker.command.formatDocument">
+      </handler>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleComment"
+            contextId="com.lembed.lite.studio.manager.analysis.editor.linkerfile.linkereditScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+C">
+      </key>
+      <key
+            commandId="com.lembed.lite.studio.manager.analysis.editor.linker.commands.toggleComment"
+            contextId="com.lembed.lite.studio.manager.analysis.editor.linkerfile.linkereditScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+/">
+      </key>
+      <key
+            commandId="com.lembed.lite.studio.manager.analysis.editor.linker.command.formatDocument"
+            contextId="com.lembed.lite.studio.manager.analysis.editor.linkerfile.linkereditScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+F">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="com.lembed.lite.studio.manager.analysis.editor.linkerfile.linkereditScope"
+            name="LinkerEdit editor context"
+            parentId="org.eclipse.ui.textEditorScope">
+      </context>
+      <context
+            id="com.lembed.lite.studio.manager.analysis.editor.map.mapeditScope"
+            name="Map editor context"
+            parentId="org.eclipse.ui.textEditorScope">
+      </context>
+	</extension>
+
+   <extension
+		point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="ld,LD"
+			id="com.lembed.lite.studio.manager.analysis.editor.linker.linkersource"
+			name="Linker Content Type"
+			priority="high">
+		</content-type>
+      <content-type
+        base-type="org.eclipse.core.runtime.text"
+        file-extensions="map"
+        id="com.lembed.lite.studio.manager.analysis.editor.map.mapsource"
+        name="Map Content Type"
+        priority="high">
+      </content-type>
+	</extension>
+   <extension
+       point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectorTargets">
+       <target
+             id="com.lembed.lite.studio.manager.analysis.editor.linker.linkersource"
+             name="linker Editor">
+          <context
+                type="org.eclipse.ui.texteditor.ITextEditor">
+          </context>
+       </target>
+   </extension>
+   
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.YEditor"
+            contributorClass="org.eclipse.ui.texteditor.BasicTextEditorActionContributor"
+            default="false"
+            extensions="yml,yaml"
+            icon="icons/file.gif"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.YEdit"
+            name="YEdit YAML Editor">
+         <contentTypeBinding
+               contentTypeId="com.lembed.lite.studio.manager.analysis.editor.yaml.yamlsource">
+         </contentTypeBinding>
+      </editor>
+      
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.YEditPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.ColorPreferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.ColorPreferences"
+            name="Color Preferences">
+      </page>
+      <page
+            category="org.eclipse.cdt.ui.preferences.CPluginPreferencePage"
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.YEditPreferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.YEditPreferences"
+            name="YAML Editor">
+      </page>
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.YEditPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.TemplatePreferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.TemplatePreferences"
+            name="Templates">
+      </page>
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.YEditPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.FormatterPreferencePage"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.FormatterPreferences"
+            name="Formatter preferences">
+      </page>
+      <page
+            category="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.YEditPreferences"
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.TaskTagPreferencePage"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.TaskTagPreferences"
+            name="Task Tag Preferences">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.preferences.PreferenceInitializer">
+      </initializer>
+   </extension>
+ 
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            description="Commands related to the YEdit plugin"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.category"
+            name="YEdit">
+      </category>
+      <command
+            categoryId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.category"
+            description="Turn comments on/off for a selection"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleComment"
+            name="Toggle Comment">
+      </command>
+      <command
+            description="Toggle if the outline should be collapse or not"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleCollapse"
+            name="Toggle Collapse">
+      </command>
+      <command
+            categoryId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.category"
+            description="Format the document according to format preferences"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.command.formatDocument"
+            name="Format">
+      </command>
+   </extension>
+  
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+         <menu
+               label="YEdit">
+            <command
+                  commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleComment"
+                  label="Toggle Comment"
+                  style="push">
+            </command>
+            <command
+                  commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.command.formatDocument"
+                  label="Format"
+                  style="push">
+            </command>
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activePartId">
+                  <equals
+                        value="com.lembed.lite.studio.manager.analysis.editor.yaml.YEdit">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.views.ContentOutline?after=additions">
+         <command
+               commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleCollapse"
+               label="Toggle collapse"
+               style="push">
+            <visibleWhen
+                  checkEnabled="false">
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="com.lembed.lite.studio.manager.analysis.editor.yaml.YEdit">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+
+   
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.handlers.ToggleCommentHandler"
+            commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleComment">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.handlers.ToggleCollapseHandler"
+            commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleCollapse">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.handlers.FormatDocumentHandler"
+            commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.command.formatDocument">
+      </handler>
+   </extension>
+
+   <extension
+         point="org.eclipse.ui.bindings">
+      <key
+            commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleComment"
+            contextId="com.lembed.lite.studio.manager.analysis.editor.yaml.yeditScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+C">
+      </key>
+      <key
+            commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.commands.toggleComment"
+            contextId="com.lembed.lite.studio.manager.analysis.editor.yaml.yeditScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+/">
+      </key>
+      <key
+            commandId="com.lembed.lite.studio.manager.analysis.editor.yaml.command.formatDocument"
+            contextId="com.lembed.lite.studio.manager.analysis.editor.yaml.yeditScope"
+            schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
+            sequence="M1+M2+F">
+      </key>
+   </extension>
+   <extension
+         point="org.eclipse.ui.contexts">
+      <context
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.yeditScope"
+            name="YEdit editor context"
+            parentId="org.eclipse.ui.textEditorScope">
+      </context>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors.templates">
+      <contextType
+            class="com.lembed.lite.studio.manager.analysis.editor.yaml.template.YAMLContentType"
+            id="com.lembed.lite.studio.manager.analysis.editor.yaml.template.yaml"
+            name="YAML Context">
+      </contextType>
+   </extension>
+   
+	<extension
+		point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="yml,yaml"
+			id="com.lembed.lite.studio.manager.analysis.editor.yaml.yamlsource"
+			name="Yaml Content Type"
+			priority="high">
+		</content-type>
+	</extension>
+ <extension
+       point="org.eclipse.ui.workbench.texteditor.hyperlinkDetectorTargets">
+    <target
+          id="com.lembed.lite.studio.manager.analysis.editor.yaml.yamlsource"
+          name="Yaml Editor">
+       <context
+             type="org.eclipse.ui.texteditor.ITextEditor">
+       </context>
+    </target>
+ </extension>
+ 
+ <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.lembed.lite.studio.manager.analysis.editor.hex.editors.HexEditor"
+            contributorClass="com.lembed.lite.studio.manager.analysis.editor.hex.editors.HexEditorContributor"
+            default="true"
+            extensions="hex"
+            icon="icons/file.gif"
+            id="com.lembed.lite.studio.manager.analysis.editor.hex.editors.HexEditor"
+            name="Hex File Editor">
+      </editor>
+      
+   </extension>
+ 
+  
+
+   
+
+   
+	<extension
+		point="org.eclipse.core.contenttype.contentTypes">
+		<content-type
+			base-type="org.eclipse.core.runtime.text"
+			file-extensions="hex"
+			id="com.lembed.lite.studio.manager.analysis.editor.binary.hexsource"
+			name="Hex Content Type"
+			priority="high">
+		</content-type>
+	</extension>
+ <!-- Preferences -->
+	<extension point="org.eclipse.ui.preferencePages">
+		<page
+			name="Binary Analysis"
+			category="org.eclipse.ui.preferencePages.Editors"
+			class="com.lembed.lite.studio.manager.analysis.editor.hex.preferences.PreferencesPage"
+			id="com.lembecom.lembed.lite.studio.manager.analysis.editor.hex.preferences.PreferencesPage">
+		</page>
+	</extension>
+
+   <extension point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.lembed.lite.studio.manager.analysis.editor.hex.preferences.PreferencesInitializer">
+      </initializer>
+   </extension>
+</plugin>

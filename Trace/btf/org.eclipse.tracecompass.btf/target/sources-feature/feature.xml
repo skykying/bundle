@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="org.eclipse.tracecompass.btf.source" version="4.0.0.201808221550" label="%featureName" provider-name="%featureProvider">
+  <description url="http://www.example.com/description">
+      %description
+   </description>
+  <copyright url="http://www.example.com/copyright">
+      %copyright
+   </copyright>
+  <license url="%licenseURL">
+      %license
+   </license>
+  <plugin id="org.eclipse.tracecompass.btf.core.source" version="2.1.3.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="org.eclipse.tracecompass.btf.ui.source" version="1.0.1.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <includes id="org.eclipse.tracecompass.tmf.source" version="4.0.0.201808221550"/>
+</feature>

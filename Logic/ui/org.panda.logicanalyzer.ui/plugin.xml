@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="pipelineElementConfigurationProvider" name="Pipeline Element Configuration Provider" schema="schema/pipelineElementConfigurationProvider.exsd"/>
+   <extension-point id="selectionBasedTool" name="Selection based tool" schema="schema/selectionBasedTool.exsd"/>
+   <extension
+         point="org.panda.logicanalyzer.ui.pipelineElementConfigurationProvider">
+      <provider
+            class="org.panda.logicanalyzer.ui.internal.pipeline.FileSinkConfigurationProvider"
+            id="org.panda.logicanalyzer.core.fileSink">
+      </provider>
+      <provider
+            class="org.panda.logicanalyzer.ui.internal.pipeline.I2CAnalyzerSinkConfigurationProvider"
+            id="org.panda.logicanalyzer.ui.i2cAnalyzerSink">
+      </provider>
+      <provider
+            class="org.panda.logicanalyzer.ui.internal.pipeline.RandomDataSinkConfigurationProvider"
+            id="org.panda.logicanalyzer.ui.randomsinkProvider">
+      </provider>
+   </extension>
+   <extension
+         point="org.panda.logicanalyzer.core.dataSinkFactory">
+      <factory
+            class="org.panda.logicanalyzer.ui.internal.editor.EditorDataSink$EditorDataSinkFactory"
+            id="org.panda.logicanalyzer.ui.sinks.editor"
+            name="Editor sink">
+         <description>
+            Opens an editor to show the acquired data
+         </description>
+      </factory>
+      <factory
+            class="org.panda.logicanalyzer.ui.internal.pipeline.I2CAnalyzerSink$I2CAnalyzerSinkFactory"
+            id="org.panda.logicanalyzer.ui.i2cAnalyzerSink"
+            name="I2C analyzer sink">
+         <description>
+            Tries to interpret the data as I2C signal
+         </description>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="org.panda.logicanalyzer.ui.internal.editor.GraphingEditor"
+            contributorClass="org.panda.logicanalyzer.ui.internal.editor.GraphingEditorContributor"
+            default="false"
+            icon="icons/setscale.gif"
+            id="org.panda.logicanalyzer.ui.graphingEditor"
+            name="Data packet visualizer">
+      </editor>
+      <editor
+            class="org.panda.logicanalyzer.ui.internal.editor.AnalysisResultViewerEditor"
+            default="false"
+            icon="icons/setscale.gif"
+            id="org.panda.logicanalyzer.ui.analysisResultEditor"
+            name="Analysis result">
+      </editor>
+   </extension>
+   <extension
+         point="org.eclipse.ui.editorActions">
+      <editorContribution
+            id="org.panda.logicanalyzer.ui.graphingEditorBasicActions"
+            targetID="org.panda.logicanalyzer.ui.graphingEditor">
+         <action
+               class="org.panda.logicanalyzer.ui.internal.editor.GraphingEditorAutoScaleAction"
+               icon="icons/setscale.gif"
+               id="org.panda.logicanalyzer.ui.graphingEditorAutoScale"
+               label="Auto scale"
+               style="push"
+               toolbarPath="additions">
+         </action>
+         <action
+               class="org.panda.logicanalyzer.ui.internal.editor.GraphingEditorSetScaleAction"
+               icon="icons/setscale.gif"
+               id="org.panda.logicanalyzer.ui.graphingEditorZoom"
+               label="Set scale"
+               style="push"
+               toolbarPath="additions">
+         </action>
+      </editorContribution>
+   </extension>
+   <extension
+         point="org.panda.logicanalyzer.core.dataSourceFactory">
+      <factory
+            class="org.panda.logicanalyzer.ui.internal.editor.SelectionDataSource$SelectionDataSourceFactory"
+            id="org.panda.logicanalyzer.ui.selectionDataSource"
+            name="Current selection">
+         <description>
+            Takes the selection of the current editor as input.
+         </description>
+      </factory>
+      <factory
+            class="org.panda.logicanalyzer.ui.internal.editor.EditorDataSource$EditorDataSourceFactory"
+            id="org.panda.logicanalyzer.ui.editorDataSource"
+            name="Current editor">
+         <description>
+            Takes the complete data of the current editor as input.
+         </description>
+      </factory>
+   </extension>
+   <extension
+         point="org.panda.logicanalyzer.ui.selectionBasedTool">
+      <tool
+            allChannelSelection="false"
+            class="org.panda.logicanalyzer.ui.internal.tools.NoActionTool"
+            icon="icons/setscale.gif"
+            name="Serial selection"
+            needsUI="false">
+      </tool>
+      <tool
+            allChannelSelection="true"
+            class="org.panda.logicanalyzer.ui.internal.tools.NoActionTool"
+            icon="icons/setscale.gif"
+            name="Parallel selection"
+            needsUI="false">
+      </tool>
+      <tool
+            allChannelSelection="false"
+            class="org.panda.logicanalyzer.ui.internal.tools.ByteInterpreterTool"
+            icon="icons/setscale.gif"
+            name="Serial byte interpreter"
+            needsUI="true">
+      </tool>
+      <tool
+            allChannelSelection="false"
+            class="org.panda.logicanalyzer.ui.internal.tools.PeriodMeassurementTool"
+            icon="icons/setscale.gif"
+            name="Frequency measurement"
+            needsUI="false">
+      </tool>
+      <tool
+            allChannelSelection="true"
+            class="org.panda.logicanalyzer.ui.internal.tools.SelectionWidthTool"
+            icon="icons/setscale.gif"
+            name="Selection width"
+            needsUI="false">
+      </tool>
+   </extension>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="false"
+            class="org.panda.logicanalyzer.ui.internal.editor.ToolInspectorView"
+            icon="icons/setscale.gif"
+            id="org.panda.logicanalyzer.ui.ge.toolInspectorView"
+            name="Tool inspector view"
+            restorable="false">
+      </view>
+      <stickyView
+            closeable="false"
+            id="org.panda.logicanalyzer.ui.ge.toolInspectorView"
+            location="BOTTOM"
+            moveable="true">
+      </stickyView>
+      <view
+            class="org.panda.logicanalyzer.ui.internal.editor.DeviceView"
+            icon="icons/setscale.gif"
+            id="org.panda.logicanalyzer.ui.ge.DeviceView"
+            name="Device View"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectives">
+      <perspective
+            class="org.panda.logicanalyzer.ui.internal.editor.ToolPerspectives"
+            icon="icons/setscale.gif"
+            id="org.panda.logicanalyzer.ui.ge.toolperspectives"
+            name="Logic analyzer">
+      </perspective>
+   </extension>
+
+</plugin>

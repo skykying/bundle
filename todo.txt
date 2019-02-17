@@ -1,0 +1,112 @@
+1, https://ghs.com/products/MULTI_IDE.html
+memory layout view
+
+2, CODE CONTROL FLOW VIEW
+callgraphic view
+
+3, GCC Build status report
+report view
+
+
+4,GCC Build progress monitor with new view
+status view
+https://github.com/j123b567/stack-usage
+https://github.com/sharkfox/stack-usage
+
+5, Stack useage view
+
+
+6, symbols explorer
+show the symbols of the target executable
+
+
+7, SWO VIEWS
+
+
+8,break debugger
+https://github.com/scottt/debugbreak
+
+
+9,breakpoints
+https://github.com/kmcallister/embedded-breakpoints
+
+
+10, gcc plugin
+http://thinkingeek.com/2015/08/16/a-simple-plugin-for-gcc-part-1/
+https://www.codesynthesis.com/~boris/blog/2010/05/03/parsing-cxx-with-gcc-plugin-part-1/
+https://ehren.wordpress.com
+https://github.com/rofirrim/gcc-plugins
+https://github.com/ruediger/gcc-etags
+https://github.com/sdzahed/LBC-Plugin
+https://github.com/enferex/cnile
+https://github.com/enferex/GOAT-Plugs
+https://github.com/enferex/sataniccanary
+https://github.com/enferex/spellhell
+https://github.com/enferex/customstack
+https://github.com/enferex/identisaurus
+https://github.com/danmar/gcc-plugins
+https://github.com/GaloisInc/ivory-rtverification
+https://github.com/hlandau/compex
+https://github.com/larshall/branchcov
+https://github.com/blucia0a/CTraps-gcc -- dynamic analysis
+https://github.com/posaninagendra/initmem
+https://github.com/wrightm/gcc-ast-parser
+https://github.com/whh8b/bb_stats
+https://github.com/ephox-gcc-plugins/*
+https://github.com/mageec/mageec
+https://github.com/KdmAnalytics/gcckdm
+https://github.com/tromey/gcc-pch-plugin
+https://github.com/xaizek/gcc-plugins
+https://github.com/kkourt/gcc-ompinfo
+https://github.com/stephanfr/GCCPlugin
+https://github.com/UbimoLTD/GccPlugin
+https://github.com/google/kmsan
+https://pagure.io/funcp-encrypt
+https://github.com/yen3/call_graph_plugin
+https://github.com/UbimoLTD/GccPlugin
+https://github.com/wh5a/gcc-plugin
+https://github.com/xiangzhai/dragonball
+
+
+11, llvm plugin
+https://github.com/amishne/llvm-ir-editor
+https://github.com/blucia0a/CTraps-llvm
+https://github.com/rettichschnidi/clang-tidy-misra
+https://github.com/EvaGL/llvm-gc
+https://github.com/emc2/runtime-llvm-plugin
+https://github.com/simshi/function-fanout
+https://github.com/serge1/Eclipse-TableGen
+https://github.com/obfuscator-llvm/obfuscator/tree/llvm-4.0
+https://github.com/lawliet89/LLVM-Obfuscator
+https://github.com/ysshao/LLVM-Tracer
+https://github.com/sfu-arch/llvm-epp
+
+12, clang plugin
+https://github.com/rizsotto/Constantine
+https://github.com/jmah/Clang-KeyPathValidator
+https://github.com/Novasys-Ingenierie/qtreslot
+https://github.com/IT302/Source-Analyzer
+https://github.com/freundlich/clangcheck
+https://github.com/evanw/clang-initializer-list-plugin
+
+13
+https://www.grsecurity.net/purchase.php
+
+14,
+https://github.com/octopus-platform
+
+15,
+https://github.com/nlog2n/jobfuscator
+
+16,toolchain
+https://github.com/jmckaskill/clang-toolchain
+
+17,scons
+https://github.com/IFS-HSR/SConsolidator
+
+18,sync
+https://github.com/stephenh/mirror
+https://github.com/facebook/watchman
+
+FTA =>
+https://github.com/cmu-sei/emfta

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Eclipse Licensing Framework UI
+Bundle-SymbolicName: com.lembed.lite.studio.rcp.licensing.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.lembed.lite.studio.rcp.licensing.ui.LicensingUI
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.lembed.lite.studio.rcp.licensing.base,
+ com.lembed.lite.studio.rcp.licensing.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-Localization: plugin

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.linuxtools.tmf.ui.tracetypeui">
+      <type
+            icon="icons/btf.png"
+            tracetype="org.eclipse.linuxtools.btf.trace">
+         <perspective
+               id="org.eclipse.linuxtools.tmf.ui.HypervisorPerspective">
+         </perspective>
+      </type>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.adapters">
+      <factory
+            adaptableType="org.eclipse.tracecompass.btf.core.event.BtfEvent"
+            class="org.eclipse.tracecompass.btf.ui.BtfEventAdapterFactory">
+         <adapter
+               type="org.eclipse.ui.views.properties.IPropertySource">
+         </adapter>
+      </factory>
+   </extension>
+   <extension
+         point="org.eclipse.linuxtools.tmf.analysis.xml.core.files">
+      <xmlfile
+            file="btf-view.xml">
+      </xmlfile>
+   </extension>
+   
+      <extension
+         point="org.eclipse.ui.views">
+            <view
+            category="org.eclipse.linuxtools.tmf.ui.views.category"
+            class="org.eclipse.tracecompass.examples.ui.views.histogram.NewHistogramView"
+            id="org.eclipse.tracecompass.examples.ui.views.NewHistogramView"
+            name="%tracing.examples.histogram.view.name"
+            restorable="true">
+      </view>
+            <view
+                  category="org.eclipse.linuxtools.tmf.ui.views.category"
+                  class="org.eclipse.tracecompass.btf.ui.view.BtfView"
+                  icon="icons/btf.png"
+                  id="org.eclipse.tracecompass.btf.ui.view.BtfView"
+                  name="Btf explorer"
+                  restorable="true">
+            </view>
+   </extension>
+</plugin>

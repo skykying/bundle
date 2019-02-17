@@ -1,0 +1,18 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: LogicAnalyzer UI
+Bundle-SymbolicName: org.panda.logicanalyzer.ui;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: org.panda.logicanalyzer.ui.Activator
+Bundle-Vendor: panda
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.ui.forms;bundle-version="3.4.1",
+ org.eclipse.ui.console,
+ org.panda.logicanalyzer.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Export-Package: org.panda.logicanalyzer.ui.editor,
+ org.panda.logicanalyzer.ui.overlays,
+ org.panda.logicanalyzer.ui.pipeline,
+ org.panda.logicanalyzer.ui.util

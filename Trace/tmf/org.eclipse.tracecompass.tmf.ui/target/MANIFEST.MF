@@ -1,0 +1,107 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.tracecompass.tmf.ui
+Bundle-SymbolicName: org.eclipse.tracecompass.tmf.ui;singleton:=true
+Require-Bundle: org.eclipse.core.expressions,org.eclipse.core.filesyst
+ em,org.eclipse.core.resources,org.eclipse.core.runtime,org.eclipse.tr
+ acecompass.common.core,org.eclipse.tracecompass.tmf.core,org.eclipse.
+ ui,org.eclipse.ui.editors,org.eclipse.ui.ide,org.eclipse.ui.navigator
+ ,org.eclipse.ui.navigator.resources,org.eclipse.jface.text,org.eclips
+ e.cdt.core,org.swtchart,com.ibm.icu,org.eclipse.linuxtools.dataviewer
+ s.piechart,org.eclipse.tracecompass.segmentstore.core,org.apache.comm
+ ons.compress,org.apache.commons.lang3,org.eclipse.wst.xml.ui,org.ecli
+ pse.wst.xsd.core,org.apache.commons.io,com.google.guava,org.eclipse.t
+ racecompass.tmf.filter.parser,com.google.gson;bundle-version="2.7.0",
+ org.eclipse.emf.common;bundle-version="2.15.0",org.eclipse.emf.ecore;
+ bundle-version="2.15.0"
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %Bundle-Vendor
+Export-Package: org.eclipse.tracecompass.internal.tmf.ui;x-friends:="o
+ rg.eclipse.tracecompass.tmf.ui.tests,org.eclipse.tracecompass.tmf.ctf
+ .ui.tests",org.eclipse.tracecompass.internal.tmf.ui.commands;x-intern
+ al:=true,org.eclipse.tracecompass.internal.tmf.ui.dialogs;x-internal:
+ =true,org.eclipse.tracecompass.internal.tmf.ui.editors;x-internal:=tr
+ ue,org.eclipse.tracecompass.internal.tmf.ui.editors.handlers;x-intern
+ al:=true,org.eclipse.tracecompass.internal.tmf.ui.markers;x-friends:=
+ "org.eclipse.tracecompass.tmf.ui.tests",org.eclipse.tracecompass.inte
+ rnal.tmf.ui.parsers;x-internal:=true,org.eclipse.tracecompass.interna
+ l.tmf.ui.parsers.wizards;x-friends:="org.eclipse.tracecompass.tmf.ui.
+ tests",org.eclipse.tracecompass.internal.tmf.ui.perspectives;x-intern
+ al:=true,org.eclipse.tracecompass.internal.tmf.ui.preferences;x-inter
+ nal:=true,org.eclipse.tracecompass.internal.tmf.ui.project.dialogs;x-
+ internal:=true,org.eclipse.tracecompass.internal.tmf.ui.project.dialo
+ gs.offset;x-internal:=true,org.eclipse.tracecompass.internal.tmf.ui.p
+ roject.handlers;x-friends:="org.eclipse.tracecompass.tmf.ui.tests",or
+ g.eclipse.tracecompass.internal.tmf.ui.project.model;x-friends:="org.
+ eclipse.tracecompass.lttng2.ui,org.eclipse.tracecompass.tmf.ui.tests,
+ org.eclipse.tracecompass.tmf.ctf.ui.tests",org.eclipse.tracecompass.i
+ nternal.tmf.ui.project.operations;x-friends:="org.eclipse.tracecompas
+ s.tmf.remote.ui,org.eclipse.tracecompass.tmf.ui.tests",org.eclipse.tr
+ acecompass.internal.tmf.ui.project.wizards.importtrace; x-friends:="o
+ rg.eclipse.tracecompass.tmf.ctf.ui.swtbot.tests,  org.eclipse.traceco
+ mpass.tmf.ui,  org.eclipse.tracecompass.lttng2.control.ui,  org.eclip
+ se.tracecompass.tmf.remote.ui,  org.eclipse.tracecompass.tmf.ui.swtbo
+ t.tests,  org.eclipse.tracecompass.tmf.ui.tests",org.eclipse.tracecom
+ pass.internal.tmf.ui.project.wizards.tracepkg;x-friends:="org.eclipse
+ .tracecompass.tmf.remote.ui,org.eclipse.tracecompass.tmf.remote.ui.te
+ sts,org.eclipse.tracecompass.lttng2.control.ui",org.eclipse.tracecomp
+ ass.internal.tmf.ui.project.wizards.tracepkg.importexport;x-friends:=
+ "org.eclipse.tracecompass.tmf.remote.ui",org.eclipse.tracecompass.int
+ ernal.tmf.ui.symbols;x-friends:="org.eclipse.tracecompass.tmf.ui.test
+ s",org.eclipse.tracecompass.internal.tmf.ui.util;x-friends:="org.ecli
+ pse.tracecompass.tmf.ui.tests",org.eclipse.tracecompass.internal.tmf.
+ ui.viewers.piecharts;x-friends:="org.eclipse.tracecompass.tmf.ui.test
+ s",org.eclipse.tracecompass.internal.tmf.ui.viewers.piecharts.model;x
+ -friends:="org.eclipse.tracecompass.tmf.ui.tests",org.eclipse.traceco
+ mpass.internal.tmf.ui.viewers.statistics;x-friends:="org.eclipse.trac
+ ecompass.tmf.ui.tests",org.eclipse.tracecompass.internal.tmf.ui.viewe
+ rs.statistics.model;x-friends:="org.eclipse.tracecompass.tmf.ui.tests
+ ",org.eclipse.tracecompass.internal.tmf.ui.viewers.xycharts;x-interna
+ l:=true,org.eclipse.tracecompass.internal.tmf.ui.views;x-internal:=tr
+ ue,org.eclipse.tracecompass.internal.tmf.ui.views.statistics; x-frien
+ ds:="org.eclipse.tracecompass.tmf.pcap.ui,  org.eclipse.tracecompass.
+ tmf.ui.swtbot.tests,  org.eclipse.tracecompass.lttng2.kernel.ui.swtbo
+ t.tests,  org.eclipse.tracecompass.tmf.pcap.ui.swtbot.tests,  org.ecl
+ ipse.tracecompass.tmf.ctf.ui.swtbot.tests,  org.eclipse.tracecompass.
+ lttng2.kernel.ui",org.eclipse.tracecompass.tmf.ui,org.eclipse.traceco
+ mpass.tmf.ui.actions,org.eclipse.tracecompass.tmf.ui.analysis,org.ecl
+ ipse.tracecompass.tmf.ui.colors,org.eclipse.tracecompass.tmf.ui.dialo
+ g,org.eclipse.tracecompass.tmf.ui.editors,org.eclipse.tracecompass.tm
+ f.ui.markers,org.eclipse.tracecompass.tmf.ui.project.model,org.eclips
+ e.tracecompass.tmf.ui.project.wizards,org.eclipse.tracecompass.tmf.ui
+ .properties,org.eclipse.tracecompass.tmf.ui.signal,org.eclipse.tracec
+ ompass.tmf.ui.symbols,org.eclipse.tracecompass.tmf.ui.tracetype.prefe
+ rences,org.eclipse.tracecompass.tmf.ui.viewers,org.eclipse.tracecompa
+ ss.tmf.ui.viewers.events,org.eclipse.tracecompass.tmf.ui.viewers.even
+ ts.columns,org.eclipse.tracecompass.tmf.ui.viewers.table,org.eclipse.
+ tracecompass.tmf.ui.viewers.tree,org.eclipse.tracecompass.tmf.ui.view
+ ers.xycharts,org.eclipse.tracecompass.tmf.ui.viewers.xycharts.barchar
+ ts,org.eclipse.tracecompass.tmf.ui.viewers.xycharts.linecharts,org.ec
+ lipse.tracecompass.tmf.ui.views,org.eclipse.tracecompass.tmf.ui.views
+ .callstack,org.eclipse.tracecompass.tmf.ui.views.colors,org.eclipse.t
+ racecompass.tmf.ui.views.distribution.model,org.eclipse.tracecompass.
+ tmf.ui.views.filter,org.eclipse.tracecompass.tmf.ui.views.histogram,o
+ rg.eclipse.tracecompass.tmf.ui.views.statesystem,org.eclipse.tracecom
+ pass.tmf.ui.views.statistics,org.eclipse.tracecompass.tmf.ui.views.sy
+ nchronization,org.eclipse.tracecompass.tmf.ui.views.timechart,org.ecl
+ ipse.tracecompass.tmf.ui.views.timegraph,org.eclipse.tracecompass.tmf
+ .ui.views.uml2sd,org.eclipse.tracecompass.tmf.ui.views.uml2sd.core,or
+ g.eclipse.tracecompass.tmf.ui.views.uml2sd.dialogs,org.eclipse.tracec
+ ompass.tmf.ui.views.uml2sd.drawings,org.eclipse.tracecompass.tmf.ui.v
+ iews.uml2sd.drawings.impl,org.eclipse.tracecompass.tmf.ui.views.uml2s
+ d.handlers,org.eclipse.tracecompass.tmf.ui.views.uml2sd.handlers.prov
+ ider,org.eclipse.tracecompass.tmf.ui.views.uml2sd.load,org.eclipse.tr
+ acecompass.tmf.ui.views.uml2sd.loader,org.eclipse.tracecompass.tmf.ui
+ .views.uml2sd.preferences,org.eclipse.tracecompass.tmf.ui.views.uml2s
+ d.util,org.eclipse.tracecompass.tmf.ui.widgets.rawviewer,org.eclipse.
+ tracecompass.tmf.ui.widgets.tabsview,org.eclipse.tracecompass.tmf.ui.
+ widgets.timegraph,org.eclipse.tracecompass.tmf.ui.widgets.timegraph.d
+ ialogs,org.eclipse.tracecompass.tmf.ui.widgets.timegraph.model,org.ec
+ lipse.tracecompass.tmf.ui.widgets.timegraph.widgets,org.eclipse.trace
+ compass.tmf.ui.widgets.virtualtable
+Bundle-Name: %Bundle-Name
+Bundle-Version: 4.0.0.201808221550
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.tracecompass.internal.tmf.ui.Activator
+

@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.lembed.lite.studio.rcp.licensing.base;singlet
+ on:=true
+Export-Package: com.lembed.lite.studio.rcp.licensing.base
+Bundle-Name: Eclipse Licensing Framework Base
+Bundle-Version: 1.0.0.201808221550
+Bundle-Localization: plugin
+Require-Bundle: com.lembed.lite.studio.rcp.licensing.core,org.eclipse.
+ osgi,org.apache.commons.codec
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+

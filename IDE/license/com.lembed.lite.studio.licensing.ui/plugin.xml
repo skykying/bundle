@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            class="com.lembed.lite.studio.rcp.licensing.ui.prefs.LicensesPreferencePage"
+            id="com.lembed.lite.studio.rcp.licensing.ui.prefs.LicensesPreferencePage"
+            name="%preference.license.manager.name">
+      </page>
+   </extension>
+
+</plugin>

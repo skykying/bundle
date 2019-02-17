@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="org.eclipse.cdt.ui.views"
+            class="com.lembed.lite.studio.manager.analysis.stack.views.StackView"
+            icon="icons/stack_icon.png"
+            id="com.lembed.lite.studio.manager.analysis.stack.views.StackView"
+            name="%views.stackanalysis.name"
+            restorable="true">
+      </view>
+      <view
+            category="org.eclipse.cdt.ui.views"
+            class="com.lembed.lite.studio.manager.analysis.memory.MemoryView"
+            icon="icons/elcl16/clear_co.gif"
+            id="com.lembed.lite.studio.manager.analysis.memory.MemoryView"
+            name="%memoryView.name"
+            restorable="true">
+      </view>
+   </extension>
+   <extension
+         point="org.eclipse.ui.perspectiveExtensions">
+      <perspectiveExtension
+            targetID="org.eclipse.cdt.ui.CPerspective">
+         <view
+               id="com.lembed.lite.studio.manager.analysis.stack.views.StackView"
+               minimized="false"
+               relationship="stack"
+               relative="org.eclipse.ui.console.ConsoleView"
+               visible="false">
+         </view>
+         <viewShortcut
+               id="com.lembed.lite.studio.manager.analysis.stack.views.StackView">
+         </viewShortcut>
+      </perspectiveExtension>
+   </extension>
+   <extension
+         id="id1"
+         name="name"
+         point="org.eclipse.cdt.core.CIndexer">
+      <run
+            class="com.lembed.lite.studio.manager.analysis.indexer.DBindexer">
+      </run>
+   </extension>
+   <extension
+         point="org.eclipse.cdt.core.CIndex">
+      <ReadOnlyPDOMProvider
+            class="com.lembed.lite.studio.manager.analysis.index.AcmeSDKProvider">
+      </ReadOnlyPDOMProvider>
+   </extension>
+
+</plugin>

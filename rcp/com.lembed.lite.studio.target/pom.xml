@@ -1,0 +1,52 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+    <parent>
+       <artifactId>com.lembed.lite.studio.rcp-parent</artifactId>    
+       <groupId>com.lembed.lite.studio</groupId>
+      <version>0.1.1-SNAPSHOT</version>
+      <relativePath>..</relativePath>
+    </parent>
+
+    <artifactId>com.lembed.lite.studio.target</artifactId>
+    <name>Lite Studio Target Platform</name>
+    <version>1.0.0</version>
+    <packaging>pom</packaging>
+
+   <build>
+		<plugins>
+			<plugin>
+			<groupId>org.codehaus.mojo</groupId>
+			<artifactId>build-helper-maven-plugin</artifactId>
+			<version>1.12</version>
+				<executions>
+					<execution>
+						<id>attach-artifacts</id>
+						<phase>package</phase>
+						<goals>
+							<goal>attach-artifact</goal>
+						</goals>
+						<configuration>
+							<artifacts>
+								<artifact>
+									<file>cdt.target</file>
+									<type>target</type>
+									<classifier>cdt</classifier>
+								</artifact>
+							</artifacts>
+								<artifacts>
+								<artifact>
+									<file>e4.6.target</file>
+									<type>target</type>
+									<classifier>e4.6</classifier>
+								</artifact>
+							</artifacts>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
+		</plugins>
+	</build>
+</project>

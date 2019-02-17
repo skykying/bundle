@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.RemoteProxyManager">
+      <manager
+            class="com.lembed.codeanalyzer.internal.ssh.proxy.SSHProxyManager"
+            scheme="ssh">
+      </manager>
+   </extension>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.RemoteProxyManager">
+      <manager
+            class="com.lembed.codeanalyzer.internal.ssh.proxy.SSHProxyManager"
+            scheme="jsch">
+      </manager>
+   </extension>
+   <extension
+         point="org.eclipse.core.filesystem.filesystems">
+      <filesystem
+            scheme="ssh">
+         <run
+               class="org.eclipse.remote.internal.jsch.core.JSchFileSystem">
+         </run>
+      </filesystem>
+   </extension>
+</plugin>

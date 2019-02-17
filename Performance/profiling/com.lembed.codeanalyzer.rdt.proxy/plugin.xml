@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.RemoteProxyManager">
+      <manager
+            class="com.lembed.codeanalyzer.internal.rdt.proxy.RDTProxyManager"
+            scheme="rse">
+      </manager>
+   </extension>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.RemoteProxyManager">
+      <manager
+            class="com.lembed.codeanalyzer.internal.rdt.proxy.RDTProxyManager"
+            scheme="ssh">
+      </manager>
+   </extension>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.RemoteProxyNatureMapping">
+      <mapping
+            nature="org.eclipse.ptp.rdt.sync.core.remoteSyncNature"
+            schema="ssh">
+      </mapping>
+   </extension>
+</plugin>

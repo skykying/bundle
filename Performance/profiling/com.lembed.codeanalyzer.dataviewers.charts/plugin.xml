@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.2"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            allowMultiple="true"
+            category="com.lembed.codeanalyzer.dataviewers.charts"
+            class="com.lembed.codeanalyzer.ui.internal.charts.view.ChartView"
+            icon="icons/chart_icon.png"
+            id="com.lembed.codeanalyzer.dataviewers.charts.view"
+            name="%chartview.name"
+            restorable="true">
+      </view>
+      <category
+            id="com.lembed.codeanalyzer.dataviewers.charts"
+            name="%chartcategory.name">
+      </category>
+   </extension>
+
+</plugin>

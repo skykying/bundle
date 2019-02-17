@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.cdt.managedbuilder.core.buildDefinitions">
+      <tool
+            id="com.lembed.lite.studio.managedbuild.cross.tool.sanitizer"
+            isAbstract="true"
+            name="Sanitizer">
+         <optionCategory
+               id="com.lembed.lite.studio.managedbuild.cross.optionCategory.sanitizer"
+               name="Sanitizer">
+         </optionCategory>
+         <option
+               id="com.lembed.lite.studio.managedbuild.cross.option.sanitizer.address"
+               isAbstract="false"
+               resourceFilter="all"
+               valueType="string">
+         </option>
+      </tool>
+   </extension>
+
+</plugin>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension-point id="device" name="Capture device" schema="schema/device.exsd"/>
+   <extension
+         point="org.panda.logicanalyzer.core.dataSourceFactory">
+      <factory
+            class="org.panda.logicanalyzer.deviceintegration.internal.ComDeviceDataSource$DeviceDataSourceFactory"
+            id="org.panda.logicanalyzer.deviceintegration.core.deviceDataSourceFactory"
+            name="com device">
+         <description>
+            Use a device to capture data. Such a device could be e.g. a SUMP compatible one (such as the Open Worknench Logic Sniffer).
+         </description>
+      </factory>
+   </extension>
+
+</plugin>

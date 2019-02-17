@@ -1,0 +1,22 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.lembed.lite.studio.managedbuild.cross.llvm;si
+ ngleton:=true
+Export-Package: com.lembed.lite.studio.managedbuild.cross.llvm,com.lem
+ bed.lite.studio.managedbuild.cross.llvm.makegen,com.lembed.lite.studi
+ o.managedbuild.cross.llvm.preferences,com.lembed.lite.studio.managedb
+ uild.cross.llvm.util
+Bundle-Name: %pluginName
+Bundle-Version: 1.1.7.201808221550
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.co
+ re.resources,org.eclipse.cdt.managedbuilder.core,org.eclipse.cdt.mana
+ gedbuilder.gnu.ui,org.eclipse.cdt.core,org.eclipse.cdt.managedbuilder
+ .ui,org.eclipse.cdt.ui,com.lembed.lite.studio.core,org.eclipse.core.v
+ ariables,com.lembed.lite.studio.debug.core
+Bundle-ManifestVersion: 2
+Bundle-Activator: com.lembed.lite.studio.managedbuild.cross.llvm.LlvmU
+ IPlugin
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %providerName
+

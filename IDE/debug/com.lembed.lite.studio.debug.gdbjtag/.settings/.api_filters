@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="com.lembed.lite.studio.debug.gdbjtag" version="2">
+    <resource path="src/com/lembed/lite/studio/debug/gdbjtag/datamodel/SvdEnumeratedValueDMNode.java" type="com.lembed.lite.studio.debug.gdbjtag.datamodel.SvdEnumeratedValueDMNode">
+        <filter id="643846161">
+            <message_arguments>
+                <message_argument value="PeripheralValue"/>
+                <message_argument value="SvdEnumeratedValueDMNode"/>
+                <message_argument value="isMatchForValue(PeripheralValue)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/debug/gdbjtag/datamodel/SvdFieldDMNode.java" type="com.lembed.lite.studio.debug.gdbjtag.datamodel.SvdFieldDMNode">
+        <filter id="643846161">
+            <message_arguments>
+                <message_argument value="PeripheralValue"/>
+                <message_argument value="SvdFieldDMNode"/>
+                <message_argument value="findEnumeratedComboIndex(PeripheralValue)"/>
+            </message_arguments>
+        </filter>
+        <filter id="643846161">
+            <message_arguments>
+                <message_argument value="PeripheralValue"/>
+                <message_argument value="SvdFieldDMNode"/>
+                <message_argument value="findEnumeratedValue(PeripheralValue)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/debug/gdbjtag/dsf/GdbArmMemoryBlockRetrievalManager.java" type="com.lembed.lite.studio.debug.gdbjtag.dsf.GdbArmMemoryBlockRetrievalManager">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="GdbMemoryBlockRetrievalManager"/>
+                <message_argument value="GdbArmMemoryBlockRetrievalManager"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/debug/gdbjtag/dsf/GnuArmAdapterFactory.java" type="com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmAdapterFactory">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="GdbAdapterFactory"/>
+                <message_argument value="GnuArmAdapterFactory"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/debug/gdbjtag/dsf/GnuArmViewModelAdapter.java" type="com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmViewModelAdapter">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="GdbViewModelAdapter"/>
+                <message_argument value="GnuArmViewModelAdapter"/>
+            </message_arguments>
+        </filter>
+        <filter id="643842064">
+            <message_arguments>
+                <message_argument value="IVMProvider"/>
+                <message_argument value="GnuArmViewModelAdapter"/>
+                <message_argument value="createViewModelProvider(IPresentationContext)"/>
+            </message_arguments>
+        </filter>
+        <filter id="643846161">
+            <message_arguments>
+                <message_argument value="IPresentationContext"/>
+                <message_argument value="GnuArmViewModelAdapter"/>
+                <message_argument value="createViewModelProvider(IPresentationContext)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/debug/gdbjtag/render/peripheral/PeripheralEnumerationCellEditor.java" type="com.lembed.lite.studio.debug.gdbjtag.render.peripheral.PeripheralEnumerationCellEditor">
+        <filter id="571473929">
+            <message_arguments>
+                <message_argument value="ComboBoxCellEditor"/>
+                <message_argument value="PeripheralEnumerationCellEditor"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

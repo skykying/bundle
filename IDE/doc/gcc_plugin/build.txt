@@ -1,0 +1,5 @@
+docker run -it ubuntu bash
+
+apt-get update
+apt-get install -y g++ gcc gcc-5-plugin-dev git make
+

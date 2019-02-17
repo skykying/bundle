@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="com.lembed.lite.studio.report.ui" version="2">
+    <resource path="src/com/lembed/lite/studio/dataviewers/charts/actions/ChartAction.java" type="com.lembed.lite.studio.dataviewers.charts.actions.ChartAction">
+        <filter id="643850349">
+            <message_arguments>
+                <message_argument value="AbstractSTViewer"/>
+                <message_argument value="ChartAction"/>
+                <message_argument value="ChartAction(Shell, AbstractSTViewer)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/dataviewers/charts/provider/ChartFactory.java" type="com.lembed.lite.studio.dataviewers.charts.provider.ChartFactory">
+        <filter id="643846161">
+            <message_arguments>
+                <message_argument value="ISTDataViewersField"/>
+                <message_argument value="ChartFactory"/>
+                <message_argument value="produceBarChart(Object[], ISTDataViewersField, List&lt;IChartField&gt;, String, boolean)"/>
+            </message_arguments>
+        </filter>
+        <filter id="643846161">
+            <message_arguments>
+                <message_argument value="ISTDataViewersField"/>
+                <message_argument value="ChartFactory"/>
+                <message_argument value="producePieChart(Object[], ISTDataViewersField, List&lt;IChartField&gt;, String)"/>
+            </message_arguments>
+        </filter>
+    </resource>
+    <resource path="src/com/lembed/lite/studio/dataviewers/charts/provider/IChartField.java" type="com.lembed.lite.studio.dataviewers.charts.provider.IChartField">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="ISTDataViewersField"/>
+                <message_argument value="IChartField"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

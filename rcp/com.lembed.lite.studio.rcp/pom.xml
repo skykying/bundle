@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+   Copyright (C) 2014, 2016 Ericsson
+
+   All rights reserved. This program and the accompanying materials
+   are made available under the terms of the Eclipse Public License v1.0
+   which accompanies this distribution, and is available at
+   http://www.eclipse.org/legal/epl-v10.html
+-->
+<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <modelVersion>4.0.0</modelVersion>
+
+ <parent>
+    <artifactId>com.lembed.lite.studio.rcp-parent</artifactId>
+    <groupId>com.lembed.lite.studio</groupId>
+    <version>0.1.1-SNAPSHOT</version>
+  </parent>
+
+  <artifactId>com.lembed.lite.studio.rcp</artifactId>
+  <packaging>eclipse-feature</packaging>
+
+  <name>Lite Studio RCP Feature</name>
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.eclipse.tycho.extras</groupId>
+        <artifactId>tycho-source-feature-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>source-feature</id>
+            <phase>package</phase>
+            <goals>
+              <goal>source-feature</goal>
+            </goals>
+            <configuration>
+              <excludes>
+                <plugin id="org.apache.commons.compress"/>
+                <plugin id="org.apache.commons.lang3"/>
+                <plugin id="org.apache.xerces"/>
+                <plugin id="javax.xml"/>
+                <plugin id="org.apache.xml.resolver"/>
+                <plugin id="org.apache.xml.serializer"/>
+                <plugin id="org.eclipse.cdt.core"/>
+                <plugin id="org.eclipse.cdt.core.native"/>
+                <plugin id="org.eclipse.core.runtime.compatibility.auth"/>
+                <plugin id="org.eclipse.swt"/>
+                <plugin id="org.eclipse.swt.wpf.win32.x86"/>
+                <plugin id="org.eclipse.swt.gtk.solaris.sparc"/>
+                <plugin id="org.eclipse.swt.gtk.solaris.x86"/>
+                <plugin id="org.eclipse.swt.gtk.linux.ppc"/>
+                <plugin id="org.eclipse.swt.cocoa.macosx"/>
+                <plugin id="org.eclipse.equinox.concurrent"/>
+                <plugin id="org.eclipse.equinox.launcher.gtk.solaris.sparc"/>
+                <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86"/>
+                <plugin id="org.eclipse.equinox.launcher.gtk.linux.x86_64"/>
+                <plugin id="org.eclipse.equinox.launcher.win32.win32.x86"/>
+                <plugin id="org.eclipse.ui.cocoa"/>
+                <plugin id="org.eclipse.ui.trace"/>
+                <plugin id="org.eclipse.ui.views.log"/>
+                <plugin id="org.eclipse.core.filesystem.linux.x86"/>
+                <plugin id="org.eclipse.core.filesystem.linux.x86_64"/>
+                <plugin id="org.eclipse.core.filesystem.solaris.sparc"/>
+                <plugin id="org.eclipse.core.filesystem.macosx"/>
+                <plugin id="org.eclipse.core.filesystem.win32.x86"/>
+                <plugin id="org.eclipse.core.resources.win32.x86"/>
+                <plugin id="org.eclipse.core.filesystem.linux.ppc"/>
+                <plugin id="org.eclipse.equinox.launcher.gtk.linux.ppc"/>
+                <plugin id="org.eclipse.equinox.launcher.win32.win32.x86_64"/>
+                <plugin id="org.eclipse.equinox.launcher.wpf.win32.x86"/>
+                <plugin id="org.eclipse.equinox.launcher.cocoa.macosx"/>
+                <plugin id="org.eclipse.equinox.launcher.cocoa.macosx.x86_64"/>
+                <plugin id="org.eclipse.core.net.win32.x86"/>
+                <plugin id="org.eclipse.core.net.linux.x86"/>
+                <plugin id="org.eclipse.linuxtools.dataviewers.piechart"/>                
+                <plugin id="org.json"/>
+                <plugin id="org.sat4j.core"/>
+                <plugin id="org.sat4j.pb"/>
+                <plugin id="org.swtchart"/>
+                <plugin id="com.google.gson"/>
+                <plugin id="com.google.guava"/>
+                <plugin id="org.apache.commons.io"/>
+                <plugin id="org.eclipse.remote.core"/>
+                <plugin id="org.eclipse.remote.jsch.core"/>
+                <plugin id="org.eclipse.remote.jsch.ui"/>
+                <plugin id="org.eclipse.remote.ui"/>
+                <plugin id="org.eclipse.remote.console"/>
+                <plugin id="org.eclipse.wst.common.core"/>
+                <plugin id="org.eclipse.wst.common.environment"/>
+                <plugin id="org.eclipse.wst.common.frameworks"/>
+                <plugin id="org.eclipse.wst.common.frameworks.ui"/>
+                <plugin id="org.eclipse.wst.common.project.facet.core"/>
+                <plugin id="org.eclipse.wst.common.ui"/>
+                <plugin id="org.eclipse.wst.common.uriresolver"/>
+                <plugin id="org.eclipse.wst.sse.core"/>
+                <plugin id="org.eclipse.wst.sse.ui"/>
+                <plugin id="org.eclipse.wst.validation"/>
+                <plugin id="org.eclipse.wst.validation.ui"/>
+                <plugin id="org.eclipse.wst.xml.core"/>
+                <plugin id="com.lembed.lite.studio.device.ui" />
+                <plugin id="org.eclipse.cdt.debug.core" />
+                <plugin id="org.eclipse.cdt.codan.core" />
+                <plugin id="org.eclipse.cdt" />
+                <plugin id="org.eclipse.cdt.managedbuilder.core" />        
+                <plugin id="org.eclipse.wst.xml.ui"/>
+                <plugin id="org.eclipse.cdt.launch" />
+                <plugin id="org.eclipse.launchbar.core" />
+                <plugin id="org.eclipse.launchbar.ui" />
+                <plugin id="org.eclipse.tools.templates.ui" />
+                <plugin id="org.eclipse.rse.core" />
+                <plugin id="org.eclipse.rse.services" />
+                <plugin id="org.eclipse.rse.subsystems.files.core" />
+                <plugin id="org.eclipse.rse.ui" />
+                <plugin id="org.eclipse.equinox.security" />
+                <plugin id="org.eclipse.tools.templates.core" />
+                <plugin id="com.lembed.lite.studio.core" />
+                <plugin id="com.lembed.lite.studio.debug.core" />
+                <plugin id="com.lembed.lite.studio.debug.gdbjtag" />
+                <plugin id="com.lembed.lite.studio.debug.gdbjtag.emulator" />
+                <plugin id="com.lembed.lite.studio.debug.gdbjtag.jlink" />
+                <plugin id="com.lembed.lite.studio.debug.gdbjtag.restart" />
+                <plugin id="com.lembed.lite.studio.debug.packs" />
+                <plugin id="com.lembed.lite.studio.managedbuild.cross" />            
+                <plugin id="com.lembed.lite.studio.device.common" />
+                <plugin id="com.lembed.lite.studio.device.config" />
+                <plugin id="com.lembed.lite.studio.device.core" />
+                <plugin id="com.lembed.lite.studio.device.help" />
+                <plugin id="com.lembed.lite.studio.device.installer" />
+                <plugin id="com.lembed.lite.studio.device.installer.ui" />
+                <plugin id="com.lembed.lite.studio.device.project" />
+                <plugin id="com.lembed.lite.studio.device.refclient" />
+                <plugin id="com.lembed.lite.studio.device.toolchain" />
+                <plugin id="com.lembed.lite.studio.device.ui" />
+                <plugin id="com.lembed.lite.studio.templates.core" />
+                <plugin id="com.lembed.lite.studio.templates.processor" />
+                <plugin id="com.lembed.lite.studio.templates.arm" />
+                <plugin id="com.lembed.lite.studio.templates.msp" />
+                <plugin id="org.eclipse.cdt.dsf.gdb" />
+                <plugin id="org.eclipse.cdt.dsf.gdb.multicorevisualizer.ui" />
+                <plugin id="org.eclipse.cdt.dsf.gdb.ui" />
+                <plugin id="org.eclipse.cdt.gdb" />
+                <plugin id="org.eclipse.cdt.gdb.ui" />
+                <plugin id="org.eclipse.cdt.dsf" />
+                <plugin id="org.eclipse.cdt.debug.ui" />
+                <plugin id="org.eclipse.cdt.debug.gdbjtag.core" />
+                <plugin id="com.lembed.lite.studio.doc.user" />
+                <plugin id="org.eclipse.cdt.debug.gdbjtag.ui" />
+                <plugin id="org.eclipse.cdt.managedbuilder.gnu.ui" />
+                <plugin id="org.eclipse.cdt.visualizer.core" />
+                <plugin id="org.eclipse.cdt.visualizer.ui" />
+                <plugin id="org.eclipse.ui" />
+                <plugin id="org.freemarker" />
+                <plugin id="org.eclipse.tools.templates.freemarker" />
+                <plugin id="org.eclipse.cdt.qt.core" />
+                <plugin id="org.eclipse.cdt.qt.ui" />
+                <plugin id=" org.eclipse.cdt.testsrunner.qttest" />
+                <plugin id="org.eclipse.cdt.ui" />
+                <plugin id="org.eclipse.cdt.util" />
+                <plugin id="org.eclipse.test" />
+                <plugin id="org.eclipse.cdt.testsrunner.qttest.source" />
+                <plugin id="org.eclipse.cdt.ui.source" />
+                <plugin id="org.junit" />
+                <plugin id="gnu.io" />
+                <plugin id="org.eclipse.cdt.remote.core" />
+                <plugin id="org.eclipse.remote.serial.core" />
+                <plugin id="org.eclipse.remote.serial.ui" />
+                <plugin id="org.eclipse.remote.core" />
+                <plugin id="org.eclipse.cdt.launch.remote" />
+                <plugin id="org.eclipse.remote.doc.isv" />
+                <plugin id="org.eclipse.remote.telnet.core" />
+                <plugin id="org.eclipse.remote.telnet.ui" />
+                <plugin id="org.eclipse.tm.terminal.connector.remote" />
+                <plugin id="org.antlr.runtime" />
+                <plugin id="com.lembed.lite.studio.manager.analysis.editor.elf" />
+                <plugin id="com.lembed.lite.studio.manager.analysis.editor.linker" />
+                <plugin id="com.lembed.lite.studio.manager.analysis.editor.yaml" />
+                <plugin id="com.lembed.lite.studio.manager.analysis.editor.binary" />
+                <plugin id="com.lembed.lite.studio.manager.analysis.editor.core" />
+                <plugin id="com.lembed.lite.studio.manager.analysis.core" />
+                <plugin id="org.mockito"/>
+                <plugin id="org.objenesis"/>
+                <plugin id="com.lembed.lite.studio.debug.peripheralregview" />
+                <plugin id="org.hamcrest.library"/>
+                <plugin id="org.easymock"/>
+                <plugin id="org.hamcrest"/>
+                <plugin id="org.hamcrest.core"/>
+                <plugin id="org.hamcrest.integration"/>
+                <plugin id="org.hamcrest.text"/>
+                <plugin id="org.hamcrest.generator"/>
+              </excludes>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      <plugin>
+        <groupId>org.eclipse.tycho</groupId>
+        <artifactId>tycho-p2-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>attached-p2-metadata</id>
+            <phase>package</phase>
+            <goals>
+              <goal>p2-metadata</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
+
+  <version>2.3.0-SNAPSHOT</version>
+</project>

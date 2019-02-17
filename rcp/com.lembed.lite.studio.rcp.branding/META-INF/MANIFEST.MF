@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Version: 0.1.1.qualifier
+Bundle-Localization: plugin
+Bundle-SymbolicName: com.lembed.lite.studio.rcp.branding;singleton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Eclipse-BundleShape: dir
+Require-Bundle: org.eclipse.core.runtime

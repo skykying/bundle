@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.lembed.lite.studio.rcp.lifecycle.license.LicensedHandler"
+            id="com.lembed.lite.studio.rcp.lifecycle.license.LicensedHandler"
+            name="%command.license">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="menu:help?after=additions">
+            <command
+                  commandId="com.lembed.lite.studio.rcp.lifecycle.license.LicensedHandler"
+                  icon="icons/license.png"
+                  label="%command.license"
+                  style="push">
+            </command>
+      </menuContribution>
+   </extension>
+   <extension
+         point="com.lembed.lite.studio.rcp.licensing.core.licensedProducts">
+      <product
+            class="com.lembed.lite.studio.rcp.lifecycle.license.LicensedProduct"
+            id="cb4811fd-64a2-4e95-a758-ac9c716a6c31">
+      </product>
+   </extension>
+  
+</plugin>

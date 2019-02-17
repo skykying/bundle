@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<component id="com.lembed.lite.studio.managedbuild.cross" version="2">
+    <resource path="src/com/lembed/lite/studio/managedbuild/cross/CompilerCommandLineGenerator.java" type="com.lembed.lite.studio.managedbuild.cross.CompilerCommandLineGenerator">
+        <filter id="576720909">
+            <message_arguments>
+                <message_argument value="ManagedCommandLineGenerator"/>
+                <message_argument value="CompilerCommandLineGenerator"/>
+            </message_arguments>
+        </filter>
+    </resource>
+</component>

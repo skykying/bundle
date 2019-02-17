@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.debug.core.launchConfigurationTypes">
+      <launchConfigurationType
+            id="com.lembed.lite.studio.debug.gdbjtag.emulator.launchConfigurationType"
+            modes="debug, run"
+            name="%launchConfig.name"
+            public="true"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.core.launchDelegates">
+      <launchDelegate
+            delegate="com.lembed.lite.studio.debug.gdbjtag.emulator.dsf.LaunchConfigurationDelegate"
+            delegateDescription="%launchDelegate.jtagDsf.description"
+            id="com.lembed.lite.studio.debug.gdbjtag.emulator.core.dsfLaunchDelegate"
+            modes="debug,run"
+            name="%launchDelegate.jtagDsf.name"
+            sourceLocatorId="org.eclipse.cdt.debug.core.sourceLocator"
+            sourcePathComputerId="org.eclipse.cdt.debug.core.sourcePathComputer"
+            type="com.lembed.lite.studio.debug.gdbjtag.emulator.launchConfigurationType">
+      </launchDelegate>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTypeImages">
+      <launchConfigurationTypeImage
+            configTypeID="com.lembed.lite.studio.debug.gdbjtag.emulator.launchConfigurationType"
+            icon="icons/obj16/debugger.gif"
+            id="com.lembed.lite.studiot.debug.gdbjtag.emulator.launchConfigurationTypeImage"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.debug.ui.launchConfigurationTabGroups">
+      <launchConfigurationTabGroup
+            class="com.lembed.lite.studio.debug.gdbjtag.emulator.ui.TabGroupLaunchConfiguration"
+            id="com.lembed.lite.studio.debug.gdbjtag.emulator.launchConfigurationTabGroup"
+            type="com.lembed.lite.studio.debug.gdbjtag.emulator.launchConfigurationType"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.cdt.debug.gdbjtag.core.JTagDevice">
+      <device
+            class="com.lembed.lite.studio.debug.gdbjtag.emulator.JTagDevice"
+            id="com.lembed.lite.studio.debug.gdbjtag.emulator.core.jtagdevice"
+            name="%JTagDevice.generic.name">
+      </device>
+   </extension>
+
+   <extension
+         point="org.eclipse.core.variables.valueVariables">
+      <variable
+            description="Path to emulator installation folder"
+            initializerClass="com.lembed.lite.studio.debug.gdbjtag.emulator.VariableInitializer"
+            name="emulator_path" />
+   </extension>
+   
+   <extension
+         point="org.eclipse.core.variables.valueVariables">
+      <variable
+            description="Name of the emulator executable"
+            initializerClass="com.lembed.lite.studio.debug.gdbjtag.emulator.VariableInitializer"
+            name="emulator_executable" />
+   </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.debug.ui.DebugPreferencePage"
+            class="com.lembed.lite.studio.debug.gdbjtag.emulator.preferences.EmulatorPage"
+            id="com.lembed.lite.studio.debug.gdbjtag.emulator.preferencePage"
+            name="%preferences.emulator">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferenceInitializer">
+      </initializer>
+   </extension>
+
+</plugin>

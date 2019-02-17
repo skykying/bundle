@@ -1,0 +1,117 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: org.eclipse.tracecompass.tmf.core
+Bundle-SymbolicName: org.eclipse.tracecompass.tmf.core;singleton:=true
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources,or
+ g.eclipse.tracecompass.common.core,org.eclipse.tracecompass.segmentst
+ ore.core,org.eclipse.tracecompass.statesystem.core;visibility:=reexpo
+ rt,org.eclipse.cdt.core,org.eclipse.tracecompass.datastore.core,org.e
+ clipse.tracecompass.tmf.filter.parser,com.google.gson;bundle-version=
+ "2.7.0",com.google.guava;bundle-version="21.0.0",org.eclipse.jdt.anno
+ tation,org.apache.commons.io;bundle-version="2.2.0",org.apache.common
+ s.lang3;bundle-version="3.1.0"
+Bundle-ManifestVersion: 2
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-Vendor: %Bundle-Vendor
+Export-Package: org.eclipse.tracecompass.internal.provisional.tmf.core
+ .model.events;x-friends:="org.eclipse.tracecompass.tmf.core.tests",or
+ g.eclipse.tracecompass.internal.provisional.tmf.core.model.filter.par
+ ser;x-friends:="org.eclipse.tracecompass.tmf.ui.views,org.eclipse.tra
+ cecompass.tmf.core.tests",org.eclipse.tracecompass.internal.provision
+ al.tmf.core.model.filters;x-friends:="org.eclipse.tracecompass.tmf.co
+ re.tests",org.eclipse.tracecompass.internal.provisional.tmf.core.mode
+ l.table;x-friends:="org.eclipse.tracecompass.tmf.core.tests",org.ecli
+ pse.tracecompass.internal.provisional.tmf.core.model.timegraph;x-frie
+ nds:="org.eclipse.tracecompass.analysis.os.linux.core,org.eclipse.tra
+ cecompass.analysis.os.linux.ui",org.eclipse.tracecompass.internal.tmf
+ .core;x-friends:="org.eclipse.tracecompass.tmf.core.tests,org.eclipse
+ .tracecompass.tmf.ui.swtbot.tests",org.eclipse.tracecompass.internal.
+ tmf.core.analysis;x-friends:="org.eclipse.tracecompass.tmf.core.tests
+ ",org.eclipse.tracecompass.internal.tmf.core.callstack;x-friends:="or
+ g.eclipse.tracecompass.tmf.ui,org.eclipse.tracecompass.tmf.core.tests
+ ",org.eclipse.tracecompass.internal.tmf.core.callstack.provider;x-fri
+ ends:="org.eclipse.tracecompass.tmf.ui",org.eclipse.tracecompass.inte
+ rnal.tmf.core.component;x-friends:="org.eclipse.tracecompass.tmf.core
+ .tests",org.eclipse.tracecompass.internal.tmf.core.filter;x-friends:=
+ "org.eclipse.tracecompass.tmf.core.tests,org.eclipse.tracecompass.tmf
+ .ui",org.eclipse.tracecompass.internal.tmf.core.histogram;x-friends:=
+ "org.eclipse.tracecompass.tmf.ctf.core.tests,org.eclipse.tracecompass
+ .examples",org.eclipse.tracecompass.internal.tmf.core.markers;x-frien
+ ds:="org.eclipse.tracecompass.tmf.ui,org.eclipse.tracecompass.tmf.cor
+ e.tests,org.eclipse.tracecompass.tmf.ui.tests",org.eclipse.tracecompa
+ ss.internal.tmf.core.model; x-friends:="org.eclipse.tracecompass.anal
+ ysis.graph.core,  org.eclipse.tracecompass.analysis.os.linux.core,  o
+ rg.eclipse.tracecompass.analysis.timing.core,  org.eclipse.tracecompa
+ ss.lttng2.ust.core,  org.eclipse.tracecompass.tmf.analysis.xml.core, 
+  org.eclipse.tracecompass.analysis.counters.core",org.eclipse.traceco
+ mpass.internal.tmf.core.model.filters; x-friends:="org.eclipse.tracec
+ ompass.analysis.os.linux.core,  org.eclipse.tracecompass.tmf.ui,  org
+ .eclipse.tracecompass.analysis.graph.core,  org.eclipse.tracecompass.
+ analysis.profiling.core,  org.eclipse.tracecompass.tmf.analysis.xml.c
+ ore",org.eclipse.tracecompass.internal.tmf.core.model.timegraph;x-fri
+ ends:="org.eclipse.tracecompass.analysis.os.linux.core,org.eclipse.tr
+ acecompass.tmf.analysis.xml.core,org.eclipse.tracecompass.tmf.analysi
+ s.xml.core.tests,org.eclipse.tracecompass.analysis.profiling.core",or
+ g.eclipse.tracecompass.internal.tmf.core.model.tree; x-friends:="org.
+ eclipse.tracecompass.analysis.os.linux.core,  org.eclipse.tracecompas
+ s.analysis.timing.core,  org.eclipse.tracecompass.lttng2.ust.core,  o
+ rg.eclipse.tracecompass.tmf.analysis.xml.core,  org.eclipse.tracecomp
+ ass.analysis.os.linux.core.tests,  org.eclipse.tracecompass.analysis.
+ counters.core",org.eclipse.tracecompass.internal.tmf.core.model.xy; x
+ -friends:="org.eclipse.tracecompass.analysis.counters.core,  org.ecli
+ pse.tracecompass.analysis.os.linux.core,  org.eclipse.tracecompass.an
+ alysis.timing.core,  org.eclipse.tracecompass.lttng2.ust.core,  org.e
+ clipse.tracecompass.tmf.analysis.xml.core",org.eclipse.tracecompass.i
+ nternal.tmf.core.parsers.custom;x-friends:="org.eclipse.tracecompass.
+ tmf.ui",org.eclipse.tracecompass.internal.tmf.core.presentation;x-int
+ ernal:=true,org.eclipse.tracecompass.internal.tmf.core.project.model;
+ x-internal:=true,org.eclipse.tracecompass.internal.tmf.core.request;x
+ -friends:="org.eclipse.tracecompass.tmf.core.tests",org.eclipse.trace
+ compass.internal.tmf.core.statesystem.backends.partial;x-friends:="or
+ g.eclipse.tracecompass.statesystem.core.tests",org.eclipse.tracecompa
+ ss.internal.tmf.core.statesystem.mipmap;x-friends:="org.eclipse.trace
+ compass.tmf.core.tests",org.eclipse.tracecompass.internal.tmf.core.sy
+ nchronization;x-friends:="org.eclipse.tracecompass.tmf.core.tests",or
+ g.eclipse.tracecompass.internal.tmf.core.synchronization.graph;x-frie
+ nds:="org.eclipse.tracecompass.tmf.core.tests",org.eclipse.tracecompa
+ ss.internal.tmf.core.timestamp;x-friends:="org.eclipse.tracecompass.t
+ mf.core.tests",org.eclipse.tracecompass.internal.tmf.core.trace.exper
+ iment;x-friends:="org.eclipse.tracecompass.tmf.core.tests",org.eclips
+ e.tracecompass.internal.tmf.core.trace.indexer;x-friends:="org.eclips
+ e.tracecompass.tmf.core.tests",org.eclipse.tracecompass.internal.util
+ ;x-friends:="org.eclipse.tracecompass.tmf.ui",org.eclipse.tracecompas
+ s.tmf.core,org.eclipse.tracecompass.tmf.core.analysis,org.eclipse.tra
+ cecompass.tmf.core.analysis.ondemand,org.eclipse.tracecompass.tmf.cor
+ e.analysis.requirements,org.eclipse.tracecompass.tmf.core.callstack,o
+ rg.eclipse.tracecompass.tmf.core.component,org.eclipse.tracecompass.t
+ mf.core.dataprovider,org.eclipse.tracecompass.tmf.core.event,org.ecli
+ pse.tracecompass.tmf.core.event.aspect,org.eclipse.tracecompass.tmf.c
+ ore.event.collapse,org.eclipse.tracecompass.tmf.core.event.lookup,org
+ .eclipse.tracecompass.tmf.core.event.matching,org.eclipse.tracecompas
+ s.tmf.core.exceptions,org.eclipse.tracecompass.tmf.core.filter,org.ec
+ lipse.tracecompass.tmf.core.filter.model,org.eclipse.tracecompass.tmf
+ .core.filter.xml,org.eclipse.tracecompass.tmf.core.io,org.eclipse.tra
+ cecompass.tmf.core.model,org.eclipse.tracecompass.tmf.core.model.filt
+ ers,org.eclipse.tracecompass.tmf.core.model.timegraph,org.eclipse.tra
+ cecompass.tmf.core.model.tree,org.eclipse.tracecompass.tmf.core.model
+ .xy,org.eclipse.tracecompass.tmf.core.parsers.custom,org.eclipse.trac
+ ecompass.tmf.core.presentation,org.eclipse.tracecompass.tmf.core.proj
+ ect.model,org.eclipse.tracecompass.tmf.core.request,org.eclipse.trace
+ compass.tmf.core.resources,org.eclipse.tracecompass.tmf.core.response
+ ,org.eclipse.tracecompass.tmf.core.segment,org.eclipse.tracecompass.t
+ mf.core.signal,org.eclipse.tracecompass.tmf.core.statesystem,org.ecli
+ pse.tracecompass.tmf.core.statistics,org.eclipse.tracecompass.tmf.cor
+ e.symbols,org.eclipse.tracecompass.tmf.core.synchronization,org.eclip
+ se.tracecompass.tmf.core.timestamp,org.eclipse.tracecompass.tmf.core.
+ trace,org.eclipse.tracecompass.tmf.core.trace.experiment,org.eclipse.
+ tracecompass.tmf.core.trace.indexer,org.eclipse.tracecompass.tmf.core
+ .trace.indexer.checkpoint,org.eclipse.tracecompass.tmf.core.trace.loc
+ ation,org.eclipse.tracecompass.tmf.core.trace.text,org.eclipse.tracec
+ ompass.tmf.core.trace.trim,org.eclipse.tracecompass.tmf.core.uml2sd,o
+ rg.eclipse.tracecompass.tmf.core.util,org.eclipse.tracecompass.tmf.co
+ re.viewmodel
+Bundle-Name: %Bundle-Name
+Bundle-Version: 4.0.0.201808221550
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.tracecompass.internal.tmf.core.Activator
+

@@ -1,0 +1,16 @@
+<plugin>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.launchProvider">
+      <provider
+            delegate="com.lembed.codeanalyzer.internal.gprof.launch.GprofLaunchConfigurationDelegate"
+            description="%gprofLaunchConfiguration.description"
+            id="com.lembed.codeanalyzer.profiling.provider.timing.gprof"
+            information="%gprofLaunchConfiguration.information"
+            name="%gprofLaunchConfiguration.name.0"
+            priority="4"
+            shortcut="com.lembed.codeanalyzer.internal.gprof.launch.GprofLaunchShortcut"
+            tabgroup="com.lembed.codeanalyzer.internal.gprof.launch.GprofLaunchConfigurationTabGroup"
+            type="timing">
+      </provider>
+   </extension>
+</plugin>

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.lembed.lite.studio.rcp.licensing.core;singlet
+ on:=true
+Export-Package: com.lembed.lite.studio.rcp.licensing.core
+Bundle-Name: Eclipse Licensing Framework Core
+Bundle-Version: 1.0.0.201808221550
+Require-Bundle: org.eclipse.core.runtime
+Bundle-ManifestVersion: 2
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+

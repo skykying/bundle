@@ -1,0 +1,16 @@
+<plugin>
+   <extension
+         point="com.lembed.codeanalyzer.profiling.launch.launchProvider">
+      <provider
+            delegate="com.lembed.codeanalyzer.cov.launch.GcovLaunchConfigurationDelegate"
+            description="%covLaunchConfiguration.description"
+            id="com.lembed.codeanalyzer.profiling.provider.coverage.gcov"
+            information="%covLaunchConfiguration.information"
+            name="%covLaunchConfiguration.name.0"
+            priority="1"
+            shortcut="com.lembed.codeanalyzer.cov.launch.GcovLaunchShortcut"
+            tabgroup="com.lembed.codeanalyzer.cov.launch.GcovLaunchConfigurationTabGroup"
+            type="coverage">
+      </provider>
+   </extension>
+</plugin>

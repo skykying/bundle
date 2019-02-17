@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundle.name
+Bundle-SymbolicName: com.lembed.lite.studio.templates.arm;singleton:=true
+Bundle-Version: 2.5.1.qualifier
+Bundle-Activator: com.lembed.lite.studio.templates.arm.Activator
+Require-Bundle: com.lembed.lite.studio.core,
+ com.lembed.lite.studio.templates.core,
+ org.eclipse.ui;bundle-version="3.105.0",
+ org.eclipse.core.runtime;bundle-version="3.9.0",
+ com.lembed.lite.studio.device.project;bundle-version="1.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
+Bundle-ActivationPolicy: lazy
+Bundle-Vendor: %bundle.vendor
+Bundle-Localization: plugin
+Eclipse-BundleShape: dir

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-SymbolicName: com.lembed.lite.studio.debug.peripheralregview;si
+ ngleton:=true
+Bundle-Name: SFR View
+Bundle-Version: 0.1.1.201808221550
+Bundle-Localization: plugin
+Require-Bundle: org.eclipse.ui,org.eclipse.core.runtime,org.eclipse.de
+ bug.ui,org.eclipse.cdt.debug.core,org.eclipse.cdt.launch,org.eclipse.
+ cdt.dsf.ui,org.eclipse.cdt.dsf.gdb,org.eclipse.cdt.dsf,org.eclipse.ui
+ .forms,org.jdom,net.miginfocom.layout.swt
+Bundle-ManifestVersion: 2
+Bundle-Activator: com.lembed.lite.studio.debug.peripheralregview.Activ
+ ator
+Bundle-ActivationPolicy: lazy
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+

@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         id="com.lembed.lite.studio.device.project.impl.LiteProjectNature"
+         name="%CmsisLiteProjectNature"
+         point="org.eclipse.core.resources.natures">
+      <runtime>
+         <run
+               class="com.lembed.lite.studio.device.project.impl.LiteProjectNature">
+         </run>
+      </runtime>
+   </extension>
+
+   <extension
+         point="org.eclipse.cdt.core.templateAssociations">
+      <template
+            id="com.lembed.lite.studio.device.project.template">
+         <toolChain
+               id="com.lembed.lite.studio.managedbuild.cross.toolchain.base">
+         </toolChain>
+      </template>
+   </extension>
+    <extension
+         point="org.eclipse.ui.editors">
+      <editor
+            class="com.lembed.lite.studio.device.project.editors.LiteConfigEditor"
+            contributorClass="com.lembed.lite.studio.device.project.editors.LiteConfigEditorContributor"
+            default="false"
+            extensions="c, C, cpp, s, S, h, hpp, ini"
+            icon="icons/file.gif"
+            id="com.lembed.lite.studio.device.config.editors.ConfigEditor"
+            matchingStrategy="com.lembed.lite.studio.device.project.editors.LiteConfigMatchingStrategy"
+            name="%editor.LiteConfiguration">
+      </editor>
+   </extension>
+
+   <extension
+         point="org.eclipse.cdt.core.templateProcessTypes">
+      <processType
+            name="CreateLiteProject"
+            processRunner="com.lembed.lite.studio.device.project.template.CreateLiteProject">
+         <simple
+               name="projectName">
+         </simple>
+         <simple
+               name="compiler">
+         </simple>
+         <simple
+               name="output">
+         </simple>
+         <simple
+               name="toolChainAdapter">
+         </simple>
+         <simple
+               name="lastStep">
+         </simple>
+         <simple
+               name="includePath">
+         </simple>
+      </processType>
+   </extension>
+   <extension
+         point="org.eclipse.ui.decorators">
+      <decorator
+            adaptable="true"
+            class="com.lembed.lite.studio.device.project.ui.LiteProjectDecorator"
+            id="com.lembed.lite.studio.device.project.decorators.LiteProjectDecorator"
+            label="%CmsisLiteProjectDecorator"
+            lightweight="true"
+            state="true">
+         <enablement>
+            <objectClass
+                  name="org.eclipse.core.resources.IResource">
+            </objectClass>
+         </enablement>
+      </decorator>
+   </extension>
+   <extension
+         point="org.eclipse.ui.propertyPages">
+      <page
+            class="com.lembed.lite.studio.device.project.ui.LitePropertyPage"
+            id="com.lembed.lite.studio.device.project.ui.samplePropertyPage"
+            name="%CmsisLiteProjectPropertyPageName"
+            nameFilter="*.*"
+            selectionFilter="single">
+         <enabledWhen>
+            <test
+                  property="com.lembed.lite.studio.device.project.property.liteFile">
+            </test>
+         </enabledWhen>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="com.lembed.lite.studio.device.project.ui.LitePropertyTester"
+            id="com.lembed.lite.studio.device.project.LitePropertyTester"
+            namespace="com.lembed.lite.studio.device.project.property"
+            properties="liteFile"
+            type="org.eclipse.core.runtime.IAdaptable">
+      </propertyTester>
+      <propertyTester
+            class="com.lembed.lite.studio.device.project.ui.LiteUpdateConfigFileTester"
+            id="com.lembed.lite.studio.device.project.LiteUpdateConfigFileTester"
+            namespace="com.lembed.lite.studio.device.project.update"
+            properties="canUpdate, canMerge"
+            type="org.eclipse.core.runtime.IAdaptable">
+      </propertyTester>
+   </extension>
+   <extension
+         point="org.eclipse.core.resources.variableResolvers">
+      <variableResolver
+            class="com.lembed.lite.studio.device.project.CpVariableResolver"
+            variable="cmsis_pack_root">
+      </variableResolver>
+      <variableResolver
+            class="com.lembed.lite.studio.device.project.CpVariableResolver"
+            variable="${cmsis_pack_root}">
+      </variableResolver>
+      <variableResolver
+            class="com.lembed.lite.studio.device.project.CpVariableResolver"
+            variable="${cmsis_lite}">
+      </variableResolver>
+      <variableResolver
+            class="com.lembed.lite.studio.device.project.CpVariableResolver"
+            variable="cmsis_lite">
+      </variableResolver>
+   </extension>
+   <extension
+         point="org.eclipse.core.variables.dynamicVariables">
+      <variable
+            description="The root directory containing CMSIS packs "
+            name="cmsis_pack_root"
+            resolver="com.lembed.lite.studio.device.project.CpVariableResolver"
+            supportsArgument="true">
+      </variable>
+      <variable
+            description="Path to DFP (Device Family Pack) used in the project"
+            name="cmsis_dfp"
+            resolver="com.lembed.lite.studio.device.project.CpVariableResolver"
+            supportsArgument="true">
+      </variable>
+      <variable
+            description="LITE marker, expands to an empty string. Prefixes LITE-specific paths and marks LITE-specific pre-/post-build commands using :begin and :end arguments. "
+            name="cmsis_lite"
+            resolver="com.lembed.lite.studio.device.project.CpVariableResolver"
+            supportsArgument="true">
+      </variable>
+   </extension>
+   <extension
+         point="org.eclipse.ltk.core.refactoring.renameParticipants">
+      <renameParticipant
+            class="com.lembed.lite.studio.device.project.ui.LiteProjectRenameParticipant"
+            id="com.lembed.lite.studio.device.project.renameParticipant"
+            name="Rename LITE project participant">
+		<enablement>
+	      <with variable="affectedNatures">
+	        <iterate operator="or">
+	          <equals value="com.lembed.lite.studio.device.project.impl.LiteProjectNature"/>
+	        </iterate>
+	      </with>
+	      <with variable="element">
+        	<instanceof value="org.eclipse.core.resources.IResource"/>
+      	  </with>
+         </enablement>
+     </renameParticipant>
+   </extension>
+   <extension
+         point="org.eclipse.ui.commands">
+      <category
+            id="com.lembed.lite.studio.device.project.ui.updateConfigFileCategory"
+            name="LITE Configuration">
+      </category>
+      <command
+            categoryId="com.lembed.lite.studio.device.project.ui.updateConfigFileCategory"
+            id="com.lembed.lite.studio.device.project.ui.commands.updateConfigFile"
+            name="Update Config File">
+      </command>
+      <command
+            categoryId="com.lembed.lite.studio.device.project.ui.updateConfigFileCategory"
+            id="com.lembed.lite.studio.device.project.ui.commands.mergeConfigFile"
+            name="Merge Config File">
+      </command>
+      <command
+            id="com.lembed.lite.studio.device.project.ui.commands.resetBuildSettings"
+            name="Reset Build Settings">
+      </command>
+      <command
+            id="com.lembed.lite.studio.device.project.ui.commands.cleanup"
+            name="Remove Unused Files">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.handlers">
+      <handler
+            class="com.lembed.lite.studio.device.project.ui.handlers.UpdateConfigFileHandler"
+            commandId="com.lembed.lite.studio.device.project.ui.commands.updateConfigFile">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.device.project.ui.handlers.MergeConfigFileHandler"
+            commandId="com.lembed.lite.studio.device.project.ui.commands.mergeConfigFile">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.device.project.ui.handlers.ResetBuildSettingsHandler"
+            commandId="com.lembed.lite.studio.device.project.ui.commands.resetBuildSettings">
+      </handler>
+      <handler
+            class="com.lembed.lite.studio.device.project.ui.handlers.CleanupHandler"
+            commandId="com.lembed.lite.studio.device.project.ui.commands.cleanup">
+      </handler>
+   </extension>
+   <extension
+         point="org.eclipse.ui.navigator.navigatorContent">
+      <commonWizard
+            type="new"
+            wizardId="com.lembed.lite.studio.device.project.wizards.cmsisCodeTemplateNewWizard">
+         <enablement>
+            <with
+                  variable="selection">
+               <iterate
+                     operator="or">
+                  <adapt
+                        type="org.eclipse.core.resources.IResource">
+                  </adapt>
+               </iterate>
+            </with></enablement>
+      </commonWizard>
+   </extension>
+   <extension
+         id="id1"
+         point="org.eclipse.cdt.core.CConfigurationDataProvider">
+      <provider
+            class="com.lembed.lite.studio.device.project.impl.LiteSetupHook"
+            natures="com.lembed.lite.studio.device.project.impl.LiteProjectNature">
+      </provider>
+   </extension>
+
+
+</plugin>

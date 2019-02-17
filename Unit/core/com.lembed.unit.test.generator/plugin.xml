@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            allPopups="false"
+            locationURI="com.lembed.unit.test.generator.cpputest">
+         <command
+               commandId="com.lembed.unit.test.generator.copy"
+               icon="icons/sample.gif"
+               label="Copy Empty Stub To Clipboard"
+               id="com.lembed.unit.test.generator.plugin.actions.CppUTestActionCopyEmptyStubToClipboard"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+      <extension
+         point="org.eclipse.ui.commands">
+      <command
+            defaultHandler="com.lembed.unit.test.ext.handler.CopyHandler"
+            id="com.lembed.unit.test.generator.copy"
+            name="cpputest">
+      </command>
+      <command
+            defaultHandler="com.lembed.unit.test.ext.actions.UTestActionCopyEmptyStubToClipboard"
+            id="org.cpputest.plugin.actions.CopyEmptyStubToClipboard"
+            name="cc">
+      </command>
+   </extension>
+   <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+       		allPopups="true"
+            locationURI="org.eclipse.ui.IEditorInput">
+         <command
+               commandId="org.cpputest.plugin.actions.CopyEmptyStubToClipboard"
+               icon="icons/sample.gif"
+               label="Copy Empty Stub To Clipboard"
+               id="com.lembed.unit.test.generator.plugin.actions.CppUTestActionCopyEmptyStubToClipboard"
+               style="push">
+         </command>
+      </menuContribution>
+   </extension>
+
+
+</plugin>

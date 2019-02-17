@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<units size='1'>
+  <unit id='org.panda.logicanalyzer.io' version='2.1.7.201702040353' singleton='false'>
+    <update id='org.panda.logicanalyzer.io' range='[0.0.0,2.1.7.201702040353)' severity='0'/>
+    <properties size='5'>
+      <property name='org.eclipse.equinox.p2.name' value='rxtx'/>
+      <property name='org.eclipse.equinox.p2.provider' value='org'/>
+      <property name='maven-groupId' value='org.panda.logicanalyzer'/>
+      <property name='maven-artifactId' value='org.panda.logicanalyzer.io'/>
+      <property name='maven-version' value='2.1.7-SNAPSHOT'/>
+    </properties>
+    <provides size='4'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='org.panda.logicanalyzer.io' version='2.1.7.201702040353'/>
+      <provided namespace='osgi.bundle' name='org.panda.logicanalyzer.io' version='2.1.7.201702040353'/>
+      <provided namespace='java.package' name='gnu.io' version='0.0.0'/>
+      <provided namespace='org.eclipse.equinox.p2.eclipse.type' name='bundle' version='1.0.0'/>
+    </provides>
+    <artifacts size='1'>
+      <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.201702040353'/>
+    </artifacts>
+    <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
+    <touchpointData size='1'>
+      <instructions size='1'>
+        <instruction key='manifest'>
+          Bundle-SymbolicName: org.panda.logicanalyzer.io&#xA;Bundle-Version: 2.1.7.201702040353&#xA;
+        </instruction>
+      </instructions>
+    </touchpointData>
+  </unit>
+</units>

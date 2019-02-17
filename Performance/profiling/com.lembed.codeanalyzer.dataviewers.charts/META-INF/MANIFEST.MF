@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %bundleName
+Bundle-SymbolicName: com.lembed.codeanalyzer.ui.charts;singleton:=true
+Bundle-Version: 6.0.0.qualifier
+Bundle-Activator: com.lembed.codeanalyzer.ui.internal.charts.Activator
+Bundle-Vendor: %bundleProvider
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ com.lembed.codeanalyzer.ui;bundle-version="4.0.0"
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.lembed.codeanalyzer.ui.charts.actions,
+ com.lembed.codeanalyzer.ui.charts.provider
+Import-Package: com.lembed.codeanalyzer.ui.piechart,
+ org.swtchart
+Bundle-Localization: plugin

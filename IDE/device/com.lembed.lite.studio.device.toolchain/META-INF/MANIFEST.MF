@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: com.lembed.lite.studio.device.toolchain;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.lembed.lite.studio.device.toolchain.Activator
+Bundle-Vendor: %Bundle-Vendor
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.cdt.managedbuilder.core,
+ org.eclipse.cdt.core,
+ com.lembed.lite.studio.device.core,
+ com.lembed.lite.studio.core
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-ActivationPolicy: lazy
+Export-Package: com.lembed.lite.studio.device.toolchain,
+ com.lembed.lite.studio.device.toolchain.litestudio

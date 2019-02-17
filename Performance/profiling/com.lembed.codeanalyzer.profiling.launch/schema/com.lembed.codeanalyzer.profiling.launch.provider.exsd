@@ -1,0 +1,192 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!-- Schema file written by PDE -->
+<schema targetNamespace="com.lembed.codeanalyzer.profiling.launch" xmlns="http://www.w3.org/2001/XMLSchema">
+<annotation>
+      <appinfo>
+         <meta.schema plugin="com.lembed.codeanalyzer.profiling.launch" id="launchProvider" name="Launch Provider"/>
+      </appinfo>
+      <documentation>
+         This extension point allows various launch shortcuts that use the &lt;code&gt;ProfileLaunchShortcut&lt;/code&gt; the ability to contribute its launcher(s) to a general set of profiling types.
+      </documentation>
+   </annotation>
+
+   <element name="extension">
+      <annotation>
+         <appinfo>
+            <meta.element />
+         </appinfo>
+      </annotation>
+      <complexType>
+         <sequence minOccurs="1" maxOccurs="unbounded">
+            <element ref="provider"/>
+         </sequence>
+         <attribute name="point" type="string" use="required">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="id" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appinfo>
+                  <meta.attribute translatable="true"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="provider">
+      <complexType>
+         <attribute name="id" type="string" use="required">
+            <annotation>
+               <documentation>
+                  specifies a unique identifier for this launch provider.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="type" type="string" use="required">
+            <annotation>
+               <documentation>
+                  specifies the profiling type of this launch provider.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="shortcut" type="string" use="required">
+            <annotation>
+               <documentation>
+                  specifies the fully qualified name of the Java class that extends &lt;code&gt;ProfileLaunchShortcut&lt;/code&gt; and that will provide a launch for profiling.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="com.lembed.codeanalyzer.profiling.launch.ProfileLaunchShortcut:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="tabgroup" type="string" use="required">
+            <annotation>
+               <documentation>
+                  specifies the fully qualified name of a Java class that implements &lt;code&gt;ProfileLaunchConfigurationTabGroup&lt;/code&gt;  and that will provide a set of tabs.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="com.lembed.codeanalyzer.profiling.launch.ProfileLaunchConfigurationTabGroup:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="priority" type="string" use="required">
+            <annotation>
+               <documentation>
+                  positive integer specifying priority over launch provider&apos;s of the same type.
+Invalid values will be assigned the lowest priority to the extension.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="delegate" type="string" use="required">
+            <annotation>
+               <documentation>
+                  specifies the fully qualified name of the Java class that extends &lt;code&gt;AbstractCLaunchDelegate&lt;/code&gt; and provides a launch delegate for profiling.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn="org.eclipse.cdt.launch.AbstractCLaunchDelegate:"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="name" type="string" use="required">
+            <annotation>
+               <documentation>
+                  specifies a human-readable name for this launch provider.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="description" type="string">
+            <annotation>
+               <documentation>
+                  specifies a human-readable description of launch provider to be used in the preferences tool tip information.
+               </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="information" type="string">
+            <annotation>
+               <documentation>
+                  specifies additional plug-in specific information to be displayed in the preferences page.
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="since"/>
+      </appinfo>
+      <documentation>
+         1.1.0
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="examples"/>
+      </appinfo>
+      <documentation>
+         The following is an example of a launch provider extension point:
+
+&lt;extension
+      point=&quot;com.lembed.codeanalyzer.profiling.launch.launchProvider&quot;&gt;
+   &lt;provider
+         id=&quot;com.example.perf.provider&quot;
+         delegate=&quot;com.example.perf.launch.PerfLaunchConfigDelegate&quot;
+         shortcut=&quot;com.example.perf.launch.PerfLaunchShortcut&quot;
+         tabgroup=&quot;com.example.perf.launch.PerfLaunchConfigurationTabGroup&quot;
+         priority=&quot;1&quot;
+         type=&quot;timing&quot;
+         name=&quot;Perf&quot;
+         description=&quot;Hardware/Software Events Timing&quot;
+         information=&quot;Note: does not require set-up or special compilation.&quot;&gt;
+   &lt;/provider&gt;
+&lt;/extension&gt;
+
+In the above example, the contributed launch provider will become available as a tool for the &quot;Profile Timing&quot; launch shortcut (accessible from the “Profile As” context menu), 
+preferences page and project properties page. Furthermore, this tool will be set as the default for the specified type as a result of setting its priority to 1. In addition, the tool&apos;s 
+launch configuration will be available under the &quot;Profiling Time&quot; launch configuration category. Here the specified tab group will be used to provide an interface for configuring
+tool specific settings.
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appinfo>
+         <meta.section type="apiinfo"/>
+      </appinfo>
+      <documentation>
+         Plug-ins that want to extend this extension point must make use of : &lt;samp&gt;com.lembed.codeanalyzer.profiling.launch.ProfileLaunchShortcut&lt;/samp&gt;
+      </documentation>
+   </annotation>
+
+
+   <annotation>
+      <appinfo>
+         <meta.section type="copyright"/>
+      </appinfo>
+      <documentation>
+         Copyright (c) 2012 Red Hat, Inc.
+All rights reserved. This program and the accompanying materials
+are made available under the terms of the Eclipse Public License v1.0
+which accompanies this distribution, and is available at
+http://www.eclipse.org/legal/epl-v10.html
+
+Contributors:
+ Roland Grunberg &lt;rgrunber@redhat.com&gt; - initial API and implementation
+      </documentation>
+   </annotation>
+
+</schema>

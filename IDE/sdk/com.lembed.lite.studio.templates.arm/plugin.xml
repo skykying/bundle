@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+    <extension
+         point="org.eclipse.cdt.core.templates">
+      <template
+      		filterPattern=".*gcc"
+            id="com.lembed.lite.studio.templates.sdk.project.arm_c"
+            location="$nl$/templates/arm_c_project/template.xml"
+            pagesAfterTemplateSelectionProvider="com.lembed.lite.studio.device.project.template.LiteProjectTemplateProvider"
+            projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+      </template>
+      <template
+      		filterPattern=".*g\+\+"
+            id="com.lembed.lite.studio.templates.sdk.project.arm_cpp"
+            location="$nl$/templates/arm_cpp_project/template.xml"
+            pagesAfterTemplateSelectionProvider="com.lembed.lite.studio.device.project.template.LiteProjectTemplateProvider"
+            projectType="org.eclipse.cdt.build.core.buildArtefactType.exe">
+      </template>
+   </extension>
+   <extension point="org.eclipse.cdt.core.templateAssociations">
+      <template
+         id="com.lembed.lite.studio.templates.sdk.project.arm_cpp">
+         <toolChain 
+         	id="com.lembed.lite.studio.managedbuild.cross.toolchain.base">
+         </toolChain>
+      </template>
+      <template
+         id="com.lembed.lite.studio.templates.sdk.project.arm_c">
+         <toolChain 
+         	id="com.lembed.lite.studio.managedbuild.cross.toolchain.base">
+         </toolChain>
+      </template>
+   </extension>
+
+</plugin>

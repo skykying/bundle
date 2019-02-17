@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feature id="com.lembed.lite.studio.rcp.licensing.feature.source" version="1.0.0.201808221550" plugin="com.lembed.lite.studio.rcp.licensing.ui" label="Eclipse Licensing Framework Developer Resources">
+  <description url="http://www.example.com/description">
+      [Enter Feature Description here.]
+   </description>
+  <copyright url="http://www.example.com/copyright">
+      [Enter Copyright Description here.]
+   </copyright>
+  <license url="http://www.example.com/license">
+      [Enter License Description here.]
+   </license>
+  <plugin id="com.lembed.lite.studio.rcp.licensing.base.source" version="1.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="com.lembed.lite.studio.rcp.licensing.core.source" version="1.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+  <plugin id="com.lembed.lite.studio.rcp.licensing.ui.source" version="1.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
+</feature>

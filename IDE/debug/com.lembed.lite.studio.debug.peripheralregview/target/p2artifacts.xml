@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?artifactRepository version='1.1.0'?>
+<artifacts size='2'>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.debug.peripheralregview' version='0.1.1.201808221550'>
+    <properties size='5'>
+      <property name='artifact.size' value='8701'/>
+      <property name='download.size' value='8701'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='com.lembed.lite.studio.debug.peripheralregview'/>
+      <property name='maven-version' value='0.1.1-SNAPSHOT'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.debug.peripheralregview' version='0.1.1.201808221550'>
+    <processing size='1'>
+      <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
+    </processing>
+    <properties size='8'>
+      <property name='artifact.size' value='8701'/>
+      <property name='download.size' value='4999'/>
+      <property name='format' value='packed'/>
+      <property name='maven-version' value='0.1.1-SNAPSHOT'/>
+      <property name='maven-artifactId' value='com.lembed.lite.studio.debug.peripheralregview'/>
+      <property name='maven-extension' value='jar.pack.gz'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-classifier' value='pack200'/>
+    </properties>
+  </artifact>
+</artifacts>
