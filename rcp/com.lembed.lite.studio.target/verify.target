@@ -38,7 +38,7 @@
 <unit id="org.eclipse.tm.terminal.view.feature.feature.group" version="4.1.0.201603090932"/>
 <unit id="org.eclipse.tm.terminal.view.rse.feature.feature.group" version="4.1.0.201603090932"/>
 <unit id="org.eclipse.tm.terminal.view.rse.sdk.feature.feature.group" version="4.1.0.201603090932"/>
-<repository location="http://download.eclipse.org/tm/terminal/marketplace/"/>
+<repository location="http://download.eclipse.org/tm/terminal/marketplace/20160312/"/>
 </location>
 <location includeAllPlatforms="false" includeConfigurePhase="false" includeMode="planner" includeSource="true" type="InstallableUnit">
 <unit id="com.google.guava" version="15.0.0.v201403281430"/>
