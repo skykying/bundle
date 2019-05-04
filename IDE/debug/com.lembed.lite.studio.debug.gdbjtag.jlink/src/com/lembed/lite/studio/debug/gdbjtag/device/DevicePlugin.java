@@ -9,21 +9,23 @@
  *     Liviu Ionescu - initial version
  *******************************************************************************/
 
-package com.lembed.lite.studio.debug.gdbjtag.emulator;
+package com.lembed.lite.studio.debug.gdbjtag.device;
 
 import com.lembed.lite.studio.core.AbstractUIActivator;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.osgi.framework.BundleContext;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractUIActivator {
+public class DevicePlugin extends AbstractUIActivator {
 
 	// ------------------------------------------------------------------------
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.lembed.lite.studio.debug.gdbjtag.emulator"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.lembed.lite.studio.debug.gdbjtag.device"; //$NON-NLS-1$
 
 	@Override
 	public String getBundleId() {
@@ -33,13 +35,13 @@ public class Activator extends AbstractUIActivator {
 	// ------------------------------------------------------------------------
 
 	// The shared instance
-	private static Activator fgInstance;
+	private static DevicePlugin fgInstance;
 
-	public static Activator getInstance() {
+	public static DevicePlugin getInstance() {
 		return fgInstance;
 	}
 
-	public Activator() {
+	public DevicePlugin() {
 
 		super();
 		fgInstance = this;
@@ -55,5 +57,17 @@ public class Activator extends AbstractUIActivator {
 		super.stop(context);
 	}
 
-	// ------------------------------------------------------------------------
+	public static void log(IStatus status) {
+		getInstance().getLog().log(status);
+	}
+
+	public static void log(Throwable e) {
+		log(new Status(IStatus.ERROR, getInstance().getBundleId(), 1,
+				">>> PLUGIN_ID " + "Internal Error", e)); //$NON-NLS-1$
+	}
+
+	public static void log(String message) {
+		log(new Status(IStatus.ERROR, getInstance().getBundleId(), 1, ">>> PLUGIN_ID " + message,
+				null)); //$NON-NLS-1$
+	}
 }

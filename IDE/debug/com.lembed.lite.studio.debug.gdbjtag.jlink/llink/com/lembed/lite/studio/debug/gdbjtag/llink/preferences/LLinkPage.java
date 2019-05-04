@@ -12,9 +12,10 @@ package com.lembed.lite.studio.debug.gdbjtag.llink.preferences;
 
 import com.lembed.lite.studio.core.preferences.DirectoryNotStrictVariableFieldEditor;
 import com.lembed.lite.studio.core.preferences.StringVariableFieldEditor;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.llink.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.llink.PersistentPreferences;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+
 import com.lembed.lite.studio.debug.gdbjtag.llink.VariableInitializer;
 import com.lembed.lite.studio.debug.gdbjtag.llink.ui.Messages;
 
@@ -51,7 +52,7 @@ public class LLinkPage extends FieldEditorPreferencePage implements IWorkbenchPr
 
 		// Not really used, the field editors directly access the variables
 		// store.
-		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, LlinkPlugin.PLUGIN_ID));
+		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, DevicePlugin.PLUGIN_ID));
 		setDescription(Messages.L_LinkPreferencePage_description);
 	}
 
@@ -61,7 +62,7 @@ public class LLinkPage extends FieldEditorPreferencePage implements IWorkbenchPr
 	@Override
 	public void init(IWorkbench workbench) {
 		
-		LlinkPlugin.log("STlinkPage.init()"); //$NON-NLS-1$
+		DevicePlugin.log("STlinkPage.init()"); //$NON-NLS-1$
 	}
 
 	/**

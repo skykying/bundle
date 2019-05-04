@@ -14,6 +14,7 @@ package com.lembed.lite.studio.debug.gdbjtag.emulator;
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -57,7 +58,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			DevicePlugin.log(e);
 			return null;
 		}
 
@@ -145,7 +146,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			DevicePlugin.log(e);
 			return null;
 		}
 
@@ -195,7 +196,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			DevicePlugin.log(e);
 			return null;
 		}
 
@@ -230,7 +231,7 @@ public class Configuration {
 				lst.addAll(StringUtils.splitCommandLineOptions(other));
 			}
 		} catch (CoreException e) {
-			Activator.log(e);
+			DevicePlugin.log(e);
 		}
 
 		return lst.toArray(new String[0]);

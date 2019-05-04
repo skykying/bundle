@@ -7,5 +7,6 @@
 	<classpathentry kind="src" path="restart"/>
 	<classpathentry kind="src" path="llink"/>
 	<classpathentry kind="src" path="stlink"/>
+	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

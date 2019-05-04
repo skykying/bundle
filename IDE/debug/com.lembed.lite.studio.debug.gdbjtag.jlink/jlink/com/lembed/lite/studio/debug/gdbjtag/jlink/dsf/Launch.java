@@ -35,11 +35,11 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.ISourceLocator;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
 import com.lembed.lite.studio.debug.gdbjtag.jlink.Configuration;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.CfgAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.DefaultPreferences;
-
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmLaunch;
 
 @SuppressWarnings("restriction")
@@ -57,7 +57,7 @@ public class Launch extends GnuArmLaunch {
 	public Launch(ILaunchConfiguration launchConfiguration, String mode, ISourceLocator locator) {
 		super(launchConfiguration, mode, locator);
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Launch(" + launchConfiguration.getName() + "," + mode + ") " + this);
 		}
 
@@ -71,7 +71,7 @@ public class Launch extends GnuArmLaunch {
 	@Override
 	public void initialize() {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Launch.initialize() " + this);
 		}
 
@@ -92,10 +92,10 @@ public class Launch extends GnuArmLaunch {
 		try {
 			fExecutor.submit(initRunnable).get();
 		} catch (InterruptedException e) {
-			JlinkActivator.log(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
+			DevicePlugin.log(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
 					"Error initializing launch", e)); // $NON-NLS-1$
 		} catch (ExecutionException e) {
-			JlinkActivator.log(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
+			DevicePlugin.log(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
 					"Error initializing launch", e)); // $NON-NLS-1$
 		}
 	}
@@ -128,7 +128,7 @@ public class Launch extends GnuArmLaunch {
 
 	public void initializeServerConsole(IProgressMonitor monitor) throws CoreException {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Launch.initializeServerConsole()");
 		}
 
@@ -147,7 +147,7 @@ public class Launch extends GnuArmLaunch {
 
 	public void initializeConsoles(IProgressMonitor monitor) throws CoreException {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Launch.initializeConsoles()");
 		}
 
@@ -194,12 +194,12 @@ public class Launch extends GnuArmLaunch {
 				newProcess = DebugPlugin.newProcess(this, serverProc, label, attributes);
 			}
 		} catch (InterruptedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Interrupted while waiting for get process callable.", e)); // $NON-NLS-1$
 		} catch (ExecutionException e) {
 			throw (CoreException) e.getCause();
 		} catch (RejectedExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Debugger shut down before launch was completed.", e)); // $NON-NLS-1$
 		}
 
@@ -235,12 +235,12 @@ public class Launch extends GnuArmLaunch {
 				newProcess = DebugPlugin.newProcess(this, serverProc, label, attributes);
 			}
 		} catch (InterruptedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Interrupted while waiting for get process callable.", e)); // $NON-NLS-1$
 		} catch (ExecutionException e) {
 			throw (CoreException) e.getCause();
 		} catch (RejectedExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Debugger shut down before launch was completed.", e)); // $NON-NLS-1$
 		}
 

@@ -52,7 +52,7 @@ public class UnitPlugInUI extends AbstractUIPlugin {
 	private static HashMap<String, ImageDescriptor> imageDescriptors = new HashMap<String, ImageDescriptor>();
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "com.lembed.lite.studio.unit.ui"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "com.lembed.lite.studio.unit.launch"; //$NON-NLS-1$
 
 	public static final String ICONS_PATH = "icons/"; //$NON-NLS-1$
 	// icons

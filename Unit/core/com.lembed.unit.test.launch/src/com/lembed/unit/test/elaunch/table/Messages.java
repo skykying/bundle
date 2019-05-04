@@ -17,11 +17,11 @@ import java.util.ResourceBundle;
 
 import org.eclipse.osgi.util.NLS;
 
-public class Messages {
+public class Messages extends NLS{
 
 	// ------------------------------------------------------------------------
 
-	private static final String MESSAGES = "com.lembed.unit.test.elaunch.table.messages"; //$NON-NLS-1$
+	private static final String MESSAGES = Messages.class.getName(); //$NON-NLS-1$
 
 	public static String LLinkPreferencePage_description;
 	public static String LLinkPreferencePage_executable_label;

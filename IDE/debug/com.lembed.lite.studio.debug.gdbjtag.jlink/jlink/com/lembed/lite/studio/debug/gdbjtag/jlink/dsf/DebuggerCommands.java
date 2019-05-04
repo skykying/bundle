@@ -14,9 +14,9 @@ package com.lembed.lite.studio.debug.gdbjtag.jlink.dsf;
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.GdbActivator;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmDebuggerCommandsService;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.CfgAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.DefaultPreferences;
 
@@ -249,7 +249,7 @@ public class DebuggerCommands extends GnuArmDebuggerCommandsService {
 		DebugUtils.addMultiLine(otherInits, cmdList);
 
 		commandsList.addAll(cmdList);
-		JlinkActivator.log(cmdList.toString());
+		DevicePlugin.log(cmdList.toString());
 
 		return Status.OK_STATUS;
 	}
@@ -325,7 +325,7 @@ public class DebuggerCommands extends GnuArmDebuggerCommandsService {
 		}
 
 		commandsList.addAll(cmdList);
-		JlinkActivator.log(cmdList.toString());
+		DevicePlugin.log(cmdList.toString());
 		return Status.OK_STATUS;
 	}
 

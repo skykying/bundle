@@ -20,7 +20,8 @@ import org.eclipse.jface.preference.FieldEditorPreferencePage;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.IWorkbenchPreferencePage;
 import org.eclipse.ui.preferences.ScopedPreferenceStore;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.PersistentPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.VariableInitializer;
@@ -48,7 +49,7 @@ public class JlinkPage extends FieldEditorPreferencePage implements IWorkbenchPr
 
 		// Not really used, the field editors directly access the variables
 		// store.
-		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, JlinkActivator.PLUGIN_ID));
+		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, DevicePlugin.PLUGIN_ID));
 		setDescription(Messages.JLinkPreferencePage_description);
 	}
 
@@ -57,7 +58,7 @@ public class JlinkPage extends FieldEditorPreferencePage implements IWorkbenchPr
 	// Contributed by IWorkbenchPreferencePage
 	@Override
 	public void init(IWorkbench workbench) {
-		JlinkActivator.log("JlinkPage.init()");
+		DevicePlugin.log("JlinkPage.init()");
 	}
 
 	/**

@@ -11,6 +11,7 @@
 package com.lembed.lite.studio.debug.gdbjtag.llink;
 
 import com.lembed.lite.studio.core.EclipseUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
@@ -150,7 +151,7 @@ public class DefaultPreferences {
 	public static IEclipsePreferences stlinkGetPreferences() {
 
 		if (stlinkPreferences == null) {
-			stlinkPreferences = DefaultScope.INSTANCE.getNode(LlinkPlugin.PLUGIN_ID);
+			stlinkPreferences = DefaultScope.INSTANCE.getNode(DevicePlugin.PLUGIN_ID);
 		}
 
 		return stlinkPreferences;
@@ -232,7 +233,7 @@ public class DefaultPreferences {
 			}
 		}
 
-		LlinkPlugin.log("getExecutableName()=\"" + value + "\""); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("getExecutableName()=\"" + value + "\""); //$NON-NLS-1$ //$NON-NLS-2$
 		return value;
 	}
 
@@ -242,7 +243,7 @@ public class DefaultPreferences {
 
 		String value = getString(key, ""); //$NON-NLS-1$
 
-		LlinkPlugin.log("getExecutableNameOs()=\"" + value + "\" (" + key + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("getExecutableNameOs()=\"" + value + "\" (" + key + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return value;
 	}
 
@@ -250,7 +251,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.EXECUTABLE_NAME;
 
-		LlinkPlugin.log("Default " + key + "=" + value); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("Default " + key + "=" + value); //$NON-NLS-1$ //$NON-NLS-2$
 		stlinkStorePutString(key, value);
 	}
 
@@ -269,7 +270,7 @@ public class DefaultPreferences {
 			}
 		}
 
-		LlinkPlugin.log("getInstallFolder()=\"" + value + "\""); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("getInstallFolder()=\"" + value + "\""); //$NON-NLS-1$ //$NON-NLS-2$
 		return value;
 	}
 
@@ -277,7 +278,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.INSTALL_FOLDER;
 
-		LlinkPlugin.log("Default " + key + "=" + value); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("Default " + key + "=" + value); //$NON-NLS-1$ //$NON-NLS-2$
 		stlinkStorePutString(key, value);
 	}
 
@@ -288,7 +289,7 @@ public class DefaultPreferences {
 		String key = PersistentPreferences.SEARCH_PATH;
 		String value = getString(key, ""); //$NON-NLS-1$
 
-		LlinkPlugin.log("getSearchPath()=\"" + value + "\""); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("getSearchPath()=\"" + value + "\""); //$NON-NLS-1$ //$NON-NLS-2$
 		return value;
 	}
 
@@ -297,7 +298,7 @@ public class DefaultPreferences {
 		String key = EclipseUtils.getKeyOs(PersistentPreferences.SEARCH_PATH_OS);
 		String value = getString(key, ""); //$NON-NLS-1$
 
-		LlinkPlugin.log("getSearchPathOs()=\"" + value + "\" (" + key + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("getSearchPathOs()=\"" + value + "\" (" + key + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		return value;
 	}
 
@@ -305,7 +306,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.SEARCH_PATH;
 
-		LlinkPlugin.log("Default " + key + "=" + value); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("Default " + key + "=" + value); //$NON-NLS-1$ //$NON-NLS-2$
 		stlinkStorePutString(key, value);
 	}
 

@@ -17,7 +17,7 @@ import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmDebuggerCommandsService;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.DefaultPreferences;
-import com.lembed.lite.studio.debug.gdbjtag.stlink.STlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import java.util.List;
 
@@ -58,7 +58,7 @@ public class DebuggerCommands extends GnuArmDebuggerCommandsService {
 		otherInits = DebugUtils.resolveAll(otherInits, fAttributes);
 		DebugUtils.addMultiLine(otherInits, commandsList);
 
-		STlinkPlugin.log("61 " + otherInits + commandsList.toString());
+		DevicePlugin.log("61 " + otherInits + commandsList.toString());
 
 		return Status.OK_STATUS;
 	}
@@ -259,7 +259,7 @@ public class DebuggerCommands extends GnuArmDebuggerCommandsService {
 			otherInits = StringUtils.duplicateBackslashes(otherInits);
 		}
 		commandsList.clear();
-		STlinkPlugin.log("260 " + otherInits + commandsList.toString());
+		DevicePlugin.log("260 " + otherInits + commandsList.toString());
 		DebugUtils.addMultiLine(otherInits, commandsList);
 
 		return Status.OK_STATUS;
@@ -339,7 +339,7 @@ public class DebuggerCommands extends GnuArmDebuggerCommandsService {
 			commandsList.add(DefaultPreferences.DO_CONTINUE_COMMAND);
 		}
 		commandsList.clear();
-		STlinkPlugin.log("340 " + commandsList.toString());
+		DevicePlugin.log("340 " + commandsList.toString());
 
 		return Status.OK_STATUS;
 	}

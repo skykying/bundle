@@ -13,7 +13,7 @@ package com.lembed.lite.studio.debug.gdbjtag.stlink.dsf;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmDebuggerCommandsService;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbServerBackend;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmServicesFactory;
-import com.lembed.lite.studio.debug.gdbjtag.stlink.STlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import org.eclipse.cdt.dsf.mi.service.IMIBackend;
 import org.eclipse.cdt.dsf.service.DsfSession;
@@ -26,7 +26,7 @@ public class ServicesFactory extends GnuArmServicesFactory {
 	public ServicesFactory(String version, String mode) {
 		super(version, mode);
 
-		STlinkPlugin.log("ServicesFactory(" + version + "," + mode + ") " + this);
+		DevicePlugin.log("ServicesFactory(" + version + "," + mode + ") " + this);
 	}
 
 	// ------------------------------------------------------------------------

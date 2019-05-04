@@ -11,12 +11,12 @@
  ******************************************************************************/
 package com.lembed.lite.studio.debug.gdbjtag.restart.action;
 
-import com.lembed.lite.studio.debug.gdbjtag.restart.Activator;
-
 import org.eclipse.debug.core.commands.IRestartHandler;
 import org.eclipse.debug.ui.actions.DebugCommandAction;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
+
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 /**
  * The Class RestartCommandAction.
@@ -29,7 +29,7 @@ public class RestartCommandAction extends DebugCommandAction {
 	 * Instantiates a new restart command action.
 	 */
 	public RestartCommandAction() {
-		setActionDefinitionId(Activator.PLUGIN_ID + ".commands.Restart"); //$NON-NLS-1$
+		setActionDefinitionId(DevicePlugin.PLUGIN_ID + ".commands.Restart"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -54,7 +54,7 @@ public class RestartCommandAction extends DebugCommandAction {
 
 	@Override
 	public ImageDescriptor getDisabledImageDescriptor() {
-		return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+		return AbstractUIPlugin.imageDescriptorFromPlugin(DevicePlugin.PLUGIN_ID,
 				"icons/dlcl16/restart_co.gif"); //$NON-NLS-1$
 	}
 
@@ -65,7 +65,7 @@ public class RestartCommandAction extends DebugCommandAction {
 
 	@Override
 	public ImageDescriptor getImageDescriptor() {
-		return AbstractUIPlugin.imageDescriptorFromPlugin(Activator.PLUGIN_ID,
+		return AbstractUIPlugin.imageDescriptorFromPlugin(DevicePlugin.PLUGIN_ID,
 				"icons/elcl16/restart_co.gif"); //$NON-NLS-1$
 	}
 

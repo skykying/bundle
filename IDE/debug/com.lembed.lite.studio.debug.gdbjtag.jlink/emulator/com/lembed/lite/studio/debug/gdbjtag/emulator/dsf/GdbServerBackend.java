@@ -12,8 +12,8 @@
 package com.lembed.lite.studio.debug.gdbjtag.emulator.dsf;
 
 import com.lembed.lite.studio.core.StringUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbServerBackend;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.Configuration;
 
 import org.eclipse.cdt.dsf.concurrent.RequestMonitor;
@@ -36,7 +36,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	public GdbServerBackend(DsfSession session, ILaunchConfiguration lc) {
 		super(session, lc);
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbServerBackend(" + session + "," + lc.getName() + ")");
 		}
 	}
@@ -51,7 +51,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	@Override
 	public void initialize(final RequestMonitor rm) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbServerBackend.initialize()");
 		}
 
@@ -59,7 +59,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 			// Update parent data member before calling initialise.
 			fDoStartGdbServer = Configuration.getDoStartGdbServer(fLaunchConfiguration);
 		} catch (CoreException e) {
-			rm.setStatus(new Status(IStatus.ERROR, Activator.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
+			rm.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
 			rm.done();
 			return;
 		}
@@ -76,7 +76,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 	private void doInitialize(RequestMonitor rm) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbServerBackend.doInitialize()");
 		}
 		rm.done();
@@ -85,7 +85,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	@Override
 	public void shutdown(final RequestMonitor rm) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbServerBackend.shutdown()");
 		}
 
@@ -95,7 +95,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	@Override
 	public void destroy() {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbServerBackend.destroy() " + Thread.currentThread());
 		}
 
@@ -108,7 +108,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 	@Override
 	protected BundleContext getBundleContext() {
-		return Activator.getInstance().getBundle().getBundleContext();
+		return DevicePlugin.getInstance().getBundle().getBundleContext();
 	}
 
 	@Override

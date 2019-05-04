@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %bundle.name
 Bundle-SymbolicName: com.lembed.lite.studio.debug.gdbjtag.device;singleton:=true
 Bundle-Version: 4.1.1.qualifier
-Bundle-Activator: com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator
+Bundle-Activator: com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin
 Require-Bundle: com.lembed.lite.studio.core,
  com.lembed.lite.studio.debug.core,
  com.lembed.lite.studio.debug.gdbjtag,

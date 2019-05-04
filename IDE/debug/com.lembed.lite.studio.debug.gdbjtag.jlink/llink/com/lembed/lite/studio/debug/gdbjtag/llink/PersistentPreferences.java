@@ -16,6 +16,8 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 /**
  * Manage a workspace preference file stored in:
  * 
@@ -113,7 +115,7 @@ public class PersistentPreferences {
 	private static String getString(String id, String defaultValue) {
 
 		String value, pid =id;
-		value = Platform.getPreferencesService().getString(LlinkPlugin.PLUGIN_ID, id, null, null);
+		value = Platform.getPreferencesService().getString(DevicePlugin.PLUGIN_ID, id, null, null);
 		// System.out.println("Value of " + id + " is " + value);
 
 		if (value != null) {
@@ -122,7 +124,7 @@ public class PersistentPreferences {
 
 		// For compatibility reasons, still keep this for a while, on older
 		// versions preferences were erroneously saved in the shared defaults.
-		pid = LlinkPlugin.PLUGIN_ID + "." + pid; //$NON-NLS-1$
+		pid = DevicePlugin.PLUGIN_ID + "." + pid; //$NON-NLS-1$
 
 		value = SharedDefaults.getInstance().getSharedDefaultsMap().get(pid);
 
@@ -144,16 +146,16 @@ public class PersistentPreferences {
 		String tvalue = value.trim();
 
 		// Access the instanceScope
-		Preferences preferences = InstanceScope.INSTANCE.getNode(LlinkPlugin.PLUGIN_ID);
+		Preferences preferences = InstanceScope.INSTANCE.getNode(DevicePlugin.PLUGIN_ID);
 		preferences.put(id, tvalue);
 	}
 
 	public static void flush() {
 
 		try {
-			InstanceScope.INSTANCE.getNode(LlinkPlugin.PLUGIN_ID).flush();
+			InstanceScope.INSTANCE.getNode(DevicePlugin.PLUGIN_ID).flush();
 		} catch (BackingStoreException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 

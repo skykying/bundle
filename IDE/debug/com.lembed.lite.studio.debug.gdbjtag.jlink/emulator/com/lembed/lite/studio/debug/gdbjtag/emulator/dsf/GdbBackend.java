@@ -13,8 +13,8 @@ package com.lembed.lite.studio.debug.gdbjtag.emulator.dsf;
 
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbBackend;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.Configuration;
 
 import java.io.File;
@@ -47,7 +47,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 
 		super(session, lc);
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbBackend() " + this);
 		}
 		fLaunchConfiguration = lc;
@@ -58,7 +58,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 	@Override
 	public void initialize(final RequestMonitor rm) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbBackend.initialize() " + Thread.currentThread());
 		}
 		super.initialize(rm);
@@ -67,7 +67,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 	@Override
 	public void destroy() {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbBackend.destroy() " + Thread.currentThread());
 		}
 		super.destroy();
@@ -76,7 +76,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 	@Override
 	public void shutdown(final RequestMonitor rm) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("GdbBackend.shutdown() " + Thread.currentThread());
 		}
 		super.shutdown(rm);
@@ -108,7 +108,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 			dir = new File(path.toOSString());
 		}
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("exec " + StringUtils.join(commandLine, " "));
 			System.out.println("dir " + dir);
 		}
@@ -117,7 +117,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 					dir);
 		} catch (IOException e) {
 			String message = "Error while launching command: " + StringUtil.join(commandLine, " "); //$NON-NLS-2$ //$NON-NLS-2$
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, -1, message, e));
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, message, e));
 		}
 
 		return proc;
@@ -143,7 +143,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 			path = DebugUtils.getProjectOsPath(fLaunchConfiguration);
 		}
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("getGDBWorkingDirectory() " + path);
 		}
 		return path;

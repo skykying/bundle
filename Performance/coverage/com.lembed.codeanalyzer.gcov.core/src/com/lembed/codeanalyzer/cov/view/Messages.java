@@ -13,7 +13,7 @@ package com.lembed.codeanalyzer.cov.view;
 import org.eclipse.osgi.util.NLS;
 
 public class Messages extends NLS {
-    private static final String BUNDLE_NAME = "com.lembed.codeanalyzer.cov.view.messages"; //$NON-NLS-1$
+    private static final String BUNDLE_NAME = Messages.class.getName();
     public static String CovView_filter_by_name;
     public static String CovView_parsing_error;
     public static String CovView_sort_coverage_per_file;

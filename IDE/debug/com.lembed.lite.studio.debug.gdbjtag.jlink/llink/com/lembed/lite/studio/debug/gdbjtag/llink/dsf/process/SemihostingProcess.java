@@ -25,7 +25,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.ReentrantLock;
 
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
+
 
 /**
  * Synthetic process (does not have a system process), used to get the
@@ -98,7 +100,7 @@ public class SemihostingProcess extends Process implements Runnable {
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
 				{
-					LlinkPlugin.log("NullInputStream.read() interrupted"); //$NON-NLS-1$
+					DevicePlugin.log("NullInputStream.read() interrupted"); //$NON-NLS-1$
 				}
 			}
 			return 0;
@@ -112,14 +114,14 @@ public class SemihostingProcess extends Process implements Runnable {
 		@Override
         public void close() throws IOException {
 
-			LlinkPlugin.log("NullInputStream.close() " + Thread.currentThread()); //$NON-NLS-1$
+			DevicePlugin.log("NullInputStream.close() " + Thread.currentThread()); //$NON-NLS-1$
 
 			if (fIsOpened) {
 				super.close();
 				fIsOpened = false;
 				if (finThread != null) {
 
-					LlinkPlugin.log("NullInputStream.close() interrupt " + Thread.currentThread() + " " + finThread); //$NON-NLS-1$ //$NON-NLS-2$
+					DevicePlugin.log("NullInputStream.close() interrupt " + Thread.currentThread() + " " + finThread); //$NON-NLS-1$ //$NON-NLS-2$
 					finThread.interrupt();
 				}
 			}
@@ -144,7 +146,7 @@ public class SemihostingProcess extends Process implements Runnable {
 	 */
 	public SemihostingProcess(String host, int port) {
 
-		LlinkPlugin.log("SSemihostingProcess(" + host + "," + port + ") " + this); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("SSemihostingProcess(" + host + "," + port + ") " + this); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		fHost = host;
 		fPort = port;
@@ -161,7 +163,7 @@ public class SemihostingProcess extends Process implements Runnable {
 		try {
 			fPipeIn = new PipedInputStream(fPipeOut);
 		} catch (IOException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 		}
 
 		executor = Executors.newSingleThreadExecutor();
@@ -170,7 +172,7 @@ public class SemihostingProcess extends Process implements Runnable {
 	@Override
 	public void destroy() {
 
-		LlinkPlugin.log("SSemihostingProcess.destroy() " + Thread.currentThread() + " " + fThread); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("SSemihostingProcess.destroy() " + Thread.currentThread() + " " + fThread); //$NON-NLS-1$ //$NON-NLS-2$
 
 		lock.lock();
 		if (fRunningSD) {
@@ -178,7 +180,7 @@ public class SemihostingProcess extends Process implements Runnable {
 			if (fThread != null && fThread != Thread.currentThread()) {
 				fThread.interrupt();
 
-				LlinkPlugin.log("SSSemihostingProcess.destroy() after interrupt"); //$NON-NLS-1$
+				DevicePlugin.log("SSSemihostingProcess.destroy() after interrupt"); //$NON-NLS-1$
 			}
 
 			try {
@@ -189,7 +191,7 @@ public class SemihostingProcess extends Process implements Runnable {
 
 					if (fSocket != null && !fSocket.isInputShutdown()) {
 
-						LlinkPlugin.log("SSSemihostingProcess.destroy() before shutdownInput"); //$NON-NLS-1$
+						DevicePlugin.log("SSSemihostingProcess.destroy() before shutdownInput"); //$NON-NLS-1$
 						if (fSocket.isConnected()) {
 							fSocket.shutdownInput();
 						}
@@ -197,7 +199,7 @@ public class SemihostingProcess extends Process implements Runnable {
 					}
 					if (fSocket != null && !fSocket.isOutputShutdown()) {
 
-						LlinkPlugin.log("SSSemihostingProcess.destroy() before shutdownOutput"); //$NON-NLS-1$
+						DevicePlugin.log("SSSemihostingProcess.destroy() before shutdownOutput"); //$NON-NLS-1$
 						if (fSocket.isConnected()) {
 							fSocket.shutdownOutput();
 						}
@@ -212,7 +214,7 @@ public class SemihostingProcess extends Process implements Runnable {
 		if (executor != null) {
 			executor.shutdown();
 		}
-		LlinkPlugin.log("SSSemihostingProcess.destroy() return"); //$NON-NLS-1$
+		DevicePlugin.log("SSSemihostingProcess.destroy() return"); //$NON-NLS-1$
 	}
 
 	@Override
@@ -253,11 +255,11 @@ public class SemihostingProcess extends Process implements Runnable {
 	@Override
 	public int waitFor() throws InterruptedException {
 
-		LlinkPlugin.log("SSSemihostingProcess.waitFor() " + Thread.currentThread() + " will wait for " + fThread); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("SSSemihostingProcess.waitFor() " + Thread.currentThread() + " will wait for " + fThread); //$NON-NLS-1$ //$NON-NLS-2$
 
 		fThread.join();
 
-		LlinkPlugin.log("SSSemihostingProcess.waitFor() return " + Thread.currentThread()); //$NON-NLS-1$
+		DevicePlugin.log("SSSemihostingProcess.waitFor() return " + Thread.currentThread()); //$NON-NLS-1$
 		return 0;
 	}
 
@@ -295,12 +297,12 @@ public class SemihostingProcess extends Process implements Runnable {
 							}
 						}
 						count--;
-						LlinkPlugin.log("SSemihostingProcess.run() not !!!!!!!!!!!"); //$NON-NLS-1$
+						DevicePlugin.log("SSemihostingProcess.run() not !!!!!!!!!!!"); //$NON-NLS-1$
 					}
 					return "fault"; //$NON-NLS-1$
 				}
 			}).get();
-			LlinkPlugin.log(future);
+			DevicePlugin.log(future);
 		} catch (InterruptedException e1) {
 			e1.printStackTrace();
 		} catch (ExecutionException e1) {
@@ -311,14 +313,14 @@ public class SemihostingProcess extends Process implements Runnable {
 	@Override
 	public void run() {
 
-		LlinkPlugin.log("SSSemihostingProcess.run() " + Thread.currentThread()); //$NON-NLS-1$
+		DevicePlugin.log("SSSemihostingProcess.run() " + Thread.currentThread()); //$NON-NLS-1$
 
 		fRunningSD = true;
 		execSocket();
 
 		lock.lock();
 		if (connectIsTimeOut) {
-			LlinkPlugin.log("SSemihostingProcess.run() not +++++++++++++++ 111"); //$NON-NLS-1$
+			DevicePlugin.log("SSemihostingProcess.run() not +++++++++++++++ 111"); //$NON-NLS-1$
 			fRunningSD = false;
 			socketStarted = false;
 			condition.signal();
@@ -329,7 +331,7 @@ public class SemihostingProcess extends Process implements Runnable {
 			return;
 		}
 
-		LlinkPlugin.log("SSemihostingProcess.run() not +++++++++++++++ 22"); //$NON-NLS-1$
+		DevicePlugin.log("SSemihostingProcess.run() not +++++++++++++++ 22"); //$NON-NLS-1$
 
 		fRunningSD = true;
 		try {
@@ -344,13 +346,13 @@ public class SemihostingProcess extends Process implements Runnable {
 				}
 			}
 		} catch (IOException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 		} finally {
 			clean();
 			fRunningSD = false;
 		}
 
-		LlinkPlugin.log("SSemihostingProcess.run() completed "); //$NON-NLS-1$
+		DevicePlugin.log("SSemihostingProcess.run() completed "); //$NON-NLS-1$
 	}
 
 	private boolean process() throws IOException {
@@ -359,7 +361,7 @@ public class SemihostingProcess extends Process implements Runnable {
 			nRawBytes = fInputStream.read(fRawBytes);
 		} catch (SocketException e) {
 			nRawBytes = -1; // EOS
-			// LlinkPlugin.log(e);
+			// DevicePlugin.log(e);
 		}
 
 		if (nRawBytes == -1) {
@@ -367,7 +369,7 @@ public class SemihostingProcess extends Process implements Runnable {
 
 			// Announce to the user that the remote endpoint has closed
 			// the connection.
-			LlinkPlugin.log("SSemihostingProcess.run() Connection closed by the GDB server."); //$NON-NLS-1$
+			DevicePlugin.log("SSemihostingProcess.run() Connection closed by the GDB server."); //$NON-NLS-1$
 			fPipeOut.write("Connection closed by the GDB server.".getBytes()); //$NON-NLS-1$
 
 			return false;
@@ -412,7 +414,7 @@ public class SemihostingProcess extends Process implements Runnable {
 	 */
 	public void submit() {
 
-		LlinkPlugin.log("SSemihostingProcess.submit() " + Thread.currentThread()); //$NON-NLS-1$
+		DevicePlugin.log("SSemihostingProcess.submit() " + Thread.currentThread()); //$NON-NLS-1$
 
 		fThread = new Thread(this);
 		fThread.setName("Semihosting and SWV fake process"); //$NON-NLS-1$

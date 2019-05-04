@@ -14,7 +14,9 @@ package com.lembed.lite.studio.debug.gdbjtag.jlink.ui;
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 
 // toolbar:org.eclipse.debug.ui.main.toolbar?after=additions
 
@@ -23,7 +25,7 @@ public class ButtonResetHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		JlinkActivator.log("ButtonResetHandler.execute(" + event + ")");
+		DevicePlugin.log("ButtonResetHandler.execute(" + event + ")");
 		return null;
 	}
 

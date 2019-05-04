@@ -4,6 +4,7 @@ import org.eclipse.jface.action.Action;
 import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.Separator;
 import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.part.ViewPart;
 
@@ -22,7 +23,7 @@ public class MemoryView extends ViewPart{
 	public void createPartControl(Composite parent) {		
 		monitor = new BuildMonitor();
 		monitor.register();
-		viewer = new TableViewer(parent);
+		viewer = new TableViewer(parent,SWT.H_SCROLL | SWT.V_SCROLL);
 		addActionsToMenus(this);
 	}
 

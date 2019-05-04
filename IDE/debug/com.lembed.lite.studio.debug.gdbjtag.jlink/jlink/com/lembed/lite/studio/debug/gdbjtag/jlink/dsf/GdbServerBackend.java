@@ -12,6 +12,7 @@
 package com.lembed.lite.studio.debug.gdbjtag.jlink.dsf;
 
 import com.lembed.lite.studio.core.StringUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbServerBackend;
 
 import java.util.concurrent.ExecutionException;
@@ -33,7 +34,7 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.DebugException;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.osgi.framework.BundleContext;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
 import com.lembed.lite.studio.debug.gdbjtag.jlink.Configuration;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.CfgAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.DefaultPreferences;
@@ -78,7 +79,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 			fDoStartSemihostingConsole = Configuration.getDoAddSemihostingConsole(fLaunchConfiguration);
 		} catch (CoreException e) {
-			rm.setStatus(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
+			rm.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
 			rm.done();
 			return;
 		}
@@ -164,7 +165,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 	@Override
 	protected BundleContext getBundleContext() {
-		return JlinkActivator.getInstance().getBundle().getBundleContext();
+		return DevicePlugin.getInstance().getBundle().getBundleContext();
 	}
 
 	@Override
@@ -246,7 +247,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 				body = "Device name '" + name
 						+ "' not recognised. Please check http://www.segger.com/supported-devices.html for the supported device names.";
 			} catch (CoreException e) {
-				JlinkActivator.log(e);
+				DevicePlugin.log(e);
 			}
 		} else if (exitCode == -7) {
 			// TODO: check if TCP and adjust message accordingly
@@ -330,7 +331,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 						log("startSemihostingJob run cancel");
 
-						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.CANCEL, JlinkActivator.PLUGIN_ID, -1,
+						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.CANCEL, DevicePlugin.PLUGIN_ID, -1,
 								getStartingSemihostingJobName() + " cancelled.", null)); //$NON-NLS-1$
 						fTmpLaunchRequestMonitor.done();
 						return Status.OK_STATUS;
@@ -357,7 +358,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 						});
 					} catch (CoreException e) {
 						fTmpLaunchRequestMonitor
-								.setStatus(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, -1, e.getMessage(), e));
+								.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, e.getMessage(), e));
 						fTmpLaunchRequestMonitor.done();
 						return Status.OK_STATUS;
 					}
@@ -393,7 +394,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 							jobThread.interrupt();
 						}
 						rm.setStatus(
-								new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
+								new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
 										getStartingSemihostingJobName() + " timed out.", null)); //$NON-NLS-1$
 						rm.done();
 					}
@@ -486,7 +487,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 					log("SemihostingStep shutdown() run() REQUEST_FAILED");
 
-					requestMonitor.setStatus(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID,
+					requestMonitor.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID,
 							IDsfStatusConstants.REQUEST_FAILED, "GDB semihosting terminate failed", null)); //$NON-NLS-1$
 					requestMonitor.done();
 					return Status.OK_STATUS;
@@ -583,7 +584,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 						thread.interrupt();
 					} else {
-						JlinkActivator.log("SemihostingMonitorJob.kill() null thread");
+						DevicePlugin.log("SemihostingMonitorJob.kill() null thread");
 					}
 				}
 			}

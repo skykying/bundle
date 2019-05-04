@@ -11,10 +11,10 @@
 
 package com.lembed.lite.studio.debug.gdbjtag.emulator.dsf;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmDebuggerCommandsService;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbServerBackend;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmServicesFactory;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
 
 import org.eclipse.cdt.dsf.mi.service.IMIBackend;
 import org.eclipse.cdt.dsf.service.DsfSession;
@@ -32,7 +32,7 @@ public class ServicesFactory extends GnuArmServicesFactory {
 	public ServicesFactory(String version, String mode) {
 		super(version, mode);
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("ServicesFactory(" + version + "," + mode + ") " + this);
 		}
 		fVersion = version;

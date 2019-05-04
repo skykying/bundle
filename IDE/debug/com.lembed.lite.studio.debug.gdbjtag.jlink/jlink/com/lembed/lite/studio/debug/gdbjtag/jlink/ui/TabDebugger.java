@@ -50,13 +50,14 @@ import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Link;
 import org.eclipse.swt.widgets.Text;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
 import com.lembed.lite.studio.debug.gdbjtag.jlink.CfgAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.PersistentPreferences;
 
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.debug.gdbjtag.data.LiteProjectAttributes;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 /**
  * @since 7.0
@@ -68,7 +69,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	// ------------------------------------------------------------------------
 
 	private static final String TAB_NAME = "Debugger";
-	private static final String TAB_ID = JlinkActivator.PLUGIN_ID + ".ui.debuggertab";
+	private static final String TAB_ID = DevicePlugin.PLUGIN_ID + ".ui.debuggertab";
 
 	private static int COLUMN_WIDTH = 70;
 
@@ -148,7 +149,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	@Override
 	public void createControl(Composite parent) {
 
-		JlinkActivator.log("TabDebugger: createControl() ");
+		DevicePlugin.log("TabDebugger: createControl() ");
 		
 
 		// gdbPrevUsbAddress = "";
@@ -1079,7 +1080,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 
 		{
-			JlinkActivator.log("TabDebugger: initializeFrom() " + configuration.getName());
+			DevicePlugin.log("TabDebugger: initializeFrom() " + configuration.getName());
 		}
 
 		try {
@@ -1132,7 +1133,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					fGdbEndiannessBig.setSelection(true);
 				else {
 					String message = "unknown endianness " + endianness + ", using little";
-					JlinkActivator.log(message);
+					DevicePlugin.log(message);
 					fGdbEndiannessLittle.setSelection(true);
 				}
 
@@ -1172,7 +1173,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					fTabStartup.doInterfaceSwdChanged(false);
 				} else {
 					String message = "unknown interface " + physicalInterface + ", using swd";
-					JlinkActivator.log(message);
+					DevicePlugin.log(message);
 					fGdbInterfaceSwd.setSelection(true);
 				}
 
@@ -1207,7 +1208,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 						fGdbServerSpeedFixedValue.setText(physicalInterfaceSpeed);
 					} catch (NumberFormatException e) {
 						String message = "unknown interface speed " + physicalInterfaceSpeed + ", using auto";
-						JlinkActivator.log(message);
+						DevicePlugin.log(message);
 						fGdbServerSpeedAuto.setSelection(true);
 						fGdbServerSpeedFixedValue.setEnabled(false);
 					}
@@ -1305,16 +1306,16 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 			fUpdateThreadlistOnSuspend.setSelection(updateThreadsOnSuspend);
 
 		} catch (CoreException e) {
-			JlinkActivator.log(e.getStatus());
+			DevicePlugin.log(e.getStatus());
 		}
 
 		
-		JlinkActivator.log("TabDebugger: initializeFrom() completed " + configuration.getName());
+		DevicePlugin.log("TabDebugger: initializeFrom() completed " + configuration.getName());
 	}
 
 	public void initializeFromDefaults() {
 
-		JlinkActivator.log("TabDebugger: initializeFromDefaults()");
+		DevicePlugin.log("TabDebugger: initializeFromDefaults()");
 
 		String stringDefault;
 		boolean booleanDefault;
@@ -1342,7 +1343,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 				fGdbEndiannessBig.setSelection(true);
 			} else {
 				String message = "unknown endianness " + endianness + ", using little";
-				JlinkActivator.log(message);
+				DevicePlugin.log(message);
 				fGdbEndiannessLittle.setSelection(true);
 			}
 
@@ -1372,7 +1373,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 				fTabStartup.doInterfaceSwdChanged(false);
 			} else {
 				String message = "unknown interface " + physicalInterface + ", using swd";
-				JlinkActivator.log(message);
+				DevicePlugin.log(message);
 				fGdbInterfaceSwd.setSelection(true);
 			}
 
@@ -1403,7 +1404,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					fGdbServerSpeedFixedValue.setText(physicalInterfaceSpeed);
 				} catch (NumberFormatException e) {
 					String message = "unknown interface speed " + physicalInterfaceSpeed + ", using auto";
-					JlinkActivator.log(message);
+					DevicePlugin.log(message);
 					fGdbServerSpeedAuto.setSelection(true);
 					fGdbServerSpeedFixedValue.setEnabled(false);
 				}
@@ -1484,19 +1485,19 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	@Override
 	public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
 		
-		JlinkActivator.log("TabDebugger: activated() " + workingCopy.getName());
+		DevicePlugin.log("TabDebugger: activated() " + workingCopy.getName());
 	}
 
 	@Override
 	public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
 		
-		JlinkActivator.log("TabDebugger: deactivated() " + workingCopy.getName());
+		DevicePlugin.log("TabDebugger: deactivated() " + workingCopy.getName());
 	}
 
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 
-		JlinkActivator.log("TabDebugger: performApply() " + configuration.getName() + ", dirty=" + isDirty());
+		DevicePlugin.log("TabDebugger: performApply() " + configuration.getName() + ", dirty=" + isDirty());
 
 		{
 			// legacy definition; although the jtag device class is not used,
@@ -1538,7 +1539,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 				stringValue = DefaultPreferences.ENDIANNESS_BIG;
 			} else {
 				String message = "endianness not selected, setting little";
-				JlinkActivator.log(message);
+				DevicePlugin.log(message);
 			}
 			configuration.setAttribute(CfgAttributes.GDB_SERVER_DEVICE_ENDIANNESS, stringValue);
 			PersistentPreferences.putGdbServerEndianness(stringValue);
@@ -1567,7 +1568,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 				stringValue = DefaultPreferences.INTERFACE_JTAG;
 			} else {
 				String message = "interface not selected, setting swd";
-				JlinkActivator.log(message);
+				DevicePlugin.log(message);
 				fGdbInterfaceSwd.setSelection(true);
 			}
 			configuration.setAttribute(CfgAttributes.GDB_SERVER_DEBUG_INTERFACE, stringValue);
@@ -1657,7 +1658,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					port = Integer.parseInt(fGdbServerGdbPort.getText().trim());
 					configuration.setAttribute(IGDBJtagConstants.ATTR_PORT_NUMBER, port);
 				} catch (NumberFormatException e) {
-					JlinkActivator.log(e);
+					DevicePlugin.log(e);
 				}
 			} else {
 				String ip = fTargetIpAddress.getText().trim();
@@ -1667,7 +1668,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					int port = Integer.valueOf(fTargetPortNumber.getText().trim()).intValue();
 					configuration.setAttribute(IGDBJtagConstants.ATTR_PORT_NUMBER, port);
 				} catch (NumberFormatException e) {
-					JlinkActivator.log(e);
+					DevicePlugin.log(e);
 				}
 			}
 		}
@@ -1679,13 +1680,13 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 		PersistentPreferences.flush();
 
 		
-		JlinkActivator.log("TabDebugger: performApply() completed " + configuration.getName() + ", dirty=" + isDirty());
+		DevicePlugin.log("TabDebugger: performApply() completed " + configuration.getName() + ", dirty=" + isDirty());
 	}
 
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
-		JlinkActivator.log("TabDebugger: setDefaults() " + configuration.getName());
+		DevicePlugin.log("TabDebugger: setDefaults() " + configuration.getName());
 
 		boolean defaultBoolean;
 		String defaultString;

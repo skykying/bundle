@@ -16,21 +16,21 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 public class ButtonRestartActionDelegate implements
 		IWorkbenchWindowActionDelegate {
 
 	@Override
 	public void run(IAction action) {
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Restart.run(" + action + ")");
 		}
 	}
 
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Restart.selectionChanged(" + action + ","
 					+ selection + ")");
 		}
@@ -38,14 +38,14 @@ public class ButtonRestartActionDelegate implements
 
 	@Override
 	public void dispose() {
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Restart.dispose()");
 		}
 	}
 
 	@Override
 	public void init(IWorkbenchWindow window) {
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Restart.init()");
 		}
 	}

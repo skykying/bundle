@@ -13,6 +13,7 @@ package com.lembed.lite.studio.debug.gdbjtag.llink;
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -66,7 +67,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 			return null;
 		}
 
@@ -104,7 +105,7 @@ public class Configuration {
 
 			String executable = getGdbServerCommand(configuration);
 			if (executable == null || executable.length() == 0) {
-				LlinkPlugin.log("gdb server path not found !"); //$NON-NLS-1$
+				DevicePlugin.log("gdb server path not found !"); //$NON-NLS-1$
 				return null;
 			}
 
@@ -216,7 +217,7 @@ public class Configuration {
 			lst.add(executable);
 
 		} catch (CoreException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 			return null;
 		}
 
@@ -275,7 +276,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 			return null;
 		}
 
@@ -294,7 +295,7 @@ public class Configuration {
 
 		String executable = getGdbClientCommand(configuration);
 		if (executable == null || executable.length() == 0) {
-			LlinkPlugin.log("gdb client can not found !"); //$NON-NLS-1$
+			DevicePlugin.log("gdb client can not found !"); //$NON-NLS-1$
 			return null;
 		}
 
@@ -317,7 +318,7 @@ public class Configuration {
 				lst.addAll(StringUtils.splitCommandLineOptions(other));
 			}
 		} catch (CoreException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 		}
 
 		return lst.toArray(new String[0]);

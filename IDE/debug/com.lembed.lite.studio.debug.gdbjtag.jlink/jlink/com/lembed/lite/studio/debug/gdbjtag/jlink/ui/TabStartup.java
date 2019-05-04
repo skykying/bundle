@@ -15,6 +15,7 @@
 package com.lembed.lite.studio.debug.gdbjtag.jlink.ui;
 
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import java.io.File;
 
@@ -53,7 +54,7 @@ import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
 import org.eclipse.ui.model.WorkbenchContentProvider;
 import org.eclipse.ui.model.WorkbenchLabelProvider;
 import org.eclipse.ui.views.navigator.ResourceComparator;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
 import com.lembed.lite.studio.debug.gdbjtag.jlink.CfgAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.PersistentPreferences;
@@ -63,7 +64,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	// ------------------------------------------------------------------------
 
 	private static final String TAB_NAME = "Startup";
-	private static final String TAB_ID = JlinkActivator.PLUGIN_ID + ".ui.startuptab";
+	private static final String TAB_ID = DevicePlugin.PLUGIN_ID + ".ui.startuptab";
 
 	// ------------------------------------------------------------------------
 
@@ -155,7 +156,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void createControl(Composite parent) {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: createControl() ");
 		}
 
@@ -1158,7 +1159,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: initializeFrom() "
 			                   + configuration.getName() + ", dirty=" + isDirty());
 		}
@@ -1229,7 +1230,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 					} catch (NumberFormatException e) {
 						String message = "unknown interface speed "
 						                 + physicalInterfaceSpeed + ", using auto";
-						JlinkActivator.log(message);
+						DevicePlugin.log(message);
 						fInterfaceSpeedAuto.setSelection(true);
 						fInterfaceSpeedFixedValue.setEnabled(false);
 					}
@@ -1399,10 +1400,10 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 			updateUseFileEnablement();
 
 		} catch (CoreException e) {
-			JlinkActivator.log(e.getStatus());
+			DevicePlugin.log(e.getStatus());
 		}
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: initializeFrom() completed "
 			                   + configuration.getName() + ", dirty=" + isDirty());
 		}
@@ -1410,7 +1411,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 
 	public void initializeFromDefaults() {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: initializeFromDefaults()");
 		}
 
@@ -1451,7 +1452,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 				} catch (NumberFormatException e) {
 					String message = "unknown interface speed "
 					                 + physicalInterfaceSpeed + ", using auto";
-					JlinkActivator.log(message);
+					DevicePlugin.log(message);
 					fInterfaceSpeedAuto.setSelection(true);
 					fInterfaceSpeedFixedValue.setEnabled(false);
 				}
@@ -1561,7 +1562,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: activated() "
 			                   + workingCopy.getName());
 		}
@@ -1569,7 +1570,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: deactivated() "
 			                   + workingCopy.getName());
 		}
@@ -1578,7 +1579,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: performApply() "
 			                   + configuration.getName() + ", dirty=" + isDirty());
 		}
@@ -1770,7 +1771,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 
 		PersistentPreferences.flush();
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: performApply() completed "
 			                   + configuration.getName() + ", dirty=" + isDirty());
 		}
@@ -1779,7 +1780,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: setDefaults() "
 			                   + configuration.getName());
 		}

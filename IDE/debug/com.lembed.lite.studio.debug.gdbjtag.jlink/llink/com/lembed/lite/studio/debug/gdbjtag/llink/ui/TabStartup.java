@@ -11,10 +11,11 @@
 package com.lembed.lite.studio.debug.gdbjtag.llink.ui;
 
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.llink.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.llink.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.llink.PersistentPreferences;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+
 
 import java.io.File;
 
@@ -62,7 +63,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	// ------------------------------------------------------------------------
 
 	private static final String TAB_NAME = "Startup"; //$NON-NLS-1$
-	private static final String TAB_ID = LlinkPlugin.PLUGIN_ID + ".ui.startuptab"; //$NON-NLS-1$
+	private static final String TAB_ID = DevicePlugin.PLUGIN_ID + ".ui.startuptab"; //$NON-NLS-1$
 
 	// ------------------------------------------------------------------------
 
@@ -157,7 +158,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	public void createControl(Composite parent) {
 
 		{
-			LlinkPlugin.log("TabStartup: createControl() "); //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: createControl() "); //$NON-NLS-1$
 		}
 
 		Composite comp = new Composite(parent, SWT.NONE);
@@ -1068,7 +1069,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	 */
 	public void doConnectToRunningChanged(boolean flag) {
 
-		// LlinkPlugin.log(flag);
+		// DevicePlugin.log(flag);
 		fDoFirstReset.setEnabled(!flag);
 		fFirstResetType.setEnabled(!flag);
 
@@ -1181,7 +1182,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	public void initializeFrom(ILaunchConfiguration configuration) {
 
 		{
-			LlinkPlugin.log("TabStartup: initializeFrom() " //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: initializeFrom() " //$NON-NLS-1$
 			                   + configuration.getName() + ", dirty=" + isDirty()); //$NON-NLS-1$
 		}
 
@@ -1251,7 +1252,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 					} catch (NumberFormatException e) {
 						String message = "unknown interface speed " //$NON-NLS-1$
 						                 + physicalInterfaceSpeed + ", using auto"; //$NON-NLS-1$
-						LlinkPlugin.log(message);
+						DevicePlugin.log(message);
 						fInterfaceSpeedAuto.setSelection(true);
 						fInterfaceSpeedFixedValue.setEnabled(false);
 					}
@@ -1280,7 +1281,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 				                                       booleanDefault));
 
 				booleanDefault = PersistentPreferences.getSTLinkEnableSwo();
-				// LlinkPlugin.log("getJLinkEnableSwo()="+booleanDefault+" "+configuration.getName());
+				// DevicePlugin.log("getJLinkEnableSwo()="+booleanDefault+" "+configuration.getName());
 				fEnableSwo.setSelection(configuration.getAttribute(
 				                            ConfigurationAttributes.ENABLE_SWO, booleanDefault));
 
@@ -1421,11 +1422,11 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 			updateUseFileEnablement();
 
 		} catch (CoreException e) {
-			LlinkPlugin.log(e.getStatus());
+			DevicePlugin.log(e.getStatus());
 		}
 
 		{
-			LlinkPlugin.log("TabStartup: initializeFrom() completed " //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: initializeFrom() completed " //$NON-NLS-1$
 			                   + configuration.getName() + ", dirty=" + isDirty()); //$NON-NLS-1$
 		}
 	}
@@ -1436,7 +1437,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	public void initializeFromDefaults() {
 
 		{
-			LlinkPlugin.log("TabDebugger: initializeFromDefaults()"); //$NON-NLS-1$
+			DevicePlugin.log("TabDebugger: initializeFromDefaults()"); //$NON-NLS-1$
 		}
 
 		String stringDefault;
@@ -1476,7 +1477,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 				} catch (NumberFormatException e) {
 					String message = "unknown interface speed " //$NON-NLS-1$
 					                 + physicalInterfaceSpeed + ", using auto"; //$NON-NLS-1$
-					LlinkPlugin.log(message);
+					DevicePlugin.log(message);
 					fInterfaceSpeedAuto.setSelection(true);
 					fInterfaceSpeedFixedValue.setEnabled(false);
 				}
@@ -1497,7 +1498,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 			fSemihostingGdbClient.setSelection(booleanDefault);
 
 			booleanDefault = DefaultPreferences.getSTLinkEnableSwo();
-			// LlinkPlugin.log("getJLinkEnableSwo()="+booleanDefault+" "+configuration.getName());
+			// DevicePlugin.log("getJLinkEnableSwo()="+booleanDefault+" "+configuration.getName());
 			fEnableSwo.setSelection(booleanDefault);
 
 			intDefault = DefaultPreferences.getSTLinkSwoEnableTargetCpuFreq();
@@ -1587,7 +1588,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
 		{
-			LlinkPlugin.log("TabStartup: activated() " //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: activated() " //$NON-NLS-1$
 			                   + workingCopy.getName());
 		}
 	}
@@ -1595,7 +1596,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
 		{
-			LlinkPlugin.log("TabStartup: deactivated() " //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: deactivated() " //$NON-NLS-1$
 			                   + workingCopy.getName());
 		}
 	}
@@ -1604,7 +1605,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 
 		{
-			LlinkPlugin.log("TabStartup: performApply() " //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: performApply() " //$NON-NLS-1$
 			                   + configuration.getName() + ", dirty=" + isDirty()); //$NON-NLS-1$
 		}
 
@@ -1682,7 +1683,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 			booleanValue = fEnableSwo.getSelection();
 			configuration.setAttribute(ConfigurationAttributes.ENABLE_SWO,
 			                           booleanValue);
-			// LlinkPlugin.log("putJLinkEnableSwo "+booleanValue+" "+configuration.getName());
+			// DevicePlugin.log("putJLinkEnableSwo "+booleanValue+" "+configuration.getName());
 			PersistentPreferences.putSTLinkEnableSwo(booleanValue);
 
 			// target speed
@@ -1796,7 +1797,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 		PersistentPreferences.flush();
 
 		{
-			LlinkPlugin.log("TabStartup: performApply() completed " //$NON-NLS-1$
+			DevicePlugin.log("TabStartup: performApply() completed " //$NON-NLS-1$
 			                   + configuration.getName() + ", dirty=" + isDirty()); //$NON-NLS-1$
 		}
 	}
@@ -1805,7 +1806,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
 		
-		LlinkPlugin.log("TabStartup: setDefaults() " //$NON-NLS-1$
+		DevicePlugin.log("TabStartup: setDefaults() " //$NON-NLS-1$
 			                   + configuration.getName());
 
 		boolean defaultBoolean;

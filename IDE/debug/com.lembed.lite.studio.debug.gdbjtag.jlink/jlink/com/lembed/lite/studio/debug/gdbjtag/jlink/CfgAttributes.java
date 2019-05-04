@@ -11,11 +11,13 @@
 
 package com.lembed.lite.studio.debug.gdbjtag.jlink;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 public interface CfgAttributes {
 
 	// ------------------------------------------------------------------------
 
-	public static final String PREFIX = JlinkActivator.PLUGIN_ID;
+	public static final String PREFIX = DevicePlugin.PLUGIN_ID;
 
 	// ------------------------------------------------------------------------
 

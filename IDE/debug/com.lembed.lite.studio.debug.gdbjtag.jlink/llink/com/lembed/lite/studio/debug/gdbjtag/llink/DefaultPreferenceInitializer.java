@@ -12,6 +12,7 @@ package com.lembed.lite.studio.debug.gdbjtag.llink;
 
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.preferences.Discoverer;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -49,7 +50,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 
-		LlinkPlugin.log("DefaultPreferenceInitializer.initializeDefaultPreferences()"); //$NON-NLS-1$
+		DevicePlugin.log("DefaultPreferenceInitializer.initializeDefaultPreferences()"); //$NON-NLS-1$
 		
 		DefaultPreferences.stlinkStorePutString(PersistentPreferences.GDB_SERVER_INTERFACE,
 				DefaultPreferences.SERVER_INTERFACE_DEFAULT);
@@ -147,9 +148,9 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		@Override
 		public void added(NodeChangeEvent event) {
 
-			LlinkPlugin.log("LateInitializer.added() " + event + " " + event.getChild().name()); //$NON-NLS-1$ //$NON-NLS-2$
+			DevicePlugin.log("LateInitializer.added() " + event + " " + event.getChild().name()); //$NON-NLS-1$ //$NON-NLS-2$
 
-			if (LlinkPlugin.PLUGIN_ID.equals(event.getChild().name())) {
+			if (DevicePlugin.PLUGIN_ID.equals(event.getChild().name())) {
 
 				finalizeInitializationsDefaultPreferences();
 
@@ -160,7 +161,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		@Override
 		public void removed(NodeChangeEvent event) {
-			LlinkPlugin.log("LateInitializer.removed() " + event); //$NON-NLS-1$
+			DevicePlugin.log("LateInitializer.removed() " + event); //$NON-NLS-1$
 		}
 
 		/**
@@ -168,7 +169,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		 */
 		public void finalizeInitializationsDefaultPreferences() {
 
-			LlinkPlugin.log("LateInitializer.finalizeInitializationsDefaultPreferences()"); //$NON-NLS-1$
+			DevicePlugin.log("LateInitializer.finalizeInitializationsDefaultPreferences()"); //$NON-NLS-1$
 			
 			// J-Link GDB Server executable name
 			String name = DefaultPreferences.getExecutableName();

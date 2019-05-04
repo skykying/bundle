@@ -143,7 +143,7 @@
          point="org.eclipse.core.variables.valueVariables">
       <variable
             description="Path to emulator installation folder"
-            initializerClass="com.lembed.lite.studio.debug.gdbjtag.emulator.VariableInitializer"
+            initializerClass="com.lembed.lite.studio.debug.gdbjtag.device.VariableInitializer"
             name="emulator_path" />
    </extension>
    
@@ -151,7 +151,7 @@
          point="org.eclipse.core.variables.valueVariables">
       <variable
             description="Name of the emulator executable"
-            initializerClass="com.lembed.lite.studio.debug.gdbjtag.emulator.VariableInitializer"
+            initializerClass="com.lembed.lite.studio.debug.gdbjtag.device.VariableInitializer"
             name="emulator_executable" />
    </extension>
    <extension
@@ -166,7 +166,7 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferenceInitializer">
+            class="com.lembed.lite.studio.debug.gdbjtag.device.DefaultPreferenceInitializer">
       </initializer>
    </extension>
    

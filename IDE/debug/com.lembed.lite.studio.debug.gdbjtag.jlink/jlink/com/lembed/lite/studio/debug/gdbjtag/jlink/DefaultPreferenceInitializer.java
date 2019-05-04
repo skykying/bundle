@@ -13,6 +13,7 @@ package com.lembed.lite.studio.debug.gdbjtag.jlink;
 
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.preferences.Discoverer;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -48,7 +49,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 	public void initializeDefaultPreferences() {
 
 		 
-		JlinkActivator.log("DefaultPreferenceInitializer.initializeDefaultPreferences()");
+		DevicePlugin.log("DefaultPreferenceInitializer.initializeDefaultPreferences()");
 		
 
 		DefaultPreferences.putString(PersistentPreferences.GDB_SERVER_INTERFACE,
@@ -148,9 +149,9 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		public void added(NodeChangeEvent event) {
 
 			 
-			JlinkActivator.log("LateInitializer.added() " + event + " " + event.getChild().name());
+			DevicePlugin.log("LateInitializer.added() " + event + " " + event.getChild().name());
 			
-			if (JlinkActivator.PLUGIN_ID.equals(event.getChild().name())) {
+			if (DevicePlugin.PLUGIN_ID.equals(event.getChild().name())) {
 
 				finalizeInitializationsDefaultPreferences();
 
@@ -161,7 +162,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 
 		@Override
 		public void removed(NodeChangeEvent event) {
-			JlinkActivator.log("LateInitializer.removed() " + event);
+			DevicePlugin.log("LateInitializer.removed() " + event);
 		}
 
 		/**
@@ -169,7 +170,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		 */
 		public void finalizeInitializationsDefaultPreferences() {
 
-			JlinkActivator.log("LateInitializer.finalizeInitializationsDefaultPreferences()");
+			DevicePlugin.log("LateInitializer.finalizeInitializationsDefaultPreferences()");
 
 			// J-Link GDB Server executable name
 			String name = DefaultPreferences.getExecutableName();

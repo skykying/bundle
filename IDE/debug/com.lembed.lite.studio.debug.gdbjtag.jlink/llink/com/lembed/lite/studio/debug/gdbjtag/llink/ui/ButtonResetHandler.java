@@ -14,7 +14,8 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 
 // toolbar:org.eclipse.debug.ui.main.toolbar?after=additions
 
@@ -26,7 +27,7 @@ public class ButtonResetHandler extends AbstractHandler {
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		
-		LlinkPlugin.log("ButtonResetHandler.execute(" + event + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("ButtonResetHandler.execute(" + event + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 		return null;
 	}
 

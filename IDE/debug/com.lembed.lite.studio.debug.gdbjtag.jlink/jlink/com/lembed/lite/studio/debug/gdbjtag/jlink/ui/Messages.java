@@ -16,13 +16,15 @@ import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 import org.eclipse.osgi.util.NLS;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 
 public class Messages {
 
 	// ------------------------------------------------------------------------
 
-	private static final String MESSAGES = JlinkActivator.PLUGIN_ID + ".ui.messages"; //$NON-NLS-1$
+	private static final String MESSAGES = Messages.class.getName(); //$NON-NLS-1$
 
 	public static String JLinkPreferencePage_description;
 	public static String JLinkPreferencePage_executable_label;
@@ -43,7 +45,7 @@ public class Messages {
 		try {
 			RESOURCE_BUNDLE = ResourceBundle.getBundle(MESSAGES);
 		} catch (MissingResourceException e) {
-			JlinkActivator.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 

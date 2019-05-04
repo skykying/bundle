@@ -10,11 +10,13 @@
  ******************************************************************************/
 package com.lembed.lite.studio.debug.gdbjtag.stlink;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 public interface ConfigurationAttributes {
 
 	// ------------------------------------------------------------------------
 
-	public static final String PREFIX = STlinkPlugin.PLUGIN_ID;
+	public static final String PREFIX = DevicePlugin.PLUGIN_ID;
 
 	// ------------------------------------------------------------------------
 

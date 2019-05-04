@@ -12,6 +12,7 @@ package com.lembed.lite.studio.debug.gdbjtag.stlink;
 
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.preferences.Discoverer;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Path;
@@ -46,7 +47,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 
-		if (STlinkPlugin.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("DefaultPreferenceInitializer.initializeDefaultPreferences()");
 		}
 
@@ -146,11 +147,11 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		@Override
 		public void added(NodeChangeEvent event) {
 
-			if (STlinkPlugin.getInstance().isDebugging()) {
+			if (DevicePlugin.getInstance().isDebugging()) {
 				System.out.println("LateInitializer.added() " + event + " " + event.getChild().name());
 			}
 
-			if (STlinkPlugin.PLUGIN_ID.equals(event.getChild().name())) {
+			if (DevicePlugin.PLUGIN_ID.equals(event.getChild().name())) {
 
 				finalizeInitializationsDefaultPreferences();
 
@@ -162,7 +163,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		@Override
 		public void removed(NodeChangeEvent event) {
 
-			if (STlinkPlugin.getInstance().isDebugging()) {
+			if (DevicePlugin.getInstance().isDebugging()) {
 				System.out.println("LateInitializer.removed() " + event);
 			}
 		}
@@ -172,7 +173,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		 */
 		public void finalizeInitializationsDefaultPreferences() {
 
-			if (STlinkPlugin.getInstance().isDebugging()) {
+			if (DevicePlugin.getInstance().isDebugging()) {
 				System.out.println("LateInitializer.finalizeInitializationsDefaultPreferences()");
 			}
 

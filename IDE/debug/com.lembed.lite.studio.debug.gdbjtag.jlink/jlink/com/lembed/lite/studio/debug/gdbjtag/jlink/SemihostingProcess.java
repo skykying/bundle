@@ -9,6 +9,8 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.net.SocketException;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 /**
  * Synthetic process (does not have a system process), used to get the
  * semihosting output from the J-Link GDB server.
@@ -56,7 +58,7 @@ public class SemihostingProcess extends Process implements Runnable {
 				fThread = Thread.currentThread();
 				Thread.sleep(10000);
 			} catch (InterruptedException e) {
-				JlinkActivator.log("NullInputStream.read() interrupted");
+				DevicePlugin.log("NullInputStream.read() interrupted");
 			}
 			return 0;
 		}
@@ -67,14 +69,14 @@ public class SemihostingProcess extends Process implements Runnable {
 
 		public void close() throws IOException {
 
-			JlinkActivator.log("NullInputStream.close() " + Thread.currentThread());
+			DevicePlugin.log("NullInputStream.close() " + Thread.currentThread());
 
 			if (fIsOpened) {
 				super.close();
 				fIsOpened = false;
 				if (fThread != null) {
 					{
-						JlinkActivator.log("NullInputStream.close() interrupt " + Thread.currentThread() + " " + fThread);
+						DevicePlugin.log("NullInputStream.close() interrupt " + Thread.currentThread() + " " + fThread);
 					}
 					fThread.interrupt();
 				}
@@ -99,7 +101,7 @@ public class SemihostingProcess extends Process implements Runnable {
 
 	public SemihostingProcess(String host, int port) {
 
-		JlinkActivator.log("SemihostingProcess(" + host + "," + port + ") " + this);
+		DevicePlugin.log("SemihostingProcess(" + host + "," + port + ") " + this);
 
 		fHost = host;
 		fPort = port;
@@ -115,21 +117,21 @@ public class SemihostingProcess extends Process implements Runnable {
 		try {
 			fPipeIn = new PipedInputStream(fPipeOut);
 		} catch (IOException e) {
-			JlinkActivator.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 
 	@Override
 	public void destroy() {
 
-		JlinkActivator.log("SemihostingProcess.destroy() " + Thread.currentThread() + " " + fThread);
+		DevicePlugin.log("SemihostingProcess.destroy() " + Thread.currentThread() + " " + fThread);
 
 		if (fRunning) {
 
 			if (fThread != null && fThread != Thread.currentThread()) {
 				fThread.interrupt();
 				{
-					JlinkActivator.log("SemihostingProcess.destroy() after interrupt");
+					DevicePlugin.log("SemihostingProcess.destroy() after interrupt");
 				}
 			}
 
@@ -141,13 +143,13 @@ public class SemihostingProcess extends Process implements Runnable {
 
 					if (fSocket != null && !fSocket.isInputShutdown()) {
 						{
-							JlinkActivator.log("SemihostingProcess.destroy() before shutdownInput");
+							DevicePlugin.log("SemihostingProcess.destroy() before shutdownInput");
 						}
 						fSocket.shutdownInput();
 					}
 					if (fSocket != null && !fSocket.isOutputShutdown()) {
 						{
-							JlinkActivator.log("SemihostingProcess.destroy() before shutdownOutput");
+							DevicePlugin.log("SemihostingProcess.destroy() before shutdownOutput");
 						}
 						fSocket.shutdownOutput();
 					}
@@ -157,7 +159,7 @@ public class SemihostingProcess extends Process implements Runnable {
 			}
 		}
 
-		JlinkActivator.log("SemihostingProcess.destroy() return");
+		DevicePlugin.log("SemihostingProcess.destroy() return");
 
 	}
 
@@ -190,18 +192,18 @@ public class SemihostingProcess extends Process implements Runnable {
 	@Override
 	public int waitFor() throws InterruptedException {
 
-		JlinkActivator.log("SemihostingProcess.waitFor() " + Thread.currentThread() + " will wait for " + fThread);
+		DevicePlugin.log("SemihostingProcess.waitFor() " + Thread.currentThread() + " will wait for " + fThread);
 
 		fThread.join();
 
-		JlinkActivator.log("SemihostingProcess.waitFor() return " + Thread.currentThread());
+		DevicePlugin.log("SemihostingProcess.waitFor() return " + Thread.currentThread());
 
 		return 0;
 	}
 
 	public void run() {
 
-		JlinkActivator.log("SemihostingProcess.run() " + Thread.currentThread());
+		DevicePlugin.log("SemihostingProcess.run() " + Thread.currentThread());
 
 		fRunning = true;
 
@@ -225,7 +227,7 @@ public class SemihostingProcess extends Process implements Runnable {
 			if (i == 0) {
 				// cannot connect, no way to go further
 				{
-					JlinkActivator.log("cannot connect, no way to go further.");
+					DevicePlugin.log("cannot connect, no way to go further.");
 				}
 
 				return;
@@ -257,7 +259,7 @@ public class SemihostingProcess extends Process implements Runnable {
 					// Announce to the user that the remote endpoint has closed
 					// the connection.
 
-					JlinkActivator.log("SemihostingProcess.run() Connection closed by the GDB server.");
+					DevicePlugin.log("SemihostingProcess.run() Connection closed by the GDB server.");
 
 					fPipeOut.write("Connection closed by the GDB server.".getBytes());
 
@@ -269,7 +271,7 @@ public class SemihostingProcess extends Process implements Runnable {
 				}
 			}
 		} catch (IOException e) {
-			JlinkActivator.log(e);
+			DevicePlugin.log(e);
 		} finally {
 			try {
 				fPipeOut.close();
@@ -301,13 +303,13 @@ public class SemihostingProcess extends Process implements Runnable {
 			fRunning = false;
 		}
 
-		JlinkActivator.log("SemihostingProcess.run() completed ");
+		DevicePlugin.log("SemihostingProcess.run() completed ");
 
 	}
 
 	public void submit() {
 
-		JlinkActivator.log("SemihostingProcess.submit() " + Thread.currentThread());
+		DevicePlugin.log("SemihostingProcess.submit() " + Thread.currentThread());
 
 		fThread = new Thread(this);
 		fThread.setName("Semihosting and SWV fake process");

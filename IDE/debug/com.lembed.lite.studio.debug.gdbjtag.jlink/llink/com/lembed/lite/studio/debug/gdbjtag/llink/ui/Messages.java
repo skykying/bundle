@@ -15,14 +15,13 @@ import java.util.ResourceBundle;
 
 import org.eclipse.osgi.util.NLS;
 
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
-@SuppressWarnings("javadoc")
 public class Messages {
 
 	// ------------------------------------------------------------------------
 
-	private static final String MESSAGES = LlinkPlugin.PLUGIN_ID + ".ui.messages"; //$NON-NLS-1$
+	private static final String MESSAGES = Messages.class.getName(); //$NON-NLS-1$
 
 	
     public static String L_LinkPreferencePage_description;
@@ -44,7 +43,7 @@ public class Messages {
 		try {
 			RESOURCE_BUNDLE = ResourceBundle.getBundle(MESSAGES);
 		} catch (MissingResourceException e) {
-			LlinkPlugin.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 

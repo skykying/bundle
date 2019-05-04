@@ -13,11 +13,12 @@ package com.lembed.lite.studio.debug.gdbjtag.llink.dsf;
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.GdbActivator;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmDebuggerCommandsService;
 import com.lembed.lite.studio.debug.gdbjtag.llink.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.llink.DefaultPreferences;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+
 
 import java.util.List;
 import java.util.Map;
@@ -61,7 +62,7 @@ public class STDebuggerCommands extends GnuArmDebuggerCommandsService {
 		otherInits = DebugUtils.resolveAll(otherInits, getAttributes());
 		DebugUtils.addMultiLine(otherInits, commandsList);
 
-		LlinkPlugin.log("61 " + otherInits + commandsList.toString()); //$NON-NLS-1$
+		DevicePlugin.log("61 " + otherInits + commandsList.toString()); //$NON-NLS-1$
 
 		return Status.OK_STATUS;
 	}
@@ -93,16 +94,16 @@ public class STDebuggerCommands extends GnuArmDebuggerCommandsService {
 			
 			if (isLoadImage	&& !isRAMApp) {
 
-				LlinkPlugin.log("A LOAD IMAGE 1"); //$NON-NLS-1$
+				DevicePlugin.log("A LOAD IMAGE 1"); //$NON-NLS-1$
 				status = addLoadImageCommands(commandsList);
-				LlinkPlugin.log("A LOAD IMAGE 2"); //$NON-NLS-1$
+				DevicePlugin.log("A LOAD IMAGE 2"); //$NON-NLS-1$
 
 				if (!status.isOK()) {
 					return status;
 				}
 			}
 		}
-		LlinkPlugin.log("addGnuArmResetCommands " + commandsList.toString()); //$NON-NLS-1$
+		DevicePlugin.log("addGnuArmResetCommands " + commandsList.toString()); //$NON-NLS-1$
 		return Status.OK_STATUS;
 	}
 
@@ -252,7 +253,7 @@ public class STDebuggerCommands extends GnuArmDebuggerCommandsService {
 		}
 
 		commandsList.clear();
-		LlinkPlugin.log("260 " + otherInits + commandsList.toString()); //$NON-NLS-1$
+		DevicePlugin.log("260 " + otherInits + commandsList.toString()); //$NON-NLS-1$
 		DebugUtils.addMultiLine(otherInits, commandsList);
 
 		return Status.OK_STATUS;
@@ -260,7 +261,7 @@ public class STDebuggerCommands extends GnuArmDebuggerCommandsService {
 
 	@Override
 	public IStatus addStartRestartCommands(boolean doReset, List<String> commandsList) {
-		LlinkPlugin.log("addStartRestartCommands"); //$NON-NLS-1$
+		DevicePlugin.log("addStartRestartCommands"); //$NON-NLS-1$
 		String commandStr;
 		Boolean DEBUG = true;
 
@@ -286,9 +287,9 @@ public class STDebuggerCommands extends GnuArmDebuggerCommandsService {
 
 		if (isConfigured(IGDBJtagConstants.ATTR_LOAD_IMAGE, IGDBJtagConstants.DEFAULT_LOAD_IMAGE)
 				&& isConfigured(ConfigurationAttributes.DO_DEBUG_IN_RAM, DefaultPreferences.getSTLinkDebugInRam())) {
-			LlinkPlugin.log("LOAD IMAGE 1"); //$NON-NLS-1$
+			DevicePlugin.log("LOAD IMAGE 1"); //$NON-NLS-1$
 			IStatus status = addLoadImageCommands(commandsList);
-			LlinkPlugin.log("LOAD IMAGE 2"); //$NON-NLS-1$
+			DevicePlugin.log("LOAD IMAGE 2"); //$NON-NLS-1$
 			if (!status.isOK()) {
 				return status;
 			}
@@ -325,7 +326,7 @@ public class STDebuggerCommands extends GnuArmDebuggerCommandsService {
 		}
 		// commandsList.clear();
 
-		LlinkPlugin.log("340 " + commandsList.toString()); //$NON-NLS-1$
+		DevicePlugin.log("340 " + commandsList.toString()); //$NON-NLS-1$
 
 		return Status.OK_STATUS;
 	}

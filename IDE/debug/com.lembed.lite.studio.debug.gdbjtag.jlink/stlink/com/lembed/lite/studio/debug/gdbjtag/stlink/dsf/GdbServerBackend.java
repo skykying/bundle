@@ -12,7 +12,7 @@ package com.lembed.lite.studio.debug.gdbjtag.stlink.dsf;
 
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbServerBackend;
-import com.lembed.lite.studio.debug.gdbjtag.stlink.STlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.SemihostingProcess;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.Configuration;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.ConfigurationAttributes;
@@ -58,7 +58,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 	public GdbServerBackend(DsfSession session, ILaunchConfiguration lc) {
 		super(session, lc);
-		STlinkPlugin.log("GdbServerBackend(" + session + "," + lc.getName() + ")");
+		DevicePlugin.log("GdbServerBackend(" + session + "," + lc.getName() + ")");
 	}
 
 	// ------------------------------------------------------------------------
@@ -66,13 +66,13 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	@Override
 	public void initialize(final RequestMonitor rm) {
 
-		STlinkPlugin.log("GdbServerBackend.initialize()");
+		DevicePlugin.log("GdbServerBackend.initialize()");
 		try {
 			// Update parent data member before calling initialise.
 			fDoStartGdbServer = Configuration.getDoStartGdbServer(fLaunchConfiguration);
 			fDoStartSemihostingConsole = Configuration.getDoAddSemihostingConsole(fLaunchConfiguration);
 		} catch (CoreException e) {
-			rm.setStatus(new Status(IStatus.ERROR, STlinkPlugin.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
+			rm.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
 			rm.done();
 			return;
 		}
@@ -88,7 +88,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 	private void doInitialize(RequestMonitor rm) {
 
-		STlinkPlugin.log("GdbServerBackend.doInitialize()");
+		DevicePlugin.log("GdbServerBackend.doInitialize()");
 
 		if (fDoStartGdbServer && fDoStartSemihostingConsole) {
 
@@ -113,7 +113,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	@Override
 	public void shutdown(final RequestMonitor rm) {
 
-		STlinkPlugin.log("GdbServerBackend.shutdown()");
+		DevicePlugin.log("GdbServerBackend.shutdown()");
 
 		if (fDoStartGdbServer && fDoStartSemihostingConsole) {
 			final Sequence.Step[] shutdownSteps = new Sequence.Step[] {
@@ -142,7 +142,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 	@Override
 	public void destroy() {
 
-		STlinkPlugin.log("GdbServerBackend.destroy() " + Thread.currentThread());
+		DevicePlugin.log("GdbServerBackend.destroy() " + Thread.currentThread());
 
 		// Destroy the semihosting process
 		if (fSemihostingProcess != null && fSemihostingBackendState == State.STARTED) {
@@ -158,7 +158,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 	@Override
 	protected BundleContext getBundleContext() {
-		return STlinkPlugin.getInstance().getBundle().getBundleContext();
+		return DevicePlugin.getInstance().getBundle().getBundleContext();
 	}
 
 	@Override
@@ -238,7 +238,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 				String name = Configuration.getGdbServerDeviceName(fLaunchConfiguration);
 				body = "Device name '" + name + "' not recognised.";
 			} catch (CoreException e) {
-				STlinkPlugin.log(e);
+				DevicePlugin.log(e);
 			}
 		} else if (exitCode == -7) {
 			// TODO: check if TCP and adjust message accordingly
@@ -278,10 +278,10 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 		@Override
 		public void initialize(final RequestMonitor rm) {
 
-			STlinkPlugin.log("SemihostingStep.initialise()");
+			DevicePlugin.log("SemihostingStep.initialise()");
 			if (fServerBackendState != State.STARTED) {
 
-				STlinkPlugin.log("SemihostingStep.initialise() skipped");
+				DevicePlugin.log("SemihostingStep.initialise() skipped");
 				// rm.cancel();
 				rm.done();
 				return;
@@ -299,7 +299,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 				@Override
 				protected void handleCompleted() {
 
-					STlinkPlugin.log("SemihostingStep.initialise() handleCompleted()");
+					DevicePlugin.log("SemihostingStep.initialise() handleCompleted()");
 
 					if (!fSemihostingLaunchMonitor.fTimedOut) {
 						fSemihostingLaunchMonitor.fLaunched = true;
@@ -321,8 +321,8 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 					if (fTmpLaunchRequestMonitor.isCanceled()) {
 
-						STlinkPlugin.log("startSemihostingJob run cancel");
-						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.CANCEL, STlinkPlugin.PLUGIN_ID, -1,
+						DevicePlugin.log("startSemihostingJob run cancel");
+						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.CANCEL, DevicePlugin.PLUGIN_ID, -1,
 						                                   getStartingSemihostingJobName() + " cancelled.", null)); //$NON-NLS-1$
 						fTmpLaunchRequestMonitor.done();
 						return Status.OK_STATUS;
@@ -342,12 +342,12 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 							@Override
 							public void run() {
 
-								STlinkPlugin.log("startSemihostingJob run State.STARTED");
+								DevicePlugin.log("startSemihostingJob run State.STARTED");
 								fSemihostingBackendState = State.STARTED;
 							}
 						});
 					} catch (CoreException e) {
-						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.ERROR, STlinkPlugin.PLUGIN_ID, -1, e.getMessage(), e));
+						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, e.getMessage(), e));
 						fTmpLaunchRequestMonitor.done();
 						return Status.OK_STATUS;
 					}
@@ -357,13 +357,13 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 
 					fTmpLaunchRequestMonitor.done();
 
-					STlinkPlugin.log("startSemihostingJob run completed");
+					DevicePlugin.log("startSemihostingJob run completed");
 					return Status.OK_STATUS;
 				}
 			};
 			startSemihostingJob.schedule();
 
-			STlinkPlugin.log("SemihostingStep.initialise() after job schedule");
+			DevicePlugin.log("SemihostingStep.initialise() after job schedule");
 
 			getExecutor().schedule(new Runnable() {
 
@@ -377,25 +377,25 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 						Thread jobThread = startSemihostingJob.getThread();
 						if (jobThread != null) {
 
-							STlinkPlugin.log("interrupt thread " + jobThread);
+							DevicePlugin.log("interrupt thread " + jobThread);
 
 							jobThread.interrupt();
 						}
 						rm.setStatus(
-						    new Status(IStatus.ERROR, STlinkPlugin.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
+						    new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
 						               getStartingSemihostingJobName() + " timed out.", null)); //$NON-NLS-1$
 						rm.done();
 					}
 				}
 			}, getServerLaunchTimeoutSeconds(), TimeUnit.SECONDS);
 
-			STlinkPlugin.log("SemihostingStep.initialise() return");
+			DevicePlugin.log("SemihostingStep.initialise() return");
 		}
 
 		@Override
 		protected void shutdown(final RequestMonitor requestMonitor) {
 
-			STlinkPlugin.log("SemihostingStep.shutdown()");
+			DevicePlugin.log("SemihostingStep.shutdown()");
 
 			if (fSemihostingBackendState != State.STARTED) {
 				// Not started yet or already killed, don't bother starting
@@ -416,13 +416,13 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 						// And we should wait for it to complete since we then
 						// check if the killing of GDB worked.
 
-						STlinkPlugin.log("SemihostingStep.shutdown() run()");
+						DevicePlugin.log("SemihostingStep.shutdown() run()");
 
 						getExecutor().submit(new DsfRunnable() {
 							@Override
 							public void run() {
 
-								STlinkPlugin.log("SemihostingStep.shutdown() run() run()");
+								DevicePlugin.log("SemihostingStep.shutdown() run() run()");
 
 								destroy();
 
@@ -433,7 +433,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 									// we need to set our state and send the
 									// event
 
-									STlinkPlugin.log("SemihostingStep.shutdown() run() run() State.TERMINATED");
+									DevicePlugin.log("SemihostingStep.shutdown() run() run() State.TERMINATED");
 
 									fSemihostingBackendState = State.TERMINATED;
 
@@ -448,7 +448,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 					} catch (ExecutionException e1) {
 					}
 
-					STlinkPlugin.log("SemihostingStep shutdown() run() before getting exitValue");
+					DevicePlugin.log("SemihostingStep shutdown() run() before getting exitValue");
 
 					int attempts = 0;
 					while (attempts < 10) {
@@ -458,7 +458,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 							// throws exception if process not exited
 							fSemihostingExitValue = fSemihostingProcess.exitValue();
 
-							STlinkPlugin.log("SemihostingStep shutdown() run() return");
+							DevicePlugin.log("SemihostingStep shutdown() run() return");
 
 							requestMonitor.done();
 							return Status.OK_STATUS;
@@ -471,16 +471,16 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 						attempts++;
 					}
 
-					STlinkPlugin.log("SemihostingStep shutdown() run() REQUEST_FAILED");
+					DevicePlugin.log("SemihostingStep shutdown() run() REQUEST_FAILED");
 
-					requestMonitor.setStatus(new Status(IStatus.ERROR, STlinkPlugin.PLUGIN_ID,
+					requestMonitor.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID,
 					                                    IDsfStatusConstants.REQUEST_FAILED, "GDB semihosting terminate failed", null)); //$NON-NLS-1$
 					requestMonitor.done();
 					return Status.OK_STATUS;
 				}
 			} .schedule();
 
-			STlinkPlugin.log("SemihostingStep shutdown() return");
+			DevicePlugin.log("SemihostingStep shutdown() return");
 
 		}
 
@@ -491,7 +491,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 			// proc.submit(getExecutor());
 			proc.submit();
 
-			STlinkPlugin.log("launchSemihostingProcess() return " + proc);
+			DevicePlugin.log("launchSemihostingProcess() return " + proc);
 
 			return proc;
 		}
@@ -521,7 +521,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 		protected IStatus run(IProgressMonitor monitor) {
 			synchronized (fProcess) {
 
-				STlinkPlugin.log("SemihostingMonitorJob.run() submit " + fMonitorStarted + " thread " + getThread());
+				DevicePlugin.log("SemihostingMonitorJob.run() submit " + fMonitorStarted + " thread " + getThread());
 
 				getExecutor().submit(fMonitorStarted);
 				try {
@@ -533,12 +533,12 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 						@Override
 						public void run() {
 
-							STlinkPlugin.log("SemihostingMonitorJob.run() run() thread " + getThread());
+							DevicePlugin.log("SemihostingMonitorJob.run() run() thread " + getThread());
 
 							// Destroy the entire backend
 							destroy();
 
-							STlinkPlugin.log("SemihostingMonitorJob.run() run() State.TERMINATED");
+							DevicePlugin.log("SemihostingMonitorJob.run() run() State.TERMINATED");
 
 							fSemihostingBackendState = State.TERMINATED;
 
@@ -553,7 +553,7 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 					Thread.interrupted();
 				}
 
-				STlinkPlugin.log("SemihostingMonitorJob.run() fMonitorExited = true thread " + getThread());
+				DevicePlugin.log("SemihostingMonitorJob.run() fMonitorExited = true thread " + getThread());
 
 				fMonitorExited = true;
 			}
@@ -566,11 +566,11 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 					Thread thread = getThread();
 					if (thread != null) {
 
-						STlinkPlugin.log("SemihostingMonitorJob.kill() interrupt " + thread.toString());
+						DevicePlugin.log("SemihostingMonitorJob.kill() interrupt " + thread.toString());
 
 						thread.interrupt();
 					} else {
-						STlinkPlugin.log("SemihostingMonitorJob.kill() null thread");
+						DevicePlugin.log("SemihostingMonitorJob.kill() null thread");
 					}
 				}
 			}
@@ -591,11 +591,11 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 		@Override
 		public void initialize(final RequestMonitor rm) {
 
-			STlinkPlugin.log("SemihostingMonitorStep.initialize()");
+			DevicePlugin.log("SemihostingMonitorStep.initialize()");
 
 			if (fServerBackendState != State.STARTED) {
 
-				STlinkPlugin.log("SemihostingMonitorStep.initialise() skipped");
+				DevicePlugin.log("SemihostingMonitorStep.initialise() skipped");
 
 				// rm.cancel();
 				rm.done();
@@ -614,14 +614,14 @@ public class GdbServerBackend extends GnuArmGdbServerBackend {
 		@Override
 		protected void shutdown(RequestMonitor requestMonitor) {
 
-			STlinkPlugin.log("SemihostingMonitorStep.shutdown()");
+			DevicePlugin.log("SemihostingMonitorStep.shutdown()");
 
 			if (fSemihostingMonitorJob != null) {
 				fSemihostingMonitorJob.kill();
 			}
 			requestMonitor.done();
 
-			STlinkPlugin.log("SemihostingMonitorStep.shutdown() return");
+			DevicePlugin.log("SemihostingMonitorStep.shutdown() return");
 		}
 	}
 

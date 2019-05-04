@@ -10,10 +10,10 @@
  ******************************************************************************/
 package com.lembed.lite.studio.debug.gdbjtag.llink.dsf;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmDebuggerCommandsService;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbServerBackend;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmServicesFactory;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
 
 import org.eclipse.cdt.dsf.mi.service.IMIBackend;
 import org.eclipse.cdt.dsf.service.DsfSession;
@@ -35,7 +35,7 @@ public class ServicesFactory extends GnuArmServicesFactory {
 	public ServicesFactory(String version, String mode) {
 		super(version, mode);
 
-		LlinkPlugin.log("ServicesFactory(" + version + "," + mode + ") " + this); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("ServicesFactory(" + version + "," + mode + ") " + this); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	// ------------------------------------------------------------------------

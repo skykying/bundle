@@ -13,7 +13,7 @@ package com.lembed.lite.studio.debug.gdbjtag.stlink.dsf;
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbBackend;
-import com.lembed.lite.studio.debug.gdbjtag.stlink.STlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.Configuration;
 
 import java.io.File;
@@ -45,7 +45,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 
 		super(session, lc);
 
-		STlinkPlugin.log("GdbBackend() " + this);
+		DevicePlugin.log("GdbBackend() " + this);
 		fLaunchConfiguration = lc;
 	}
 
@@ -54,21 +54,21 @@ public class GdbBackend extends GnuArmGdbBackend {
 	@Override
 	public void initialize(final RequestMonitor rm) {
 
-		STlinkPlugin.log("GdbBackend.initialize() " + Thread.currentThread().getName());
+		DevicePlugin.log("GdbBackend.initialize() " + Thread.currentThread().getName());
 		super.initialize(rm);
 	}
 
 	@Override
 	public void destroy() {
 
-		STlinkPlugin.log("GdbBackend.destroy() " + Thread.currentThread().getName());
+		DevicePlugin.log("GdbBackend.destroy() " + Thread.currentThread().getName());
 		super.destroy();
 	}
 
 	@Override
 	public void shutdown(final RequestMonitor rm) {
 
-		STlinkPlugin.log("GdbBackend.shutdown() " + Thread.currentThread().getName());
+		DevicePlugin.log("GdbBackend.shutdown() " + Thread.currentThread().getName());
 		super.shutdown(rm);
 	}
 
@@ -102,7 +102,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 					dir);
 		} catch (IOException e) {
 			String message = "Error while launching command: " + StringUtil.join(commandLine, " "); //$NON-NLS-1$ //$NON-NLS-2$
-			throw new CoreException(new Status(IStatus.ERROR, STlinkPlugin.PLUGIN_ID, -1, message, e));
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, message, e));
 		}
 
 		return proc;
@@ -128,7 +128,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 			path = DebugUtils.getProjectOsPath(fLaunchConfiguration);
 		}
 
-		STlinkPlugin.log("getGDBWorkingDirectory() " + path);
+		DevicePlugin.log("getGDBWorkingDirectory() " + path);
 		return path;
 	}
 

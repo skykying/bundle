@@ -11,9 +11,10 @@
 package com.lembed.lite.studio.debug.gdbjtag.llink.dsf;
 
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbBackend;
 import com.lembed.lite.studio.debug.gdbjtag.llink.Configuration;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+
 
 import java.io.File;
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 
 		super(session, lc);
 
-		LlinkPlugin.log("GdbBackend() " + this); //$NON-NLS-1$
+		DevicePlugin.log("GdbBackend() " + this); //$NON-NLS-1$
 		fLaunchConfiguration = lc;
 	}
 
@@ -59,21 +60,21 @@ public class GdbBackend extends GnuArmGdbBackend {
 	@Override
 	public void initialize(final RequestMonitor rm) {
 
-		LlinkPlugin.log("GdbBackend.initialize() " + Thread.currentThread().getName()); //$NON-NLS-1$
+		DevicePlugin.log("GdbBackend.initialize() " + Thread.currentThread().getName()); //$NON-NLS-1$
 		super.initialize(rm);
 	}
 
 	@Override
 	public void destroy() {
 
-		LlinkPlugin.log("GdbBackend.destroy() " + Thread.currentThread().getName()); //$NON-NLS-1$
+		DevicePlugin.log("GdbBackend.destroy() " + Thread.currentThread().getName()); //$NON-NLS-1$
 		super.destroy();
 	}
 
 	@Override
 	public void shutdown(final RequestMonitor rm) {
 
-		LlinkPlugin.log("GdbBackend.shutdown() " + Thread.currentThread().getName()); //$NON-NLS-1$
+		DevicePlugin.log("GdbBackend.shutdown() " + Thread.currentThread().getName()); //$NON-NLS-1$
 		super.shutdown(rm);
 	}
 
@@ -108,7 +109,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 					dir);
 		} catch (IOException e) {
 			String message = "Error while launching command: " + StringUtil.join(commandLine, " "); //$NON-NLS-1$ //$NON-NLS-2$
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, -1, message, e));
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, message, e));
 		}
 
 		return proc;
@@ -134,7 +135,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 			path = DebugUtils.getProjectOsPath(fLaunchConfiguration);
 		}
 
-		LlinkPlugin.log("getGDBWorkingDirectory() " + path); //$NON-NLS-1$
+		DevicePlugin.log("getGDBWorkingDirectory() " + path); //$NON-NLS-1$
 		return path;
 	}
 

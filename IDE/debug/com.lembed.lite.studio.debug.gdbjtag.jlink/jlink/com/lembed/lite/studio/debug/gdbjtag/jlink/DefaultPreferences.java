@@ -12,6 +12,7 @@
 package com.lembed.lite.studio.debug.gdbjtag.jlink;
 
 import com.lembed.lite.studio.core.EclipseUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 import org.eclipse.core.runtime.preferences.DefaultScope;
 import org.eclipse.core.runtime.preferences.IEclipsePreferences;
@@ -150,7 +151,7 @@ public class DefaultPreferences {
 	public static IEclipsePreferences getPreferences() {
 
 		if (fgPreferences == null) {
-			fgPreferences = DefaultScope.INSTANCE.getNode(JlinkActivator.PLUGIN_ID);
+			fgPreferences = DefaultScope.INSTANCE.getNode(DevicePlugin.PLUGIN_ID);
 		}
 
 		return fgPreferences;
@@ -232,7 +233,7 @@ public class DefaultPreferences {
 			}
 		}
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("getExecutableName()=\"" + value + "\"");
 		}
 		return value;
@@ -244,7 +245,7 @@ public class DefaultPreferences {
 		String key = EclipseUtils.getKeyOs(PersistentPreferences.EXECUTABLE_NAME_OS);
 
 		String value = getString(key, "");
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("getExecutableNameOs()=\"" + value + "\" (" + key + ")");
 		}
 		return value;
@@ -254,7 +255,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.EXECUTABLE_NAME;
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
 		putString(key, value);
@@ -275,7 +276,7 @@ public class DefaultPreferences {
 			}
 		}
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("getInstallFolder()=\"" + value + "\"");
 		}
 		return value;
@@ -285,7 +286,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.INSTALL_FOLDER;
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
 		putString(key, value);
@@ -297,7 +298,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.SEARCH_PATH;
 		String value = getString(key, "");
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("getSearchPath()=\"" + value + "\"");
 		}
 		return value;
@@ -307,7 +308,7 @@ public class DefaultPreferences {
 
 		String key = EclipseUtils.getKeyOs(PersistentPreferences.SEARCH_PATH_OS);
 		String value = getString(key, "");
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("getSearchPathOs()=\"" + value + "\" (" + key + ")");
 		}
 		return value;
@@ -317,7 +318,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.SEARCH_PATH;
 
-		if (JlinkActivator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
 		putString(key, value);

@@ -17,13 +17,13 @@ import java.util.ResourceBundle;
 
 import org.eclipse.osgi.util.NLS;
 
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 public class Messages {
 
 	// ------------------------------------------------------------------------
 
-	private static final String MESSAGES = Activator.PLUGIN_ID + ".ui.messages"; //$NON-NLS-1$
+	private static final String MESSAGES = Messages.class.getName(); //$NON-NLS-1$
 
 	public static String QemuPagePropertyPage_description;
 	public static String QemuPagePropertyPage_executable_label;
@@ -44,7 +44,7 @@ public class Messages {
 		try {
 			RESOURCE_BUNDLE = ResourceBundle.getBundle(MESSAGES);
 		} catch (MissingResourceException e) {
-			Activator.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 

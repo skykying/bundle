@@ -13,8 +13,8 @@ package com.lembed.lite.studio.debug.gdbjtag.jlink.dsf;
 
 import com.lembed.lite.studio.core.StringUtils;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmGdbBackend;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
 import com.lembed.lite.studio.debug.gdbjtag.jlink.Configuration;
 
 import java.io.File;
@@ -46,7 +46,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 
 		super(session, lc);
 
-		JlinkActivator.log("GdbBackend() " + this);
+		DevicePlugin.log("GdbBackend() " + this);
 
 		fLaunchConfiguration = lc;
 	}
@@ -55,19 +55,19 @@ public class GdbBackend extends GnuArmGdbBackend {
 
 	@Override
 	public void initialize(final RequestMonitor rm) {
-		JlinkActivator.log("GdbBackend.initialize() " + Thread.currentThread());
+		DevicePlugin.log("GdbBackend.initialize() " + Thread.currentThread());
 		super.initialize(rm);
 	}
 
 	@Override
 	public void destroy() {
-		JlinkActivator.log("GdbBackend.destroy() " + Thread.currentThread());
+		DevicePlugin.log("GdbBackend.destroy() " + Thread.currentThread());
 		super.destroy();
 	}
 
 	@Override
 	public void shutdown(final RequestMonitor rm) {
-		JlinkActivator.log("GdbBackend.shutdown() " + Thread.currentThread());
+		DevicePlugin.log("GdbBackend.shutdown() " + Thread.currentThread());
 		super.shutdown(rm);
 	}
 
@@ -97,15 +97,15 @@ public class GdbBackend extends GnuArmGdbBackend {
 			dir = new File(path.toOSString());
 		}
 
-		JlinkActivator.log("exec " + StringUtils.join(commandLine, " "));
-		JlinkActivator.log("dir " + dir);
+		DevicePlugin.log("exec " + StringUtils.join(commandLine, " "));
+		DevicePlugin.log("dir " + dir);
 
 		try {
 			proc = ProcessFactory.getFactory().exec(commandLine, DebugUtils.getLaunchEnvironment(fLaunchConfiguration),
 					dir);
 		} catch (IOException e) {
 			String message = "Error while launching command: " + StringUtil.join(commandLine, " "); //$NON-NLS-1$ //$NON-NLS-2$
-			throw new CoreException(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, -1, message, e));
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, message, e));
 		}
 
 		return proc;
@@ -131,7 +131,7 @@ public class GdbBackend extends GnuArmGdbBackend {
 			path = DebugUtils.getProjectOsPath(fLaunchConfiguration);
 		}
 
-		JlinkActivator.log("getGDBWorkingDirectory() " + path);
+		DevicePlugin.log("getGDBWorkingDirectory() " + path);
 
 		return path;
 	}

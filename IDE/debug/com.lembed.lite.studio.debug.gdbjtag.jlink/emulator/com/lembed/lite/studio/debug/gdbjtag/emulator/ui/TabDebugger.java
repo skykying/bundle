@@ -53,7 +53,7 @@ import org.eclipse.swt.widgets.Text;
 
 import com.lembed.lite.studio.core.EclipseUtils;
 import com.lembed.lite.studio.debug.gdbjtag.data.LiteProjectAttributes;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.PersistentPreferences;
@@ -66,7 +66,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	// ------------------------------------------------------------------------
 
 	private static final String TAB_NAME = "Debugger";
-	private static final String TAB_ID = Activator.PLUGIN_ID + ".ui.debuggertab";
+	private static final String TAB_ID = DevicePlugin.PLUGIN_ID + ".ui.debuggertab";
 
 	// ------------------------------------------------------------------------
 
@@ -713,7 +713,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	@Override
 	public void initializeFrom(ILaunchConfiguration configuration) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: initializeFrom() " + configuration.getName());
 		}
 
@@ -837,13 +837,13 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 			fUpdateThreadlistOnSuspend.setSelection(updateThreadsOnSuspend);
 
 		} catch (CoreException e) {
-			Activator.log(e.getStatus());
+			DevicePlugin.log(e.getStatus());
 		}
 	}
 
 	public void initializeFromDefaults() {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: initializeFromDefaults()");
 		}
 
@@ -937,14 +937,14 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 
 	@Override
 	public void activated(ILaunchConfigurationWorkingCopy workingCopy) {
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: activated() " + workingCopy.getName());
 		}
 	}
 
 	@Override
 	public void deactivated(ILaunchConfigurationWorkingCopy workingCopy) {
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: deactivated() " + workingCopy.getName());
 		}
 	}
@@ -952,7 +952,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	@Override
 	public void performApply(ILaunchConfigurationWorkingCopy configuration) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: performApply() " + configuration.getName());
 		}
 
@@ -1051,7 +1051,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					port = Integer.parseInt(fGdbServerGdbPort.getText().trim());
 					configuration.setAttribute(IGDBJtagConstants.ATTR_PORT_NUMBER, port);
 				} catch (NumberFormatException e) {
-					Activator.log(e);
+					DevicePlugin.log(e);
 				}
 			} else {
 				String ip = fTargetIpAddress.getText().trim();
@@ -1061,7 +1061,7 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 					int port = Integer.valueOf(fTargetPortNumber.getText().trim()).intValue();
 					configuration.setAttribute(IGDBJtagConstants.ATTR_PORT_NUMBER, port);
 				} catch (NumberFormatException e) {
-					Activator.log(e);
+					DevicePlugin.log(e);
 				}
 			}
 		}
@@ -1076,7 +1076,11 @@ public class TabDebugger extends AbstractLaunchConfigurationTab {
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if(DevicePlugin.getInstance()==null) {
+			System.out.println("plugin is null");
+		}
+		
+		if (DevicePlugin.getInstance().isDebugging()) {
 			System.out.println("TabDebugger: setDefaults() " + configuration.getName());
 		}
 

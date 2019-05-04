@@ -15,7 +15,8 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.IWorkbenchWindowActionDelegate;
 
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 
 /**
  * The Class ButtonRestartActionDelegate.
@@ -24,22 +25,22 @@ public class ButtonRestartActionDelegate implements IWorkbenchWindowActionDelega
 
 	@Override
 	public void run(IAction action) {
-		LlinkPlugin.log("Restart.run(" + action + ")"); //$NON-NLS-1$ //$NON-NLS-2$
+		DevicePlugin.log("Restart.run(" + action + ")"); //$NON-NLS-1$ //$NON-NLS-2$
 	}
 
 	@Override
 	public void selectionChanged(IAction action, ISelection selection) {
-		LlinkPlugin.log("Restart.selectionChanged(" + action + "," + selection + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("Restart.selectionChanged(" + action + "," + selection + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	@Override
 	public void dispose() {
-		LlinkPlugin.log("Restart.dispose()"); //$NON-NLS-1$
+		DevicePlugin.log("Restart.dispose()"); //$NON-NLS-1$
 	}
 
 	@Override
 	public void init(IWorkbenchWindow window) {
-		LlinkPlugin.log("Restart.init()"); //$NON-NLS-1$
+		DevicePlugin.log("Restart.init()"); //$NON-NLS-1$
 	}
 
 }

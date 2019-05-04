@@ -1,17 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature id="org.eclipse.tracecompass.lttng2.control.source" version="4.0.0.201808221550" label="%featureName" provider-name="%featureProvider">
-  <description url="http://www.example.com/description">
-      %description
-   </description>
-  <copyright url="http://www.example.com/copyright">
-      %copyright
-   </copyright>
-  <license url="%licenseURL">
-      %license
-   </license>
-  <plugin id="org.eclipse.tracecompass.lttng2.control.core.source" version="1.2.0.201808221550" download-size="0" install-size="0" unpack="false"/>
-  <plugin id="org.eclipse.tracecompass.lttng2.control.ui.source" version="1.2.4.201808221550" download-size="0" install-size="0" unpack="false"/>
-  <plugin id="org.eclipse.tracecompass.tmf.remote.core.source" version="2.0.2.201808221550" download-size="0" install-size="0" unpack="false"/>
-  <plugin id="org.eclipse.tracecompass.tmf.remote.ui.source" version="1.0.3.201808221550" download-size="0" install-size="0" unpack="false"/>
-  <includes id="org.eclipse.tracecompass.tmf.ctf.source" version="4.0.0.201808221550"/>
-</feature>
+<feature id="org.eclipse.tracecompass.lttng2.control.source" version="4.0.0.qualifier"><includes id="org.eclipse.tracecompass.lttng2.control" version="4.0.0.qualifier"/></feature>

@@ -10,10 +10,11 @@
  ******************************************************************************/
 package com.lembed.lite.studio.debug.gdbjtag.llink.dsf;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.llink.Configuration;
 import com.lembed.lite.studio.debug.gdbjtag.llink.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.llink.DefaultPreferences;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+
 import com.lembed.lite.studio.debug.gdbjtag.llink.dsf.process.TraceProcess;
 
 import java.util.concurrent.ExecutionException;
@@ -70,7 +71,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 	 */
 	public GdbServerBackendWithTrace(DsfSession session, ILaunchConfiguration lc) {
 		super(session, lc);
-		LlinkPlugin.log("GdbServerBackendWithTrace(" + session + "," + lc.getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("GdbServerBackendWithTrace(" + session + "," + lc.getName() + ")"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 	}
 
 	// ------------------------------------------------------------------------
@@ -78,13 +79,13 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 	@Override
 	public void initialize(final RequestMonitor rm) {
 
-		LlinkPlugin.log("GdbServerBackendWithTrace.initialize()"); //$NON-NLS-1$
+		DevicePlugin.log("GdbServerBackendWithTrace.initialize()"); //$NON-NLS-1$
 		try {
 			// Update parent data member before calling initialize.
 			fDoStartGdbServer = Configuration.getDoStartGdbServer(fLaunchConfiguration);
 			fDoStartTraceConsole = Configuration.getDoAddSemihostingConsole(fLaunchConfiguration);
 		} catch (CoreException e) {
-			rm.setStatus(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
+			rm.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, "Cannot get configuration", e)); //$NON-NLS-1$
 			rm.done();
 			return;
 		}
@@ -101,7 +102,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 
 	private void doInitialize(RequestMonitor rm) {
 
-		LlinkPlugin.log("GdbServerBackendWithTrace.doInitialize()"); //$NON-NLS-1$
+		DevicePlugin.log("GdbServerBackendWithTrace.doInitialize()"); //$NON-NLS-1$
 
 		if (fDoStartGdbServer && fDoStartTraceConsole) {
 
@@ -126,7 +127,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 	@Override
 	public void shutdown(final RequestMonitor rm) {
 
-		LlinkPlugin.log("GdbServerBackendWithTrace.shutdown()"); //$NON-NLS-1$
+		DevicePlugin.log("GdbServerBackendWithTrace.shutdown()"); //$NON-NLS-1$
 
 		if (fDoStartGdbServer && fDoStartTraceConsole) {
 			final Sequence.Step[] shutdownSteps = new Sequence.Step[] {
@@ -155,7 +156,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 	@Override
 	public void destroy() {
 
-		LlinkPlugin.log("GdbServerBackendWithTrace.destroy() " + Thread.currentThread()); //$NON-NLS-1$
+		DevicePlugin.log("GdbServerBackendWithTrace.destroy() " + Thread.currentThread()); //$NON-NLS-1$
 
 		destroyTrace();
 
@@ -216,10 +217,10 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 		@Override
 		public void initialize(final RequestMonitor rm) {
 
-			LlinkPlugin.log("TraceStep.initialise()"); //$NON-NLS-1$
+			DevicePlugin.log("TraceStep.initialise()"); //$NON-NLS-1$
 			if (getGDBServerBackendState() != State.STARTED) {
 
-				LlinkPlugin.log("TraceStep.initialise() skipped"); //$NON-NLS-1$
+				DevicePlugin.log("TraceStep.initialise() skipped"); //$NON-NLS-1$
 				// rm.cancel();
 				rm.done();
 				return;
@@ -237,10 +238,10 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 				@Override
 				protected void handleCompleted() {
 
-					LlinkPlugin.log("TraceStep.initialise() handleCompleted()"); //$NON-NLS-1$
+					DevicePlugin.log("TraceStep.initialise() handleCompleted()"); //$NON-NLS-1$
 
 					if (!fTraceLaunchMonitor.fTimedOut) {
-						LlinkPlugin.log("TraceStep.initialise() handleCompleted not time out"); //$NON-NLS-1$
+						DevicePlugin.log("TraceStep.initialise() handleCompleted not time out"); //$NON-NLS-1$
 						fTraceLaunchMonitor.fLaunched = true;
 						if (!isSuccess()) {
 							rm.setStatus(getStatus());
@@ -260,8 +261,8 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 
 					if (fTmpLaunchRequestMonitor.isCanceled()) {
 
-						LlinkPlugin.log("startSemihostingJob run cancel"); //$NON-NLS-1$
-						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.CANCEL, LlinkPlugin.PLUGIN_ID, -1,
+						DevicePlugin.log("startSemihostingJob run cancel"); //$NON-NLS-1$
+						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.CANCEL, DevicePlugin.PLUGIN_ID, -1,
 						                                   getStartingTraceJobName() + " cancelled.", null)); //$NON-NLS-1$
 						fTmpLaunchRequestMonitor.done();
 						return Status.OK_STATUS;
@@ -281,12 +282,12 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 							@Override
 							public void run() {
 
-								LlinkPlugin.log("startTraceJob run State.STARTED"); //$NON-NLS-1$
+								DevicePlugin.log("startTraceJob run State.STARTED"); //$NON-NLS-1$
 								fTraceBackendState = State.STARTED;
 							}
 						});
 					} catch (CoreException e) {
-						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, -1, e.getMessage(), e));
+						fTmpLaunchRequestMonitor.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, -1, e.getMessage(), e));
 						fTmpLaunchRequestMonitor.done();
 						return Status.OK_STATUS;
 					}
@@ -296,13 +297,13 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 
 					fTmpLaunchRequestMonitor.done();
 
-					LlinkPlugin.log("startTraceJob run completed"); //$NON-NLS-1$
+					DevicePlugin.log("startTraceJob run completed"); //$NON-NLS-1$
 					return Status.OK_STATUS;
 				}
 			};
 			startTraceJob.schedule();
 
-			LlinkPlugin.log("TraceStep.initialise() after job schedule"); //$NON-NLS-1$
+			DevicePlugin.log("TraceStep.initialise() after job schedule"); //$NON-NLS-1$
 
 			getExecutor().schedule(new Runnable() {
 
@@ -317,25 +318,25 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 						Thread jobThread = startTraceJob.getThread();
 						if (jobThread != null) {
 
-							LlinkPlugin.log("interrupt thread " + jobThread); //$NON-NLS-1$
+							DevicePlugin.log("interrupt thread " + jobThread); //$NON-NLS-1$
 
 							jobThread.interrupt();
 						}
 						rm.setStatus(
-						    new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
+						    new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, DebugException.TARGET_REQUEST_FAILED,
 						               getStartingTraceJobName() + " timed out.", null)); //$NON-NLS-1$
 						rm.done();
 					}
 				}
 			}, getServerLaunchTimeoutSeconds(), TimeUnit.SECONDS);
 
-			LlinkPlugin.log("TraceStep.initialise() return"); //$NON-NLS-1$
+			DevicePlugin.log("TraceStep.initialise() return"); //$NON-NLS-1$
 		}
 
 		@Override
 		protected void shutdown(final RequestMonitor requestMonitor) {
 
-			LlinkPlugin.log("TraceStep.shutdown()"); //$NON-NLS-1$
+			DevicePlugin.log("TraceStep.shutdown()"); //$NON-NLS-1$
 
 			if (fTraceBackendState != State.STARTED) {
 				// Not started yet or already killed, don't bother starting
@@ -356,13 +357,13 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 						// And we should wait for it to complete since we then
 						// check if the killing of GDB worked.
 
-						LlinkPlugin.log("TraceStep.shutdown() run()"); //$NON-NLS-1$
+						DevicePlugin.log("TraceStep.shutdown() run()"); //$NON-NLS-1$
 
 						getExecutor().submit(new DsfRunnable() {
 							@Override
 							public void run() {
 
-								LlinkPlugin.log("TraceStep.shutdown() run() run()"); //$NON-NLS-1$
+								DevicePlugin.log("TraceStep.shutdown() run() run()"); //$NON-NLS-1$
 
 								destroyTrace();
 
@@ -373,7 +374,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 									// we need to set our state and send the
 									// event
 
-									LlinkPlugin.log("TraceStep.shutdown() run() run() State.TERMINATED"); //$NON-NLS-1$
+									DevicePlugin.log("TraceStep.shutdown() run() run() State.TERMINATED"); //$NON-NLS-1$
 
 									fTraceBackendState = State.TERMINATED;
 
@@ -389,7 +390,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 					} catch (ExecutionException e1) {
 					}
 
-					LlinkPlugin.log("TraceStep shutdown() run() before getting exitValue"); //$NON-NLS-1$
+					DevicePlugin.log("TraceStep shutdown() run() before getting exitValue"); //$NON-NLS-1$
 
 					int attempts = 0;
 					while (attempts < 100) {
@@ -397,10 +398,10 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 							// Don't know if we really need the exit value...
 							// but what the heck.
 							// throws exception if process not exited
-							LlinkPlugin.log("TraceStep shutdown() exitValue ~~~~~"); //$NON-NLS-1$
+							DevicePlugin.log("TraceStep shutdown() exitValue ~~~~~"); //$NON-NLS-1$
 							fTraceExitValue = fTraceProcess.exitValue();
 
-							LlinkPlugin.log("TraceStep shutdown() run() return"); //$NON-NLS-1$
+							DevicePlugin.log("TraceStep shutdown() run() return"); //$NON-NLS-1$
 
 							requestMonitor.done();
 							return Status.OK_STATUS;
@@ -416,9 +417,9 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 						attempts++;
 					}
 
-					LlinkPlugin.log("TraceStep shutdown() run() REQUEST_FAILED"); //$NON-NLS-1$
+					DevicePlugin.log("TraceStep shutdown() run() REQUEST_FAILED"); //$NON-NLS-1$
 
-					requestMonitor.setStatus(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID,
+					requestMonitor.setStatus(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID,
 					                                    IDsfStatusConstants.REQUEST_FAILED, "GDB semihosting terminate failed", null)); //$NON-NLS-1$
 					requestMonitor.done();
 					
@@ -426,7 +427,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 				}
 			} .schedule();
 
-			LlinkPlugin.log("TraceStep shutdown() return"); //$NON-NLS-1$
+			DevicePlugin.log("TraceStep shutdown() return"); //$NON-NLS-1$
 
 		}
 
@@ -444,7 +445,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 			// proc.submit(getExecutor());
 			proc.submit();
 
-			LlinkPlugin.log("launchTraceProcess() return " + proc); //$NON-NLS-1$
+			DevicePlugin.log("launchTraceProcess() return " + proc); //$NON-NLS-1$
 
 			return proc;
 		}
@@ -476,7 +477,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 		protected IStatus run(IProgressMonitor monitor) {
 			synchronized (fProcess) {
 
-				LlinkPlugin.log("TraceMonitorJob.run() submit " + fMonitorStarted + " thread " + getThread()); //$NON-NLS-1$ //$NON-NLS-2$
+				DevicePlugin.log("TraceMonitorJob.run() submit " + fMonitorStarted + " thread " + getThread()); //$NON-NLS-1$ //$NON-NLS-2$
 
 				getExecutor().submit(fMonitorStarted);
 				try {
@@ -488,12 +489,12 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 						@Override
 						public void run() {
 
-							LlinkPlugin.log("TraceMonitorJob.run() run() thread " + getThread()); //$NON-NLS-1$
+							DevicePlugin.log("TraceMonitorJob.run() run() thread " + getThread()); //$NON-NLS-1$
 
 							// Destroy the entire backend
 							destroyTrace();
 
-							LlinkPlugin.log("TraceMonitorJob.run() run() State.TERMINATED"); //$NON-NLS-1$
+							DevicePlugin.log("TraceMonitorJob.run() run() State.TERMINATED"); //$NON-NLS-1$
 
 							fTraceBackendState = State.TERMINATED;
 
@@ -508,7 +509,7 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 					Thread.interrupted();
 				}
 
-				LlinkPlugin.log("TraceMonitorJob.run() fMonitorExited = true thread " + getThread()); //$NON-NLS-1$
+				DevicePlugin.log("TraceMonitorJob.run() fMonitorExited = true thread " + getThread()); //$NON-NLS-1$
 
 				fMonitorExited = true;
 			}
@@ -521,11 +522,11 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 					Thread thread = getThread();
 					if (thread != null) {
 
-						LlinkPlugin.log("TraceMonitorJob.kill() interrupt " + thread.toString()); //$NON-NLS-1$
+						DevicePlugin.log("TraceMonitorJob.kill() interrupt " + thread.toString()); //$NON-NLS-1$
 
 						thread.interrupt();
 					} else {
-						LlinkPlugin.log("TraceMonitorJob.kill() null thread"); //$NON-NLS-1$
+						DevicePlugin.log("TraceMonitorJob.kill() null thread"); //$NON-NLS-1$
 					}
 				}
 			}
@@ -546,11 +547,11 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 		@Override
 		public void initialize(final RequestMonitor rm) {
 
-			LlinkPlugin.log("TraceMonitorStep.initialize()"); //$NON-NLS-1$
+			DevicePlugin.log("TraceMonitorStep.initialize()"); //$NON-NLS-1$
 
 			if (getGDBServerBackendState() != State.STARTED) {
 
-				LlinkPlugin.log("TraceMonitorStep.initialise() skipped"); //$NON-NLS-1$
+				DevicePlugin.log("TraceMonitorStep.initialise() skipped"); //$NON-NLS-1$
 
 				// rm.cancel();
 				rm.done();
@@ -569,14 +570,14 @@ public class GdbServerBackendWithTrace extends GdbServerBackend {
 		@Override
 		protected void shutdown(RequestMonitor requestMonitor) {
 
-			LlinkPlugin.log("TraceMonitorStep.shutdown()"); //$NON-NLS-1$
+			DevicePlugin.log("TraceMonitorStep.shutdown()"); //$NON-NLS-1$
 
 			if (fTraceMonitorJob != null) {
 				fTraceMonitorJob.kill();
 			}
 			requestMonitor.done();
 
-			LlinkPlugin.log("TraceMonitorStep.shutdown() return"); //$NON-NLS-1$
+			DevicePlugin.log("TraceMonitorStep.shutdown() return"); //$NON-NLS-1$
 		}
 	}
 

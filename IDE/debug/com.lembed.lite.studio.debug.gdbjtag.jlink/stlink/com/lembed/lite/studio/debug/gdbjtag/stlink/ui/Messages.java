@@ -15,13 +15,13 @@ import java.util.ResourceBundle;
 
 import org.eclipse.osgi.util.NLS;
 
-import com.lembed.lite.studio.debug.gdbjtag.stlink.STlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 
 public class Messages {
 
 	// ------------------------------------------------------------------------
 
-	private static final String MESSAGES = STlinkPlugin.PLUGIN_ID + ".ui.messages"; //$NON-NLS-1$
+	private static final String MESSAGES = Messages.class.getName(); //$NON-NLS-1$
 
 	public static String STLinkPreferencePage_description;
 	public static String STLinkPreferencePage_executable_label;
@@ -42,7 +42,7 @@ public class Messages {
 		try {
 			RESOURCE_BUNDLE = ResourceBundle.getBundle(MESSAGES);
 		} catch (MissingResourceException e) {
-			STlinkPlugin.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 

@@ -10,6 +10,8 @@
  ******************************************************************************/
 package com.lembed.lite.studio.debug.gdbjtag.llink;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 /**
  * The Interface ConfigurationAttributes.
  */
@@ -18,7 +20,7 @@ public interface ConfigurationAttributes {
 	// ------------------------------------------------------------------------
 
 	/** The Constant PREFIX. */
-	public static final String PREFIX = LlinkPlugin.PLUGIN_ID;
+	public static final String PREFIX = DevicePlugin.PLUGIN_ID;
 
 	// ------------------------------------------------------------------------
 

@@ -35,11 +35,12 @@ import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.ISourceLocator;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmLaunch;
 import com.lembed.lite.studio.debug.gdbjtag.llink.Configuration;
 import com.lembed.lite.studio.debug.gdbjtag.llink.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.llink.DefaultPreferences;
-import com.lembed.lite.studio.debug.gdbjtag.llink.LlinkPlugin;
+
 
 /**
  * The Class Launch.
@@ -66,7 +67,7 @@ public class Launch extends GnuArmLaunch {
 	public Launch(ILaunchConfiguration launchConfiguration, String mode, ISourceLocator locator) {
 		super(launchConfiguration, mode, locator);
 
-		LlinkPlugin.log("Launch(" + launchConfiguration.getName() + "," + mode + ") " + this); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		DevicePlugin.log("Launch(" + launchConfiguration.getName() + "," + mode + ") " + this); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
 		fConfig = launchConfiguration;
 		fExecutor = (DefaultDsfExecutor) getDsfExecutor();
@@ -78,7 +79,7 @@ public class Launch extends GnuArmLaunch {
 	@Override
 	public void initialize() {
 
-		LlinkPlugin.log("Launch.initialize() " + this); //$NON-NLS-1$
+		DevicePlugin.log("Launch.initialize() " + this); //$NON-NLS-1$
 
 		super.initialize();
 
@@ -97,10 +98,10 @@ public class Launch extends GnuArmLaunch {
 		try {
 			fExecutor.submit(initRunnable).get();
 		} catch (InterruptedException e) {
-			LlinkPlugin.log(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
+			DevicePlugin.log(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
 					"Error initializing launch", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		} catch (ExecutionException e) {
-			LlinkPlugin.log(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
+			DevicePlugin.log(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
 					"Error initializing launch", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		}
 	}
@@ -139,7 +140,7 @@ public class Launch extends GnuArmLaunch {
 	 */
 	public void initializeServerConsole(IProgressMonitor monitor) throws CoreException {
 		
-		LlinkPlugin.log("Launch.initializeServerConsole()"); //$NON-NLS-1$
+		DevicePlugin.log("Launch.initializeServerConsole()"); //$NON-NLS-1$
 
 		IProcess newProcess;
 		boolean doAddServerConsole = Configuration.getDoAddServerConsole(fConfig);
@@ -162,23 +163,23 @@ public class Launch extends GnuArmLaunch {
 	 */
 	public void initializeConsoles(IProgressMonitor monitor) throws CoreException {
 
-		LlinkPlugin.log("Launch.initializeConsoles()"); //$NON-NLS-1$
+		DevicePlugin.log("Launch.initializeConsoles()"); //$NON-NLS-1$
 		IProcess newProcess;
 
 		// Add the GDB client process to the launch tree.
 		String gdbclient = Configuration.getGdbClientCommandName(fConfig);
-		LlinkPlugin.log(gdbclient);
+		DevicePlugin.log(gdbclient);
 		
 		newProcess = addClientProcess(gdbclient);
 		String gdbcommand = Configuration.getGdbClientCommandLine(fConfig);
-		LlinkPlugin.log(gdbcommand);
+		DevicePlugin.log(gdbcommand);
 		
 		newProcess.setAttribute(IProcess.ATTR_CMDLINE, gdbcommand);
 		monitor.worked(1);
 
 		boolean doAddSemihostingConsole = Configuration.getDoAddSemihostingConsole(fConfig);
 		if (doAddSemihostingConsole) {
-			LlinkPlugin.log("add semihosting monitor"); //$NON-NLS-1$
+			DevicePlugin.log("add semihosting monitor"); //$NON-NLS-1$
 			// Add the special semihosting and SWV process to the launch tree
 			newProcess = addSemihostingProcess("Semihosting Monitor"); //$NON-NLS-1$
 			monitor.worked(1);
@@ -186,7 +187,7 @@ public class Launch extends GnuArmLaunch {
 		
 		boolean doAddTraceConsole = Configuration.getDoEnableTrace(fConfig);
 		if (doAddTraceConsole) {
-			LlinkPlugin.log("add trace monitor"); //$NON-NLS-1$
+			DevicePlugin.log("add trace monitor"); //$NON-NLS-1$
 			// Add the special trace process to the launch tree
 			newProcess = addTraceProcess("Trace Monitor"); //$NON-NLS-1$
 			monitor.worked(1);
@@ -228,12 +229,12 @@ public class Launch extends GnuArmLaunch {
 				newProcess = DebugPlugin.newProcess(this, serverProc, label, attributes);
 			}
 		} catch (InterruptedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Interrupted while waiting for get process callable.", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		} catch (ExecutionException e) {
 			throw (CoreException) e.getCause();
 		} catch (RejectedExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Debugger shut down before launch was completed.", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		}
 
@@ -276,12 +277,12 @@ public class Launch extends GnuArmLaunch {
 				newProcess = DebugPlugin.newProcess(this, serverProc, label, attributes);
 			}
 		} catch (InterruptedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Interrupted while waiting for get process callable.", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		} catch (ExecutionException e) {
 			throw (CoreException) e.getCause();
 		} catch (RejectedExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Debugger shut down before launch was completed.", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		}
 
@@ -324,12 +325,12 @@ public class Launch extends GnuArmLaunch {
 				newProcess = DebugPlugin.newProcess(this, serverProc, label, attributes);
 			}
 		} catch (InterruptedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Interrupted while waiting for get process callable.", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		} catch (ExecutionException e) {
 			throw (CoreException) e.getCause();
 		} catch (RejectedExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, LlinkPlugin.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, 0,
 					"Debugger shut down before launch was completed.", e)); // $NON-NLS-1$ //$NON-NLS-1$
 		}
 

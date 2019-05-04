@@ -16,6 +16,8 @@ import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.osgi.service.prefs.BackingStoreException;
 import org.osgi.service.prefs.Preferences;
 
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
+
 public class PersistentPreferences {
 
 	// ------------------------------------------------------------------------
@@ -81,12 +83,12 @@ public class PersistentPreferences {
 
 	private static String getString(String id, String defaultValue) {
 
-		return Platform.getPreferencesService().getString(Activator.PLUGIN_ID, id, defaultValue, null);
+		return Platform.getPreferencesService().getString(DevicePlugin.PLUGIN_ID, id, defaultValue, null);
 	}
 
 	private static boolean getBoolean(String id, boolean defaultValue) {
 
-		return Platform.getPreferencesService().getBoolean(Activator.PLUGIN_ID, id, defaultValue, null);
+		return Platform.getPreferencesService().getBoolean(DevicePlugin.PLUGIN_ID, id, defaultValue, null);
 	}
 
 	// ----- Setters ----------------------------------------------------------
@@ -96,16 +98,16 @@ public class PersistentPreferences {
 		value = value.trim();
 
 		// Access the instanceScope
-		Preferences preferences = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+		Preferences preferences = InstanceScope.INSTANCE.getNode(DevicePlugin.PLUGIN_ID);
 		preferences.put(id, value);
 	}
 
 	public static void flush() {
 
 		try {
-			InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID).flush();
+			InstanceScope.INSTANCE.getNode(DevicePlugin.PLUGIN_ID).flush();
 		} catch (BackingStoreException e) {
-			Activator.log(e);
+			DevicePlugin.log(e);
 		}
 	}
 

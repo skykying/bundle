@@ -1,15 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<feature id="org.eclipse.tracecompass.tmf.ctf.source" version="4.0.0.201808221550" label="%featureName" provider-name="%featureProvider">
-  <description>
-      %description
-   </description>
-  <copyright>
-      %copyright
-   </copyright>
-  <license url="%licenseURL">
-      %license
-   </license>
-  <plugin id="org.eclipse.tracecompass.tmf.ctf.core.source" version="4.0.0.201808221550" download-size="0" install-size="0" unpack="false"/>
-  <includes id="org.eclipse.tracecompass.tmf.source" version="4.0.0.201808221550"/>
-  <includes id="org.eclipse.tracecompass.ctf.source" version="4.0.0.201808221550"/>
-</feature>
+<feature id="org.eclipse.tracecompass.tmf.ctf.source" version="4.0.0.qualifier"><includes id="org.eclipse.tracecompass.tmf.ctf" version="4.0.0.qualifier"/></feature>

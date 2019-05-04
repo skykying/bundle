@@ -43,10 +43,11 @@ import org.eclipse.debug.core.ILaunch;
 import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchManager;
 import org.eclipse.debug.core.model.ISourceLocator;
-import com.lembed.lite.studio.debug.gdbjtag.jlink.JlinkActivator;
+
 import com.lembed.lite.studio.debug.gdbjtag.jlink.Configuration;
 
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.AbstractGnuArmLaunchConfigurationDelegate;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmServerServicesLaunchSequence;
 
@@ -78,7 +79,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	@Override
 	protected IDsfDebugServicesFactory newServiceFactory(ILaunchConfiguration config, String version) {
 
-		JlinkActivator.log(
+		DevicePlugin.log(
 				"LaunchConfigurationDelegate.newServiceFactory(" + config.getName() + "," + version + ") " + this);
 
 		fConfig = config;
@@ -88,7 +89,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 
 	protected IDsfDebugServicesFactory newServiceFactory(ILaunchConfiguration config, String version, String mode) {
 
-		JlinkActivator.log("LaunchConfigurationDelegate.newServiceFactory(" + config.getName() + "," + version + ","
+		DevicePlugin.log("LaunchConfigurationDelegate.newServiceFactory(" + config.getName() + "," + version + ","
 				+ mode + ") " + this);
 
 		fConfig = config;
@@ -102,7 +103,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	protected GdbLaunch createGdbLaunch(ILaunchConfiguration configuration, String mode, ISourceLocator locator)
 			throws CoreException {
 
-		JlinkActivator.log(
+		DevicePlugin.log(
 				"LaunchConfigurationDelegate.createGdbLaunch(" + configuration.getName() + "," + mode + ") " + this);
 
 		fDoStartGdbServer = Configuration.getDoStartGdbServer(configuration);
@@ -119,7 +120,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 		String gdbClientCommand = Configuration.getGdbClientCommand(config);
 		String version = DebugUtils.getGDBVersion(config, gdbClientCommand);
 
-		JlinkActivator.log("LaunchConfigurationDelegate.getGDBVersion " + version);
+		DevicePlugin.log("LaunchConfigurationDelegate.getGDBVersion " + version);
 
 		return version;
 	}
@@ -133,7 +134,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	public void launch(ILaunchConfiguration config, String mode, ILaunch launch, IProgressMonitor monitor)
 			throws CoreException {
 
-		JlinkActivator.log("LaunchConfigurationDelegate.launch(" + config.getName() + "," + mode + ") " + this);
+		DevicePlugin.log("LaunchConfigurationDelegate.launch(" + config.getName() + "," + mode + ") " + this);
 
 		org.eclipse.cdt.launch.LaunchUtils.enableActivity("org.eclipse.cdt.debug.dsfgdbActivity", true); //$NON-NLS-1$
 		if (monitor == null) {
@@ -147,7 +148,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	private void launchDebugger(ILaunchConfiguration config, ILaunch launch, IProgressMonitor monitor)
 			throws CoreException {
 
-		JlinkActivator.log("LaunchConfigurationDelegate.launchDebugger(" + config.getName() + ") " + this);
+		DevicePlugin.log("LaunchConfigurationDelegate.launchDebugger(" + config.getName() + ") " + this);
 
 		int totalWork = 10;
 		// Extra units due to server and semihosting console
@@ -179,7 +180,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	protected void launchDebugSession(final ILaunchConfiguration config, ILaunch l, IProgressMonitor monitor)
 			throws CoreException {
 
-		JlinkActivator.log("LaunchConfigurationDelegate.launchDebugSession(" + config.getName() + ") " + this);
+		DevicePlugin.log("LaunchConfigurationDelegate.launchDebugSession(" + config.getName() + ") " + this);
 
 		// From here it is almost identical with the system one, except
 		// the console creation, explicitly marked with '+++++'.
@@ -280,7 +281,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 		} catch (CancellationException e1) {
 			// Launch aborted, so exit cleanly
 
-			JlinkActivator.log("Launch aborted, so exit cleanly");
+			DevicePlugin.log("Launch aborted, so exit cleanly");
 
 			return;
 		} finally {
@@ -307,7 +308,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 							return backend.getServerExitStatus();
 						} else {
 							throw new CoreException(
-									new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID, "Could not start GDB server."));
+									new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID, "Could not start GDB server."));
 						}
 					}
 				};
@@ -318,7 +319,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 				while (serverStatus == null) {
 					if (monitor.isCanceled()) {
 
-						JlinkActivator.log("LaunchConfigurationDelegate.launchDebugSession() sleep cancelled" + this);
+						DevicePlugin.log("LaunchConfigurationDelegate.launchDebugSession() sleep cancelled" + this);
 
 						cleanupLaunch(launch);
 						return;
@@ -335,18 +336,18 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 						return;
 					}
 
-					JlinkActivator.log(serverStatus.toString());
+					DevicePlugin.log(serverStatus.toString());
 
 					throw new CoreException(serverStatus);
 				}
 
 			} catch (InterruptedException e) {
-				JlinkActivator.log(e);
+				DevicePlugin.log(e);
 			} catch (ExecutionException e) {
-				JlinkActivator.log(e);
+				DevicePlugin.log(e);
 			}
 
-			JlinkActivator.log("launchDebugSession() * Server start confirmed. *");
+			DevicePlugin.log("launchDebugSession() * Server start confirmed. *");
 
 		}
 
@@ -373,7 +374,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 		} catch (CancellationException e1) {
 			// Launch aborted, so exit cleanly
 
-			JlinkActivator.log("Launch aborted, so exit cleanly");
+			DevicePlugin.log("Launch aborted, so exit cleanly");
 
 			return;
 		} finally {
@@ -472,7 +473,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 		}
 
 		if (deviceName.isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, JlinkActivator.PLUGIN_ID,
+			throw new CoreException(new Status(IStatus.ERROR, DevicePlugin.PLUGIN_ID,
 					"Missing mandatory device name. " + "Fill-in the 'Device name:' field in the Debugger tab.")); //$NON-NLS-1$
 		}
 
@@ -485,14 +486,14 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	 */
 	protected Sequence getServicesSequence(DsfSession session, ILaunch launch, IProgressMonitor progressMonitor) {
 
-		JlinkActivator.log("LaunchConfigurationDelegate.getServicesSequence()");
+		DevicePlugin.log("LaunchConfigurationDelegate.getServicesSequence()");
 
 		return new ServicesLaunchSequence(session, (GdbLaunch) launch, progressMonitor);
 	}
 
 	protected Sequence getServerServicesSequence(DsfSession session, ILaunch launch, IProgressMonitor progressMonitor) {
 
-		JlinkActivator.log("LaunchConfigurationDelegate.getServerServicesSequence()");
+		DevicePlugin.log("LaunchConfigurationDelegate.getServerServicesSequence()");
 
 		return new GnuArmServerServicesLaunchSequence(session, (GdbLaunch) launch, progressMonitor);
 	}

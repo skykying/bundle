@@ -12,7 +12,7 @@ package com.lembed.lite.studio.debug.gdbjtag.stlink.preferences;
 
 import com.lembed.lite.studio.core.preferences.DirectoryNotStrictVariableFieldEditor;
 import com.lembed.lite.studio.core.preferences.StringVariableFieldEditor;
-import com.lembed.lite.studio.debug.gdbjtag.stlink.STlinkPlugin;
+import com.lembed.lite.studio.debug.gdbjtag.device.DevicePlugin;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.PersistentPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.stlink.VariableInitializer;
@@ -47,7 +47,7 @@ public class STlinkPage extends FieldEditorPreferencePage implements IWorkbenchP
 
 		// Not really used, the field editors directly access the variables
 		// store.
-		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, STlinkPlugin.PLUGIN_ID));
+		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, DevicePlugin.PLUGIN_ID));
 		setDescription(Messages.STLinkPreferencePage_description);
 	}
 
@@ -57,7 +57,7 @@ public class STlinkPage extends FieldEditorPreferencePage implements IWorkbenchP
 	@Override
 	public void init(IWorkbench workbench) {
 		
-		STlinkPlugin.log("STlinkPage.init()");
+		DevicePlugin.log("STlinkPage.init()");
 	}
 
 	/**
