@@ -28,3 +28,4 @@ Export-Package: com.lembed.codeanalyzer.internal.profiling.launch;x-internal:=tr
  com.lembed.codeanalyzer.profiling.launch.ui
 Bundle-Localization: plugin
 Bundle-Vendor: %Bundle-Vendor.0
+Automatic-Module-Name: com.lembed.codeanalyzer.profiling.launch

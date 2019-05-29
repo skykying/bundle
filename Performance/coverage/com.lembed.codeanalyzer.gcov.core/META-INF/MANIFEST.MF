@@ -25,3 +25,4 @@ Export-Package:
  com.lembed.codeanalyzer.cov.parser;x-friends:="com.lembed.codeanalyzer.cov.launch",
  com.lembed.codeanalyzer.cov.view;x-friends:="com.lembed.codeanalyzer.cov.launch",
  com.lembed.codeanalyzer.cov.view.annotatedsource;x-friends:="com.lembed.codeanalyzer.cov.launch"
+Automatic-Module-Name: com.lembed.codeanalyzer.cov.core

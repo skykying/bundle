@@ -15,3 +15,4 @@ Export-Package: com.lembed.codeanalyzer.ui.charts.actions,
 Import-Package: com.lembed.codeanalyzer.ui.piechart,
  org.swtchart
 Bundle-Localization: plugin
+Automatic-Module-Name: com.lembed.codeanalyzer.ui.charts

@@ -19,3 +19,4 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Localization: plugin
 Export-Package: 
  com.lembed.codeanalyzer.internal.gprof.view;x-friends:="com.lembed.codeanalyzer.prof.launch"
+Automatic-Module-Name: com.lembed.codeanalyzer.prof

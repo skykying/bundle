@@ -18,3 +18,4 @@ Export-Package: com.lembed.codeanalyzer.ui,
  com.lembed.codeanalyzer.ui.listeners
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-Localization: plugin
+Automatic-Module-Name: com.lembed.codeanalyzer.ui
