@@ -48,7 +48,7 @@ public class Launch extends GnuArmLaunch {
 	// ------------------------------------------------------------------------
 
 	ILaunchConfiguration fConfig = null;
-	private DsfSession fSession;
+	private DsfSession fSession; 
 	private DsfServicesTracker fTracker;
 	private DefaultDsfExecutor fExecutor;
 

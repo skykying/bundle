@@ -21,9 +21,9 @@ public class TreeField extends TreeElement {
 		this.bitLength = bitLength;
 		this.interpretations = interpretations;
 	}
-
+ 
 	public boolean hasValueChanged() {
-		return (getOldValue() != getValue());
+		return (getOldValue() != getValue());  
 	}
 
 	public byte getBitOffset() {

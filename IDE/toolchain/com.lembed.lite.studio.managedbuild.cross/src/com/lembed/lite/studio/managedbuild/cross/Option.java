@@ -204,7 +204,7 @@ public class Option {
 		Boolean bReturn = null;
 		if (option != null) {
 			try {
-				bReturn = new Boolean(option.getBooleanValue());
+				bReturn =  Boolean.valueOf(option.getBooleanValue());
 			} catch (BuildException e) {
 				CrossGccPlugin.log(e);
 			}
@@ -226,7 +226,7 @@ public class Option {
 					return null;
 				}
 
-				bReturn = new Boolean(option.getBooleanValue());
+				bReturn = Boolean.valueOf(option.getBooleanValue());
 			} catch (BuildException e) {
 				CrossGccPlugin.log(e);
 			}

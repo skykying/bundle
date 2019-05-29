@@ -18,7 +18,10 @@ Require-Bundle: org.eclipse.ui,
  com.lembed.lite.studio.device.toolchain,
  com.lembed.lite.studio.core,
  org.eclipse.core.variables,
- com.lembed.lite.studio.device.project
+ com.lembed.lite.studio.device.project,
+ javax.xml.bind;bundle-version="2.2.0",
+ javax.xml.stream;bundle-version="1.0.1",
+ javax.activation;bundle-version="1.1.0"
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Bundle-ActivationPolicy: lazy
 Export-Package: com.lembed.lite.studio.device.pack.ui,

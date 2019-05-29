@@ -1,0 +1,241 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?pde version="3.8"?><target name="verify" sequenceNumber="48">
+<locations>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtbot.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtbot.generator.feature.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/technology/swtbot/snapshots"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.apache.derby.core.feature.feature.group" version="0.0.0"/>
+<repository location="http://build.eclipse.org/eclipse/buildtools/derbyCore-10.11.1.1-B"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.license.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/cbi/updates/license"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.jdt.annotation" version="0.0.0"/>
+<unit id="org.eclipse.pde.junit.runtime" version="0.0.0"/>
+<unit id="org.eclipse.pde.runtime" version="0.0.0"/>
+<unit id="org.eclipse.platform.ide" version="0.0.0"/>
+<unit id="org.eclipse.test.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.11/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.tm.terminal.connector.local.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.connector.remote.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.connector.serial.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.connector.ssh.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.connector.telnet.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.control.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.view.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.view.rse.feature.feature.group" version="4.1.0.201603090932"/>
+<unit id="org.eclipse.tm.terminal.view.rse.sdk.feature.feature.group" version="4.1.0.201603090932"/>
+<repository location="http://download.eclipse.org/tm/terminal/marketplace/20160312/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.launchbar.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.launchbar.remote.feature.group" version="0.0.0"/>
+<repository location="https://download.eclipse.org/tools/cdt/launchbar/2.2/launchbar-2.2.3-simrel-2019-03-m2/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.mylyn.wikitext_feature.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/mylyn/releases/3.21/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.linuxtools.dataviewers.feature.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/linuxtools/update"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.swtbot.eclipse.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtbot.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.swtbot.generator.feature.feature.group" version="0.0.0"/>
+<repository location="http://download.eclipse.org/technology/swtbot/snapshots"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.remote.core" version="0.0.0"/>
+<unit id="org.eclipse.remote.jsch.core" version="0.0.0"/>
+<unit id="org.eclipse.remote.jsch.ui" version="0.0.0"/>
+<unit id="org.eclipse.remote.ui" version="0.0.0"/>
+<repository location="http://download.eclipse.org/tools/ptp/builds/remote/photon/milestones/M6"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="a.jre.javase" version="10.0.0"/>
+<unit id="config.a.jre.javase" version="10.0.0"/>
+<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.equinox.p2.core.feature.source.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.equinox.p2.discovery.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.equinox.p2.sdk.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.jdt.annotation" version="0.0.0"/>
+<unit id="org.eclipse.pde.junit.runtime" version="0.0.0"/>
+<unit id="org.eclipse.pde.runtime" version="0.0.0"/>
+<unit id="org.eclipse.platform.ide" version="0.0.0"/>
+<unit id="org.eclipse.swt.tools.spies" version="0.0.0"/>
+<unit id="org.eclipse.test.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.ui.trace" version="0.0.0"/>
+<unit id="org.eclipse.ui.views.log" version="0.0.0"/>
+<repository location="http://download.eclipse.org/eclipse/updates/4.11/R-4.11-201903070500/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.tracecompass.testtraces.tracecompass-test-traces-ctf" version="1.7.2"/>
+<repository location="http://archive.eclipse.org/tracecompass/tracecompass-test-traces/repository/1.7.2"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="org.eclipse.emf.base.feature.group" version="2.15.0.v20180723-1316"/>
+<unit id="org.eclipse.emf.common.feature.group" version="2.15.0.v20180723-1316"/>
+<unit id="org.eclipse.emf.common.ui.feature.group" version="2.14.0.v20180706-1146"/>
+<unit id="org.eclipse.emf.ecore.feature.group" version="2.15.0.v20180722-1159"/>
+<unit id="org.eclipse.emf.edit.ui.feature.group" version="2.15.0.v20180823-0914"/>
+<unit id="org.eclipse.emf.feature.group" version="2.15.0.v20180905-1732"/>
+<unit id="org.eclipse.emf.gwt.common.feature.group" version="2.12.0.v20180706-1146"/>
+<unit id="org.eclipse.emf.gwt.feature.group" version="2.12.0.v20180706-1146"/>
+<unit id="org.eclipse.emf.gwt.sdk.feature.group" version="2.12.0.v20180706-1146"/>
+<unit id="org.eclipse.xsd.ecore.converter.feature.group" version="2.11.0.v20180706-1143"/>
+<unit id="org.eclipse.xsd.edit.feature.group" version="2.11.0.v20180706-1143"/>
+<unit id="org.eclipse.xsd.editor.feature.group" version="2.12.0.v20180706-1143"/>
+<unit id="org.eclipse.xsd.feature.group" version="2.15.0.v20180722-1116"/>
+<unit id="org.eclipse.xsd.mapping.editor.feature.group" version="2.11.0.v20180706-1143"/>
+<unit id="org.eclipse.xsd.mapping.feature.group" version="2.11.0.v20180706-1143"/>
+<unit id="org.eclipse.xsd.sdk.feature.group" version="2.15.0.v20180722-1116"/>
+<repository location="http://download.eclipse.org/modeling/emf/emf/builds/release/2.15"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="javax.activation" version="1.1.0.v201211130549"/>
+<unit id="javax.activation.source" version="1.1.0.v201211130549"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.google.gson" version="2.8.2.v20180104-1110"/>
+<unit id="javax.xml" version="1.3.4.v201005080400"/>
+<unit id="javax.xml.bind" version="2.2.0.v201105210648"/>
+<unit id="javax.xml.stream" version="1.0.1.v201004272200"/>
+<unit id="org.eclipse.cdt.arduino.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.arduino.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.autotools.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.autotools.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.build.crossgcc.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.build.crossgcc.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.bupc.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.bupc.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.cmake.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.cmake.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.autotools.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.autotools.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.lrparser.feature.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.lrparser.feature.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.lrparser.sdk.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.parser.upc.feature.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.parser.upc.feature.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.core.parser.upc.sdk.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.debug.gdbjtag.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.debug.gdbjtag.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.debug.standalone.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.debug.standalone.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.debug.ui.memory.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.debug.ui.memory.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.docker.launcher.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.docker.launcher.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.examples.dsf.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.examples.dsf.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gdb.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gdb.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.build.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.build.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.debug.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.debug.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.dsf.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.dsf.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.multicorevisualizer.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.gnu.multicorevisualizer.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.launch.remote.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.launch.remote.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.launch.serial.feature.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.launch.serial.feature.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.llvm.dsf.lldb.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.llvm.dsf.lldb.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.managedbuilder.llvm.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.managedbuilder.llvm.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.meson.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.meson.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.msw.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.msw.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.native.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.native.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.platform.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.platform.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.qt.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.qt.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.remote.core" version="1.0.2.201811241055"/>
+<unit id="org.eclipse.cdt.remote.core.source" version="1.0.2.201811241055"/>
+<unit id="org.eclipse.cdt.sdk.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.testsrunner.feature.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.testsrunner.feature.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.util" version="5.0.101.201811241055"/>
+<unit id="org.eclipse.cdt.util.source" version="5.0.101.201811241055"/>
+<unit id="org.eclipse.cdt.visualizer.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.visualizer.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.xlc.feature.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.xlc.feature.source.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.cdt.xlc.sdk.feature.group" version="9.7.2.201904300035"/>
+<unit id="org.eclipse.tools.templates.core" version="1.1.0.201812111206"/>
+<unit id="org.eclipse.tools.templates.core.source" version="1.1.0.201812111206"/>
+<unit id="org.eclipse.tools.templates.freemarker" version="1.0.0.201812111206"/>
+<unit id="org.eclipse.tools.templates.freemarker.source" version="1.0.0.201812111206"/>
+<unit id="org.eclipse.tools.templates.ui" version="1.1.1.201812111206"/>
+<unit id="org.eclipse.tools.templates.ui.source" version="1.1.1.201812111206"/>
+<unit id="org.freemarker" version="2.3.22.v20160210-1233"/>
+<repository location="https://download.eclipse.org/tools/cdt/releases/9.7/cdt-9.7.2"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.sun.xml.bind" version="2.2.0.v201505121915"/>
+<repository location="https://download.eclipse.org/webtools/downloads/drops/R3.14.0/S-3.14.0.M2-20190507042910/repository/"/>
+</location>
+<location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
+<unit id="com.fasterxml.jackson.core.jackson-core" version="2.9.2.v20180207-1730"/>
+<unit id="com.google.gson" version="2.8.2.v20180104-1110"/>
+<unit id="com.google.guava" version="21.0.0.v20170206-1425"/>
+<unit id="net.miginfocom.layout.swt" version="3.7.1.v201505121915"/>
+<unit id="org.antlr.runtime" version="4.7.1.v20181120-0808"/>
+<unit id="org.apache.commons.codec" version="1.10.0.v20180409-1845"/>
+<unit id="org.apache.commons.compress" version="1.18.0.v20181121-2221"/>
+<unit id="org.apache.commons.fileupload" version="1.3.2.v20170320-2229"/>
+<unit id="org.apache.commons.io" version="2.6.0.v20190123-2029"/>
+<unit id="org.apache.commons.logging" version="1.2.0.v20180409-1502"/>
+<unit id="org.apache.commons.math3" version="3.5.0.v20160301-1110"/>
+<unit id="org.bouncycastle.bcpg" version="1.60.0.v20181210-2057"/>
+<unit id="org.bouncycastle.bcpkix" version="1.60.0.v20181210-2057"/>
+<unit id="org.bouncycastle.bcprov" version="1.60.0.v20181210-2057"/>
+<unit id="org.hamcrest.core" version="1.3.0.v20180420-1519"/>
+<unit id="org.hamcrest.generator" version="1.3.0.v201305210900"/>
+<unit id="org.hamcrest.integration" version="1.3.0.v201305210900"/>
+<unit id="org.hamcrest.library" version="1.3.0.v20180524-2246"/>
+<unit id="org.jdom" version="1.1.1.v201101151400"/>
+<unit id="org.junit.jupiter.api" version="5.4.0.v20190212-2109"/>
+<unit id="org.junit.jupiter.engine" version="5.4.0.v20190212-2109"/>
+<unit id="org.junit.jupiter.migrationsupport" version="5.4.0.v20190212-2109"/>
+<unit id="org.junit.jupiter.params" version="5.4.0.v20190212-2109"/>
+<unit id="org.junit.platform.commons" version="1.4.0.v20190212-2109"/>
+<unit id="org.junit.platform.engine" version="1.4.0.v20190212-2109"/>
+<unit id="org.junit.platform.launcher" version="1.4.0.v20190212-2109"/>
+<unit id="org.junit.platform.runner" version="1.4.0.v20190212-2109"/>
+<unit id="org.junit.platform.suite.api" version="1.4.0.v20190212-2109"/>
+<unit id="org.junit.vintage.engine" version="5.4.0.v20190212-2109"/>
+<unit id="org.mockito" version="2.23.0.v20181106-1534"/>
+<unit id="org.objenesis" version="2.6.0.v20180420-1519"/>
+<unit id="org.swtchart" version="0.10.0.v201605200358"/>
+<repository location="http://download.eclipse.org/tools/orbit/downloads/drops/R20190226160451/repository"/>
+</location>
+</locations>
+<targetJRE path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+<launcherArgs>
+<vmArgs>-Xms40m
+-Xmx512M</vmArgs>
+<programArgs>-consolelog</programArgs>
+</launcherArgs>
+</target>

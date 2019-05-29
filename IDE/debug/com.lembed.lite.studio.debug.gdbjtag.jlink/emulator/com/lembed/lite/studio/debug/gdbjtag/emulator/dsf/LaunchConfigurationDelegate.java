@@ -62,7 +62,7 @@ import com.lembed.lite.studio.debug.gdbjtag.emulator.Configuration;
 public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurationDelegate {
 
 	// ------------------------------------------------------------------------
-
+ 
 	private final static String NON_STOP_FIRST_VERSION = "6.8.50"; //$NON-NLS-1$
 
 	ILaunchConfiguration fConfig = null;

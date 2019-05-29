@@ -16,7 +16,7 @@ package org.eclipse.tracecompass.tmf.filter.parser.error;
  */
 public interface IErrorListener {
 
-    /**
+    /** 
      * Error handler call whenever an exception happen in the lexer or the parser of
      * the filter
      * 

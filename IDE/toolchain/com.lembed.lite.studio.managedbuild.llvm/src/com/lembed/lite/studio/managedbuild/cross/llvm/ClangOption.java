@@ -205,7 +205,7 @@ public class ClangOption {
 		Boolean bReturn = null;
 		if (option != null) {
 			try {
-				bReturn = new Boolean(option.getBooleanValue());
+				bReturn =  Boolean.valueOf(option.getBooleanValue());
 			} catch (BuildException e) {
 				LlvmUIPlugin.log(e);
 			}
@@ -227,7 +227,7 @@ public class ClangOption {
 					return null;
 				}
 
-				bReturn = new Boolean(option.getBooleanValue());
+				bReturn = Boolean.valueOf(option.getBooleanValue());
 			} catch (BuildException e) {
 				LlvmUIPlugin.log(e);
 			}

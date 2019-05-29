@@ -14,7 +14,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.tracecompass.ctf.core,
  org.eclipse.tracecompass.tmf.core,
  org.antlr.runtime,
- com.google.guava;bundle-version="21.0.0",
+ com.google.guava,
  org.eclipse.jdt.annotation
 Export-Package: org.eclipse.tracecompass.internal.tmf.ctf.core;x-internal:=true,
  org.eclipse.tracecompass.internal.tmf.ctf.core.trace.iterator;x-friends:="org.eclipse.tracecompass.tmf.ctf.core.tests",
@@ -25,6 +25,5 @@ Export-Package: org.eclipse.tracecompass.internal.tmf.ctf.core;x-internal:=true,
  org.eclipse.tracecompass.tmf.ctf.core.event.lookup,
  org.eclipse.tracecompass.tmf.ctf.core.trace
 Import-Package: com.google.common.collect,
- com.google.common.primitives,
- org.eclipse.emf.common.util
+ com.google.common.primitives
 Automatic-Module-Name: org.eclipse.tracecompass.tmf.ctf.core

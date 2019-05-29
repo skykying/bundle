@@ -54,7 +54,7 @@ Eclipse and the Eclipse logo are trademarks of the Eclipse Foundation, Inc. Orac
       <linux include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</linux>
       <macos include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</macos>
       <solaris include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</solaris>
-      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8</windows>
+      <windows include="true">org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-11</windows>
    </vm>
 
    <license>
@@ -200,13 +200,6 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <feature id="org.eclipse.e4.rcp"/>
       <feature id="org.eclipse.emf.common"/>
       <feature id="org.eclipse.equinox.p2.extras.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature"/>
-      <feature id="org.eclipse.ecf.core.ssl.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.ssl.feature"/>
-      <feature id="org.eclipse.ecf.core.feature"/>
-      <feature id="org.eclipse.ecf.filetransfer.feature"/>
-      <feature id="com.lembed.lite.studio.rcp"/>
       <feature id="com.lembed.lite.studio.rcp.branding.feature" version="2.3.0.qualifier"/>
       <feature id="org.eclipse.tm.terminal.connector.local.feature" version="4.1.0.201603090932"/>
       <feature id="org.eclipse.tm.terminal.connector.remote.feature" version="4.1.0.201603090932"/>
@@ -216,12 +209,8 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <feature id="org.eclipse.tm.terminal.control.feature" version="4.1.0.201603090932"/>
       <feature id="org.eclipse.tm.terminal.feature" version="4.1.0.201603090932"/>
       <feature id="org.eclipse.tm.terminal.view.feature" version="4.1.0.201603090932"/>
-      <feature id="org.eclipse.tm.terminal.view.rse.feature" version="4.1.0.201603090932"/>
-      <feature id="org.eclipse.tm.terminal.view.rse.sdk.feature" version="4.1.0.201603090932"/>
-      <feature id="org.eclipse.tm.terminal.view.sdk.feature" version="4.1.0.201603090932"/>
       <feature id="org.eclipse.cdt.platform"/>
       <feature id="com.lembed.lite.studio.doc.user.feature"/>
-      <feature id="org.eclipse.cdt"/>
       <feature id="org.eclipse.cdt.build.crossgcc"/>
       <feature id="org.eclipse.cdt.core.lrparser.feature"/>
       <feature id="org.eclipse.cdt.debug.gdbjtag"/>
@@ -236,8 +225,6 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <feature id="org.eclipse.cdt.native"/>
       <feature id="org.eclipse.cdt.testsrunner.feature"/>
       <feature id="com.lembed.lite.studio.managedbuild.cross.feature"/>
-      <feature id="org.eclipse.remote"/>
-      <feature id="org.eclipse.test"/>
       <feature id="com.lembed.lite.studio.report" version="1.1.1.qualifier"/>
       <feature id="com.lembed.lite.studio.rcp.licensing.feature" version="1.0.0.qualifier"/>
       <feature id="com.lembed.lite.studio.rcp.data" version="2.3.0.qualifier"/>
@@ -261,9 +248,17 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <feature id="com.lembed.codeanalyzer.cov.feature" version="0.1.1.qualifier"/>
       <feature id="com.lembed.codeanalyzer.prof.feature" version="0.1.1.qualifier"/>
       <feature id="com.lembed.codeanalyzer.profiling.feature" version="0.1.1.qualifier"/>
-      <feature id="com.lembed.codeanalyzer.profiling.remote.feature" version="6.0.0.qualifier"/>
-      <feature id="com.lembed.codeanalyzer.ui.feature" version="6.0.0.qualifier"/>
       <feature id="com.lembed.unit.test.feature" version="1.0.0.qualifier"/>
+      <feature id="com.lembed.codeanalyzer.profiling.remote.feature" version="0.1.1.qualifier"/>
+      <feature id="com.lembed.codeanalyzer.ui.feature" version="0.1.1.qualifier"/>
+      <feature id="com.lembed.lite.studio.rcp" version="2.3.0.qualifier"/>
+      <feature id="org.eclipse.remote"/>
+      <feature id="org.eclipse.ecf.core.feature"/>
+      <feature id="org.eclipse.ecf.core.ssl.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.feature"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient4.feature" installMode="root"/>
+      <feature id="org.eclipse.ecf.filetransfer.httpclient4.ssl.feature" installMode="root"/>
+      <feature id="org.eclipse.ecf.filetransfer.ssl.feature" installMode="root"/>
    </features>
 
    <configurations>

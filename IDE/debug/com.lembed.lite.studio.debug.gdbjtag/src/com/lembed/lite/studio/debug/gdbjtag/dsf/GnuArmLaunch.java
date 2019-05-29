@@ -40,7 +40,8 @@ import org.eclipse.debug.core.ILaunchConfiguration;
 import org.eclipse.debug.core.ILaunchConfigurationWorkingCopy;
 import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.ISourceLocator;
-import com.lembed.lite.studio.debug.gdbjtag.GdbActivator;
+import com.lembed.lite.studio.debug.gdbjtag.GdbActivator; 
+
 
 /**
  * Common launcher, used to initialise the memory bloc retrieval used by the
@@ -48,14 +49,14 @@ import com.lembed.lite.studio.debug.gdbjtag.GdbActivator;
  * <p>
  * To be used as parent by implementation (JLink, OpenOCD) launchers.
  */
-@SuppressWarnings("restriction")
-public class GnuArmLaunch extends GdbLaunch {
+@SuppressWarnings("restriction") 
+public class GnuArmLaunch extends GdbLaunch { 
 
 	// ------------------------------------------------------------------------
 
-	// private ILaunchConfiguration fConfig = null;
+//	 private ILaunchConfiguration fConfig = null;
 	private DsfSession fSession;
-	private DsfServicesTracker fTracker;
+	private DsfServicesTracker fTracker; 
 	private DefaultDsfExecutor fExecutor;
 	private IMemoryBlockRetrievalManager fMemRetrievalManager;
 

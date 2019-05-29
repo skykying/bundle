@@ -17,7 +17,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.tracecompass.datastore.core,
  org.eclipse.tracecompass.tmf.filter.parser,
  com.google.gson;bundle-version="2.7.0",
- com.google.guava;bundle-version="21.0.0",
+ com.google.guava,
  org.eclipse.jdt.annotation,
  org.apache.commons.io;bundle-version="2.2.0",
  org.apache.commons.lang3;bundle-version="3.1.0"

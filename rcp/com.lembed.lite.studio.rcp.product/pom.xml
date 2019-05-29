@@ -4,10 +4,10 @@
     xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <parent>
+  <parent>
     <artifactId>com.lembed.lite.studio.rcp-parent</artifactId>
     <groupId>com.lembed.lite.studio</groupId>
-    <version>1.0.3-SNAPSHOT</version>
+    <version>0.1.1-SNAPSHOT</version>
   </parent>
 
     <artifactId>com.lembed.lite.studio.rcp.product</artifactId>

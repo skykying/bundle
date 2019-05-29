@@ -8,7 +8,9 @@ Bundle-Vendor: LEMBED
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.ui,
  org.eclipse.ui.workbench
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8,
+ JavaSE-1.7,
+ JavaSE-9
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: librarys/argparser.jar,
  librarys/bcel-5.1.jar,

@@ -14,7 +14,7 @@ import java.net.URL;
 import java.text.ParseException;
 import net.miginfocom.swt.MigLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Composite;
+
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Tree;
@@ -46,6 +46,8 @@ import org.eclipse.core.runtime.Platform;
 import org.jdom.JDOMException;
 import org.osgi.framework.Bundle;
 
+import  org.eclipse.swt.widgets.Composite;
+
 import com.lembed.lite.studio.debug.peripheralregview.Activator;
 import com.lembed.lite.studio.debug.peripheralregview.gdb.GDBEventListener;
 import com.lembed.lite.studio.debug.peripheralregview.gdb.IGDBInterface;
@@ -60,11 +62,12 @@ import com.lembed.lite.studio.debug.peripheralregview.views.Utils;
  * Generates a View, displaying Registers for an Embedded Device
  */
 
+@SuppressWarnings("unused")
 public class PeripheralRegView extends ViewPart implements IGDBInterfaceSuspendListener, IGDBInterfaceTerminateListener {
 	protected TreeViewer viewer;
 	private TreeParent invisibleRoot;
 	private Label infoLabel;
-	private Button configButton;
+	private Button configButton; 
 	private Composite header;
 	private Action doubleClickAction;
 	private Image selectedImage, unselectedImage, selectedFieldImage, unselectedFieldImage, infoImage,

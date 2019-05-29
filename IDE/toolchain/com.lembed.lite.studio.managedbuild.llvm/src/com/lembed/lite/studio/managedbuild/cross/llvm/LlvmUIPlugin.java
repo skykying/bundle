@@ -14,7 +14,7 @@ package com.lembed.lite.studio.managedbuild.cross.llvm;
 
 import java.io.IOException;
 import java.util.MissingResourceException;
-import java.util.PropertyResourceBundle;
+import java.util.PropertyResourceBundle; 
 import java.util.ResourceBundle;
 
 import org.eclipse.core.resources.IResourceChangeEvent;
@@ -27,8 +27,9 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import org.osgi.framework.BundleContext;
+import org.eclipse.swt.widgets.Composite;
 
-import com.lembed.lite.studio.managedbuild.cross.llvm.util.LlvmResourceListener;
+import com.lembed.lite.studio.managedbuild.cross.llvm.util.LlvmResourceListener; 
 
 /**
  * The activator class controls the plug-in life cycle.
@@ -37,6 +38,7 @@ import com.lembed.lite.studio.managedbuild.cross.llvm.util.LlvmResourceListener;
  * @noextend This class is not intended to be subclassed by clients.
  * @noimplement This class is not intended to be instantiated by clients.
  */
+@SuppressWarnings("unused")
 public class LlvmUIPlugin extends AbstractUIPlugin { 
 
 	/** The Constant PLUGIN_ID. */

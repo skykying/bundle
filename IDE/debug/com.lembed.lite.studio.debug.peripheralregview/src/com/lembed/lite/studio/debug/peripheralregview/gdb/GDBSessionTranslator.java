@@ -18,7 +18,7 @@ import java.util.concurrent.TimeoutException;
 import org.eclipse.cdt.dsf.concurrent.DataRequestMonitor;
 import org.eclipse.cdt.dsf.concurrent.ImmediateExecutor;
 import org.eclipse.cdt.dsf.concurrent.Query;
-import org.eclipse.cdt.dsf.datamodel.IDMContext;
+import org.eclipse.cdt.dsf.datamodel.IDMContext; 
 import org.eclipse.cdt.dsf.debug.service.command.ICommand;
 import org.eclipse.cdt.dsf.gdb.internal.GdbPlugin;
 import org.eclipse.cdt.dsf.gdb.launching.GdbLaunch;
@@ -39,7 +39,7 @@ import org.eclipse.debug.ui.DebugUITools;
 
 import com.lembed.lite.studio.debug.peripheralregview.views.Utils;
 
-@SuppressWarnings("restriction")
+@SuppressWarnings({ "restriction" })
 public class GDBSessionTranslator {
 	/**
 	 * Get Session Object from current debug context
@@ -54,8 +54,9 @@ public class GDBSessionTranslator {
 	 * Get Session Object from debug context
 	 * 
 	 * @return Session Object or null on error
-	 */
+	 */ 
 	static public Object getSession(Object context) {
+
 		Object session = null;
 		if (null != context) {
 			if (context instanceof DsfSession)

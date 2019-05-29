@@ -36,7 +36,7 @@ public class IndexHelper {
             String codeFileName = name.getFileLocation().getFileName();
             String rawCodeFileContent;
             try {
-                rawCodeFileContent = FileUtils.readFileToString(new File(codeFileName));
+                rawCodeFileContent = FileUtils.readFileToString(new File(codeFileName),"utf-8"); //$NON-NLS-1$
             } catch (IOException e) {
                 return defaultValue;
             }

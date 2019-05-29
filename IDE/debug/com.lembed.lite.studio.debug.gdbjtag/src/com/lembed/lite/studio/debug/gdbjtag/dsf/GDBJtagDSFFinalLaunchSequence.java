@@ -663,13 +663,13 @@ public class GDBJtagDSFFinalLaunchSequence extends FinalLaunchSequence {
 
 	private IGDBJtagDevice getGDBJtagDevice () {
 		IGDBJtagDevice gdbJtagDevice = null;
-		String jtagDeviceName = CDebugUtils.getAttribute(getAttributes(), IGDBJtagConstants.ATTR_JTAG_DEVICE, IGDBJtagConstants.DEFAULT_JTAG_DEVICE); 
+		String jtagDeviceName = CDebugUtils.getAttribute(getAttributes(), IGDBJtagConstants.ATTR_JTAG_DEVICE_ID, IGDBJtagConstants.DEFAULT_JTAG_DEVICE_ID); 
 		GDBJtagDeviceContribution[] availableDevices = GDBJtagDeviceContributionFactory.getInstance().getGDBJtagDeviceContribution();
 		for (GDBJtagDeviceContribution availableDevice : availableDevices) {
-			if (jtagDeviceName.equals(availableDevice.getDeviceName())) {
+			if (jtagDeviceName.equals(availableDevice.getDeviceName())) { 
 				gdbJtagDevice = availableDevice.getDevice();
-				break;
-			}
+				break; 
+			} 
 		}
 		return gdbJtagDevice;
 	}

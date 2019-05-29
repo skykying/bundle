@@ -114,8 +114,8 @@ public class Launch extends GnuArmLaunch {
 			config.setAttribute(IGDBJtagConstants.ATTR_IP_ADDRESS, "localhost"); //$NON-NLS-1$
 		}
 
-		if (!config.hasAttribute(IGDBJtagConstants.ATTR_JTAG_DEVICE)) {
-			config.setAttribute(IGDBJtagConstants.ATTR_JTAG_DEVICE, ConfigurationAttributes.JTAG_DEVICE);
+		if (!config.hasAttribute(IGDBJtagConstants.ATTR_JTAG_DEVICE_ID)) {
+			config.setAttribute(IGDBJtagConstants.ATTR_JTAG_DEVICE_ID, ConfigurationAttributes.JTAG_DEVICE);
 		}
 
 		if (!config.hasAttribute(IGDBJtagConstants.ATTR_PORT_NUMBER)) {

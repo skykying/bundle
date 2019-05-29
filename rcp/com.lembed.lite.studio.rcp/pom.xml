@@ -36,7 +36,11 @@
             </goals>
             <configuration>
               <excludes>
+                <plugin id="org.eclipse.launchbar.remote.core" />
+                <plugin id="org.eclipse.launchbar.remote.ui"/>
+                <plugin id="org.eclipse.launchbar.ui.controls" />
                 <plugin id="org.apache.commons.compress"/>
+                <plugin id="org.apache.commons.codec"/>
                 <plugin id="org.apache.commons.lang3"/>
                 <plugin id="org.apache.xerces"/>
                 <plugin id="javax.xml"/>
@@ -188,6 +192,21 @@
                 <plugin id="org.hamcrest.integration"/>
                 <plugin id="org.hamcrest.text"/>
                 <plugin id="org.hamcrest.generator"/>
+                <plugin id="org.eclipse.ecf"/>
+                <plugin id="org.eclipse.ecf.filetransfer"/>
+                <plugin id="org.eclipse.ecf.provider.filetransfer"/>
+                <plugin id="org.eclipse.ecf.identity"/>
+                <plugin id="javax.xml.bind" />
+                <plugin id="javax.activation" />
+                <plugin id="javax.xml.stream" />
+                <plugin id="org.jdom"/>
+                <plugin id="org.eclipse.platform"/>
+                <plugin id="org.eclipse.wst.xsd.core"/>
+                <plugin id="com.sun.xml.bind"/>
+                <plugin id="com.lembed.lite.studio.rcp.lifecycle"/>
+                <plugin id="com.lembed.lite.studio.rcp.ui"/>
+                <plugin id="com.lembed.lite.studio.jython"/>
+                <plugin id="org.eclipse.equinox.ds"/>
               </excludes>
             </configuration>
           </execution>

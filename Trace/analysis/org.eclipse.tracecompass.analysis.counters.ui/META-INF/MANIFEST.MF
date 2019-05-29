@@ -7,7 +7,9 @@ Bundle-Version: 0.0.4.qualifier
 Bundle-Localization: plugin
 Bundle-Activator: org.eclipse.tracecompass.internal.analysis.counters.ui.Activator
 Bundle-ActivationPolicy: lazy
-Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8,
+ JavaSE-1.7,
+ JavaSE-9
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.tracecompass.common.core,

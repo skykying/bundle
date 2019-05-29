@@ -94,7 +94,7 @@ public class BtfAnalysisModule extends TmfStateSystemAnalysisModule {
         List<Long> tsQust = new LinkedList<>();
 
         for (long x : xValue) {
-            tsQust.add(new Long(x));
+            tsQust.add(/*new Long(x)*/Long.valueOf(x));
         }
 
         Collection<@NonNull Long> sls = filter.getSelectedItems();
