@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-Vendor: %Bundle-Vendor
+Bundle-Version: 1.0.2.201905291458
+Bundle-Localization: plugin
+Bundle-SymbolicName: org.eclipse.tracecompass.ctf.parser
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: org.eclipse.tracecompass.ctf.parser;x-friends:="org.ecli
+ pse.tracecompass.ctf.core"
+Automatic-Module-Name: org.eclipse.tracecompass.ctf.parser
+Require-Bundle: org.eclipse.tracecompass.common.core;bundle-version="3.1
+ .0"
+

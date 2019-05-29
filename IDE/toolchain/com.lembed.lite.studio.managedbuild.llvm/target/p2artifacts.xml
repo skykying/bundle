@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
-<artifacts size='2'>
-  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291340'>
+<artifacts size='3'>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458'>
     <properties size='5'>
       <property name='artifact.size' value='132968'/>
       <property name='download.size' value='132968'/>
@@ -10,19 +10,29 @@
       <property name='maven-version' value='1.1.7-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291340'>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458'>
     <processing size='1'>
       <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
     </processing>
     <properties size='8'>
       <property name='artifact.size' value='132968'/>
-      <property name='download.size' value='60235'/>
+      <property name='download.size' value='60953'/>
       <property name='format' value='packed'/>
       <property name='maven-version' value='1.1.7-SNAPSHOT'/>
       <property name='maven-artifactId' value='com.lembed.lite.studio.managedbuild.cross.llvm'/>
       <property name='maven-extension' value='jar.pack.gz'/>
       <property name='maven-groupId' value='com.lembed.lite.studio'/>
       <property name='maven-classifier' value='pack200'/>
+    </properties>
+  </artifact>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201905291458'>
+    <properties size='6'>
+      <property name='artifact.size' value='86577'/>
+      <property name='download.size' value='86577'/>
+      <property name='maven-groupId' value='com.lembed.lite.studio'/>
+      <property name='maven-artifactId' value='com.lembed.lite.studio.managedbuild.cross.llvm'/>
+      <property name='maven-version' value='1.1.7-SNAPSHOT'/>
+      <property name='maven-classifier' value='sources'/>
     </properties>
   </artifact>
 </artifacts>
