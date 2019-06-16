@@ -80,5 +80,15 @@
             class="com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferenceInitializer">
       </initializer>
    </extension>
-
+   <extension
+         point="org.eclipse.ui.views">
+      <view
+            category="com.lembed.lite.studio.device.category"
+            class="net.sourceforge.javaqemu.main.JavaQemu"
+            icon="icons/obj16/debugger.gif"
+            id="net.sourceforge.javaqemu.main.JavaQemu"
+            name="Qemu"
+            restorable="true">
+      </view>
+   </extension>
 </plugin>

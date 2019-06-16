@@ -38,7 +38,7 @@ import org.eclipse.debug.core.model.IProcess;
 import org.eclipse.debug.core.model.ISourceLocator;
 
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmLaunch;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.Configuration;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferences;
@@ -54,7 +54,7 @@ public class Launch extends GnuArmLaunch {
 	public Launch(ILaunchConfiguration launchConfiguration, String mode, ISourceLocator locator) {
 		super(launchConfiguration, mode, locator);
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Launch(" + launchConfiguration.getName() + "," + mode + ") " + this);
 		}
 
@@ -66,7 +66,7 @@ public class Launch extends GnuArmLaunch {
 	@Override
 	public void initialize() {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Launch.initialize() " + this);
 		}
 
@@ -87,10 +87,10 @@ public class Launch extends GnuArmLaunch {
 		try {
 			fExecutor.submit(initRunnable).get();
 		} catch (InterruptedException e) {
-			Activator.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
+			EmulatorPlugin.log(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
 					"Error initializing launch", e)); //$NON-NLS-1$
 		} catch (ExecutionException e) {
-			Activator.log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
+			EmulatorPlugin.log(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, IDsfStatusConstants.INTERNAL_ERROR,
 					"Error initializing launch", e)); //$NON-NLS-1$
 		}
 	}
@@ -121,7 +121,7 @@ public class Launch extends GnuArmLaunch {
 
 	public void initializeServerConsole(IProgressMonitor monitor) throws CoreException {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Launch.initializeServerConsole()");
 		}
 
@@ -140,7 +140,7 @@ public class Launch extends GnuArmLaunch {
 
 	public void initializeConsoles(IProgressMonitor monitor) throws CoreException {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Launch.initializeConsoles()");
 		}
 
@@ -183,12 +183,12 @@ public class Launch extends GnuArmLaunch {
 			}
 
 		} catch (InterruptedException e) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, 0,
 					"Interrupted while waiting for get process callable.", e)); //$NON-NLS-1$
 		} catch (ExecutionException e) {
 			throw (CoreException) e.getCause();
 		} catch (RejectedExecutionException e) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, 0,
+			throw new CoreException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, 0,
 					"Debugger shut down before launch was completed.", e)); //$NON-NLS-1$
 		}
 

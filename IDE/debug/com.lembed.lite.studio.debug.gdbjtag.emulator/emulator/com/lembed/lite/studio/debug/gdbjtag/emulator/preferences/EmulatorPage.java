@@ -13,7 +13,7 @@ package com.lembed.lite.studio.debug.gdbjtag.emulator.preferences;
 
 import com.lembed.lite.studio.core.preferences.DirectoryNotStrictVariableFieldEditor;
 import com.lembed.lite.studio.core.preferences.StringVariableFieldEditor;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.PersistentPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.VariableInitializer;
@@ -49,7 +49,7 @@ public class EmulatorPage extends FieldEditorPreferencePage implements
 
 		// Not really used, the field editors directly access the variables
 		// store.
-		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, Activator.PLUGIN_ID));
+		setPreferenceStore(new ScopedPreferenceStore(InstanceScope.INSTANCE, EmulatorPlugin.PLUGIN_ID));
 		setDescription(Messages.QemuPagePropertyPage_description);
 	}
 
@@ -59,7 +59,7 @@ public class EmulatorPage extends FieldEditorPreferencePage implements
 	@Override
 	public void init(IWorkbench workbench) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("OpenOcdPage.init()");
 		}
 	}

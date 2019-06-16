@@ -21,7 +21,7 @@ public class ElfSymbolParser extends ElfParserBase {
 
 	public ElfSymbolParser(IEditorConsole editorConsole, String binaryPath) {
 		super(editorConsole, binaryPath);
-		addArguments(" -s ");
+		addArguments(" -s "); 
 	}
 
 	String removeDuplicates(String str)

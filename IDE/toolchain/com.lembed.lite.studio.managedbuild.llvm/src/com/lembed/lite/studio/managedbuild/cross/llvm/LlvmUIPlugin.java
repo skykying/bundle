@@ -42,7 +42,7 @@ import com.lembed.lite.studio.managedbuild.cross.llvm.util.LlvmResourceListener;
 public class LlvmUIPlugin extends AbstractUIPlugin { 
 
 	/** The Constant PLUGIN_ID. */
-	//The plug-in ID
+	//The plug-in ID 
 	public static final String PLUGIN_ID = "com.lembed.lite.studio.managedbuild.cross.llvm"; //$NON-NLS-1$
 
 	//The shared instance

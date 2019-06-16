@@ -34,7 +34,7 @@ public class PieChart extends Chart {
         super(parent, style);
         // Hide all original axes and plot area
         for (IAxis axis : getAxisSet().getAxes()) {
-            axis.getTitle().setVisible(false);
+            axis.getTitle().setVisible(false); 
         }
         getPlotArea().setVisible(false);
         // Make the title draw after the pie-chart itself so we can modify the title

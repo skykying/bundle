@@ -15,7 +15,7 @@
 package com.lembed.lite.studio.debug.gdbjtag.emulator.ui;
 
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.ConfigurationAttributes;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.DefaultPreferences;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.PersistentPreferences;
@@ -64,7 +64,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	// ------------------------------------------------------------------------
 
 	private static final String TAB_NAME = "Startup";
-	private static final String TAB_ID = Activator.PLUGIN_ID + ".ui.startuptab";
+	private static final String TAB_ID = EmulatorPlugin.PLUGIN_ID + ".ui.startuptab";
 
 	// ------------------------------------------------------------------------
 
@@ -974,7 +974,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 			updateUseFileEnablement();
 
 		} catch (CoreException e) {
-			Activator.log(e.getStatus());
+			EmulatorPlugin.log(e.getStatus());
 		}
 	}
 
@@ -1160,7 +1160,7 @@ public class TabStartup extends AbstractLaunchConfigurationTab {
 	@Override
 	public void setDefaults(ILaunchConfigurationWorkingCopy configuration) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("TabStartup: setDefaults() "
 			                   + configuration.getName());
 		}

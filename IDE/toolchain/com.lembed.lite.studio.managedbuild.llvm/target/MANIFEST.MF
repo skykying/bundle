@@ -3,7 +3,7 @@ Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
 Bundle-SymbolicName: com.lembed.lite.studio.managedbuild.cross.llvm;sing
  leton:=true
-Bundle-Version: 1.1.7.201905291458
+Bundle-Version: 1.1.7.201906160156
 Bundle-Activator: com.lembed.lite.studio.managedbuild.cross.llvm.LlvmUIP
  lugin
 Bundle-Vendor: %providerName

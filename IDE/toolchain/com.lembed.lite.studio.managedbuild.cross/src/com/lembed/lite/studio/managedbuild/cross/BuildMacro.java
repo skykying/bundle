@@ -30,7 +30,7 @@ public class BuildMacro extends CdtVariable implements IBuildMacro {
 
     public BuildMacro(ICdtVariable var) {
         super(var);
-    }
+    } 
 
     public BuildMacro(String name, int type, String value) {
         super(name, type, value);

@@ -13,7 +13,7 @@ package com.lembed.lite.studio.debug.gdbjtag.emulator;
 
 public interface ConfigurationAttributes {
 
-	public static final String PREFIX = Activator.PLUGIN_ID;
+	public static final String PREFIX = EmulatorPlugin.PLUGIN_ID;
 
 	// TabDebugger
 

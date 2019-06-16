@@ -11,21 +11,20 @@
 
 package com.lembed.lite.studio.debug.core;
 
+import org.eclipse.core.runtime.Plugin;
 import org.osgi.framework.BundleContext;
 
-import com.lembed.lite.studio.core.AbstractActivator;
 
 /**
  * The activator class controls the plug-in life cycle
  */
-public class Activator extends AbstractActivator {
+public class Activator extends Plugin {
 
 	// ------------------------------------------------------------------------
 
 	// The plug-in ID
 	public static final String PLUGIN_ID = "com.lembed.lite.studio.debug.core"; //$NON-NLS-1$
 
-	@Override
 	public String getBundleId() {
 		return PLUGIN_ID;
 	}

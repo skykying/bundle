@@ -33,6 +33,13 @@
     <module>com.lembed.lite.studio.debug.gdbjtag.jlink.feature</module>
     <module>com.lembed.lite.studio.debug.peripheralregview</module>
     <module>com.lembed.lite.stduio.debug.peripheralregview.feature</module>
+    <module>com.lembed.lite.studio.debug.gdbjtag.emulator</module>
+    <module>com.lembed.lite.studio.debug.gdbjtag.emulator.feature</module>
+    <module>com.lembed.lite.studio.debug.gdbjtag.llink</module>
+    <module>com.lembed.lite.studio.debug.gdbjtag.restart</module>
+    <module>com.lembed.lite.studio.debug.gdbjtag.stlink</module>
+    <module>com.lembed.lite.studio.debug.gdbjtag.stlink.feature</module>
+
   </modules>
 
 </project>

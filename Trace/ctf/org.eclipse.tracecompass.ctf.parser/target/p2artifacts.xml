@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='3'>
-  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser' version='1.0.2.201905291458'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser' version='1.0.2.201906160156'>
     <properties size='5'>
-      <property name='artifact.size' value='118593'/>
-      <property name='download.size' value='118593'/>
+      <property name='artifact.size' value='118594'/>
+      <property name='download.size' value='118594'/>
       <property name='maven-groupId' value='com.lembed.lite.studio'/>
       <property name='maven-artifactId' value='org.eclipse.tracecompass.ctf.parser'/>
       <property name='maven-version' value='1.0.2-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser' version='1.0.2.201905291458'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser' version='1.0.2.201906160156'>
     <processing size='1'>
       <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
     </processing>
     <properties size='8'>
-      <property name='artifact.size' value='118593'/>
-      <property name='download.size' value='42467'/>
+      <property name='artifact.size' value='118594'/>
+      <property name='download.size' value='42495'/>
       <property name='format' value='packed'/>
       <property name='maven-version' value='1.0.2-SNAPSHOT'/>
       <property name='maven-artifactId' value='org.eclipse.tracecompass.ctf.parser'/>
@@ -25,10 +25,10 @@
       <property name='maven-classifier' value='pack200'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser.source' version='1.0.2.201905291458'>
+  <artifact classifier='osgi.bundle' id='org.eclipse.tracecompass.ctf.parser.source' version='1.0.2.201906160156'>
     <properties size='6'>
-      <property name='artifact.size' value='53290'/>
-      <property name='download.size' value='53290'/>
+      <property name='artifact.size' value='53288'/>
+      <property name='download.size' value='53288'/>
       <property name='maven-groupId' value='com.lembed.lite.studio'/>
       <property name='maven-artifactId' value='org.eclipse.tracecompass.ctf.parser'/>
       <property name='maven-version' value='1.0.2-SNAPSHOT'/>

@@ -22,7 +22,7 @@ public class PeripheralColumnInfo {
     /**
      * The Enum ColumnType.
      */
-    public static enum ColumnType {
+    public static enum ColumnType { 
 
         /** The address. */
         ADDRESS,

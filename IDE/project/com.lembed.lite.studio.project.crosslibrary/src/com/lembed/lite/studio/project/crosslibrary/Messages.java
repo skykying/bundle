@@ -26,7 +26,7 @@ public class Messages extends NLS {
 	public static String CmsisCodeTemplate_FileContainerNotExist;
 	public static String CmsisCodeTemplate_FileContainerNotSpecified;
 	public static String CmsisCodeTemplate_FileExtensionNotConsistent;
-	public static String CmsisCodeTemplate_FileName;
+	public static String CmsisCodeTemplate_FileName; 
 	public static String CmsisCodeTemplate_FileNameNotSpecified;
 	public static String CmsisCodeTemplate_FileNameNotValid;
 	public static String CmsisCodeTemplate_FileUnderLiteFolder;

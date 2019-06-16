@@ -57,7 +57,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			EmulatorPlugin.log(e);
 			return null;
 		}
 
@@ -145,7 +145,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			EmulatorPlugin.log(e);
 			return null;
 		}
 
@@ -195,7 +195,7 @@ public class Configuration {
 			}
 
 		} catch (CoreException e) {
-			Activator.log(e);
+			EmulatorPlugin.log(e);
 			return null;
 		}
 
@@ -230,7 +230,7 @@ public class Configuration {
 				lst.addAll(StringUtils.splitCommandLineOptions(other));
 			}
 		} catch (CoreException e) {
-			Activator.log(e);
+			EmulatorPlugin.log(e);
 		}
 
 		return lst.toArray(new String[0]);

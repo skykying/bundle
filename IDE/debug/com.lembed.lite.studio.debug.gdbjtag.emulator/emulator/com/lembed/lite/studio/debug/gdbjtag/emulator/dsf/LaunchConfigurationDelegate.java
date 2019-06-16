@@ -47,7 +47,7 @@ import org.eclipse.debug.core.model.ISourceLocator;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.AbstractGnuArmLaunchConfigurationDelegate;
 import com.lembed.lite.studio.debug.gdbjtag.dsf.GnuArmServerServicesLaunchSequence;
-import com.lembed.lite.studio.debug.gdbjtag.emulator.Activator;
+import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.Configuration;
 
 /**
@@ -75,7 +75,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	@Override
 	protected IDsfDebugServicesFactory newServiceFactory(ILaunchConfiguration config, String version) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println(
 					"LaunchConfigurationDelegate.newServiceFactory(" + config.getName() + "," + version + ") " + this);
 		}
@@ -87,7 +87,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 
 	protected IDsfDebugServicesFactory newServiceFactory(ILaunchConfiguration config, String version, String mode) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.newServiceFactory(" + config.getName() + "," + version + ","
 					+ mode + ") " + this);
 		}
@@ -103,7 +103,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	protected GdbLaunch createGdbLaunch(ILaunchConfiguration configuration, String mode, ISourceLocator locator)
 			throws CoreException {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.createGdbLaunch(" + configuration.getName() + "," + mode
 					+ ") " + this);
 		}
@@ -120,7 +120,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 
 		String gdbClientCommand = Configuration.getGdbClientCommand(config);
 		String version = DebugUtils.getGDBVersion(config, gdbClientCommand);
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.getGDBVersion " + version);
 		}
 		return version;
@@ -135,7 +135,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	public void launch(ILaunchConfiguration config, String mode, ILaunch launch, IProgressMonitor monitor)
 			throws CoreException {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.launch(" + config.getName() + "," + mode + ") " + this);
 		}
 
@@ -151,7 +151,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	private void launchDebugger(ILaunchConfiguration config, ILaunch launch, IProgressMonitor monitor)
 			throws CoreException {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.launchDebugger(" + config.getName() + ") " + this);
 		}
 
@@ -178,7 +178,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	protected void launchDebugSession(final ILaunchConfiguration config, ILaunch l, IProgressMonitor monitor)
 			throws CoreException {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.launchDebugSession(" + config.getName() + ") " + this);
 		}
 
@@ -231,7 +231,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 		// mode
 		if (LaunchUtils.getIsNonStopMode(config) && !isNonStopSupportedInGdbVersion(gdbVersion)) {
 			cleanupLaunch(launch);
-			throw new DebugException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, DebugException.REQUEST_FAILED,
+			throw new DebugException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, DebugException.REQUEST_FAILED,
 					"Non-stop mode is not supported for GDB " + gdbVersion + ", GDB " + NON_STOP_FIRST_VERSION //$NON-NLS-1$ //$NON-NLS-2$
 							+ " or higher is required.", //$NON-NLS-1$
 					null));
@@ -239,7 +239,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 
 		if (LaunchUtils.getIsPostMortemTracing(config) && !isPostMortemTracingSupportedInGdbVersion(gdbVersion)) {
 			cleanupLaunch(launch);
-			throw new DebugException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, DebugException.REQUEST_FAILED,
+			throw new DebugException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, DebugException.REQUEST_FAILED,
 					"Post-mortem tracing is not supported for GDB " + gdbVersion + ", GDB " + NON_STOP_FIRST_VERSION //$NON-NLS-1$ //$NON-NLS-2$
 							+ " or higher is required.", //$NON-NLS-1$
 					null));
@@ -274,7 +274,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 					"Error in services launch sequence", e1.getCause())); //$NON-NLS-1$
 		} catch (CancellationException e1) {
 			// Launch aborted, so exit cleanly
-			if (Activator.getInstance().isDebugging()) {
+			if (EmulatorPlugin.getInstance().isDebugging()) {
 				System.out.println("Launch aborted, so exit cleanly");
 			}
 			return;
@@ -302,7 +302,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 							return backend.getServerExitStatus();
 						} else {
 							throw new CoreException(
-									new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Could not start GDB server."));
+									new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, "Could not start GDB server."));
 						}
 					}
 				};
@@ -312,7 +312,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 				serverStatus = null;
 				while (serverStatus == null) {
 					if (monitor.isCanceled()) {
-						if (Activator.getInstance().isDebugging()) {
+						if (EmulatorPlugin.getInstance().isDebugging()) {
 							System.out
 									.println("LaunchConfigurationDelegate.launchDebugSession() sleep cancelled" + this);
 						}
@@ -321,7 +321,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 					}
 					Thread.sleep(10);
 					serverStatus = launch.getSession().getExecutor().submit(callable).get();
-					if (Activator.getInstance().isDebugging()) {
+					if (EmulatorPlugin.getInstance().isDebugging()) {
 						System.out.print('!');
 					}
 				}
@@ -331,19 +331,19 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 						cleanupLaunch(launch);
 						return;
 					}
-					if (Activator.getInstance().isDebugging()) {
+					if (EmulatorPlugin.getInstance().isDebugging()) {
 						System.out.println(serverStatus);
 					}
 					throw new CoreException(serverStatus);
 				}
 
 			} catch (InterruptedException e) {
-				Activator.log(e);
+				EmulatorPlugin.log(e);
 			} catch (ExecutionException e) {
-				Activator.log(e);
+				EmulatorPlugin.log(e);
 			}
 
-			if (Activator.getInstance().isDebugging()) {
+			if (EmulatorPlugin.getInstance().isDebugging()) {
 				System.out.println("launchDebugSession() * Server start confirmed. *");
 			}
 		}
@@ -361,10 +361,10 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 			servicesLaunchSequence.get();
 			succeed = true;
 		} catch (InterruptedException e1) {
-			throw new DebugException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, DebugException.INTERNAL_ERROR,
+			throw new DebugException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, DebugException.INTERNAL_ERROR,
 					"Interrupted Exception in dispatch thread", e1)); //$NON-NLS-1$
 		} catch (ExecutionException e1) {
-			throw new DebugException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, DebugException.REQUEST_FAILED,
+			throw new DebugException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, DebugException.REQUEST_FAILED,
 					"Error in services launch sequence", e1.getCause())); //$NON-NLS-1$
 		} catch (CancellationException e1) {
 			// Launch aborted, so exit cleanly
@@ -432,10 +432,10 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 			completeLaunchQuery.get();
 			succeed = true;
 		} catch (InterruptedException e1) {
-			throw new DebugException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, DebugException.INTERNAL_ERROR,
+			throw new DebugException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, DebugException.INTERNAL_ERROR,
 					"Interrupted Exception in dispatch thread", e1)); //$NON-NLS-1$
 		} catch (ExecutionException e1) {
-			throw new DebugException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, DebugException.REQUEST_FAILED,
+			throw new DebugException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, DebugException.REQUEST_FAILED,
 					"Error in final launch sequence", e1.getCause())); //$NON-NLS-1$
 		} catch (CancellationException e1) {
 			// Launch aborted, so exit cleanly
@@ -467,7 +467,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 		}
 
 		if (boardName.isEmpty() && deviceName.isEmpty()) {
-			throw new CoreException(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Missing mandatory board or device. "
+			throw new CoreException(new Status(IStatus.ERROR, EmulatorPlugin.PLUGIN_ID, "Missing mandatory board or device. "
 					+ "Fill-in the 'Board name:' and/or 'Device name' field(s) in the Debugger tab.")); //$NON-NLS-1$
 		}
 
@@ -480,7 +480,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 	 */
 	protected Sequence getServicesSequence(DsfSession session, ILaunch launch, IProgressMonitor progressMonitor) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.getServicesSequence()");
 		}
 
@@ -489,7 +489,7 @@ public class LaunchConfigurationDelegate extends AbstractGnuArmLaunchConfigurati
 
 	protected Sequence getServerServicesSequence(DsfSession session, ILaunch launch, IProgressMonitor progressMonitor) {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("LaunchConfigurationDelegate.getServerServicesSequence()");
 		}
 

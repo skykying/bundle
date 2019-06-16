@@ -23,7 +23,7 @@ public class Messages extends NLS {
 	public static String LibraryPathListEditor_1;
 	public static String LlvmPreferencePage_0;
 	public static String LlvmPreferencePage_1;
-	public static String LlvmPreferencePage_2;
+	public static String LlvmPreferencePage_2; 
 	public static String LlvmPreferencePage_3;
 	public static String LlvmPreferencePage_4;
 	

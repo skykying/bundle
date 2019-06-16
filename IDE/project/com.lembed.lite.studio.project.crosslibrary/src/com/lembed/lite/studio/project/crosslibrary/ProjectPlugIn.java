@@ -14,7 +14,7 @@ public class ProjectPlugIn extends AbstractUIPlugin {
 
 	// The shared instance
 	private static ProjectPlugIn plugin;
-
+ 
 	/**
 	 * The constructor
 	 */

@@ -22,7 +22,7 @@ public class Messages extends NLS {
 	public static String CopyExampleDialog_CopyExampleTitle;
 	public static String CopyExampleDialog_Example;
 	public static String CopyExampleDialog_Pack;
-	public static String CopyExampleDialog_ProjectName;
+	public static String CopyExampleDialog_ProjectName; 
 	public static String CopyExampleDialog_ReplaceExistingProject;
 	public static String CopyExampleDialog_ProjectLocation;
 	public static String CpPackImportFolderJob_ImportingPack;

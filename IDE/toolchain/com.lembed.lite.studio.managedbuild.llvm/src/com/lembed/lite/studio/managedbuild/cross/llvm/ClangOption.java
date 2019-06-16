@@ -17,7 +17,7 @@ import org.eclipse.cdt.managedbuilder.core.IOption;
 
 @SuppressWarnings("javadoc")
 public class ClangOption {
-
+ 
 	/** clang options  ---> https://gi?st.github.com/masuidrive/5231110 */
 
 	public static final String TOOLCHAIN_PREFIX = "com.lembed.lite.studio.managedbuild.cross.llvm.toolchain"; //$NON-NLS-1$

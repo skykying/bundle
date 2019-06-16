@@ -81,12 +81,12 @@ public class PersistentPreferences {
 
 	private static String getString(String id, String defaultValue) {
 
-		return Platform.getPreferencesService().getString(Activator.PLUGIN_ID, id, defaultValue, null);
+		return Platform.getPreferencesService().getString(EmulatorPlugin.PLUGIN_ID, id, defaultValue, null);
 	}
 
 	private static boolean getBoolean(String id, boolean defaultValue) {
 
-		return Platform.getPreferencesService().getBoolean(Activator.PLUGIN_ID, id, defaultValue, null);
+		return Platform.getPreferencesService().getBoolean(EmulatorPlugin.PLUGIN_ID, id, defaultValue, null);
 	}
 
 	// ----- Setters ----------------------------------------------------------
@@ -96,16 +96,16 @@ public class PersistentPreferences {
 		value = value.trim();
 
 		// Access the instanceScope
-		Preferences preferences = InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+		Preferences preferences = InstanceScope.INSTANCE.getNode(EmulatorPlugin.PLUGIN_ID);
 		preferences.put(id, value);
 	}
 
 	public static void flush() {
 
 		try {
-			InstanceScope.INSTANCE.getNode(Activator.PLUGIN_ID).flush();
+			InstanceScope.INSTANCE.getNode(EmulatorPlugin.PLUGIN_ID).flush();
 		} catch (BackingStoreException e) {
-			Activator.log(e);
+			EmulatorPlugin.log(e);
 		}
 	}
 

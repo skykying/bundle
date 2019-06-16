@@ -8,7 +8,7 @@ public class CpStringsUI extends NLS {
 
 	public static String LiteMemoryFlash1;
 	public static String LiteMemoryFlash2;
-	public static String LiteMemoryExternalBase;
+	public static String LiteMemoryExternalBase; 
 	public static String LiteMemoryInternalBase;
 	
 	public static String PreferencesPackRootLabel;

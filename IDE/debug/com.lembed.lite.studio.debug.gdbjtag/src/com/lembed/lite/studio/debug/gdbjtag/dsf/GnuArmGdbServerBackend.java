@@ -42,7 +42,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.debug.core.DebugException;
-import org.eclipse.debug.core.ILaunchConfiguration;
+import org.eclipse.debug.core.ILaunchConfiguration; 
 import org.osgi.framework.BundleContext;
 import com.lembed.lite.studio.debug.gdbjtag.GdbActivator;
 import com.lembed.lite.studio.debug.gdbjtag.DebugUtils;

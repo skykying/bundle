@@ -50,7 +50,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 	@Override
 	public void initializeDefaultPreferences() {
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("DefaultPreferenceInitializer.initializeDefaultPreferences()");
 		}
 
@@ -74,11 +74,11 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		@Override
 		public void added(NodeChangeEvent event) {
 
-			if (Activator.getInstance().isDebugging()) {
+			if (EmulatorPlugin.getInstance().isDebugging()) {
 				System.out.println("LateInitializer.added() " + event + " " + event.getChild().name());
 			}
 
-			if (Activator.PLUGIN_ID.equals(event.getChild().name())) {
+			if (EmulatorPlugin.PLUGIN_ID.equals(event.getChild().name())) {
 
 				finalizeInitializationsDefaultPreferences();
 
@@ -90,7 +90,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		@Override
 		public void removed(NodeChangeEvent event) {
 
-			if (Activator.getInstance().isDebugging()) {
+			if (EmulatorPlugin.getInstance().isDebugging()) {
 				System.out.println("LateInitializer.removed() " + event);
 			}
 		}
@@ -100,7 +100,7 @@ public class DefaultPreferenceInitializer extends AbstractPreferenceInitializer 
 		 */
 		public void finalizeInitializationsDefaultPreferences() {
 
-			if (Activator.getInstance().isDebugging()) {
+			if (EmulatorPlugin.getInstance().isDebugging()) {
 				System.out.println("LateInitializer.finalizeInitializationsDefaultPreferences()");
 			}
 

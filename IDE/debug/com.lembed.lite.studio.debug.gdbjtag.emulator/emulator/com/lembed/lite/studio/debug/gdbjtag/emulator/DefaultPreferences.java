@@ -84,7 +84,7 @@ public class DefaultPreferences {
 	public static IEclipsePreferences getPreferences() {
 
 		if (fgPreferences == null) {
-			fgPreferences = DefaultScope.INSTANCE.getNode(Activator.PLUGIN_ID);
+			fgPreferences = DefaultScope.INSTANCE.getNode(EmulatorPlugin.PLUGIN_ID);
 		}
 
 		return fgPreferences;
@@ -150,7 +150,7 @@ public class DefaultPreferences {
 		String key = PersistentPreferences.EXECUTABLE_NAME;
 		String value = getString(key, "");
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("getExecutableName()=\"" + value + "\"");
 		}
 		return value;
@@ -161,7 +161,7 @@ public class DefaultPreferences {
 		String key = EclipseUtils.getKeyOs(PersistentPreferences.EXECUTABLE_NAME_OS);
 
 		String value = getString(key, "");
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("getExecutableNameOs()=\"" + value + "\" (" + key + ")");
 		}
 		return value;
@@ -171,7 +171,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.EXECUTABLE_NAME;
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
 		putString(key, value);
@@ -184,7 +184,7 @@ public class DefaultPreferences {
 		String key = PersistentPreferences.INSTALL_FOLDER;
 		String value = getString(key, "");
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("getInstallFolder()=\"" + value + "\"");
 		}
 		return value;
@@ -194,7 +194,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.INSTALL_FOLDER;
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
 		putString(key, value);
@@ -206,7 +206,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.SEARCH_PATH;
 		String value = getString(key, "");
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("getSearchPath()=\"" + value + "\"");
 		}
 		return value;
@@ -216,7 +216,7 @@ public class DefaultPreferences {
 
 		String key = EclipseUtils.getKeyOs(PersistentPreferences.SEARCH_PATH_OS);
 		String value = getString(key, "");
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("getSearchPathOs()=\"" + value + "\" (" + key + ")");
 		}
 		return value;
@@ -226,7 +226,7 @@ public class DefaultPreferences {
 
 		String key = PersistentPreferences.SEARCH_PATH;
 
-		if (Activator.getInstance().isDebugging()) {
+		if (EmulatorPlugin.getInstance().isDebugging()) {
 			System.out.println("Default " + key + "=" + value);
 		}
 		putString(key, value);

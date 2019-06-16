@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <units size='2'>
-  <unit id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458' generation='2'>
-    <update id='com.lembed.lite.studio.managedbuild.cross.llvm' range='[0.0.0,1.1.7.201905291458)' severity='0'/>
+  <unit id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201906160156' generation='2'>
+    <update id='com.lembed.lite.studio.managedbuild.cross.llvm' range='[0.0.0,1.1.7.201906160156)' severity='0'/>
     <properties size='8'>
       <property name='df_LT.pluginName' value='LLVM Managed Build Definitions'/>
       <property name='df_LT.providerName' value='Nokia Siemens Networks'/>
@@ -13,13 +13,13 @@
       <property name='maven-version' value='1.1.7-SNAPSHOT'/>
     </properties>
     <provides size='9'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458'/>
-      <provided namespace='osgi.bundle' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458'/>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201906160156'/>
+      <provided namespace='osgi.bundle' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201906160156'/>
       <provided namespace='java.package' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='0.0.0'/>
       <provided namespace='java.package' name='com.lembed.lite.studio.managedbuild.cross.llvm.makegen' version='0.0.0'/>
       <provided namespace='java.package' name='com.lembed.lite.studio.managedbuild.cross.llvm.preferences' version='0.0.0'/>
       <provided namespace='java.package' name='com.lembed.lite.studio.managedbuild.cross.llvm.util' version='0.0.0'/>
-      <provided namespace='osgi.identity' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458'>
+      <provided namespace='osgi.identity' name='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201906160156'>
         <properties size='1'>
           <property name='type' value='osgi.bundle'/>
         </properties>
@@ -42,19 +42,19 @@
       <requiredProperties namespace='osgi.ee' match='(&amp;(osgi.ee=JavaSE)(version=1.8))'/>
     </requires>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201905291458'/>
+      <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.201906160156'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-SymbolicName: com.lembed.lite.studio.managedbuild.cross.llvm;singleton:=true&#xA;Bundle-Version: 1.1.7.201905291458&#xA;
+          Bundle-SymbolicName: com.lembed.lite.studio.managedbuild.cross.llvm;singleton:=true&#xA;Bundle-Version: 1.1.7.201906160156&#xA;
         </instruction>
       </instructions>
     </touchpointData>
   </unit>
-  <unit id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201905291458' singleton='false'>
-    <update id='com.lembed.lite.studio.managedbuild.cross.llvm.source' range='[0.0.0,1.1.7.201905291458)' severity='0'/>
+  <unit id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201906160156' singleton='false'>
+    <update id='com.lembed.lite.studio.managedbuild.cross.llvm.source' range='[0.0.0,1.1.7.201906160156)' severity='0'/>
     <properties size='9'>
       <property name='df_LT.bundleVendor' value='Nokia Siemens Networks'/>
       <property name='df_LT.bundleName' value='LLVM Managed Build Definitions Source'/>
@@ -67,9 +67,9 @@
       <property name='maven-classifier' value='sources'/>
     </properties>
     <provides size='5'>
-      <provided namespace='org.eclipse.equinox.p2.iu' name='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201905291458'/>
-      <provided namespace='osgi.bundle' name='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201905291458'/>
-      <provided namespace='osgi.identity' name='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201905291458'>
+      <provided namespace='org.eclipse.equinox.p2.iu' name='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201906160156'/>
+      <provided namespace='osgi.bundle' name='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201906160156'/>
+      <provided namespace='osgi.identity' name='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201906160156'>
         <properties size='1'>
           <property name='type' value='osgi.bundle'/>
         </properties>
@@ -78,13 +78,13 @@
       <provided namespace='org.eclipse.equinox.p2.localization' name='df_LT' version='1.0.0'/>
     </provides>
     <artifacts size='1'>
-      <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201905291458'/>
+      <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.201906160156'/>
     </artifacts>
     <touchpoint id='org.eclipse.equinox.p2.osgi' version='1.0.0'/>
     <touchpointData size='1'>
       <instructions size='1'>
         <instruction key='manifest'>
-          Bundle-SymbolicName: com.lembed.lite.studio.managedbuild.cross.llvm.source&#xA;Bundle-Version: 1.1.7.201905291458&#xA;
+          Bundle-SymbolicName: com.lembed.lite.studio.managedbuild.cross.llvm.source&#xA;Bundle-Version: 1.1.7.201906160156&#xA;
         </instruction>
       </instructions>
     </touchpointData>

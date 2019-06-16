@@ -20,7 +20,7 @@ import org.eclipse.core.runtime.IStatus;
  * The Interface IGdbServerBackendService.
  */
 public interface IGdbServerBackendService extends IDsfService {
-
+ 
 	// ========================================================================
 
 	/**

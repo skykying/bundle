@@ -35,7 +35,7 @@ public abstract class DebugCommandActionDelegate implements
 	// ------------------------------------------------------------------------
 
 	/**
-	 * Instantiates a new debug command action delegate.
+	 * Instantiates a new debug command action delegate. 
 	 *
 	 * @param action the action
 	 */

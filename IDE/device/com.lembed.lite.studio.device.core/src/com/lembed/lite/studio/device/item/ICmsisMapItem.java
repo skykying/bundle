@@ -20,3 +20,4 @@ import com.lembed.lite.studio.device.generic.ITreeMapItem;
 public interface ICmsisMapItem<T extends ITreeItem<T> & ICmsisItem> extends ICmsisTreeItem<T>, ITreeMapItem<String, T > {
 	 
 }
+ 

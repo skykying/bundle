@@ -21,7 +21,7 @@ public class Messages extends NLS {
 	private static final String BUNDLE_NAME = Messages.class.getName(); //$NON-NLS-1$
 
 	public static String LiteTemplateMemory_ScriptTemplate;
-	public static String LiteTemplateMemory_ScriptTemplate_common;
+	public static String LiteTemplateMemory_ScriptTemplate_common; 
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);
