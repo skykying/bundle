@@ -54,17 +54,14 @@ public class FloppyView extends JFileChooserView {
         this.jpanel.setLayout(gridLayout);
 
         this.floppyDiskALabel = new JLabel("Insert your Floppy Disk A option:");
-
         this.floppyDiskAText = new JTextField("");
 
         this.floppyDiskADriveSelection = new JButton("Select a Floppy Drive for the Floppy Disk A!");
-
         this.floppyDiskAImageSelection = new JButton("Select a Floppy Disk A Image file!");
 
         this.floppyDiskALabel = new JLabel("Insert your Floppy Disk A option:");
 
         this.floppyDiskAReadOnlyVirtualFAT = new JButton("Select a Floppy Disk A Read-Only Virtual FAT!");
-
         this.floppyDiskAReadWriteVirtualFAT = new JButton("Select a Floppy Disk A Read-Write Virtual FAT!");
 
         this.floppyDiskBText = new JTextField("");
@@ -76,7 +73,6 @@ public class FloppyView extends JFileChooserView {
         this.floppyDiskBLabel = new JLabel("Insert your Floppy Disk B option:");
 
         this.floppyDiskBReadOnlyVirtualFAT = new JButton("Select a Floppy Disk B Read-Only Virtual FAT!");
-
         this.floppyDiskBReadWriteVirtualFAT = new JButton("Select a Floppy Disk B Read-Write Virtual FAT!");
 
         okButton = new JButton("OK");

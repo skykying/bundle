@@ -16,6 +16,7 @@ import org.eclipse.ui.part.ViewPart;
 import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
 import com.lembed.lite.studio.ui.awt.Platform;
 import com.lembed.lite.studio.ui.awt.SwingComponentConstructor;
+import com.shinyhut.vernacular.VernacularViewer;
 
 public class JavaQemu extends ViewPart{
 	
@@ -41,11 +42,13 @@ public class JavaQemu extends ViewPart{
 			@Override
 			public void run() {
 				String[] args = {"QEmuRAIDExample",""};
-				try {
-					JQemuMonitor.main(args);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+//				try {
+//					JQemuMonitor.main(args);
+//				} catch (Exception e) {
+//					e.printStackTrace();
+//				}
+//				main(args);
+				VernacularViewer.main(args);
 			}
 			
 		};

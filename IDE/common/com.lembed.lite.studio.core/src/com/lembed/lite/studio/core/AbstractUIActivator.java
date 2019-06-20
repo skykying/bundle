@@ -79,6 +79,8 @@ public abstract class AbstractUIActivator extends AbstractUIPlugin {
 
 		return isDebugging;
 	}
+	
+	
 
 	// ------------------------------------------------------------------------
 

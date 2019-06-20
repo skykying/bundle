@@ -42,9 +42,7 @@ public class KeyboardControl implements ActionListener {
                         .getKeyboardLayoutLanguage()
                         .getSelectedItem()
                         .toString()
-                        .substring(
-                                this.myview.getKeyboardLayoutLanguage()
-                                .getSelectedItem().toString()
+                        .substring(myview.getKeyboardLayoutLanguage().getSelectedItem().toString()
                                 .indexOf(":") + 2));
             } else {
                 this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.KEYBOARDOPTION.getValor()]);

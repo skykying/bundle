@@ -107,47 +107,35 @@ public class NetworkTCPSocketWorkerView extends JFrame {
         windowContent.add(fdDescription);
 
         fd = new JTextField();
-
         windowContent.add(fd);
 
         hostListenDescription = new JLabel("Listen incoming connection from another QEMU, on host:");
-
         windowContent.add(hostListenDescription);
 
         hostListen = new JTextField();
-
         windowContent.add(hostListen);
 
         portListenDescription = new JLabel("Listen incoming connection from another QEMU, on port:");
-
         windowContent.add(portListenDescription);
 
         portListen = new JTextField();
-
         windowContent.add(portListen);
 
         hostConnectDescription = new JLabel("<html>Connect with another QEMU that is listening<br> incoming connection, on host:</html>");
-
         windowContent.add(hostConnectDescription);
 
         hostConnect = new JTextField();
-
         windowContent.add(hostConnect);
 
         portConnectDescription = new JLabel("<html>Connect with another QEMU that is listening<br> incoming connection, on port:</html>");
-
         windowContent.add(portConnectDescription);
 
         portConnect = new JTextField();
-
         windowContent.add(portConnect);
 
         okButton = new JButton("OK");
-
         eraseButton = new JButton("Erase");
-
         windowContent.add(okButton);
-
         windowContent.add(eraseButton);
 
         this.setContentPane(windowContent);

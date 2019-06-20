@@ -1,22 +1,12 @@
 /*******************************************************************************
- * Copyright (c) 2007, 2012 QNX Software Systems and others.
+ * Copyright (C) 2017 Lembed Electronic.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
- *     QNX Software Systems - Initial API and implementation
- *     Andy Jin - Hardware debugging UI improvements, bug 229946
- *     Anna Dushistova (MontaVista) - bug 241279 
- *              - Hardware Debugging: Host name or ip address not saving in 
- *                the debug configuration
- *     Andy Jin (QNX) - Added DSF debugging, bug 248593
- *     Bruce Griffith, Sage Electronic Engineering, LLC - bug 305943
- *              - API generalization to become transport-independent (e.g. to
- *                allow connections via serial ports and pipes).
- *     Liviu Ionescu - ARM version
- *     Jonah Graham - fix for Neon
+ *     Lembed Electronic - initial API and implementation
  ******************************************************************************/
 
 package com.lembed.lite.studio.debug.gdbjtag.emulator.ui;

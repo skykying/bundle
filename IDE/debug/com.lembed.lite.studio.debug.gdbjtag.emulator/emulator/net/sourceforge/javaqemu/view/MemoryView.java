@@ -40,23 +40,18 @@ public class MemoryView extends JFileChooserView {
         this.setJpanel(windowContent);
 
         gridLayout = new GridLayout(3, 3);
-
         windowContent.setLayout(gridLayout);
 
         memoryPathLabel = new JLabel("Choose the memory path:");
-
         windowContent.add(memoryPathLabel);
 
         memoryPath = new JTextField();
-
         windowContent.add(memoryPath);
 
         memoryPathChooser = new JButton("Choose a directory as memory path!");
-
         windowContent.add(memoryPathChooser);
 
         memPrealloc = new JCheckBox("-mem-prealloc option!");
-
         windowContent.add(memPrealloc);
 
         temp = new JLabel[3];
@@ -67,11 +62,8 @@ public class MemoryView extends JFileChooserView {
         }
 
         okButton = new JButton("OK");
-
         eraseButton = new JButton("Erase");
-
         windowContent.add(okButton);
-
         windowContent.add(eraseButton);
 
         this.setContentPane(windowContent);

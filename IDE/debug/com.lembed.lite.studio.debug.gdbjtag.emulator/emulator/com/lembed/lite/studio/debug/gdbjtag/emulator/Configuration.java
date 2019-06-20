@@ -149,7 +149,7 @@ public class Configuration {
 			return null;
 		}
 
-		return lst.toArray(new String[0]);
+		return lst.toArray(new String[0]); 
 	}
 
 	public static String getGdbServerCommandName(ILaunchConfiguration config) {
