@@ -190,8 +190,9 @@ public class IntegerBitSelector extends Composite {
 		Event event = new Event();
 		event.widget = this;
 		event.display = getDisplay();
-		for (IModificationListener listener : modificationListeners)
+		for (IModificationListener listener : modificationListeners){
 			listener.valueChanged(this, value);
+		}
 	}
 
 	public int getValue() {

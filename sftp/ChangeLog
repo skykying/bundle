@@ -1,0 +1,29 @@
+ChangeLog of JSch
+====================================================================
+Last modified: Fri May  9 15:37:51 UTC 2008
+
+	
+Changes since version 0.0.3:
+- feature: This release can ignore resources configured at
+	   Window > Preferences... > Team > Ignore Resources
+
+	
+Changes since version 0.0.2:
+- bugfix: failed to copy files on the Site Explorer.                 FIXED.
+- bugfix: drag and drop for the Site Explorer was not functional.    FIXED.
+- feature: since this release, com.jcraft.eclipse.sftp plug-in
+	   will refer to proxy and ssh2 settings at the preferences
+	     General > Network Connections
+	   on Eclipse Platform 3.3.
+
+	
+Changes since version 0.0.1:
+- bugfix: failed to transfer empty files.                            FIXED.
+- bugfix: failed to transfer symbolic linked files and directories.  FIXED.
+- feature: user name will appear in 'Site Explorer' view. This change
+	   allows you to login to the remote site with multiple users 
+	   simultaneously.
+- feature: since this release, you can select an arbitrary directory
+	   outside of user's home directory. For example, 
+	      sftp://192.168.0.0.1//tmp
+           will allow you to get access to '/tmp' directory at remote host.

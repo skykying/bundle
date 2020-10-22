@@ -3,14 +3,14 @@
 <plugin>
    <extension
          id="com.lembed.lite.studio.rcp.branding.product"
-         name="LiteSTUDIO"
+         name="TrustSTUDIO"
          point="org.eclipse.core.runtime.products">
       <product
             application="org.eclipse.ui.ide.workbench"
             name="TrustSTUDIO">
             <property
                   name="appName"
-                  value="LiteSTUDIO">
+                  value="TrustSTUDIO">
             </property>
             <property
                   name="cssTheme"
@@ -22,7 +22,7 @@
             </property>
             <property
                   name="aboutText"
-                  value="LiteSTUDIO® Version: 1.0.3 &#x0A;&#x0A;&#x0A;&#x0A;(C) Copyright  Lembed Electronic Co., Ltd. 2016-2017. All rights reserved. http://www.lembed.com &#x0A;&#x0A;&#x0A;&#x0A;&#x0A;Eclipse and the Eclipse logo are trademarks of the Eclipse Foundation, Inc. Oracle and Java are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.">
+                  value="TrustSTUDIO® Version: 1.0.3 &#x0A;&#x0A;&#x0A;&#x0A;(C) Copyright  Lembed Electronic Co., Ltd. 2016-2020. All rights reserved. http://www.lembed.com &#x0A;&#x0A;&#x0A;&#x0A;&#x0A;Eclipse and the Eclipse logo are trademarks of the Eclipse Foundation, Inc. Oracle and Java are trademarks or registered trademarks of Oracle and/or its affiliates. Other names may be trademarks of their respective owners.">
             </property>
             <property
                   name="windowImages"
@@ -30,11 +30,11 @@
             </property>
             <property
                   name="introTitle"
-                  value="LiteSTUDIO">
+                  value="TrustSTUDIO">
             </property>
             <property
                   name="introBrandingImageText"
-                  value="LiteSTUDIO">
+                  value="TrustSTUDIO">
             </property>
             <property
                   name="introBrandingImage"

@@ -84,7 +84,7 @@
          point="org.eclipse.ui.views">
       <view
             category="com.lembed.lite.studio.device.category"
-            class="net.sourceforge.javaqemu.main.JavaQemu"
+            class="com.lembed.lite.studio.qemu.entry.JavaQemuView"
             icon="icons/obj16/debugger.gif"
             id="net.sourceforge.javaqemu.main.JavaQemu"
             name="Qemu"

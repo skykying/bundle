@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+<plugin
+   id="com.jcraft.eclipse.team.sftp"
+   name="%pluginName"
+   version="0.0.4"
+   provider-name="%providerName"
+   class="com.jcraft.eclipse.team.internal.sftp.SFTPPlugin">
+
+   <runtime>
+      <library name="sftp.jar">
+         <export name="*"/>
+      </library>
+   </runtime>
+   <requires>
+      <import plugin="org.eclipse.ui.ide" optional="true"/>
+      <import plugin="org.eclipse.ui.views" optional="true"/>
+      <import plugin="org.eclipse.jface.text" optional="true"/>
+      <import plugin="org.eclipse.ui.workbench.texteditor" optional="true"/>
+      <import plugin="org.eclipse.ui.editors" optional="true"/>
+      <import plugin="org.eclipse.core.resources"/>
+      <import plugin="org.eclipse.core.runtime"/>
+      <import plugin="org.eclipse.team.core"/>
+      <import plugin="org.eclipse.ui"/>
+      <import plugin="org.eclipse.swt"/>
+      <import plugin="org.eclipse.team.ui"/>
+      <import plugin="org.eclipse.core.runtime.compatibility"/> 
+      <import plugin="org.eclipse.osgi"/>
+      <import plugin="com.jcraft.eclipse.sftp"/>
+      <import plugin="com.jcraft.eclipse.target.sftp"/>
+      <import plugin="org.eclipse.target"/>
+      <import plugin="org.eclipse.team.target"/>
+   </requires>
+
+
+<!-- ================================================== -->
+<!-- Define primary TOC                                 -->
+<!-- ================================================== -->
+   <extension
+         point="org.eclipse.help.toc">
+      <toc
+            file="toc.xml"
+            primary="true">
+      </toc>
+   </extension>
+<!-- ****************** Deployment Provider ********************* -->
+   <extension
+         point="org.eclipse.team.target.deployment">
+      <deployment
+            name="%SFTPDeploymentProvider"
+            class="com.jcraft.eclipse.team.internal.sftp.subscriber.SFTPDeploymentProvider"
+            id="com.jcraft.eclipse.team.sftp.SFTPDeploymentProvider">
+      </deployment>
+   </extension>
+<!-- ****************** Import Wizards ********************* -->
+   <extension
+         point="org.eclipse.ui.importWizards">
+      <wizard
+            name="%ImportWizard.name"
+            icon="icons/full/wizards/sftpicon_wiz.gif"
+            class="com.jcraft.eclipse.team.internal.sftp.ui.subscriber.SFTPImportWizard"
+            id="com.jcraft.eclipse.team.sftp.SFTPImportWizard">
+         <description>
+            %ImportWizard.description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IContainer">
+         </selection>
+      </wizard>
+   </extension>
+<!-- ****************** Export Wizards ********************* -->
+   <extension
+         point="org.eclipse.ui.exportWizards">
+      <wizard
+            name="%ExportWizard.name"
+            icon="icons/full/wizards/sftpicon_wiz.gif"
+            class="com.jcraft.eclipse.team.internal.sftp.ui.subscriber.SFTPExportWizard"
+            id="com.jcraft.eclipse.team.sftp.SFTPExportWizard">
+         <description>
+            %ExportWizard.description
+         </description>
+         <selection
+               class="org.eclipse.core.resources.IContainer">
+         </selection>
+      </wizard>
+   </extension>
+   <!-- *************** Synchronize Wizards **************** -->
+   <extension
+         point="org.eclipse.team.ui.synchronizeWizards">
+      <wizard
+            name="%SFTPSynchronizeParticipant"
+            description="%SFTPSynchronizeParticipant.description"
+            icon="icons/full/wizards/sftpicon_wiz.gif"
+            class="com.jcraft.eclipse.team.internal.sftp.ui.subscriber.SFTPSynchronizeWizard"
+            id="com.jcraft.eclipse.team.sftp.SynchronizeWizard">
+      </wizard>
+   </extension>
+<!-- *************** Synchronize View Participant **************** -->
+   <extension
+         point="org.eclipse.team.ui.synchronizeParticipants">
+      <participant
+            name="%SFTPSynchronizeParticipant"
+            icon="icons/full/wizards/sftpicon_wiz.gif"
+            class="com.jcraft.eclipse.team.internal.sftp.ui.subscriber.SFTPSynchronizeParticipant"
+            id="com.jcraft.eclipse.team.sftp.synchronize-participant">
+      </participant>
+   </extension>
+	
+</plugin>

@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-Name: %pluginName
+Bundle-SymbolicName: com.jcraft.eclipse.sftp
+Bundle-Version: 0.0.4
+Bundle-ClassPath: sftp.jar
+Bundle-Activator: com.jcraft.eclipse.sftp.internal.SFtpPlugin
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Provide-Package: 
+ com.jcraft.eclipse.sftp,
+ com.jcraft.eclipse.sftp.internal
+Require-Bundle: org.eclipse.core.runtime;bundle-version="[3.1.0,4.0.0)",
+ com.jcraft.jsch;bundle-version="[0.1.31,2.0.0)",
+ org.eclipse.jface,
+ com.jcraft.eclipse.jsch.core
+Eclipse-LazyStart: true

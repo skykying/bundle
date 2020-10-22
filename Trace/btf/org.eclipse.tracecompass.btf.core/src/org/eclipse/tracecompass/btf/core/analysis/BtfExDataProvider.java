@@ -63,12 +63,12 @@ public class BtfExDataProvider extends AbstractTreeCommonXDataProvider<@NonNull 
 
         for (long v : xValues) {
             ITmfStateSystem bs = btfAlgModule.getStateSystem();
-
         }
 
         Map<String, IYModel> sEntryValues = new HashMap<>();
         Set<@NonNull Entry<@NonNull Long, @NonNull Integer>> selected = getSelectedEntries(filter).entrySet();
         System.out.println(xValues.length + ">>>>>>>@@@@@@@@@@#@@@@@@@@" + selected.size()); //$NON-NLS-1$
+        
         for (Entry<Long, Integer> entry : selected) {
             Long id = entry.getKey();
             Integer quark = entry.getValue();
@@ -121,7 +121,6 @@ public class BtfExDataProvider extends AbstractTreeCommonXDataProvider<@NonNull 
 
         int taskQuark;
         List<BtfEntryModel> entryList = new ArrayList<>();
-
 
 
         try {

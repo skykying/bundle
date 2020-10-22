@@ -147,8 +147,9 @@ public class DataPacketVisualizer extends ScrolledComposite {
 				scale = nsPerPixel;
 				ruler.setScale(scale);
 				for (Control c : composite.getChildren()) {
-					if (!c.isDisposed() && c instanceof ChannelVisualizer)
+					if (!c.isDisposed() && c instanceof ChannelVisualizer){
 						((ChannelVisualizer)c).setTimeResolution(nsPerPixel);
+					}
 				}
 			}
 

@@ -243,6 +243,7 @@
     <module>Performance/profiling</module>
     <module>Unit/core</module>
     <module>Unit/runner</module>
+    <!-- <module>sftp</module> -->
   </modules>
 
   <build>

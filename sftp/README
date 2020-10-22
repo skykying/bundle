@@ -1,0 +1,66 @@
+
+                           SFTP Plug-in for Eclipse
+                       by ymnk@jcraft.com, JCraft,Inc.      
+ 
+                    http://www.jcraft.com/eclipse-sftp/
+
+
+Last modified: Mon Jul  2 14:17:18 UTC 2007
+
+
+Description
+===========
+SFTP Plug-in for Eclipse will add the SFTP support to Eclipse.
+
+
+Features
+========
+* SFTP client (plug-in: com.jcraft.eclipse.sftp).
+* SFTP client is using Eclipse's internal SSH client, JSch.
+  JSch is a pure Java SSH2 implementation from us.
+* SFTP Team provider (plug-in: com.jcraft.eclipse.team.sftp,
+                               com.jcraft.eclipse.target.sftp).      
+  * importing a remote directory into the workspace as a project by sftp.
+  * exporting a folder to a remote directory by sftp.
+  * synchronizing with the remote directory by sftp.
+* password, public-key and keyboard-interactive authentications.
+* HTTP and SOCKS5 proxies.
+* key pair generation.
+* host-key management.
+* The code is based on "WebDAV and FTP support for Eclipse".
+* Plug-ins will work on "Eclipse Platform 3.3" and later.
+* Plug-ins requires jsch 0.1.31 and later.
+* This software is licensed under the terms and conditions of 
+  EPL 1.0.(http://www.eclipse.org/legal/epl-v10.html).
+
+     
+Installation
+============
+You need Eclipse SDK 3.3(or higher) to enjoy this software. 
+After installing and running it,
+
+1) Help > Software Updates > Find and Install...
+2) Choose "Search for new features to install".
+3) Click "New Remote Site...", and then put "http://eclipse.jcraft.com/"
+   for the URL field.
+4) Choose "SFTP Plug-in", and then click "Select Required" button.
+
+For Eclipse Platform 3.2, try the Update site "http://eclipse.jcraft.com/3.2/".
+
+
+Tips
+====
+* The location 'sftp://192.168.0.1/tmp' will allow you to get access to
+  'tmp' directory under user's home directory. On the other hand,
+  'sftp://192.168.0.1//tmp' will point to '/tmp' directory on the remote.
+
+ 
+Credits and Acknowledgments
+============================
+This software has been developed by ymnk(ymnk@jcraft.com). 
+The code has been based on "WebDAV and FTP support for Eclipse" initially written by IBM.
+
+
+Comments/suggestions are accepted at eclipse-sftp@jcraft.com
+
+``SSH is a registered trademark and Secure Shell is a trademark of SSH Communications Security Corp (http://www.ssh.com)''.
