@@ -27,6 +27,7 @@
 
   <modules>
     <module>org.panda.logicanalyzer.ui</module>
+    <module>org.panda.logicanalyzer</module>
     <module>org.panda.logicanalyzer.deviceintegration.ui</module>
   </modules>
 

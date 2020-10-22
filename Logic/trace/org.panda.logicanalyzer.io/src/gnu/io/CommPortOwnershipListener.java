@@ -63,7 +63,7 @@ import java.util.*;
 * @version %I%, %G%
 * @since JDK1.0
 */
-
+ 
 public interface CommPortOwnershipListener extends EventListener
 {
 	public static final int PORT_OWNED               =1;

@@ -5,7 +5,14 @@ Bundle-SymbolicName: org.panda.logicanalyzer.io
 Bundle-Version: 2.1.7.qualifier
 Bundle-Vendor: org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
-Export-Package: gnu.io
+Export-Package: gnu.io,
+ javax.usb,
+ javax.usb.event,
+ javax.usb.util,
+ org.usb4java,
+ org.usb4java.javax,
+ org.usb4java.javax.adapter,
+ org.usb4java.javax.descriptors
 Bundle-NativeCode: 
  lib/Linux/i686-unknown-linux-gnu/librxtxParallel.so;
  lib/Linux/i686-unknown-linux-gnu/librxtxSerial.so;
@@ -14,8 +21,16 @@ Bundle-NativeCode:
  lib/Linux/x86_64-unknown-linux-gnu/librxtxSerial.so;
  osname=Linux; processor=x86-64,
  
- lib/mac/librxtxSerial.jnilib;
+ lib/mac/librxtxSerial.jnilib;lib/mac/libusb4java.dylib;
  osname=Mac OS X; processor=x86; processor=PowerPC; processor=x86-64,
  
  lib/win32/rxtxSerial.dll; osname=Win32; processor=x86,
  lib/win64/rxtxSerial.dll; osname=Win32; processor=x86_64
+Require-Bundle: org.apache.commons.lang3
+Bundle-ClassPath: jars/libusb4java-1.3.0-darwin-x86-64.jar,
+ jars/libusb4java-1.3.0-linux-aarch64.jar,
+ jars/libusb4java-1.3.0-linux-arm.jar,
+ jars/libusb4java-1.3.0-linux-x86.jar,
+ jars/libusb4java-1.3.0-win32-x86-64.jar,
+ jars/libusb4java-1.3.0-win32-x86.jar,
+ .

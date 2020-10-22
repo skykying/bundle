@@ -69,7 +69,7 @@ public class RXTXVersion
 	perform:      Set Version.
 	return:       -
 	exceptions:   Throwable
-	comments:     
+	comments:      
 		      See INSTALL for details.
 ------------------------------------------------------------------------------*/
 	private static String Version;

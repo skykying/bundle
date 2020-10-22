@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='3'>
-  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.202010221705'>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.202010221859'>
     <properties size='5'>
       <property name='artifact.size' value='132966'/>
       <property name='download.size' value='132966'/>
@@ -10,13 +10,13 @@
       <property name='maven-version' value='1.1.7-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.202010221705'>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm' version='1.1.7.202010221859'>
     <processing size='1'>
       <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
     </processing>
     <properties size='8'>
       <property name='artifact.size' value='132966'/>
-      <property name='download.size' value='60966'/>
+      <property name='download.size' value='61381'/>
       <property name='format' value='packed'/>
       <property name='maven-version' value='1.1.7-SNAPSHOT'/>
       <property name='maven-artifactId' value='com.lembed.lite.studio.managedbuild.cross.llvm'/>
@@ -25,10 +25,10 @@
       <property name='maven-classifier' value='pack200'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.202010221705'>
+  <artifact classifier='osgi.bundle' id='com.lembed.lite.studio.managedbuild.cross.llvm.source' version='1.1.7.202010221859'>
     <properties size='6'>
-      <property name='artifact.size' value='86583'/>
-      <property name='download.size' value='86583'/>
+      <property name='artifact.size' value='86584'/>
+      <property name='download.size' value='86584'/>
       <property name='maven-groupId' value='com.lembed.lite.studio'/>
       <property name='maven-artifactId' value='com.lembed.lite.studio.managedbuild.cross.llvm'/>
       <property name='maven-version' value='1.1.7-SNAPSHOT'/>

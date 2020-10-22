@@ -261,6 +261,7 @@ Java and all Java-based trademarks are trademarks of Oracle Corporation in the U
       <feature id="org.eclipse.ecf.filetransfer.ssl.feature" installMode="root"/>
       <feature id="com.lembed.lite.studio.debug.gdbjtag.emulator.feature" installMode="root"/>
       <feature id="com.lembed.lite.studio.debug.gdbjtag.stlink.feature" installMode="root"/>
+      <feature id="org.panda.logicanalyzer.feature" installMode="root"/>
    </features>
 
    <configurations>

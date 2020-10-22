@@ -26,7 +26,7 @@
   <name>Lite studio plugin logic trace Parent</name>
 
   <modules>
-    <module>org.panda.logicanalyzer.integration.audioLogicCapture</module>
+    <module>org.panda.logicanalyzer.integration.arduinoLogicCapture</module>
     <module>org.panda.logicanalyzer.integration.sump</module>
     <module>org.panda.logicanalyzer.io</module>
   </modules>
