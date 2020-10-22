@@ -1,16 +1,16 @@
 package org.panda.logicanalyzer.deviceintegration.ui.internal;
 
 
-import gnu.io.CommPortIdentifier;
-
 import java.util.Collections;
-import java.util.Enumeration;
+import java.util.Enumeration; 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
 import org.panda.logicanalyzer.ui.pipeline.IPipelineElementConfigurationProvider;
+
+//import gnu.io.CommPortIdentifier;
 
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
@@ -182,29 +182,29 @@ public class DeviceDataSourceConfigurationProvider implements IPipelineElementCo
 			portCombo.setLabelProvider(new LabelProvider());
 
 
-			Enumeration portIdentifiers = CommPortIdentifier.getPortIdentifiers();
-			List<DecoratedValue<CommPortIdentifier>> portList = new LinkedList<DecoratedValue<CommPortIdentifier>>();
-			while (portIdentifiers.hasMoreElements()) {
-				CommPortIdentifier portId = (CommPortIdentifier) portIdentifiers.nextElement();
-				if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
-					portList.add(new DecoratedValue<CommPortIdentifier>(portId, portId.getName(), Alignment.Hide));
-				}
-			}
-			
-			System.out.println(portList.size()+"size");
-			
-			if(portList.size() > 0) {
-				portCombo.setInput(portList);
-				portCombo.setSelection(new StructuredSelection(portCombo.getElementAt(0)));
-				portCombo.addSelectionChangedListener(new ISelectionChangedListener() {
-	
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						notifyCommandListener(PageCommand.ValidatePage);
-					}
-	
-				});
-			}
+//			Enumeration portIdentifiers = CommPortIdentifier.getPortIdentifiers();
+//			List<DecoratedValue<CommPortIdentifier>> portList = new LinkedList<DecoratedValue<CommPortIdentifier>>();
+//			while (portIdentifiers.hasMoreElements()) {
+//				CommPortIdentifier portId = (CommPortIdentifier) portIdentifiers.nextElement();
+//				if (portId.getPortType() == CommPortIdentifier.PORT_SERIAL) {
+//					portList.add(new DecoratedValue<CommPortIdentifier>(portId, portId.getName(), Alignment.Hide));
+//				}
+//			}
+//			
+//			System.out.println(portList.size()+"size");
+//			
+//			if(portList.size() > 0) {
+//				portCombo.setInput(portList);
+//				portCombo.setSelection(new StructuredSelection(portCombo.getElementAt(0)));
+//				portCombo.addSelectionChangedListener(new ISelectionChangedListener() {
+//	
+//					@Override
+//					public void selectionChanged(SelectionChangedEvent event) {
+//						notifyCommandListener(PageCommand.ValidatePage);
+//					}
+//	
+//				});
+//			}
 
 			new Label(composite, SWT.NONE).setText("Port speed:");
 			final ComboViewer speedCombo = new ComboViewer(composite, SWT.READ_ONLY | SWT.BORDER);
@@ -239,11 +239,11 @@ public class DeviceDataSourceConfigurationProvider implements IPipelineElementCo
 
 				private void updateModel() {
 
-					CommPortIdentifier portIdentifier = (CommPortIdentifier) getSelectionValue(portCombo.getSelection());
-					if (portIdentifier != null) portName = portIdentifier.getName();
-
-					Integer baudRate = (Integer) getSelectionValue(speedCombo.getSelection());
-					if (baudRate != null) Page.this.baudRate = baudRate;
+//					CommPortIdentifier portIdentifier = (CommPortIdentifier) getSelectionValue(portCombo.getSelection());
+//					if (portIdentifier != null) portName = portIdentifier.getName();
+//
+//					Integer baudRate = (Integer) getSelectionValue(speedCombo.getSelection());
+//					if (baudRate != null) Page.this.baudRate = baudRate;
 				}
 
 				private void initialize() {

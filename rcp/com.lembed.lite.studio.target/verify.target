@@ -73,17 +73,12 @@
 <repository location="https://download.eclipse.org/tools/ptp/updates/remote/photon/"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.remote.console.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.console.source.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.proxy.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.proxy.source.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.source.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.serial.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.serial.source.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.telnet.feature.group" version="3.0.0.201803121903"/>
-<unit id="org.eclipse.remote.telnet.source.feature.group" version="3.0.0.201803121903"/>
-<repository location="https://mirrors.tuna.tsinghua.edu.cn/eclipse/tools/ptp/builds/remote/photon/milestones/M6"/>
+<repository location="https://download.eclipse.org/tools/ptp/remote/releases/3.0/remote-3.0.1"/>
+	<unit id="org.eclipse.remote.console.feature.group" version="3.0.1.201909031456"/>
+	<unit id="org.eclipse.remote.feature.group" version="3.0.1.201909031456"/>
+	<unit id="org.eclipse.remote.proxy.feature.group" version="3.0.1.201909031456"/>
+	<unit id="org.eclipse.remote.serial.feature.group" version="3.0.1.201909031456"/>
+	<unit id="org.eclipse.remote.telnet.feature.group" version="3.0.1.201909031456"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="a.jre.javase" version="10.0.0"/>
@@ -244,27 +239,27 @@
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="com.sun.xml.bind" version="0.0.0"/>
 <unit id="org.apache.xerces" version="0.0.0"/>
-<unit id="org.eclipse.jst.jsp.ui" version="1.2.200.v201904272124"/>
+<unit id="org.eclipse.jst.jsp.ui" version="0.0.0"/>
 <unit id="org.eclipse.wst.common.core" version="0.0.0"/>
-<unit id="org.eclipse.wst.common.project.facet.core" version="1.4.400.v201903222010"/>
+<unit id="org.eclipse.wst.common.project.facet.core" version="0.0.0"/>
 <unit id="org.eclipse.wst.common.uriresolver" version="0.0.0"/>
-<unit id="org.eclipse.wst.common_core.feature.feature.group" version="3.10.100.v201904082145"/>
-<unit id="org.eclipse.wst.common_ui.feature.feature.group" version="3.10.0.v201905021844"/>
-<unit id="org.eclipse.wst.json_core.feature.feature.group" version="1.1.5.v201904210526"/>
-<unit id="org.eclipse.wst.server_adapters.feature.feature.group" version="3.2.700.v201901310132"/>
-<unit id="org.eclipse.wst.server_core.feature.feature.group" version="3.3.700.v201903232121"/>
-<unit id="org.eclipse.wst.server_ui.feature.feature.group" version="3.3.800.v201904081906"/>
-<unit id="org.eclipse.wst.server_userdoc.feature.feature.group" version="3.3.300.v201901310132"/>
+<unit id="org.eclipse.wst.common_core.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.common_ui.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.json_core.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.server_adapters.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.server_core.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.server_ui.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.server_userdoc.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.wst.sse.core" version="0.0.0"/>
 <unit id="org.eclipse.wst.sse.ui" version="0.0.0"/>
 <unit id="org.eclipse.wst.validation" version="0.0.0"/>
-<unit id="org.eclipse.wst.web_core.feature.feature.group" version="3.13.0.v201904210526"/>
-<unit id="org.eclipse.wst.ws_core.feature.feature.group" version="3.7.350.v201904232049"/>
+<unit id="org.eclipse.wst.web_core.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.wst.ws_core.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.wst.xml.core" version="0.0.0"/>
 <unit id="org.eclipse.wst.xml.ui" version="0.0.0"/>
-<unit id="org.eclipse.wst.xml_core.feature.feature.group" version="3.13.0.v201903222120"/>
+<unit id="org.eclipse.wst.xml_core.feature.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.wst.xsd.core" version="0.0.0"/>
-<repository location="https://mirrors.tuna.tsinghua.edu.cn/eclipse/webtools/downloads/drops/R3.14.0/S-3.14.0.M2-20190507042910/repository/"/>
+<repository location="https://download.eclipse.org/webtools/downloads/drops/R3.14.0/R-3.14.0-20190612230649/repository/"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
 <unit id="org.eclipse.ecf.core.feature.feature.group" version="1.5.3.v20181012-2020"/>

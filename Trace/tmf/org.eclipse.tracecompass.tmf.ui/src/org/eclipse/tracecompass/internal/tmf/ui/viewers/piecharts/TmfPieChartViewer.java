@@ -13,6 +13,7 @@
 
 package org.eclipse.tracecompass.internal.tmf.ui.viewers.piecharts;
 
+import com.lembed.codeanalyzer.ui.piechart.PieChart;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -21,7 +22,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 
 import org.eclipse.core.runtime.ListenerList;
-import org.eclipse.linuxtools.dataviewers.piechart.PieChart;
+
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;

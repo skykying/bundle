@@ -4,11 +4,11 @@ package org.panda.logicanalyzer.deviceintegration.internal;
 /**
  * http://usb4java.org to replace the serial port
  */
-import gnu.io.CommPortIdentifier;
-import gnu.io.NoSuchPortException;
-import gnu.io.PortInUseException;
-import gnu.io.SerialPort;
-import gnu.io.UnsupportedCommOperationException;
+//import gnu.io.CommPortIdentifier;
+//import gnu.io.NoSuchPortException;
+//import gnu.io.PortInUseException;
+//import gnu.io.SerialPort;
+//import gnu.io.UnsupportedCommOperationException;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -89,52 +89,53 @@ public class ComDeviceDataSource implements IDataSource {
 
 	@Override
 	public IDataPacket run() throws CoreException {
+		return null;
 
 
-		CommPortIdentifier portId;
-		try {
-			portId = CommPortIdentifier.getPortIdentifier(portName);
-		} catch (NoSuchPortException e) {
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Port (" + portName + ") does not exist");
-			throw new CoreException(status);
-		}
-
-		if (portId == null) {
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unknown port " + portName);
-			throw new CoreException(status);
-		}
-
-		try {
-			SerialPort port = (SerialPort) portId.open(portName, 1000);
-			port.setSerialPortParams(
-			    baudRate,
-			    SerialPort.DATABITS_8,
-			    SerialPort.STOPBITS_1,
-			    SerialPort.PARITY_NONE
-			);
-			port.setFlowControlMode(SerialPort.FLOWCONTROL_XONXOFF_IN);
-			port.disableReceiveFraming();
-			port.enableReceiveTimeout(100);
-
-			InputStream inputStream = port.getInputStream();
-			OutputStream outputStream = port.getOutputStream();
-
-			try {
-				showMessage("try to capture data from device ");
-				return device.capture(inputStream, outputStream);
-			} finally {
-				port.close();
-			}
-		} catch (PortInUseException e) {
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Port (" + portName + ") is already in use", e);
-			throw new CoreException(status);
-		} catch (UnsupportedCommOperationException e) {
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unsupported operation", e);
-			throw new CoreException(status);
-		} catch (IOException e) {
-			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while communicating with device", e);
-			throw new CoreException(status);
-		}
+//		CommPortIdentifier portId;
+//		try {
+//			portId = CommPortIdentifier.getPortIdentifier(portName);
+//		} catch (NoSuchPortException e) {
+//			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Port (" + portName + ") does not exist");
+//			throw new CoreException(status);
+//		}
+//
+//		if (portId == null) {
+//			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unknown port " + portName);
+//			throw new CoreException(status);
+//		}
+//
+//		try {
+//			SerialPort port = (SerialPort) portId.open(portName, 1000);
+//			port.setSerialPortParams(
+//			    baudRate,
+//			    SerialPort.DATABITS_8,
+//			    SerialPort.STOPBITS_1,
+//			    SerialPort.PARITY_NONE
+//			);
+//			port.setFlowControlMode(SerialPort.FLOWCONTROL_XONXOFF_IN);
+//			port.disableReceiveFraming();
+//			port.enableReceiveTimeout(100);
+//
+//			InputStream inputStream = port.getInputStream();
+//			OutputStream outputStream = port.getOutputStream();
+//
+//			try {
+//				showMessage("try to capture data from device ");
+//				return device.capture(inputStream, outputStream);
+//			} finally {
+//				port.close();
+//			}
+//		} catch (PortInUseException e) {
+//			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Port (" + portName + ") is already in use", e);
+//			throw new CoreException(status);
+//		} catch (UnsupportedCommOperationException e) {
+//			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Unsupported operation", e);
+//			throw new CoreException(status);
+//		} catch (IOException e) {
+//			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error while communicating with device", e);
+//			throw new CoreException(status);
+//		}
 
 	}
 

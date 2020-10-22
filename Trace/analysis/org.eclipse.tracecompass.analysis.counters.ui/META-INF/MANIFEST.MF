@@ -16,12 +16,12 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.tracecompass.tmf.ui,
  org.eclipse.tracecompass.tmf.core,
  org.eclipse.tracecompass.tmf.ctf.core,
- org.eclipse.tracecompass.analysis.counters.core
+ org.eclipse.tracecompass.analysis.counters.core,
+ org.swtchart;bundle-version="0.10.0"
 Import-Package: com.google.common.base,
  com.google.common.collect,
  com.google.common.primitives,
- org.apache.commons.lang3,
- org.swtchart
+ org.apache.commons.lang3
 Export-Package: org.eclipse.tracecompass.analysis.counters.ui,
  org.eclipse.tracecompass.internal.analysis.counters.ui;x-internal:=true
 Automatic-Module-Name: org.eclipse.tracecompass.analysis.counters.ui
