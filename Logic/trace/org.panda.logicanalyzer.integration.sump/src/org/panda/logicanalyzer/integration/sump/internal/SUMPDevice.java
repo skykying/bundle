@@ -380,11 +380,15 @@ public class SUMPDevice implements IDevice {
 					}
 				communicator.sendCommand(SETSIZE, (((effectiveStopCounter - 8) & 0x7fff8) << 13) | (((readCounter & 0x7fff8) >> 3) - 1));
 			} else {
-				if (configuration.isNoiseFilterEnabled() && isNoiseFilterAvailable())
+				if (configuration.isNoiseFilterEnabled() && isNoiseFilterAvailable()){
 					flags |= FLAG_FILTER;
-				for (int i = 0; i < configuration.getChannelGroupEnablement().length; i++)
-					if (!configuration.getChannelGroupEnablement()[i])
+				}
+				for (int i = 0; i < configuration.getChannelGroupEnablement().length; i++){
+					if (!configuration.getChannelGroupEnablement()[i]){
 						flags |= FLAG_DISABLE_G0 << i;
+					}
+				}
+				
 				communicator.sendCommand(SETSIZE, (((effectiveStopCounter - 4) & 0x3fffc) << 14) | (((readCounter & 0x3fffc) >> 2) - 1));
 			}
 			communicator.sendCommand(SETFLAGS, flags);

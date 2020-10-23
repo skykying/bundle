@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='3'>
-  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010221859'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010230420'>
     <properties size='5'>
       <property name='artifact.size' value='1290507'/>
       <property name='download.size' value='1290507'/>
@@ -10,13 +10,13 @@
       <property name='maven-version' value='2.1.7-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010221859'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010230420'>
     <processing size='1'>
       <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
     </processing>
     <properties size='8'>
       <property name='artifact.size' value='1290507'/>
-      <property name='download.size' value='1129192'/>
+      <property name='download.size' value='1129452'/>
       <property name='format' value='packed'/>
       <property name='maven-version' value='2.1.7-SNAPSHOT'/>
       <property name='maven-artifactId' value='org.panda.logicanalyzer.io'/>
@@ -25,7 +25,7 @@
       <property name='maven-classifier' value='pack200'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io.source' version='2.1.7.202010221859'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io.source' version='2.1.7.202010230420'>
     <properties size='6'>
       <property name='artifact.size' value='261812'/>
       <property name='download.size' value='261812'/>

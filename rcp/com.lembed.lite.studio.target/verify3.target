@@ -252,13 +252,12 @@
 <repository location="https://mirrors.tuna.tsinghua.edu.cn/eclipse/eclipse/updates/4.11/"/>
 </location>
 <location includeAllPlatforms="true" includeConfigurePhase="false" includeMode="slicer" includeSource="true" type="InstallableUnit">
-<unit id="org.eclipse.equinox.executable.feature.group" version="3.8.900.v20200819-0940"/>
-<unit id="org.eclipse.equinox.p2.discovery.feature.feature.group" version="1.2.700.v20200705-1016"/>
-<unit id="org.eclipse.equinox.p2.sdk.feature.group" version="3.11.900.v20200828-0839"/>
-<unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.1000.v20200828-1034"/>
 <unit id="org.eclipse.platform.ide" version="0.0.0"/>
+<unit id="org.eclipse.equinox.executable.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.pde.runtime" version="0.0.0"/>
 <unit id="org.eclipse.pde.junit.runtime" version="0.0.0"/>
+<unit id="org.eclipse.equinox.p2.discovery.feature.feature.group" version="0.0.0"/>
+<unit id="org.eclipse.equinox.p2.sdk.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.equinox.p2.core.feature.source.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.test.feature.group" version="0.0.0"/>
 <unit id="org.eclipse.jdt.annotation" version="0.0.0"/>
@@ -266,7 +265,7 @@
 <unit id="org.eclipse.ui.trace" version="0.0.0"/>
 <unit id="org.eclipse.ui.views.log" version="0.0.0"/>
 <unit id="org.eclipse.jdt.junit4.runtime" version="0.0.0"/>
-<unit id="org.eclipse.ecf.filetransfer.httpclient45.feature.feature.group" version="1.0.600.v20200816-1842"/>
+<unit id="org.eclipse.core.runtime.feature.feature.group" version="1.2.1000.v20200828-1034"/>
 <repository location="https://download.eclipse.org/eclipse/updates/4.17/R-4.17-202009021800"/>
 </location>
 </locations>
