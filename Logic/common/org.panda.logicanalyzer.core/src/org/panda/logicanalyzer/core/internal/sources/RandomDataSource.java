@@ -35,49 +35,51 @@ public class RandomDataSource implements IDataSource {
 		public IDataSource createSource(Map<String, Object> configuration) throws CoreException {
 			System.out.println("createSource @RandomDataSourceFactory");
 
-			int amountOfChannels;
+			int amountOfChannels = 20;
 
-			if (!(configuration.get(KEY__AMOUNT_OF_CHANNELS) instanceof Integer)) {
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "RandomDataSourceFactory is missing the KEY__AMOUNT_OF_CHANNELS in it's configuration");
-				throw new CoreException(status);
-			}
+//			if (!(configuration.get(KEY__AMOUNT_OF_CHANNELS) instanceof Integer)) {
+//				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "RandomDataSourceFactory is missing the KEY__AMOUNT_OF_CHANNELS in it's configuration");
+//				//throw new CoreException(status);
+//			}
+//
+//			try {
+//				amountOfChannels = (Integer) configuration.get(KEY__AMOUNT_OF_CHANNELS);
+//				//if (amountOfChannels < 0) throw new NumberFormatException(); // I'm too lazy to do this right
+//			} catch (NumberFormatException e) {
+//				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The KEY__AMOUNT_OF_CHANNELS value is not a positive number", e);
+//				//throw new CoreException(status);
+//			}
 
-			try {
-				amountOfChannels = (Integer) configuration.get(KEY__AMOUNT_OF_CHANNELS);
-				if (amountOfChannels < 0) throw new NumberFormatException(); // I'm too lazy to do this right
-			} catch (NumberFormatException e) {
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The KEY__AMOUNT_OF_CHANNELS value is not a positive number", e);
-				throw new CoreException(status);
-			}
-
-			long amountOfSamples;
-			if (!(configuration.get(KEY__AMOUNT_OF_SAMPLES) instanceof Long)) {
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "RandomDataSourceFactory is missing the KEY__AMOUNT_OF_SAMPLES in it's configuration");
-				throw new CoreException(status);
-			}
-
-			try {
-				amountOfSamples = (Long) configuration.get(KEY__AMOUNT_OF_SAMPLES);
-				if (amountOfSamples < 0) throw new NumberFormatException(); // I'm too lazy to do this right
-			} catch (NumberFormatException e) {
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The KEY__AMOUNT_OF_SAMPLES value is not a positive number", e);
-				throw new CoreException(status);
-			}
+			long amountOfSamples = 10000;
+//			if (!(configuration.get(KEY__AMOUNT_OF_SAMPLES) instanceof Long)) {
+//				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "RandomDataSourceFactory is missing the KEY__AMOUNT_OF_SAMPLES in it's configuration");
+//				//throw new CoreException(status);
+//			}
+//
+//			try {
+//				amountOfSamples = (Long) configuration.get(KEY__AMOUNT_OF_SAMPLES);
+//				//if (amountOfSamples < 0) throw new NumberFormatException(); // I'm too lazy to do this right
+//			} catch (NumberFormatException e) {
+//				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The KEY__AMOUNT_OF_SAMPLES value is not a positive number", e);
+//				//throw new CoreException(status);
+//			}
 
 			RandomDataSource result = new RandomDataSource(amountOfChannels, amountOfSamples);
-			if ((configuration.get(KEY__FRAME_DISTANCE) instanceof Long)) {
-				try {
-					long frameDistance = (Long) configuration.get(KEY__FRAME_DISTANCE);
-					if (frameDistance < 0) {
-						throw new NumberFormatException(); // I'm too lazy to do this right
-					}
-
-					result.setFrameDistance(frameDistance);
-				} catch (NumberFormatException e) {
-					IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The KEY__FRAME_DISTANCE value is not a positive number", e);
-					throw new CoreException(status);
-				}
-			}
+//			if ((configuration.get(KEY__FRAME_DISTANCE) instanceof Long)) {
+//				try {
+//					long frameDistance = (Long) configuration.get(KEY__FRAME_DISTANCE);
+//					if (frameDistance < 0) {
+//						throw new NumberFormatException(); // I'm too lazy to do this right
+//					}
+//
+//					
+//				} catch (NumberFormatException e) {
+//					IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The KEY__FRAME_DISTANCE value is not a positive number", e);
+//					throw new CoreException(status);
+//				}
+//			}
+			
+			result.setFrameDistance(frameDistance);
 
 			return result;
 		}
@@ -97,7 +99,7 @@ public class RandomDataSource implements IDataSource {
 	/**
 	 * The distance between the frames in nanoseconds
 	 */
-	private long frameDistance = 1000;
+	private static long frameDistance = 1000;
 
 	public RandomDataSource(int noOfChannels, long amountOfSamples) {
 
@@ -124,6 +126,7 @@ public class RandomDataSource implements IDataSource {
 	public long getAmountOfSamples() {
 		return amountOfSamples;
 	}
+
 
 	public IDataPacket run() throws CoreException {
 		List<IFrame> frames = new LinkedList<IFrame>();

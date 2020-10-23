@@ -2,7 +2,6 @@ package org.panda.logicanalyzer.deviceintegration.ui.internal;
 
 
 import java.util.Collections;
-import java.util.Enumeration; 
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -133,7 +132,6 @@ public class DeviceDataSourceConfigurationProvider implements IPipelineElementCo
 			});
 		}
 
-		@SuppressWarnings("unchecked")
 		private void createConnectionSettings(final Composite parent) {
 			ExpandableComposite expandable = new ExpandableComposite(parent, ExpandableComposite.TWISTIE | ExpandableComposite.CLIENT_INDENT);
 			GridDataFactory.fillDefaults().grab(true, false).applyTo(expandable);

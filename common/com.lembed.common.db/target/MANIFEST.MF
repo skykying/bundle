@@ -1,0 +1,13 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: Db
+Bundle-SymbolicName: com.lembed.common.db;singleton:=true
+Bundle-Version: 1.0.0.202010231752
+Bundle-Activator: com.lembed.common.db.Activator
+Bundle-Vendor: LEMBED
+Require-Bundle: org.eclipse.core.runtime,org.apache.commons.io,com.googl
+ e.guava
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: com.lembed.common.db
+Bundle-ActivationPolicy: lazy
+

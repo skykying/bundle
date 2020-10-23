@@ -9,7 +9,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.ui.forms;bundle-version="3.4.1",
  org.eclipse.ui.console,
- org.panda.logicanalyzer.core
+ org.panda.logicanalyzer.core,
+ org.panda.logicanalyzer.io
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-ActivationPolicy: lazy
 Export-Package: org.panda.logicanalyzer.ui.editor,

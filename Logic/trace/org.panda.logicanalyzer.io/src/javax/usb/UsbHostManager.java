@@ -13,6 +13,10 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
+import org.eclipse.core.runtime.FileLocator;
+import org.eclipse.core.runtime.Path;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 /**
  * Entry point for javax.usb.
@@ -98,22 +102,49 @@ public final class UsbHostManager
 	private static void setupProperties() throws UsbException,SecurityException
 	{
 		InputStream i = null;
-
-		// First look in 'java.home'/lib
-		String h = System.getProperty("java.home");
 		String s = System.getProperty("file.separator");
-		if (null != h && null != s)
-		{
-			try { i = new FileInputStream(h + s + "lib" + s + JAVAX_USB_PROPERTIES_FILE); }
-			catch ( FileNotFoundException fnfE ) { /* no 'java.home'/lib properties file, ok */ }
+		
+
+		Bundle bundle = FrameworkUtil.getBundle(UsbHostManager.class);
+		Path repath = new Path("resources" + s + JAVAX_USB_PROPERTIES_FILE);
+		try {
+			i = FileLocator.openStream(bundle, repath, false);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		if(i == null ) {
+			System.out.println("setupProperties 0");
+			try {
+				i = bundle.getResource("resources"+ s + JAVAX_USB_PROPERTIES_FILE).openStream();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(i == null ) {
+			System.out.println("setupProperties 1");
+			// First look in 'java.home'/lib
+			String h = System.getProperty("java.home");
+			
+			if (null != h && null != s)
+			{
+				try { i = new FileInputStream(h + s + "lib" + s + JAVAX_USB_PROPERTIES_FILE); }
+				catch ( FileNotFoundException fnfE ) { /* no 'java.home'/lib properties file, ok */ }
+			}
 		}
 
 		// Now check the normal CLASSPATH
-		if (null == i)
+		if (null == i) {
+			System.out.println("setupProperties 2");
 			i = UsbHostManager.class.getClassLoader().getResourceAsStream(JAVAX_USB_PROPERTIES_FILE);
-
+		}
+		
+		
 		if (null == i)
 			throw new UsbException(PROPERTIES_FILE_NOT_FOUND);
+		
+		System.out.println("setupProperties 3");
 
 		try {
 			properties.load(i);

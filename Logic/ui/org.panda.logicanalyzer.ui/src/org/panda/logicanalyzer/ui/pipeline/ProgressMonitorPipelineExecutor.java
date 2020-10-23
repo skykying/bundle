@@ -1,6 +1,16 @@
 package org.panda.logicanalyzer.ui.pipeline;
 
+import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.List;
+
+import javax.usb.UsbDevice;
+import javax.usb.UsbDeviceDescriptor;
+import javax.usb.UsbDisconnectedException;
+import javax.usb.UsbException;
+import javax.usb.UsbHostManager;
+import javax.usb.UsbHub;
+import javax.usb.UsbServices;
 
 import org.panda.logicanalyzer.core.pipeline.IDataPacket;
 import org.panda.logicanalyzer.core.pipeline.IDataSink;
@@ -26,11 +36,75 @@ public class ProgressMonitorPipelineExecutor implements IRunnableWithProgress {
 		this.pipeline = pipeline;
 	}
 
+	/**
+     * Dumps the specified device and its sub devices.
+     * 
+     * @param device
+     *            The USB device to dump.
+     * @param level
+     *            The indentation level.
+     */
+    public static void dump(UsbDevice device, int level)
+    {
+        for (int i = 0; i < level; i += 1) {
+            System.out.print("  ");
+        }
+        
+        //System.out.println(device);
+        if (device.isUsbHub())
+        {
+            final UsbHub hub = (UsbHub) device;
+            for (UsbDevice child: (List<UsbDevice>) hub.getAttachedUsbDevices())
+            {
+            	
+                dump(child, level + 1);
+            }
+        }else {
+        	try {
+				dumpName(device);
+			} catch (UnsupportedEncodingException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			} catch (UsbException e) {
+				// TODO Auto-generated catch block
+				//e.printStackTrace();
+			}
+        }
+    }
+    
+    private static void dumpName(final UsbDevice device)
+            throws UnsupportedEncodingException, UsbException
+        {
+            // Read the string descriptor indices from the device descriptor.
+            // If they are missing then ignore the device.
+            final UsbDeviceDescriptor desc = device.getUsbDeviceDescriptor();
+            final byte iManufacturer = desc.iManufacturer();
+            final byte iProduct = desc.iProduct();
+            if (iManufacturer == 0 || iProduct == 0) return;
+
+            // Dump the device name
+            System.out.println(device.getString(iManufacturer) + " & "
+                + device.getString(iProduct));
+        }
+    
+
+    public static void dusb() throws UsbException
+    {
+        UsbServices services = UsbHostManager.getUsbServices();
+        dump(services.getRootUsbHub(), 0);
+    }
+    
 	//@Override
 	public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
 		monitor.beginTask("Executing pipeline", IProgressMonitor.UNKNOWN);
-
+		
+		try {
+			dusb();
+		} catch (UsbException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		try {
 
 			if (pipeline == null) {

@@ -1,5 +1,6 @@
 package org.panda.logicanalyzer.ui.internal.editor;
 
+import java.awt.event.MouseWheelEvent;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -13,6 +14,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseMoveListener;
+import org.eclipse.swt.events.MouseWheelListener;
 import org.eclipse.swt.events.PaintEvent;
 import org.eclipse.swt.events.PaintListener;
 import org.eclipse.swt.graphics.Color;
@@ -157,17 +159,20 @@ public class ChannelVisualizer extends Canvas {
 				if (resetSelection) {
 					setSelection(-1, -1, true);
 				}
+				System.out.println("mouseUp");
 			}
 
 			@Override
 			public void mouseDown(MouseEvent e) {
 				selectionStart = e.x;
+				System.out.println("mouseDown");
 			}
 
 		});
 		addMouseMoveListener(new MouseMoveListener() {
 
 			public void mouseMove(MouseEvent e) {
+				System.out.println("MouseMoveListener");
 				if (selectionStart >= 0) {
 					long from = selectionStart * nsPerPixel;
 					long to = e.x * nsPerPixel;
@@ -175,6 +180,17 @@ public class ChannelVisualizer extends Canvas {
 				}
 			}
 
+		});
+		
+		addMouseWheelListener(new MouseWheelListener() {
+			
+			//"Count" here means number of scroll lines (3 or -3 by default in Windows)
+			public void mouseScrolled(MouseEvent e) {
+				System.out.println("MouseWheelListener "+ e.x +" "+ e.y +" " +e.count);
+				
+			}
+			
+			
 		});
 
 		overlayManager = new OverlayManager(channelNr, this);

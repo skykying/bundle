@@ -223,7 +223,7 @@
     <module>IDE/document</module>
     <module>IDE/device</module>
     <module>IDE/debug</module>
-    <!-- <module>IDE/sftp</module> -->
+    <module>common</module>
     <module>IDE/toolchain</module>   
     <module>IDE/sdk</module>
     <module>IDE/project</module>

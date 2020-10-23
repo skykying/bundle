@@ -13,5 +13,16 @@
          </description>
       </factory>
    </extension>
+   <extension
+         point="org.panda.logicanalyzer.core.dataSourceFactory">
+      <factory
+            class="org.panda.logicanalyzer.deviceintegration.internal.UsbDeviceDataSource$DeviceDataSourceFactory"
+            id="org.panda.logicanalyzer.deviceintegration.internal.UsbDeviceDataSource"
+            name="Usb Device">
+         <description>
+            Use a device to capture data. Such a usb device.
+         </description>
+      </factory>
+   </extension>
 
 </plugin>

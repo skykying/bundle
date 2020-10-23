@@ -13,7 +13,15 @@ import gnu.io.UnsupportedCommOperationException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 import java.util.Map;
+
+import javax.usb.UsbDevice;
+import javax.usb.UsbDeviceDescriptor;
+import javax.usb.UsbException;
+import javax.usb.UsbHostManager;
+import javax.usb.UsbHub;
+import javax.usb.UsbServices;
 
 import org.panda.logicanalyzer.core.pipeline.IDataPacket;
 import org.panda.logicanalyzer.core.pipeline.IDataSource;
@@ -38,6 +46,8 @@ public class ComDeviceDataSource implements IDataSource {
 
 		@Override
 		public IDataSource createSource(Map<String, Object> configuration) throws CoreException {
+		
+			
 			if (!(configuration.get("device") instanceof IDevice)) {
 				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Device is mandatory in data source configuration");
 				throw new CoreException(status);
@@ -86,7 +96,7 @@ public class ComDeviceDataSource implements IDataSource {
 		this.baudRate = baudRate;
 	}
 
-
+    
 	@Override
 	public IDataPacket run() throws CoreException {
 
