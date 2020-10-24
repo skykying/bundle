@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class RedisServer extends AbstractRedisInstance {
-    private static final String REDIS_READY_PATTERN = ".*The server is now ready to accept connections on port.*";
+    private static final String REDIS_READY_PATTERN = "Ready to accept connections";
     private static final int DEFAULT_REDIS_PORT = 6379;
 
     public RedisServer() throws IOException {
@@ -19,6 +19,7 @@ public class RedisServer extends AbstractRedisInstance {
         File executable = EclipseExecProvider.defaultProvider().get();
         this.args = Arrays.asList(
                 executable.getAbsolutePath(),
+//                "--service-install --service-name redis-server-eclipse",
                 "--port", Integer.toString(port)
         );
 	}
@@ -27,6 +28,7 @@ public class RedisServer extends AbstractRedisInstance {
         super(port);
         this.args = Arrays.asList(
                 executable.getAbsolutePath(),
+//                "--service-install --service-name redis-server-eclipse",
                 "--port", Integer.toString(port)
         );
     }
@@ -35,6 +37,7 @@ public class RedisServer extends AbstractRedisInstance {
         super(port);
         this.args = Arrays.asList(
                 redisExecProvider.get().getAbsolutePath(),
+//                "--service-install --service-name redis-server-eclipse",
                 "--port", Integer.toString(port)
         );
     }

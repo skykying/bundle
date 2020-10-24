@@ -3,6 +3,7 @@ package redis.embedded;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.Map;
 
 import org.eclipse.core.runtime.FileLocator;
@@ -28,19 +29,27 @@ public class EclipseExecProvider implements IExecProvider {
 	    }
 	    
 	    private EclipseExecProvider() {
-	        initExecutables();
+	        try {
+				initExecutables();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 	    }
 
-	    private void initExecutables() {
+	    private void initExecutables() throws IOException {
+	    	String s = System.getProperty("file.separator");
+	    	String xpath = getPath("Redis-x64-5.0.9"+s+"redis-server.exe");
 	    	
-	        executables.put(OsArchitecture.WINDOWS_x86, getPath("redis-server-2.8.19.exe"));
-	        executables.put(OsArchitecture.WINDOWS_x86_64, getPath("redis-server-2.8.19.exe"));
+	        executables.put(OsArchitecture.WINDOWS_x86, xpath);
+	        executables.put(OsArchitecture.WINDOWS_x86_64, xpath);
+	        
+	        xpath = getPath("redis-server-2.8.19-32");
+	        executables.put(OsArchitecture.UNIX_x86, xpath);
+	        executables.put(OsArchitecture.UNIX_x86_64, xpath);
 
-	        executables.put(OsArchitecture.UNIX_x86, getPath("redis-server-2.8.19-32"));
-	        executables.put(OsArchitecture.UNIX_x86_64, getPath("redis-server-2.8.19"));
-
-	        executables.put(OsArchitecture.MAC_OS_X_x86, getPath("redis-server-2.8.19.app"));
-	        executables.put(OsArchitecture.MAC_OS_X_x86_64, getPath("redis-server-2.8.19.app"));
+	        xpath = getPath("redis-server-2.8.19.app");
+	        executables.put(OsArchitecture.MAC_OS_X_x86, xpath);
+	        executables.put(OsArchitecture.MAC_OS_X_x86_64, xpath);
 	    }
 
 	    public EclipseExecProvider override(OS os, String executable) {
@@ -69,11 +78,19 @@ public class EclipseExecProvider implements IExecProvider {
 	    }
 
 	    
-	    private String getPath(String name) {
+	    private String getPath(String name) throws IOException {
 	    	String s = System.getProperty("file.separator");
+	    	
 	    	Bundle bundle = FrameworkUtil.getBundle(EclipseExecProvider.class);
 	    	Path repath = new Path("resources" + s + name.strip());
-	    	return FileLocator.find(bundle, repath).getFile();
+	    	
+	    	URL url = FileLocator.find(bundle, repath);
+	    	URL fileUrl = FileLocator.toFileURL(url);
+	    	File file = new File(fileUrl.getFile());
+	    	System.out.println("!!!!! "+file.getAbsolutePath());
+	    	
+	    	
+	    	return file.getAbsolutePath();
 	    }
 	    
 	    private boolean fileExists(String executablePath) {

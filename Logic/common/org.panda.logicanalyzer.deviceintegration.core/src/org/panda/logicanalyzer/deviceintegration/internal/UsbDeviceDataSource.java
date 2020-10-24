@@ -170,6 +170,7 @@ public class UsbDeviceDataSource implements IDataSource {
 			} finally {
 				port.close();
 			}
+			
 		} catch (PortInUseException e) {
 			IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Port (" + portName + ") is already in use", e);
 			throw new CoreException(status);

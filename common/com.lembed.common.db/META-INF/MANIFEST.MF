@@ -11,3 +11,8 @@ Require-Bundle: org.eclipse.core.runtime,
 Bundle-RequiredExecutionEnvironment: JavaSE-11
 Automatic-Module-Name: com.lembed.common.db
 Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: jars/commons-pool2-2.9.0.jar,
+ jars/slf4j-api-1.7.26.jar,
+ .
+Export-Package: redis.clients.jedis,
+ redis.embedded

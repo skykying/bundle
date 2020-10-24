@@ -159,20 +159,20 @@ public class ChannelVisualizer extends Canvas {
 				if (resetSelection) {
 					setSelection(-1, -1, true);
 				}
-				System.out.println("mouseUp");
+				//System.out.println("mouseUp");
 			}
 
 			@Override
 			public void mouseDown(MouseEvent e) {
 				selectionStart = e.x;
-				System.out.println("mouseDown");
+				//System.out.println("mouseDown");
 			}
 
 		});
 		addMouseMoveListener(new MouseMoveListener() {
 
 			public void mouseMove(MouseEvent e) {
-				System.out.println("MouseMoveListener");
+				//System.out.println("MouseMoveListener");
 				if (selectionStart >= 0) {
 					long from = selectionStart * nsPerPixel;
 					long to = e.x * nsPerPixel;
@@ -186,7 +186,7 @@ public class ChannelVisualizer extends Canvas {
 			
 			//"Count" here means number of scroll lines (3 or -3 by default in Windows)
 			public void mouseScrolled(MouseEvent e) {
-				System.out.println("MouseWheelListener "+ e.x +" "+ e.y +" " +e.count);
+				//System.out.println("MouseWheelListener "+ e.x +" "+ e.y +" " +e.count);
 				
 			}
 			

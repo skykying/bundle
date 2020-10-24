@@ -1,8 +1,11 @@
 package org.panda.logicanalyzer.ui.pipeline;
 
+import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
 import javax.usb.UsbDevice;
 import javax.usb.UsbDeviceDescriptor;
@@ -17,6 +20,8 @@ import org.panda.logicanalyzer.core.pipeline.IDataSink;
 import org.panda.logicanalyzer.core.pipeline.IFilter;
 import org.panda.logicanalyzer.core.pipeline.IPipeline;
 
+import redis.clients.jedis.Jedis;
+import redis.embedded.RedisServer;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -36,6 +41,20 @@ public class ProgressMonitorPipelineExecutor implements IRunnableWithProgress {
 		this.pipeline = pipeline;
 	}
 
+	
+	public void makeDB() throws IOException {
+		RedisServer redisServer = new RedisServer(6379);
+		redisServer.start();
+		// do some work
+		
+		Jedis jedis = new Jedis("localhost", 6379);
+		jedis.set("foo", "bar");
+
+		String value = jedis.get("foo");
+		System.out.println("^^^^^^^^^^^^ "+value);
+		
+		redisServer.stop();
+	}
 	/**
      * Dumps the specified device and its sub devices.
      * 
@@ -63,10 +82,8 @@ public class ProgressMonitorPipelineExecutor implements IRunnableWithProgress {
         	try {
 				dumpName(device);
 			} catch (UnsupportedEncodingException e) {
-				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			} catch (UsbException e) {
-				// TODO Auto-generated catch block
 				//e.printStackTrace();
 			}
         }
@@ -99,12 +116,19 @@ public class ProgressMonitorPipelineExecutor implements IRunnableWithProgress {
 
 		monitor.beginTask("Executing pipeline", IProgressMonitor.UNKNOWN);
 		
-		try {
-			dusb();
-		} catch (UsbException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+		ExecutorService executor = Executors.newSingleThreadExecutor();
+        executor.submit(()->{
+    		try {
+    			makeDB();
+    			dusb();
+    		} catch (UsbException e1) {
+    			e1.printStackTrace();
+    		} catch (IOException e) {
+    			e.printStackTrace();
+    		}
+        });
+        
+
 		try {
 
 			if (pipeline == null) {

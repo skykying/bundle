@@ -52,8 +52,10 @@ abstract class AbstractRedisInstance implements Redis {
     }
 
     private void awaitRedisServerReady() throws IOException {
-        BufferedReader reader = new BufferedReader(new InputStreamReader(redisProcess.getInputStream()));
-        try {
+        
+        try(
+        	BufferedReader reader = new BufferedReader(new InputStreamReader(redisProcess.getInputStream()));
+        ) {
             String outputLine;
             do {
                 outputLine = reader.readLine();
@@ -61,10 +63,9 @@ abstract class AbstractRedisInstance implements Redis {
                     //Something goes wrong. Stream is ended before server was activated.
                     throw new RuntimeException("Can't start redis server. Check logs for details.");
                 }
-            } while (!outputLine.matches(redisReadyPattern()));
-        } finally {
-            IOUtils.closeQuietly(reader);
-        }
+                System.out.println(outputLine);
+            } while (!outputLine.contains(redisReadyPattern()));
+        } 
     }
 
     protected abstract String redisReadyPattern();
