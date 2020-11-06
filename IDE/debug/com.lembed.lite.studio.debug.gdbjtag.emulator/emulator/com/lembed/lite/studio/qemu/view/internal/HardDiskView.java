@@ -8,6 +8,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import com.lembed.lite.studio.qemu.view.internal.swt.IDeviceView;
+
 public class HardDiskView extends JFileChooserView {
 
     private static final long serialVersionUID = 1L;
@@ -78,6 +80,7 @@ public class HardDiskView extends JFileChooserView {
     private JButton okButton;
 
     private JButton eraseButton;
+
 
     public HardDiskView(String firstHardDiskOption, String secondHardDiskOption,
             String thirdHardDiskOption, String fourthHardDiskOption) {
@@ -223,6 +226,8 @@ public class HardDiskView extends JFileChooserView {
         jContentPane.add(this.okButton);
         jContentPane.add(this.eraseButton);
 
+
+        
         this.rechecks();
     }
 
@@ -360,4 +365,7 @@ public class HardDiskView extends JFileChooserView {
     public void changesFourthHardDiskOptionField(String text) {
         this.fourthHardDiskOptionField.setText(text);
     }
+    
+    
+
 }

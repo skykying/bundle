@@ -7,32 +7,32 @@ import com.lembed.lite.studio.qemu.view.internal.VMSavingView;
 
 public class VMSavingControl {
 
-    private VMSavingModel mymodel;
+    private VMSavingModel vMSavingModel;
 
-    private VMSavingView myview;
+    private VMSavingView vMSavingView;
 
     public VMSavingControl(JPanel jPanel) {
-        this.mymodel = new VMSavingModel();
-        this.myview = new VMSavingView(jPanel);
+        this.vMSavingModel = new VMSavingModel();
+        this.vMSavingView = new VMSavingView(jPanel);
     }
 
     public String getSavedVMPath() {
-        return this.mymodel.getSavedVMPath();
+        return this.vMSavingModel.getSavedVMPath();
     }
 
     public void setSavedVMPath(String savedVMPath) {
-        this.mymodel.setSavedVMPath(savedVMPath);
+        this.vMSavingModel.setSavedVMPath(savedVMPath);
     }
 
     public boolean chooseFile() {
-        return this.myview.chooseFile();
+        return this.vMSavingView.chooseFile();
     }
 
-    public VMSavingView getMyview() {
-        return myview;
+    public VMSavingView getView() {
+        return vMSavingView;
     }
 
     public void setVMSavingViewJPanel(JPanel jPanel) {
-        this.myview.setJpanel(jPanel);
+        this.vMSavingView.setJpanel(jPanel);
     }
 }

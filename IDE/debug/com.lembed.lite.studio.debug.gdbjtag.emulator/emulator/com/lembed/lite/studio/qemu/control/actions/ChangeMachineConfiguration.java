@@ -3,8 +3,6 @@ package com.lembed.lite.studio.qemu.control.actions;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import javax.swing.JTextArea;
-
 import com.lembed.lite.studio.qemu.control.EmulationControl;
 import com.lembed.lite.studio.qemu.control.FileControl;
 import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
@@ -18,11 +16,11 @@ public class ChangeMachineConfiguration implements BaseListener {
 	private EmulationControl emulationControl;
 	private FileControl fileControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
-	public ChangeMachineConfiguration(JQemuView jview) {
+	public ChangeMachineConfiguration(JQemuView jview, EmulationControl emulationControl, FileControl fileControl) {
 		view = jview;
 		view.registerListener(this);
-		emulationControl = null;
-		fileControl = null;
+		this.emulationControl = emulationControl;
+		this.fileControl = fileControl;
 		vMConfigurationControlist = new ArrayList<VMConfigurationControl>();
 	}
 
@@ -66,15 +64,5 @@ public class ChangeMachineConfiguration implements BaseListener {
 		}
 	}
 
-	public List<String> JTextAreaToArrayListOfStrings(JTextArea given) {
-		List<String> result = new ArrayList<String>();
-		if (given != null) {
-			String[] helper = given.getText().split("\n");
-			for (int i = 0; i < helper.length; i++) {
-				result.add(helper[i]);
-			}
-		}
-		return result;
-	}
 
 }

@@ -13,10 +13,10 @@ public class seeOutputsFromProcesses implements BaseListener {
 	private EmulationControl emulationControl;
 
 
-	public seeOutputsFromProcesses(JQemuView jview) {
+	public seeOutputsFromProcesses(JQemuView jview, EmulationControl emulationControl) {
 		view = jview;
 		view.registerListener(this);
-		emulationControl = null;
+		this.emulationControl = emulationControl;
 	}
 
 	public void starts() {

@@ -61,6 +61,11 @@ public class OpenExistingVM implements BaseListener {
 			if (fileControl == null) {
 				fileControl = new FileControl(view.getMyUntitledJPanel(), view);
 			}
+			
+			if (vMOpeningControl == null) {
+				vMOpeningControl = new VMOpeningControl(view, emulationControl, fileControl);
+			}
+			
 			fileControl.getFileview().setFileExtension(".xml");
 			fileControl.getFileview().setChoosertitle("Choose an existing JavaQemu VM file!");
 			fileControl.getFileview().setFileDescription("XML - JavaQemu VM Files");
@@ -71,9 +76,6 @@ public class OpenExistingVM implements BaseListener {
 					lastUsedFolderModel.setLastUsedFolder(LastUsedFolderEnumModel.OPENEXISTINGVM.getValor(),
 							fileControl.getFileview().getChooser().getCurrentDirectory().getAbsolutePath());
 
-					if (vMOpeningControl == null) {
-						vMOpeningControl = new VMOpeningControl(view, emulationControl, fileControl);
-					}
 					vMOpeningControl.starts(fileControl);
 					int position;
 					if (view.getActivePanel() == 0) {

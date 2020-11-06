@@ -17,15 +17,16 @@ public class SaveVM implements BaseListener {
 	private VMSavingControl vMSavingControl;
 	private LastUsedFolderModel lastUsedFolderModel;
 	
-	public SaveVM(JQemuView jview) {
+	public SaveVM(JQemuView jview, FileControl fileControl) {
 		view = jview;
 		view.registerListener(this);
-		fileControl = null;
+		
+		
+		this.fileControl = fileControl;
 
 		vMSavingControl = null;
 		String cls = LastUsedFolderModel.class.getName();
 		lastUsedFolderModel = (LastUsedFolderModel) Model.loadUserConfigurationLocally(cls);
-		
 
 	}
 
@@ -49,15 +50,14 @@ public class SaveVM implements BaseListener {
 		if (e.getActionCommand().equals("SaveVM")) {
 			if (vMSavingControl == null) {
 				vMSavingControl = new VMSavingControl(view.getSelectedPanel());
-			} else {
-				vMSavingControl.setVMSavingViewJPanel(view.getSelectedPanel());
-			}
+			} 
+			vMSavingControl.setVMSavingViewJPanel(view.getSelectedPanel());
 
-			vMSavingControl.getMyview().setCurrentDirectory(
+			vMSavingControl.getView().setCurrentDirectory(
 					lastUsedFolderModel.getLastUsedFolder(LastUsedFolderEnumModel.SAVEEXISTINGVM.getValor()));
 
 			if (vMSavingControl.chooseFile()) {
-				String result = vMSavingControl.getMyview().getChoice();
+				String result = vMSavingControl.getView().getChoice();
 				if (result.length() < 5) {
 					result += ".xml";
 				} else if (!result.substring(result.length() - 4).equals(".xml")) {
@@ -66,12 +66,11 @@ public class SaveVM implements BaseListener {
 				vMSavingControl.setSavedVMPath(result);
 
 				lastUsedFolderModel.setLastUsedFolder(LastUsedFolderEnumModel.SAVEEXISTINGVM.getValor(),
-						vMSavingControl.getMyview().getChooser().getCurrentDirectory().getAbsolutePath());
+						vMSavingControl.getView().getChooser().getCurrentDirectory().getAbsolutePath());
 
 				fileControl.getFilemodel().saveToXML(vMSavingControl.getSavedVMPath());
 			}
 		}
 	}
-
 
 }

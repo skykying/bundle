@@ -73,21 +73,26 @@ public class CreateNewVM implements BaseListener {
 				view.showMessage("Please, configure the required options first!\n"
 						+ "Please, configure the path of the qemu-img executable first!");
 				configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
-			} else if (configurationControl.getQemu_img_executable_path() == null
+			} 
+			
+			if (configurationControl.getQemu_img_executable_path() == null
 					|| configurationControl.getQemu_img_executable_path().getText().isEmpty()) {
 				view.showMessage("Please, configure the path of the qemu-img executable first!");
 				configurationControl.do_my_view_visible();
 
-			} else if (configurationControl.getDefault_virtual_machines_path().isEmpty()) {
+			} 
+			
+			if (configurationControl.getDefault_virtual_machines_path().isEmpty()) {
 				view.showMessage("Please, configure the path of the default Virtual Machines first!");
 				configurationControl.do_my_view_visible();
-			} else {
-				vMCreationControl = new VMCreationControl(diskCreationControl,
+			} 
+			
+			vMCreationControl = new VMCreationControl(diskCreationControl,
 						configurationControl.getQemu_img_executable_path().getText(),
 						configurationControl.getDefault_virtual_machines_path(), view, fileControl, emulationControl,
 						vMConfigurationControlist);
-				vMCreationControl.starts();
-			}
+			vMCreationControl.starts();
+			
 		}
 		
 	}

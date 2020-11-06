@@ -16,10 +16,10 @@ public class ChangeMachineName implements BaseListener {
 	private JQemuView view;
 	private FileControl fileControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
-	public ChangeMachineName(JQemuView jview) {
+	public ChangeMachineName(JQemuView jview,FileControl fileControl) {
 		view = jview;
 		view.registerListener(this);
-		fileControl = null;
+		this.fileControl = fileControl;
 		vMConfigurationControlist = new ArrayList<VMConfigurationControl>();
 
 	}

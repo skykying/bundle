@@ -14,6 +14,7 @@ import com.lembed.lite.studio.qemu.control.Control;
 import com.lembed.lite.studio.qemu.view.DefaultEmulatorStore;
 import com.lembed.lite.studio.qemu.view.JQemuView;
 import com.lembed.lite.studio.qemu.view.SwtQBaseView;
+import com.lembed.lite.studio.qemu.view.internal.swt.VNCDisplayView;
 import com.lembed.lite.studio.ui.awt.Platform;
 import com.lembed.lite.studio.ui.awt.SwingComponentConstructor;
 
@@ -76,7 +77,9 @@ public class JavaQemuView extends ViewPart{
 
 						@Override
 						public JComponent createSwingComponent() {
-							JQemuComponent view = new JQemuComponent();
+							
+							VNCDisplayView view = new VNCDisplayView(null);
+							//JQemuComponent view = new JQemuComponent();
 							
 							view.setBounds(vb.x, vb.y, vb.width, vb.height);
 							return view;

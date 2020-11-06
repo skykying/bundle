@@ -17,53 +17,53 @@ import com.lembed.lite.studio.qemu.view.internal.ConfigurationView;
 
 public class ConfigurationControl implements ActionListener {
 
-    private ConfigurationView myview;
+    private ConfigurationView configurationView;
 
-    private ConfigurationModel mymodel;
+    private ConfigurationModel configurationModel;
 
-    private FileControl myfile;
+    private FileControl fileControl;
 
-    private LastUsedFolderModel myLastUsedFolderModel;
+    private LastUsedFolderModel lastUsedFolderModel;
 
-    private LastUsedFileModel myLastUsedFileModel;
+    private LastUsedFileModel lastUsedFileModel;
 
     private Boolean isConfigured;
 
     public ConfigurationControl(LastUsedFolderModel myLastUsedFolderModel,
             LastUsedFileModel myLastUsedFileModel) {
-        this.myview = new ConfigurationView();
-        this.myview.setVisible(true);
-        this.myview.configureListener(this);
-        this.myview.configureStandardMode();
+        this.configurationView = new ConfigurationView();
+        this.configurationView.setVisible(true);
+        this.configurationView.configureListener(this);
+        this.configurationView.configureStandardMode();
 
-        this.myLastUsedFolderModel = myLastUsedFolderModel;
-        this.myLastUsedFileModel = myLastUsedFileModel;
-        this.mymodel = new ConfigurationModel(this.myLastUsedFolderModel, this.myLastUsedFileModel);
+        this.lastUsedFolderModel = myLastUsedFolderModel;
+        this.lastUsedFileModel = myLastUsedFileModel;
+        this.configurationModel = new ConfigurationModel(this.lastUsedFolderModel, this.lastUsedFileModel);
 
-        this.myfile = new FileControl(this.myview.getWindowContent(), null);
+        this.fileControl = new FileControl(this.configurationView.getWindowContent(), null);
 
-        if (Model.isValidString(this.myLastUsedFileModel.getLastUsedFile(
+        if (Model.isValidString(this.lastUsedFileModel.getLastUsedFile(
                 LastUsedFileEnumModel.LOADJAVAQEMUCONFIGURATIONFILE.getValor()))) {
-            if (Model.isValidString(this.myLastUsedFolderModel.getLastUsedFolder(
+            if (Model.isValidString(this.lastUsedFolderModel.getLastUsedFolder(
                     LastUsedFolderEnumModel.OPENEXISTINGJAVAQEMUCONFIGURATION.getValor()))) {
-                this.myfile.getFilemodel().readConfigurationFromXML(
-                        Model.combine(this.myLastUsedFolderModel.getLastUsedFolder(
+                this.fileControl.getFilemodel().readConfigurationFromXML(
+                        Model.combine(this.lastUsedFolderModel.getLastUsedFolder(
                                 LastUsedFolderEnumModel.OPENEXISTINGJAVAQEMUCONFIGURATION.getValor()),
-                                this.myLastUsedFileModel.getLastUsedFile(
+                                this.lastUsedFileModel.getLastUsedFile(
                                         LastUsedFileEnumModel.LOADJAVAQEMUCONFIGURATIONFILE.getValor())));
-                this.myfile.getFilemodel().getConfiguration(
-                        this.myview.getDefault_virtual_machines_path_choice(),
-                        this.myview.getExecute_before_start_qemu_choices(),
-                        this.myview.getQemu_executable_path_choice(),
-                        this.myview.getExecute_after_stop_qemu_choices(),
-                        this.myview.getQemu_img_executable_path_choice(),
-                        this.myview.getBios_vga_bios_keymaps_path_choice());
-                this.mymodel.setDefault_virtual_machines_path(this.myfile.getFilemodel().getDefaultVMPath());
-                this.mymodel.setExecute_before_start_qemu(this.myview.getExecute_before_start_qemu_choices());
-                this.mymodel.setQemu_executable_path(this.myview.getQemu_executable_path_choice());
-                this.mymodel.setExecute_after_stop_qemu(this.myview.getExecute_after_stop_qemu_choices());
-                this.mymodel.setQemu_img_executable_path(this.myview.getQemu_img_executable_path_choice());
-                this.mymodel.setBios_vga_bios_keymaps_path(this.myview.getBios_vga_bios_keymaps_path_choice());
+                this.fileControl.getFilemodel().getConfiguration(
+                        this.configurationView.getDefault_virtual_machines_path_choice(),
+                        this.configurationView.getExecute_before_start_qemu_choices(),
+                        this.configurationView.getQemu_executable_path_choice(),
+                        this.configurationView.getExecute_after_stop_qemu_choices(),
+                        this.configurationView.getQemu_img_executable_path_choice(),
+                        this.configurationView.getBios_vga_bios_keymaps_path_choice());
+                this.configurationModel.setDefault_virtual_machines_path(this.fileControl.getFilemodel().getDefaultVMPath());
+                this.configurationModel.setExecute_before_start_qemu(this.configurationView.getExecute_before_start_qemu_choices());
+                this.configurationModel.setQemu_executable_path(this.configurationView.getQemu_executable_path_choice());
+                this.configurationModel.setExecute_after_stop_qemu(this.configurationView.getExecute_after_stop_qemu_choices());
+                this.configurationModel.setQemu_img_executable_path(this.configurationView.getQemu_img_executable_path_choice());
+                this.configurationModel.setBios_vga_bios_keymaps_path(this.configurationView.getBios_vga_bios_keymaps_path_choice());
             }
         }
 
@@ -72,66 +72,66 @@ public class ConfigurationControl implements ActionListener {
 
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("ExitCommand")) {
-            this.myview.setVisible(false);
+            this.configurationView.setVisible(false);
         } else if (e.getActionCommand().equals("DirectoryChooser")) {
             this.setChoosertitle("JavaQemu Configuration - Choose the default VM directory!");
-            this.myview.setFileDescription("Default VM Directory");
-            if (this.myLastUsedFolderModel
+            this.configurationView.setFileDescription("Default VM Directory");
+            if (this.lastUsedFolderModel
                     .getLastUsedFolder(LastUsedFolderEnumModel.SETDEFAULTVMDIRECTORY
                             .getValor()) != null) {
-                if (!this.myLastUsedFolderModel.getLastUsedFolder(
+                if (!this.lastUsedFolderModel.getLastUsedFolder(
                         LastUsedFolderEnumModel.SETDEFAULTVMDIRECTORY
                         .getValor()).equals(".")) {
-                    this.myview
-                            .setCurrentDirectory(this.myLastUsedFolderModel
+                    this.configurationView
+                            .setCurrentDirectory(this.lastUsedFolderModel
                                     .getLastUsedFolder(LastUsedFolderEnumModel.SETDEFAULTVMDIRECTORY
                                             .getValor()));
-                } else if (this.myview.getDefault_virtual_machines_path_choice()
+                } else if (this.configurationView.getDefault_virtual_machines_path_choice()
                         .getText().isEmpty()) {
-                    this.myview.setCurrentDirectory(".");
+                    this.configurationView.setCurrentDirectory(".");
                 } else {
-                    this.myview.setCurrentDirectory(this.myview
+                    this.configurationView.setCurrentDirectory(this.configurationView
                             .getDefault_virtual_machines_path_choice()
                             .getText());
                 }
-            } else if (this.myview.getDefault_virtual_machines_path_choice()
+            } else if (this.configurationView.getDefault_virtual_machines_path_choice()
                     .getText().isEmpty()) {
-                this.myview.setCurrentDirectory(".");
+                this.configurationView.setCurrentDirectory(".");
             } else {
-                this.myview.setCurrentDirectory(this.myview
+                this.configurationView.setCurrentDirectory(this.configurationView
                         .getDefault_virtual_machines_path_choice()
                         .getText());
             }
 
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setDefault_virtual_machines_path(this.myview
+            if (this.configurationView.chooseDirectoryForDefaultVMPath()) {
+                this.configurationModel.setDefault_virtual_machines_path(this.configurationView
                         .getChoice());
             }
-            this.mymodel.setDefault_virtual_machines_option(true);
+            this.configurationModel.setDefault_virtual_machines_option(true);
         } else if (e.getActionCommand().equals("OK")) {
             boolean do_my_view_invisible = true;
-            if (this.mymodel.isDefault_virtual_machines_option()
-                    && !this.checks_if_JTextField_is_changed(this.myview
+            if (this.configurationModel.isDefault_virtual_machines_option()
+                    && !this.checks_if_JTextField_is_changed(this.configurationView
                             .getDefault_virtual_machines_path_choice(),
-                            this.mymodel.getDefault_virtual_machines_path())) {
-                if (this.myview.getChooser() != null) {
-                    this.mymodel.setDefault_virtual_machines_path(this.myview
+                            this.configurationModel.getDefault_virtual_machines_path())) {
+                if (this.configurationView.getChooser() != null) {
+                    this.configurationModel.setDefault_virtual_machines_path(this.configurationView
                             .getDefault_virtual_machines_path_choice()
                             .getText());
                 }
             }
             if (this.checks_if_JTextField_is_changed(
-                    this.myview.getDefault_virtual_machines_path_choice(),
-                    this.mymodel.getDefault_virtual_machines_path())) {
-                File file = new File(this.myview
+                    this.configurationView.getDefault_virtual_machines_path_choice(),
+                    this.configurationModel.getDefault_virtual_machines_path())) {
+                File file = new File(this.configurationView
                         .getDefault_virtual_machines_path_choice().getText());
                 if (file.isDirectory()) {
-                    this.mymodel
-                            .setDefault_virtual_machines_path_with_boolean(this.myview
+                    this.configurationModel
+                            .setDefault_virtual_machines_path_with_boolean(this.configurationView
                                     .getDefault_virtual_machines_path_choice()
                                     .getText());
                 } else {
-                    this.myview
+                    this.configurationView
                             .showMessage("Please, reconfigure the path of the default Virtual Machines first!\n"
                                     + "This path should be the path of a directory!\n"
                                     + "You can to cancel the configuration and the pending choices will be saved!");
@@ -139,165 +139,165 @@ public class ConfigurationControl implements ActionListener {
                 }
             }
 
-            this.mymodel.setExecute_before_start_qemu(this.myview
+            this.configurationModel.setExecute_before_start_qemu(this.configurationView
                     .getExecute_before_start_qemu_choices());
-            File file = new File(this.myview.getQemu_executable_path_choice()
+            File file = new File(this.configurationView.getQemu_executable_path_choice()
                     .getText());
             if (file.isFile()) {
-                this.mymodel.setQemu_executable_path(this.myview
+                this.configurationModel.setQemu_executable_path(this.configurationView
                         .getQemu_executable_path_choice());
             } else {
-                this.myview
+                this.configurationView
                         .showMessage("Please, reconfigure the path of the qemu executable first!\n"
                                 + "This path should be the path of a file!\n"
                                 + "You can to cancel the configuration and the pending choices will be saved!");
                 do_my_view_invisible = false;
             }
-            this.mymodel.setExecute_after_stop_qemu(this.myview
+            this.configurationModel.setExecute_after_stop_qemu(this.configurationView
                     .getExecute_after_stop_qemu_choices());
-            File anotherfile = new File(this.myview
+            File anotherfile = new File(this.configurationView
                     .getQemu_img_executable_path_choice().getText());
             if (anotherfile.isFile()) {
-                this.mymodel.setQemu_img_executable_path(this.myview
+                this.configurationModel.setQemu_img_executable_path(this.configurationView
                         .getQemu_img_executable_path_choice());
             } else {
-                this.myview
+                this.configurationView
                         .showMessage("Please, reconfigure the path of the qemu-img executable first!\n"
                                 + "This path should be the path of a file!\n"
                                 + "You can to cancel the configuration and the pending choices will be saved!");
                 do_my_view_invisible = false;
             }
 
-            if (this.mymodel.isBios_vga_bios_keymaps_option()
-                    && !this.checks_if_JTextField_is_changed(this.myview
+            if (this.configurationModel.isBios_vga_bios_keymaps_option()
+                    && !this.checks_if_JTextField_is_changed(this.configurationView
                             .getBios_vga_bios_keymaps_path_choice(),
-                            this.mymodel.getBios_vga_bios_keymaps_path().getText())) {
-                if (this.myview.getChooser() != null) {
-                    this.mymodel.setBios_vga_bios_keymaps_path(this.myview
+                            this.configurationModel.getBios_vga_bios_keymaps_path().getText())) {
+                if (this.configurationView.getChooser() != null) {
+                    this.configurationModel.setBios_vga_bios_keymaps_path(this.configurationView
                             .getBios_vga_bios_keymaps_path_choice());
                 }
             }
 
             if (do_my_view_invisible) {
-                this.myview.setVisible(false);
+                this.configurationView.setVisible(false);
                 if (!this.isConfigured) {
                     this.isConfigured = true;
                 }
 
-                if (this.myview.getJavaQemu_configuration_file_path() != null) {
-                    this.myfile.getFilemodel().setConfiguration(
-                            this.myview.getDefault_virtual_machines_path_choice(),
-                            this.myview.getExecute_before_start_qemu_choices(),
-                            this.myview.getQemu_executable_path_choice(),
-                            this.myview.getExecute_after_stop_qemu_choices(),
-                            this.myview.getQemu_img_executable_path_choice(),
-                            this.myview.getBios_vga_bios_keymaps_path_choice());
-                    this.myfile.getFilemodel().saveConfigurationToXML(
-                            this.myview.getJavaQemu_configuration_file_path());
+                if (this.configurationView.getJavaQemu_configuration_file_path() != null) {
+                    this.fileControl.getFilemodel().setConfiguration(
+                            this.configurationView.getDefault_virtual_machines_path_choice(),
+                            this.configurationView.getExecute_before_start_qemu_choices(),
+                            this.configurationView.getQemu_executable_path_choice(),
+                            this.configurationView.getExecute_after_stop_qemu_choices(),
+                            this.configurationView.getQemu_img_executable_path_choice(),
+                            this.configurationView.getBios_vga_bios_keymaps_path_choice());
+                    this.fileControl.getFilemodel().saveConfigurationToXML(
+                            this.configurationView.getJavaQemu_configuration_file_path());
                 }
             } else if (this.isConfigured) {
                 this.isConfigured = false;
             }
         } else if (e.getActionCommand().equals("Hide")) {
-            this.myview.setVisible(false);
+            this.configurationView.setVisible(false);
         } else if (e.getActionCommand().equals("QemuChooser")) {
             this.setChoosertitle("JavaQemu Configuration - Choose the qemu executable file!");
             if (Model
-                    .isValidString(this.myLastUsedFolderModel
+                    .isValidString(this.lastUsedFolderModel
                             .getLastUsedFolder(LastUsedFolderEnumModel.SETQEMUEXECUTABLEDIRECTORY
                                     .getValor()))) {
-                this.myview
-                        .setCurrentDirectory(this.myLastUsedFolderModel
+                this.configurationView
+                        .setCurrentDirectory(this.lastUsedFolderModel
                                 .getLastUsedFolder(LastUsedFolderEnumModel.SETQEMUEXECUTABLEDIRECTORY
                                         .getValor()));
             }
-            this.myview.setFileDescription("Qemu Executable File");
-            this.myview.chooseFile(true);
+            this.configurationView.setFileDescription("Qemu Executable File");
+            this.configurationView.chooseFile(true);
         } else if (e.getActionCommand().equals("QemuImgChooser")) {
             this.setChoosertitle("JavaQemu Configuration - Choose the qemu-img executable file!");
-            if (Model.isValidString(this.myLastUsedFolderModel.getLastUsedFolder(
+            if (Model.isValidString(this.lastUsedFolderModel.getLastUsedFolder(
                     LastUsedFolderEnumModel.SETQEMUIMGEXECUTABLEDIRECTORY.getValor()))) {
-                this.myview
-                        .setCurrentDirectory(this.myLastUsedFolderModel
+                this.configurationView
+                        .setCurrentDirectory(this.lastUsedFolderModel
                                 .getLastUsedFolder(LastUsedFolderEnumModel.SETQEMUIMGEXECUTABLEDIRECTORY.getValor()));
             }
-            this.myview.setFileDescription("Qemu-img Executable File");
-            this.myview.chooseFile(false);
+            this.configurationView.setFileDescription("Qemu-img Executable File");
+            this.configurationView.chooseFile(false);
         } else if (e.getActionCommand().equals("SaveConfiguration")) {
             this.setChoosertitle("JavaQemu Configuration - Choose the JavaQemu Configuration XML File!");
-            this.myview.setCurrentDirectory(
-                    this.myLastUsedFolderModel.getLastUsedFolder(
+            this.configurationView.setCurrentDirectory(
+                    this.lastUsedFolderModel.getLastUsedFolder(
                             LastUsedFolderEnumModel.SAVEEXISTINGJAVAQEMUCONFIGURATION.getValor())
             );
-            if (this.myview.chooseConfigurationFileToBeSaved()) {
-                this.myLastUsedFolderModel.setLastUsedFolder(
-                        LastUsedFolderEnumModel.SAVEEXISTINGJAVAQEMUCONFIGURATION.getValor(), (new File(this.myview.getJavaQemu_configuration_file_path())).getParent());
-                this.myfile.getFilemodel().setConfiguration(
-                        this.myview.getDefault_virtual_machines_path_choice(),
-                        this.myview.getExecute_before_start_qemu_choices(),
-                        this.myview.getQemu_executable_path_choice(),
-                        this.myview.getExecute_after_stop_qemu_choices(),
-                        this.myview.getQemu_img_executable_path_choice(),
-                        this.myview.getBios_vga_bios_keymaps_path_choice());
-                this.myfile.getFilemodel().saveConfigurationToXML(
-                        this.myview.getJavaQemu_configuration_file_path());
+            if (this.configurationView.chooseConfigurationFileToBeSaved()) {
+                this.lastUsedFolderModel.setLastUsedFolder(
+                        LastUsedFolderEnumModel.SAVEEXISTINGJAVAQEMUCONFIGURATION.getValor(), (new File(this.configurationView.getJavaQemu_configuration_file_path())).getParent());
+                this.fileControl.getFilemodel().setConfiguration(
+                        this.configurationView.getDefault_virtual_machines_path_choice(),
+                        this.configurationView.getExecute_before_start_qemu_choices(),
+                        this.configurationView.getQemu_executable_path_choice(),
+                        this.configurationView.getExecute_after_stop_qemu_choices(),
+                        this.configurationView.getQemu_img_executable_path_choice(),
+                        this.configurationView.getBios_vga_bios_keymaps_path_choice());
+                this.fileControl.getFilemodel().saveConfigurationToXML(
+                        this.configurationView.getJavaQemu_configuration_file_path());
             }
         } else if (e.getActionCommand().equals("OpenConfiguration")) {
             this.setChoosertitle("JavaQemu Configuration - Choose the JavaQemu Configuration XML File!");
-            this.myview.setCurrentDirectory(
-                    this.myLastUsedFolderModel.getLastUsedFolder(
+            this.configurationView.setCurrentDirectory(
+                    this.lastUsedFolderModel.getLastUsedFolder(
                             LastUsedFolderEnumModel.OPENEXISTINGJAVAQEMUCONFIGURATION.getValor())
             );
-            if (this.myview.chooseConfigurationFileToBeOpened()) {
-                this.myLastUsedFolderModel.setLastUsedFolder(
-                        LastUsedFolderEnumModel.OPENEXISTINGJAVAQEMUCONFIGURATION.getValor(), (new File(this.myview.getJavaQemu_configuration_file_path())).getParent());
-                this.myLastUsedFileModel.setLastUsedFile(
+            if (this.configurationView.chooseConfigurationFileToBeOpened()) {
+                this.lastUsedFolderModel.setLastUsedFolder(
+                        LastUsedFolderEnumModel.OPENEXISTINGJAVAQEMUCONFIGURATION.getValor(), (new File(this.configurationView.getJavaQemu_configuration_file_path())).getParent());
+                this.lastUsedFileModel.setLastUsedFile(
                         LastUsedFileEnumModel.LOADJAVAQEMUCONFIGURATIONFILE.getValor(),
-                        (new File(this.myview.getJavaQemu_configuration_file_path())).getName());
-                this.myfile.getFilemodel().readConfigurationFromXML(
-                        this.myview.getJavaQemu_configuration_file_path());
-                this.myfile.getFilemodel().getConfiguration(
-                        this.myview.getDefault_virtual_machines_path_choice(),
-                        this.myview.getExecute_before_start_qemu_choices(),
-                        this.myview.getQemu_executable_path_choice(),
-                        this.myview.getExecute_after_stop_qemu_choices(),
-                        this.myview.getQemu_img_executable_path_choice(),
-                        this.myview.getBios_vga_bios_keymaps_path_choice());
-                this.mymodel.setDefault_virtual_machines_path(this.myfile.getFilemodel().getDefaultVMPath());
-                this.mymodel.setExecute_before_start_qemu(this.myview.getExecute_before_start_qemu_choices());
-                this.mymodel.setQemu_executable_path(this.myview.getQemu_executable_path_choice());
-                this.mymodel.setExecute_after_stop_qemu(this.myview.getExecute_after_stop_qemu_choices());
-                this.mymodel.setQemu_img_executable_path(this.myview.getQemu_img_executable_path_choice());
-                this.mymodel.setBios_vga_bios_keymaps_path(this.myview.getBios_vga_bios_keymaps_path_choice());
+                        (new File(this.configurationView.getJavaQemu_configuration_file_path())).getName());
+                this.fileControl.getFilemodel().readConfigurationFromXML(
+                        this.configurationView.getJavaQemu_configuration_file_path());
+                this.fileControl.getFilemodel().getConfiguration(
+                        this.configurationView.getDefault_virtual_machines_path_choice(),
+                        this.configurationView.getExecute_before_start_qemu_choices(),
+                        this.configurationView.getQemu_executable_path_choice(),
+                        this.configurationView.getExecute_after_stop_qemu_choices(),
+                        this.configurationView.getQemu_img_executable_path_choice(),
+                        this.configurationView.getBios_vga_bios_keymaps_path_choice());
+                this.configurationModel.setDefault_virtual_machines_path(this.fileControl.getFilemodel().getDefaultVMPath());
+                this.configurationModel.setExecute_before_start_qemu(this.configurationView.getExecute_before_start_qemu_choices());
+                this.configurationModel.setQemu_executable_path(this.configurationView.getQemu_executable_path_choice());
+                this.configurationModel.setExecute_after_stop_qemu(this.configurationView.getExecute_after_stop_qemu_choices());
+                this.configurationModel.setQemu_img_executable_path(this.configurationView.getQemu_img_executable_path_choice());
+                this.configurationModel.setBios_vga_bios_keymaps_path(this.configurationView.getBios_vga_bios_keymaps_path_choice());
             }
         } else if (e.getActionCommand().equals("LDirectoryPathChooser")) {
             this.setChoosertitle("JavaQemu Configuration - Choose the directory for the BIOS, VGA BIOS and keymaps!");
-            this.myview.setCurrentDirectory(
-                    this.myLastUsedFolderModel.getLastUsedFolder(
+            this.configurationView.setCurrentDirectory(
+                    this.lastUsedFolderModel.getLastUsedFolder(
                             LastUsedFolderEnumModel.SETLOPTIONDIRECTORY.getValor()));
-            this.myview.setFileDescription("Directory for the BIOS, VGA BIOS and keymaps");
-            if (this.myview.chooseDirectoryForBiosVgaBiosKeymapsPath()) {
-                this.mymodel.setBios_vga_bios_keymaps_path(
-                        new JTextField(this.myview.getChoice()));
-                this.myLastUsedFolderModel.setLastUsedFolder(LastUsedFolderEnumModel.SETLOPTIONDIRECTORY.getValor(),
-                        this.myview.getChoice());
+            this.configurationView.setFileDescription("Directory for the BIOS, VGA BIOS and keymaps");
+            if (this.configurationView.chooseDirectoryForBiosVgaBiosKeymapsPath()) {
+                this.configurationModel.setBios_vga_bios_keymaps_path(
+                        new JTextField(this.configurationView.getChoice()));
+                this.lastUsedFolderModel.setLastUsedFolder(LastUsedFolderEnumModel.SETLOPTIONDIRECTORY.getValor(),
+                        this.configurationView.getChoice());
             }
-            this.mymodel.setBios_vga_bios_keymaps_option(true);
+            this.configurationModel.setBios_vga_bios_keymaps_option(true);
         }
     }
 
     public void do_my_view_visible() {
-        this.myview.setVisible(true);
+        this.configurationView.setVisible(true);
     }
 
     public void setQemu_executable_path() {
-        this.mymodel.setQemu_executable_path(this.myview
+        this.configurationModel.setQemu_executable_path(this.configurationView
                 .getQemu_executable_path_choice());
     }
 
     public void setBios_vga_bios_keymaps_path() {
-        this.mymodel.setBios_vga_bios_keymaps_path(
-                this.myview.getBios_vga_bios_keymaps_path_choice());
+        this.configurationModel.setBios_vga_bios_keymaps_path(
+                this.configurationView.getBios_vga_bios_keymaps_path_choice());
     }
 
     public boolean checks_if_JTextField_is_changed(JTextField textField,
@@ -310,31 +310,31 @@ public class ConfigurationControl implements ActionListener {
     }
 
     public String getDefault_virtual_machines_path() {
-        return this.mymodel.getDefault_virtual_machines_path();
+        return this.configurationModel.getDefault_virtual_machines_path();
     }
 
     public JTextArea getExecute_before_start_qemu() {
-        return this.mymodel.getExecute_before_start_qemu();
+        return this.configurationModel.getExecute_before_start_qemu();
     }
 
     public JTextField getQemu_executable_path() {
-        return this.mymodel.getQemu_executable_path();
+        return this.configurationModel.getQemu_executable_path();
     }
 
     public JTextField getQemu_img_executable_path() {
-        return this.mymodel.getQemu_img_executable_path();
+        return this.configurationModel.getQemu_img_executable_path();
     }
 
     public JTextArea getExecute_after_stop_qemu() {
-        return this.mymodel.getExecute_after_stop_qemu();
+        return this.configurationModel.getExecute_after_stop_qemu();
     }
 
     public JTextField getBios_vga_bios_keymaps_path() {
-        return this.mymodel.getBios_vga_bios_keymaps_path();
+        return this.configurationModel.getBios_vga_bios_keymaps_path();
     }
 
     public void setChoosertitle(String title) {
-        this.myview.setChoosertitle(title);
+        this.configurationView.setChoosertitle(title);
     }
 
     public Boolean getIsConfigured() {

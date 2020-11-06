@@ -1,13 +1,6 @@
 package com.lembed.lite.studio.qemu.view;
 
 
-import java.util.List;
-
-/**
- * An analysis result can transform itself to several different
- * formats. This interface is used to provide a generic access
- * and frontend to analysis results.
- */
 public interface IemultorStore {
 
 	/**

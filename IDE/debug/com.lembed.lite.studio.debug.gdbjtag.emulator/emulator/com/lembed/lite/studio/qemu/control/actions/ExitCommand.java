@@ -19,6 +19,7 @@ public class ExitCommand implements BaseListener {
 	private EmulationControl emulationControl;
 	private VMClosingControl vMClosingControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
+	
 	public ExitCommand(JQemuView jview, EmulationControl emulationControl) {
 		view = jview;
 		view.registerListener(this);
@@ -45,7 +46,7 @@ public class ExitCommand implements BaseListener {
 
 	private void doAction(BaseEvent e) {
 		if (e.getActionCommand().equals("ExitCommand")) {
-			// System.exit(0);
+
 			boolean runFurther = view.getSizeOfJTabbedPane() > 1;
 			for (int i = 1; i < view.getSizeOfJTabbedPane(); i++) {
 				vMConfigurationControlist.remove(i);
@@ -54,10 +55,10 @@ public class ExitCommand implements BaseListener {
 			if (runFurther) {
 				if (vMClosingControl == null) {
 					vMClosingControl = new VMClosingControl(view, emulationControl);
-				} else {
-					vMClosingControl.setView(view);
-					vMClosingControl.setMyemulation(emulationControl);
-				}
+				} 
+
+				vMClosingControl.setView(view);
+				vMClosingControl.setMyemulation(emulationControl);
 				vMClosingControl.starts(true);
 			}
 
@@ -72,7 +73,6 @@ public class ExitCommand implements BaseListener {
 
 					if (++n == 2) {
 						timer.cancel();
-						System.exit(0);
 					}
 				}
 			}, 1000, 1000);

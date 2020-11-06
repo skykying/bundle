@@ -298,11 +298,11 @@ public class Control implements BaseListener {
 				vMSavingControl.setVMSavingViewJPanel(view.getSelectedPanel());
 			}
 
-			vMSavingControl.getMyview().setCurrentDirectory(
+			vMSavingControl.getView().setCurrentDirectory(
 					lastUsedFolderModel.getLastUsedFolder(LastUsedFolderEnumModel.SAVEEXISTINGVM.getValor()));
 
 			if (vMSavingControl.chooseFile()) {
-				String result = vMSavingControl.getMyview().getChoice();
+				String result = vMSavingControl.getView().getChoice();
 				if (result.length() < 5) {
 					result += ".xml";
 				} else if (!result.substring(result.length() - 4).equals(".xml")) {
@@ -311,7 +311,7 @@ public class Control implements BaseListener {
 				vMSavingControl.setSavedVMPath(result);
 
 				lastUsedFolderModel.setLastUsedFolder(LastUsedFolderEnumModel.SAVEEXISTINGVM.getValor(),
-						vMSavingControl.getMyview().getChooser().getCurrentDirectory().getAbsolutePath());
+						vMSavingControl.getView().getChooser().getCurrentDirectory().getAbsolutePath());
 
 				fileControl.getFilemodel().saveToXML(vMSavingControl.getSavedVMPath());
 			}

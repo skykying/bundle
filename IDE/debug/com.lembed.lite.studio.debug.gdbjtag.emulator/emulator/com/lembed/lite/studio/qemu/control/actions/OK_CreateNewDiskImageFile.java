@@ -15,7 +15,6 @@ public class OK_CreateNewDiskImageFile implements BaseListener {
 		view = jview;
 		view.registerListener(this);
 		this.diskCreationControl = diskCreationControl;
-
 	}
 
 	public void starts() {

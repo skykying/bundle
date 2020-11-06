@@ -49,13 +49,15 @@ public class CloseVM implements BaseListener {
 			} else {
 				position = view.getActivePanel();
 			}
+			
 			vMConfigurationControlist.remove(position);
 			if (vMClosingControl == null) {
 				vMClosingControl = new VMClosingControl(view, emulationControl);
-			} else {
-				vMClosingControl.setView(view);
-				vMClosingControl.setMyemulation(emulationControl);
-			}
+			} 
+			
+			vMClosingControl.setView(view);
+			vMClosingControl.setMyemulation(emulationControl);
+			
 			vMClosingControl.starts(false);
 	
 		}

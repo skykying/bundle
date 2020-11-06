@@ -16,10 +16,10 @@ public class ConfigureCommand implements BaseListener {
 	private LastUsedFolderModel lastUsedFolderModel;
 	private LastUsedFileModel lastUsedFileModel;
 
-	public ConfigureCommand(JQemuView jview) {
+	public ConfigureCommand(JQemuView jview, ConfigurationControl configurationControl) {
 		view = jview;
 		view.registerListener(this);
-		configurationControl = null;
+		this.configurationControl = configurationControl;
 
 		String cls = LastUsedFolderModel.class.getName();
 		lastUsedFolderModel = (LastUsedFolderModel) Model.loadUserConfigurationLocally(cls);
