@@ -1,5 +1,4 @@
 
 syntax: glob
 
-.settings
-target
+/target
