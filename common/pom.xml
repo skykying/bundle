@@ -27,6 +27,7 @@
 
   <modules>
     <module>com.lembed.common.db</module>
+    <module>com.lembed.common.opengl</module>
   </modules>
 
 </project>

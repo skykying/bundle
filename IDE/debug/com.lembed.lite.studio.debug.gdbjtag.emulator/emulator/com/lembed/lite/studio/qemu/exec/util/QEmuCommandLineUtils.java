@@ -24,16 +24,20 @@ public class QEmuCommandLineUtils {
     @CheckForNull
     public static UUID getUuid(@Nonnull QEmuCommandLine commandLine) {
         QEmuIdOption idOption = commandLine.getOption(QEmuIdOption.class);
-        if (idOption == null)
+        if (idOption == null) {
             return null;
+        }
+        
         return idOption.getUuid();
     }
 
     @CheckForNull
     public static InetSocketAddress getMonitorAddress(@Nonnull QEmuCommandLine commandLine) {
         QEmuMonitorOption monitorOption = commandLine.getOption(QEmuMonitorOption.class);
-        if (monitorOption == null)
+        if (monitorOption == null) {
             return null;
+        }
+        
         String monitorChardev = monitorOption.chardev;
         for (QEmuChardevOption chardevOption : commandLine.getOptions(QEmuChardevOption.class)) {
             if (chardevOption.id.equals(monitorChardev)) {

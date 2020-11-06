@@ -1,22 +1,22 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?artifactRepository version='1.1.0'?>
 <artifacts size='3'>
-  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010240731'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010241635'>
     <properties size='5'>
-      <property name='artifact.size' value='1294491'/>
-      <property name='download.size' value='1294491'/>
+      <property name='artifact.size' value='1294492'/>
+      <property name='download.size' value='1294492'/>
       <property name='maven-groupId' value='com.lembed.lite.studio'/>
       <property name='maven-artifactId' value='org.panda.logicanalyzer.io'/>
       <property name='maven-version' value='2.1.7-SNAPSHOT'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010240731'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io' version='2.1.7.202010241635'>
     <processing size='1'>
       <step id='org.eclipse.equinox.p2.processing.Pack200Unpacker' required='true'/>
     </processing>
     <properties size='8'>
-      <property name='artifact.size' value='1294491'/>
-      <property name='download.size' value='1133457'/>
+      <property name='artifact.size' value='1294492'/>
+      <property name='download.size' value='1132641'/>
       <property name='format' value='packed'/>
       <property name='maven-version' value='2.1.7-SNAPSHOT'/>
       <property name='maven-artifactId' value='org.panda.logicanalyzer.io'/>
@@ -25,10 +25,10 @@
       <property name='maven-classifier' value='pack200'/>
     </properties>
   </artifact>
-  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io.source' version='2.1.7.202010240731'>
+  <artifact classifier='osgi.bundle' id='org.panda.logicanalyzer.io.source' version='2.1.7.202010241635'>
     <properties size='6'>
-      <property name='artifact.size' value='262026'/>
-      <property name='download.size' value='262026'/>
+      <property name='artifact.size' value='262027'/>
+      <property name='download.size' value='262027'/>
       <property name='maven-groupId' value='com.lembed.lite.studio'/>
       <property name='maven-artifactId' value='org.panda.logicanalyzer.io'/>
       <property name='maven-version' value='2.1.7-SNAPSHOT'/>

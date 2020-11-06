@@ -38,6 +38,9 @@ public class EmulatorPlugin extends AbstractUIActivator {
 	public static String icon_refresh="dlcl16/restart_co.gif";
 	
 	public static final String ICONS_PATH = "icons/"; //$NON-NLS-1$
+
+	public static final String ICON_FILE = "dlcl16/restart_co.gif"; //$NON-NLS-1$
+	
 	private static HashMap<String, Image> images = new HashMap<String, Image>();
 	private static HashMap<String, ImageDescriptor> imageDescriptors = new HashMap<String, ImageDescriptor>();
 	
@@ -67,6 +70,7 @@ public class EmulatorPlugin extends AbstractUIActivator {
 		super.stop(context);
 	}
 
-	
+
+
 	// ------------------------------------------------------------------------
 }

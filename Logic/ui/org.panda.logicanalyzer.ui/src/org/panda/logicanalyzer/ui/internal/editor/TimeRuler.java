@@ -10,13 +10,20 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.graphics.Rectangle;
+import org.eclipse.swt.opengl.GLCanvas;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.swt.widgets.Composite;
+
+
+
 
 /**
  * The time ruler provides a time scale display.
  */
 public class TimeRuler extends Canvas {
+	
+	
+	GLCanvas gl;
 
 	/**
 	 * The scale of this time ruler in nanoseconds per pixel
@@ -43,6 +50,8 @@ public class TimeRuler extends Canvas {
 
 		bg = new Color(getDisplay(), 45, 36, 34);
 		grid = new Color(getDisplay(), 117, 101, 96);
+		
+
 
 		addPaintListener(new PaintListener() {
 
@@ -91,7 +100,7 @@ public class TimeRuler extends Canvas {
 			gc.setForeground(grid);
 			gc.drawString(String.valueOf("[" + unit.getShortname() + "]"), 2, (int) (height * 0.1));
 		}
-
+		
 		/*
 		 * This still is a very uncool way of handling the asynchronity since if we have to draw a lot
 		 * of channels, we'll create a lot of threads.

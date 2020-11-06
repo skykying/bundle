@@ -12,7 +12,7 @@ public class RedisServer extends AbstractRedisInstance {
 
     public RedisServer() throws IOException {
         this(DEFAULT_REDIS_PORT);
-    }
+    } 
 
     public RedisServer(int port) throws IOException {
         super(port);

@@ -29,11 +29,11 @@ public class BootControl implements ActionListener {
                 || bootFileControl.getFilemodel().getBootSplashTime() != null
                 || bootFileControl.getFilemodel().getBootRebootTimeout() != null
                 || bootFileControl.getFilemodel().getBootStrict() != null) {
-            this.bootModel.buildIt(this.bootModel.buildOrderOrOnce(
+            this.bootModel.buildIt(bootModel.buildOrderOrOnce(
                     (String) bootView.getFirstOrder().getSelectedItem(),
                     (String) bootView.getSecondOrder().getSelectedItem(),
                     (String) bootView.getThirdOrder().getSelectedItem()),
-                    this.bootModel.buildOrderOrOnce((String) bootView
+                    bootModel.buildOrderOrOnce((String) bootView
                             .getFirstOnce().getSelectedItem(),
                             (String) bootView.getSecondOnce()
                             .getSelectedItem(), (String) bootView
@@ -43,8 +43,8 @@ public class BootControl implements ActionListener {
                     .buildString(bootView.getSplashTime(),
                             bootView.getEditor1().getTextField()
                             .getText().replace(".", "")
-                            .replace(",", ".")), this
-                    .buildString(bootView.getRebootTimeout(),
+                            .replace(",", ".")), 
+                    buildString(bootView.getRebootTimeout(),
                             bootView.getEditor2().getTextField()
                             .getText().replace(".", "")
                             .replace(",", ".")),
@@ -156,12 +156,12 @@ public class BootControl implements ActionListener {
                             .getSelectedItem(), (String) bootView
                             .getThirdOnce().getSelectedItem()),
                     (String) bootView.getMenu().getSelectedItem(),
-                    (String) bootView.getSplashName().getText(), this
-                    .buildString(bootView.getSplashTime(),
+                    (String) bootView.getSplashName().getText(), 
+                    buildString(bootView.getSplashTime(),
                             bootView.getEditor1().getTextField()
                             .getText().replace(".", "")
-                            .replace(",", ".")), this
-                    .buildString(bootView.getRebootTimeout(),
+                            .replace(",", ".")), 
+                    buildString(bootView.getRebootTimeout(),
                             bootView.getEditor2().getTextField()
                             .getText().replace(".", "")
                             .replace(",", ".")),
@@ -177,11 +177,14 @@ public class BootControl implements ActionListener {
                 bootFileControl.getFilemodel().setBootOrder1("");
             }
 
-            if (!((String) bootView.getSecondOrder().getSelectedItem())
-                    .isEmpty()) {
-                bootFileControl.getFilemodel().setBootOrder2(
-                        ((String) bootView.getSecondOrder()
-                        .getSelectedItem()).substring(0, 1));
+            
+           String item = (String) bootView.getSecondOrder().getSelectedItem();
+            if (!item.isEmpty()) {
+            	
+            	String oitem =  (String) bootView.getSecondOrder().getSelectedItem();
+            	oitem = oitem.substring(0, 1);
+            	
+                bootFileControl.getFilemodel().setBootOrder2(oitem);
             } else {
                 bootFileControl.getFilemodel().setBootOrder2("");
             }
@@ -227,18 +230,18 @@ public class BootControl implements ActionListener {
             bootFileControl.getFilemodel().setBootMenu(
                     (String) bootView.getMenu().getSelectedItem());
 
-            this.bootFileControl.getFilemodel().setBootSplash(
+           bootFileControl.getFilemodel().setBootSplash(
                     bootView.getSplashName().getText());
 
-            this.bootFileControl.getFilemodel().setBootSplashTime(
-                    this.buildString(bootView.getSplashTime(), bootView
+            bootFileControl.getFilemodel().setBootSplashTime(
+                    buildString(bootView.getSplashTime(), bootView
                             .getEditor1().getTextField().getText()));
 
-            this.bootFileControl.getFilemodel().setBootRebootTimeout(
-                    this.buildString(bootView.getRebootTimeout(),
+            bootFileControl.getFilemodel().setBootRebootTimeout(
+                    buildString(bootView.getRebootTimeout(),
                             bootView.getEditor2().getTextField().getText()));
 
-            this.bootFileControl.getFilemodel().setBootStrict(
+            bootFileControl.getFilemodel().setBootStrict(
                     (String) bootView.getStrict().getSelectedItem());
 
             bootView.setVisible(false);

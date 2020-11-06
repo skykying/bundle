@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: OpenGL
+Bundle-SymbolicName: com.lembed.common.opengl;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Activator: com.lembed.common.opengl.Activator
+Bundle-Vendor: LEMBED
+Bundle-RequiredExecutionEnvironment: JavaSE-11
+Automatic-Module-Name: com.lembed.common.opengl
+Bundle-ActivationPolicy: lazy
+Bundle-ClassPath: jars/lwjgl-3.2.3.jar,
+ jars/lwjgl-glfw-3.2.3.jar,
+ jars/lwjgl-opengl-3.2.3.jar,
+ .
+Export-Package: 
+ org.lwjgl,
+ org.lwjgl.glfw,
+ org.lwjgl.opengl
+Require-Bundle: org.eclipse.osgi

@@ -95,8 +95,11 @@ public class QApiConnection implements Closeable {
     @Nonnull
     public <Response extends QApiResponse<?>> Response invoke(@Nonnull QApiCommand<?, Response> command) throws IOException {
         String line = mapper.writeValueAsString(command);
-        if (LOG.isDebugEnabled())
+        
+        if (LOG.isDebugEnabled()) {
             LOG.debug(">>>" + line);
+        }
+        
         output.write(line);
         output.write('\n');
         output.flush();

@@ -15,40 +15,40 @@ public class NetworkDnssearchUserWorkerControl implements ActionListener {
     private List<String> myResults;
 
     public NetworkDnssearchUserWorkerControl(FileControl myfile, int position) {
-        this.mymodel = new NetworkDnssearchUserWorkerModel();
-        this.myview = new NetworkDnssearchUserWorkerView(myfile, position);
-        this.myview.configureListener(this);
-        this.myview.configureStandardMode();
+        mymodel = new NetworkDnssearchUserWorkerModel();
+        myview = new NetworkDnssearchUserWorkerView(myfile, position);
+        myview.configureListener(this);
+        myview.configureStandardMode();
         myResults = new ArrayList<String>();
     }
 
     public void change_my_visibility(boolean value) {
-        this.myview.setVisible(value);
+        myview.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("eraseButton")) {
-            this.myview.getDnssearch().setText("");
-            this.myview.getText().setText("");
-            this.myview.getOption().setText("");
-            this.myResults.clear();
-            this.myview.setVisible(false);
+            myview.getDnssearch().setText("");
+            myview.getText().setText("");
+            myview.getOption().setText("");
+            myResults.clear();
+            myview.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
-            this.myResults = this.mymodel.buildIt(this.myview.getDnssearch()
+            myResults = mymodel.buildIt(myview.getDnssearch()
                     .getText());
-            this.myview.setVisible(false);
+            myview.setVisible(false);
         } else if (e.getActionCommand().equals("add")) {
-            if (!this.myview.getText().getText().isEmpty()) {
-                this.myview.buildMe(this.myview.getText().getText());
+            if (!myview.getText().getText().isEmpty()) {
+                myview.buildMe(myview.getText().getText());
             }
         } else if (e.getActionCommand().equals("remove")) {
-            this.myview.removeMe(this.myview.getOption().getText());
+            myview.removeMe(myview.getOption().getText());
         }
     }
 
     public List<String> getMyResults() {
-        return this.myResults;
+        return myResults;
     }
 
 }

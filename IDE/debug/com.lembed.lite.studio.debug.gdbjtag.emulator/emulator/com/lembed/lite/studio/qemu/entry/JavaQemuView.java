@@ -11,7 +11,9 @@ import org.eclipse.ui.part.ViewPart;
 
 import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
 import com.lembed.lite.studio.qemu.control.Control;
+import com.lembed.lite.studio.qemu.view.DefaultEmulatorStore;
 import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.SwtQBaseView;
 import com.lembed.lite.studio.ui.awt.Platform;
 import com.lembed.lite.studio.ui.awt.SwingComponentConstructor;
 
@@ -44,8 +46,11 @@ public class JavaQemuView extends ViewPart{
 //				} catch (Exception e) {
 //					e.printStackTrace();
 //				}
-				main(args);
+				//main(args);
 //				VernacularViewer.main(args);
+				
+				
+				SwtQBaseView.openEditor(new DefaultEmulatorStore());
 			}
 			
 		};

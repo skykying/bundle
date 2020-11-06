@@ -5,7 +5,6 @@
  */
 package com.lembed.lite.studio.qemu.exec.recipe;
 
-import com.lembed.lite.studio.qemu.exec.QEmuCustomOption;
 import com.lembed.lite.studio.qemu.exec.QEmuDeviceOption;
 import com.lembed.lite.studio.qemu.exec.QEmuMachineOption;
 import com.lembed.lite.studio.qemu.exec.util.QEmuOptionsList;
@@ -17,7 +16,12 @@ import com.lembed.lite.studio.qemu.exec.util.QEmuOptionsList;
  */
 public class QEmuPerformanceRecipe extends QEmuOptionsList {
 
-    public QEmuPerformanceRecipe() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7735771824264514026L;
+
+	public QEmuPerformanceRecipe() {
         add(new QEmuMachineOption().withAcceleration(QEmuMachineOption.Acceleration.kvm, QEmuMachineOption.Acceleration.tcg));
         add(new QEmuDeviceOption.VirtioBalloon());
         // add(new QEmuCustomOption("-global", "virtio-blk-pci.scsi=off"));

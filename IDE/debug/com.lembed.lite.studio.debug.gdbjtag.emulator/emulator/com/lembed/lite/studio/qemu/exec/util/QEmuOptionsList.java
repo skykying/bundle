@@ -21,7 +21,12 @@ import com.lembed.lite.studio.qemu.exec.QEmuOption;
  */
 public class QEmuOptionsList extends ArrayList<QEmuOption> implements QEmuOption, QEmuOption.Container, QEmuIdAllocator.Consumer {
 
-    public QEmuOptionsList() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 7754676483372988585L;
+
+	public QEmuOptionsList() {
     }
 
     public QEmuOptionsList(Collection<? extends QEmuOption> c) {
@@ -34,15 +39,19 @@ public class QEmuOptionsList extends ArrayList<QEmuOption> implements QEmuOption
 
     @Override
     public void withAllocator(QEmuIdAllocator allocator) {
-        for (QEmuOption option : this)
-            if (option instanceof QEmuIdAllocator.Consumer)
+        for (QEmuOption option : this) {
+            if (option instanceof QEmuIdAllocator.Consumer) {
                 ((QEmuIdAllocator.Consumer) option).withAllocator(allocator);
+            }
+        }
     }
 
     @Override
     public void appendTo(List<? super String> line) {
-        for (QEmuOption option : this)
-            if (option != null)
+        for (QEmuOption option : this) {
+            if (option != null) {
                 option.appendTo(line);
+            }
+        }
     }
 }

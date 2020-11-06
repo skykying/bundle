@@ -20,7 +20,12 @@ import com.lembed.lite.studio.qemu.exec.util.QEmuOptionsList;
  */
 public class QEmuMonitorRecipe extends QEmuOptionsList implements QEmuRecipe {
 
-    public final QEmuChardevOption chardevOption;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8249082703797408187L;
+	
+	public final QEmuChardevOption chardevOption;
     public final QEmuMonitorOption monitorOption;
 
     /** Creates a QEmuMonitor on a given {@link CharDevice}. */

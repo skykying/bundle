@@ -62,8 +62,10 @@ public class QEmuIdAllocator {
     public String newPciAddresses(@Nonnegative int count, @Nonnull String separator) {
         StringBuilder buf = new StringBuilder();
         for (int i = 0; i < count; i++) {
-            if (i > 0)
+            if (i > 0) {
                 buf.append(separator);
+            }
+            
             buf.append(newPciAddress());
         }
         return buf.toString();

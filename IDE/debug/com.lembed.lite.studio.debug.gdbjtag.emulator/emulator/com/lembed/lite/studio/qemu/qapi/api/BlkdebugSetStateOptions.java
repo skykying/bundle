@@ -3,7 +3,6 @@ package com.lembed.lite.studio.qemu.qapi.api;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonUnwrapped;
 import com.lembed.lite.studio.qemu.qapi.common.*;
 
 import javax.annotation.CheckForNull;

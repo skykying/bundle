@@ -13,73 +13,73 @@ public class NetworkDumpWorkerControl implements ActionListener {
     private NetworkDumpWorkerView myview;
 
     public NetworkDumpWorkerControl(FileControl myfile,
-            NetworkWorkerModel mymodel, int position) {
-        this.mymodel = new NetworkDumpWorkerModel(mymodel);
-        this.myview = new NetworkDumpWorkerView(myfile, position);
-        this.myview.configureListener(this);
-        this.myview.configureStandardMode();
+            NetworkWorkerModel nmodel, int position) {
+        mymodel = new NetworkDumpWorkerModel(nmodel);
+        myview = new NetworkDumpWorkerView(myfile, position);
+        myview.configureListener(this);
+        myview.configureStandardMode();
     }
 
     public void change_my_visibility(boolean value) {
-        this.myview.setVisible(value);
+        myview.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("eraseButton")) {
-            if (this.myview.getIsEnabled().isSelected()) {
-                this.myview.getIsEnabled().setSelected(false);
+            if (myview.getIsEnabled().isSelected()) {
+                myview.getIsEnabled().setSelected(false);
             }
-            if (this.myview.getVlan().getSelectedIndex() != 0) {
-                this.myview.getVlan().setSelectedIndex(0);
+            if (myview.getVlan().getSelectedIndex() != 0) {
+                myview.getVlan().setSelectedIndex(0);
             }
-            if (!this.myview.getFile().getText().isEmpty()) {
-                this.myview.getFile().setText("");
+            if (!myview.getFile().getText().isEmpty()) {
+                myview.getFile().setText("");
             }
-            if (!this.myview.getLen().getText().isEmpty()) {
-                this.myview.getLen().setText("");
+            if (!myview.getLen().getText().isEmpty()) {
+                myview.getLen().setText("");
             }
-            this.mymodel.buildIt((String) this.myview.getVlan().getSelectedItem(),
-                    this.myview.getFile().getText(),
-                    this.myview.getLen().getText());
-            this.myview.setVisible(false);
+            mymodel.buildIt((String) myview.getVlan().getSelectedItem(),
+                    myview.getFile().getText(),
+                    myview.getLen().getText());
+            myview.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
-            if (this.myview.getIsEnabled().isSelected()) {
-                this.mymodel.buildIt((String) this.myview.getVlan().getSelectedItem(),
-                        this.myview.getFile().getText(),
-                        this.myview.getLen().getText());
+            if (myview.getIsEnabled().isSelected()) {
+                mymodel.buildIt((String) myview.getVlan().getSelectedItem(),
+                        myview.getFile().getText(),
+                        myview.getLen().getText());
             } else {
-                if (this.myview.getVlan().getSelectedIndex() != 0) {
-                    this.myview.getVlan().setSelectedIndex(0);
+                if (myview.getVlan().getSelectedIndex() != 0) {
+                    myview.getVlan().setSelectedIndex(0);
                 }
-                if (!this.myview.getFile().getText().isEmpty()) {
-                    this.myview.getFile().setText("");
+                if (!myview.getFile().getText().isEmpty()) {
+                    myview.getFile().setText("");
                 }
-                if (!this.myview.getLen().getText().isEmpty()) {
-                    this.myview.getLen().setText("");
+                if (!myview.getLen().getText().isEmpty()) {
+                    myview.getLen().setText("");
                 }
-                this.mymodel.buildIt((String) this.myview.getVlan().getSelectedItem(),
-                        this.myview.getFile().getText(),
-                        this.myview.getLen().getText());
+                mymodel.buildIt((String) myview.getVlan().getSelectedItem(),
+                        myview.getFile().getText(),
+                        myview.getLen().getText());
             }
-            this.myview.setVisible(false);
+            myview.setVisible(false);
         } else if (e.getActionCommand().equals("fileChooser")) {
-            this.myview.setChoosertitle("Choose the file!");
-            this.myview.setFileDescription("File");
-            if (this.myview.chooseAnyFile()) {
-                this.myview.getFile().setText(this.myview.getChoice());
+            myview.setChoosertitle("Choose the file!");
+            myview.setFileDescription("File");
+            if (myview.chooseAnyFile()) {
+                myview.getFile().setText(myview.getChoice());
             }
         }
 
     }
 
     public void cleanMe() {
-        if (this.myview.getIsEnabled().isSelected()) {
-            this.myview.getIsEnabled().setSelected(false);
+        if (myview.getIsEnabled().isSelected()) {
+            myview.getIsEnabled().setSelected(false);
         }
     }
 
     public boolean isSelected() {
-        return this.myview.getIsEnabled().isSelected();
+        return myview.getIsEnabled().isSelected();
     }
 }

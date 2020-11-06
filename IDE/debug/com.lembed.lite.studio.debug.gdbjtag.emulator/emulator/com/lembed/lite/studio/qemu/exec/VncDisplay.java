@@ -32,10 +32,13 @@ public abstract class VncDisplay {
         @Override
         public String toString() {
             StringBuilder buf = new StringBuilder();
-            if (address != null)
+            
+            if (address != null) {
                 buf.append(address.getHostAddress());
-            else
+            } else {
                 buf.append("0.0.0.0");
+            }
+            
             buf.append(':').append(display);
             return buf.toString();
         }
@@ -116,8 +119,11 @@ public abstract class VncDisplay {
         append(buf, "acl", acl);
         append(buf, "lossy", lossy);
         append(buf, "non-adaptive", nonadaptive);
-        if (share != null)
+        
+        if (share != null) {
             buf.append(",share=").append(share);
+        }
+        
         return buf.toString();
     }
 }

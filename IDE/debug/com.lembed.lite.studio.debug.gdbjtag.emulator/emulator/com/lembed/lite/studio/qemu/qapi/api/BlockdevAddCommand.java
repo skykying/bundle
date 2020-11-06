@@ -1,10 +1,7 @@
 package com.lembed.lite.studio.qemu.qapi.api;
 
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lembed.lite.studio.qemu.qapi.common.*;
 
-import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
 /**

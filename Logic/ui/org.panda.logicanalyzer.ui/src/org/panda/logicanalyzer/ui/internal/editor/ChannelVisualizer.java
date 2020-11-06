@@ -55,13 +55,14 @@ public class ChannelVisualizer extends Canvas {
 			List<IFrame> result = new LinkedList<IFrame>();
 
 			for (IFrame frame : packet.getFrames()) {
-				if (frame.getTime() > to) break;
-				if (frame.getTime() > from)
-					result.add(new ArrayBackedFrame(frame.getTime(),
-					                                new boolean[] {
-					                                    invert ? !frame.getValue(getChannelNr()) : frame.getValue(getChannelNr())
-					                                })
-					          );
+				if (frame.getTime() > to) {
+					break;
+				}
+				if (frame.getTime() > from) {
+					boolean[] b = { invert ? !frame.getValue(getChannelNr()) : frame.getValue(getChannelNr())};
+					ArrayBackedFrame f = new ArrayBackedFrame(frame.getTime(),b);
+					result.add(f);
+				}
 			}
 
 			return new DataPacket(result);
@@ -75,7 +76,7 @@ public class ChannelVisualizer extends Canvas {
 			return to;
 		}
 
-	}
+	}// Selection class
 
 
 	// The packet we take our data from

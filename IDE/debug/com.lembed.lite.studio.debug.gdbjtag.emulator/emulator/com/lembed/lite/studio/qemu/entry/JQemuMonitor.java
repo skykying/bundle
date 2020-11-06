@@ -5,10 +5,7 @@
  */
 package com.lembed.lite.studio.qemu.entry;
 
-/**
- *
- * @author shevek
- */
+
 public class JQemuMonitor {
 
     public static void main(String[] args) throws Exception {

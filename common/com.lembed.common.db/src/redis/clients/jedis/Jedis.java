@@ -37,7 +37,7 @@ public class Jedis extends BinaryJedis implements JedisCommands, MultiKeyCommand
 
   public Jedis() {
     super();
-  }
+  } 
 
   public Jedis(final String host) {
     super(host);

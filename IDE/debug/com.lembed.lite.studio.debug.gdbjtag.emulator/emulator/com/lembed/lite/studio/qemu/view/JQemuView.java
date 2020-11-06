@@ -145,7 +145,7 @@ public class JQemuView extends JQBaseView {
         useUtilities.setActionCommand("useUtilities");
     }
 
-    public void registerListener(ActionListener listener) {
+    public void registerListener(BaseListener listener) {
         exitCommand.addActionListener(listener);
         configureCommand.addActionListener(listener);
 
