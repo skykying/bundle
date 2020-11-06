@@ -84,7 +84,7 @@ public class Control implements BaseListener {
 					vMClosingControl = new VMClosingControl(view, emulationControl);
 				} else {
 					vMClosingControl.setView(view);
-					vMClosingControl.setMyemulation(emulationControl);
+					vMClosingControl.setEmulation(emulationControl);
 				}
 				vMClosingControl.starts(true);
 			}
@@ -251,7 +251,7 @@ public class Control implements BaseListener {
 				vMClosingControl = new VMClosingControl(view, emulationControl);
 			} else {
 				vMClosingControl.setView(view);
-				vMClosingControl.setMyemulation(emulationControl);
+				vMClosingControl.setEmulation(emulationControl);
 			}
 			vMClosingControl.starts(false);
 		} else if (e.getActionCommand().equals("ChangeMachineName")) {

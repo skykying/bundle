@@ -44,6 +44,7 @@ public class CloseVM implements BaseListener {
 		
 		if (e.getActionCommand().equals("CloseVM")) {
 			int position;
+			
 			if (view.getActivePanel() == 0) {
 				position = view.getSizeOfJTabbedPane();
 			} else {
@@ -56,10 +57,9 @@ public class CloseVM implements BaseListener {
 			} 
 			
 			vMClosingControl.setView(view);
-			vMClosingControl.setMyemulation(emulationControl);
+			vMClosingControl.setEmulation(emulationControl);
 			
 			vMClosingControl.starts(false);
-	
 		}
 
 	}

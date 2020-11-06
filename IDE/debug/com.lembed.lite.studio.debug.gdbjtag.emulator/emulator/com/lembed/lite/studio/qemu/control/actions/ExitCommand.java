@@ -58,7 +58,7 @@ public class ExitCommand implements BaseListener {
 				} 
 
 				vMClosingControl.setView(view);
-				vMClosingControl.setMyemulation(emulationControl);
+				vMClosingControl.setEmulation(emulationControl);
 				vMClosingControl.starts(true);
 			}
 

@@ -19,7 +19,7 @@ public class VMClosingControl {
         this.mymodel.setView(view);
     }
 
-    public void setMyemulation(EmulationControl myemulation) {
+    public void setEmulation(EmulationControl myemulation) {
         this.mymodel.setMyemulation(myemulation);
     }
 }

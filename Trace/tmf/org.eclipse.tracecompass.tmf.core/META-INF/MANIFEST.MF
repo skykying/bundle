@@ -8,14 +8,14 @@ Bundle-SymbolicName: org.eclipse.tracecompass.tmf.core;singleton:=true
 Bundle-Activator: org.eclipse.tracecompass.internal.tmf.core.Activator
 Bundle-ActivationPolicy: lazy
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
-Require-Bundle: org.eclipse.core.runtime,
+Require-Bundle: org.eclipse.tracecompass.ctf.parser;bundle-version="1.0.2",
+ org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.tracecompass.common.core,
  org.eclipse.tracecompass.segmentstore.core,
  org.eclipse.tracecompass.statesystem.core;visibility:=reexport,
  org.eclipse.cdt.core,
  org.eclipse.tracecompass.datastore.core,
- org.eclipse.tracecompass.tmf.filter.parser,
  com.google.gson;bundle-version="2.7.0",
  com.google.guava,
  org.eclipse.jdt.annotation,

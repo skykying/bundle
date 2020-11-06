@@ -26,6 +26,7 @@
   <name>Trace Compass TMF Parent</name>
 
   <modules>
+    <module>org.eclipse.tracecompass.tmf.filter.parser</module>
     <module>org.eclipse.tracecompass.tmf</module>
     <module>org.eclipse.tracecompass.tmf.core</module>
     <module>org.eclipse.tracecompass.tmf.ui</module>
@@ -39,8 +40,6 @@
     <module>org.eclipse.tracecompass.tmf.remote</module>
     <module>org.eclipse.tracecompass.tmf.remote.core</module>
     <module>org.eclipse.tracecompass.tmf.remote.ui</module>
-    
-    <module>org.eclipse.tracecompass.tmf.filter.parser</module>
   </modules>
 
 

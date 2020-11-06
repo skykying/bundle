@@ -19,13 +19,6 @@
    </license>
 
    <plugin
-         id="com.lembed.lite.studio.debug.gdbjtag.restart"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
          id="com.lembed.lite.studio.debug.core"
          download-size="0"
          install-size="0"
@@ -48,13 +41,6 @@
 
    <plugin
          id="com.lembed.lite.studio.debug.gdbjtag.stlink"
-         download-size="0"
-         install-size="0"
-         version="0.0.0"
-         unpack="false"/>
-
-   <plugin
-         id="com.lembed.lite.studio.debug.gdbjtag.llink"
          download-size="0"
          install-size="0"
          version="0.0.0"
