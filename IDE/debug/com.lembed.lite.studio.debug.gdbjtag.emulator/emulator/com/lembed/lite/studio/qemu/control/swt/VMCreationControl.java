@@ -2,7 +2,6 @@ package com.lembed.lite.studio.qemu.control.swt;
 
 import java.awt.ItemSelectable;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -14,19 +13,19 @@ import javax.swing.JRadioButton;
 
 import com.lembed.lite.studio.qemu.model.swt.VMCreationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.VMCreationViewEnd;
 import com.lembed.lite.studio.qemu.view.internal.swt.VMCreationViewPart1;
 import com.lembed.lite.studio.qemu.view.internal.swt.VMCreationViewPart2;
 import com.lembed.lite.studio.qemu.view.internal.swt.VMCreationViewPart3;
 
-public class VMCreationControl implements ActionListener {
+public class VMCreationControl implements BaseControl {
 
-    private VMCreationViewPart1 myfirstview;
+    private VMCreationViewPart1 vmCreatePart1;
 
-    private VMCreationViewPart2 mysecondview;
+    private VMCreationViewPart2 vmCreatePart2;
 
-    private VMCreationViewPart3 mythirdview;
+    private VMCreationViewPart3 vmCreatePart3;
 
     private VMCreationViewEnd vmCreationViewEnd;
 
@@ -36,7 +35,7 @@ public class VMCreationControl implements ActionListener {
 
     private EmulatorQemuMachineControl fileControl;
 
-    private JQemuView jQemuView;
+    private JContainerView jQemuView;
 
     private EmulationControl emulationControl;
 
@@ -45,28 +44,28 @@ public class VMCreationControl implements ActionListener {
     private List<VMConfigurationControl> vmConfigurationControlList;
 
     public VMCreationControl(DiskCreationControl mydisk, String pathQemu_img,
-            String default_virtual_machines_path, JQemuView view, EmulatorQemuMachineControl file,
+            String default_virtual_machines_path, JContainerView view, EmulatorQemuMachineControl file,
             EmulationControl emulation,
             List<VMConfigurationControl> vmcontrol) {
-        myfirstview = new VMCreationViewPart1();
-        myfirstview.setVisible(true);
-        myfirstview.configureListener(this);
-        myfirstview.configureStandardMode();
+        vmCreatePart1 = new VMCreationViewPart1();
+        vmCreatePart1.setVisible(true);
+        vmCreatePart1.configureListener(this);
+        vmCreatePart1.configureStandardMode();
 
         vmCreationModel = new VMCreationModel();
         vmCreationModel.setQemu_imgPath(pathQemu_img);
 
-        mysecondview = new VMCreationViewPart2(
+        vmCreatePart2 = new VMCreationViewPart2(
                 default_virtual_machines_path,
                 vmCreationModel.checks_extension(default_virtual_machines_path));
-        mysecondview.setVisible(false);
-        mysecondview.configureListener(this);
-        mysecondview.configureStandardMode();
+        vmCreatePart2.setVisible(false);
+        vmCreatePart2.configureListener(this);
+        vmCreatePart2.configureStandardMode();
 
-        mythirdview = new VMCreationViewPart3();
-        mythirdview.setVisible(false);
-        mythirdview.configureListener(this);
-        mythirdview.configureStandardMode();
+        vmCreatePart3 = new VMCreationViewPart3();
+        vmCreatePart3.setVisible(false);
+        vmCreatePart3.configureListener(this);
+        vmCreatePart3.configureStandardMode();
 
         vmCreationViewEnd = new VMCreationViewEnd();
         vmCreationViewEnd.setVisible(false);
@@ -86,98 +85,97 @@ public class VMCreationControl implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("Cancel1")) {
-            myfirstview.setVisible(false);
+            vmCreatePart1.setVisible(false);
         } else if (e.getActionCommand().equals("Next1")) {
-            if (myfirstview.getFieldChoooseMachineName().getText()
+            if (vmCreatePart1.getFieldChoooseMachineName().getText()
                     .isEmpty()) {
-                myfirstview.showMessage("Please, type a valid name!");
+                vmCreatePart1.showMessage("Please, type a valid name!");
             } else {
-                myfirstview.setVisible(false);
-                vmCreationModel.setChosenMachineName(myfirstview
+                vmCreatePart1.setVisible(false);
+                vmCreationModel.setChosenMachineName(vmCreatePart1
                         .getFieldChoooseMachineName().getText());
-                mysecondview.setChooseMachineName(vmCreationModel
+                vmCreatePart2.setChooseMachineName(vmCreationModel
                         .getChosenMachineName());
-                mysecondview.rechecks();
-                mysecondview.setVisible(true);
+                vmCreatePart2.rechecks();
+                vmCreatePart2.setVisible(true);
 
             }
         } else if (e.getActionCommand().equals("Cancel2")) {
-            mysecondview.setVisible(false);
+            vmCreatePart2.setVisible(false);
         } else if (e.getActionCommand().equals("Back1")) {
-            mysecondview.setVisible(false);
-            myfirstview.setVisible(true);
+            vmCreatePart2.setVisible(false);
+            vmCreatePart1.setVisible(true);
         } else if (e.getActionCommand().equals("Next2")) {
-            if (mysecondview.getFieldChooseVMPath().getText().isEmpty()) {
-                mysecondview
-                        .showMessage("Please, type a valid directory!");
+            if (vmCreatePart2.getFieldChooseVMPath().getText().isEmpty()) {
+                vmCreatePart2.showMessage("Please, type a valid directory!");
             } else if (!vmCreationModel
-                    .checks_if_is_a_valid_directory(mysecondview
+                    .validDirectory(vmCreatePart2
                             .getBasePath())) {
-                mysecondview
+                vmCreatePart2
                         .showMessage("Please, type a valid directory for the default machines path choice in the configuration section!");
             } else {
-                mythirdview.getDiskName().setText(
-                        myfirstview.getFieldChoooseMachineName()
+                vmCreatePart3.getDiskName().setText(
+                        vmCreatePart1.getFieldChoooseMachineName()
                         .getText());
-                File f = new File(mysecondview.getFieldChooseVMPath()
+                File f = new File(vmCreatePart2.getFieldChooseVMPath()
                         .getText()
-                        + vmCreationModel.checks_extension(mysecondview
+                        + vmCreationModel.checks_extension(vmCreatePart2
                                 .getFieldChooseVMPath().getText())
-                        + myfirstview.getFieldChoooseMachineName()
+                        + vmCreatePart1.getFieldChoooseMachineName()
                         .getText() + ".xml");
                 if (f.exists()) {
-                    mysecondview.showMessage("Warning:\nThe file '"
-                            + (mysecondview.getFieldChooseVMPath()
+                    vmCreatePart2.showMessage("Warning:\nThe file '"
+                            + (vmCreatePart2.getFieldChooseVMPath()
                             .getText()
-                            + vmCreationModel.checks_extension(mysecondview
+                            + vmCreationModel.checks_extension(vmCreatePart2
                                     .getFieldChooseVMPath().getText())
-                            + myfirstview.getFieldChoooseMachineName()
+                            + vmCreatePart1.getFieldChoooseMachineName()
                             .getText() + ".xml")
                             + "' already exists!\n"
                             + "old VM will be overwritten!");
                 }
-                mysecondview.setVisible(false);
-                mythirdview.setVisible(true);
+                vmCreatePart2.setVisible(false);
+                vmCreatePart3.setVisible(true);
             }
 
         } else if (e.getActionCommand().equals("Cancel3")) {
-            mythirdview.setVisible(false);
+            vmCreatePart3.setVisible(false);
         } else if (e.getActionCommand().equals("Back2")) {
-            mythirdview.setVisible(false);
-            mysecondview.setVisible(true);
+            vmCreatePart3.setVisible(false);
+            vmCreatePart2.setVisible(true);
         } else if (e.getActionCommand().equals("Finish")) {
-            vmCreationModel.setDiskImageSize(Double.parseDouble(mythirdview
+            vmCreationModel.setDiskImageSize(Double.parseDouble(vmCreatePart3
                     .getEditor().getTextField().getText().replace(",", ".")));
             diskCreationControl = new DiskCreationControl(
                     (vmCreationModel.getDiskImageSize() * 1024) + "M", null);
             diskCreationControl.setPathQemu_img(vmCreationModel.getQemu_imgPath());
-            diskCreationControl.setDefault_virtual_machines_path(mysecondview
+            diskCreationControl.setDefault_virtual_machines_path(vmCreatePart2
                     .getFieldChooseVMPath().getText());
-            if (mythirdview.getDiskExtension().getItemAt(
-                            mythirdview.getDiskExtension()
+            if (vmCreatePart3.getDiskExtension().getItemAt(
+                            vmCreatePart3.getDiskExtension()
                             .getSelectedIndex()) != null)
             {
                 diskCreationControl.setFileName(
-                    mythirdview.getDiskName().getText(),
-                    mythirdview.getDiskExtension().getItemAt(
-                            mythirdview.getDiskExtension()
+                    vmCreatePart3.getDiskName().getText(),
+                    vmCreatePart3.getDiskExtension().getItemAt(
+                            vmCreatePart3.getDiskExtension()
                             .getSelectedIndex()));
             }
-            mythirdview.setVisible(false);
-            diskCreationControl.createsAdditionalDirectory(mysecondview
+            vmCreatePart3.setVisible(false);
+            diskCreationControl.createsAdditionalDirectory(vmCreatePart2
                     .getFieldChooseVMPath().getText());
             try {
                 diskCreationControl
-                        .runsThisIfFalse((String) mythirdview.getDiskExtension()
+                        .runsThisIfFalse((String) vmCreatePart3.getDiskExtension()
                                 .getSelectedItem(),
                                 setOptionCreationNewVM(
-                                        (String) mythirdview
+                                        (String) vmCreatePart3
                                         .getDiskExtension()
                                         .getSelectedItem(),
-                                        getObjects((String) mythirdview
+                                        getObjects((String) vmCreatePart3
                                                 .getDiskExtension()
                                                 .getSelectedItem()),
-                                        getMoreOptions(getObjects((String) mythirdview
+                                        getMoreOptions(getObjects((String) vmCreatePart3
                                                 .getDiskExtension()
                                                 .getSelectedItem()))));
             } catch (IOException e1) {
@@ -210,9 +208,9 @@ public class VMCreationControl implements ActionListener {
                     vmCreationModel.getChosenMachineName());
             fileControl.getMachineModel().setRamSize("128");
             fileControl.getMachineModel().saveToXML(
-                    mysecondview.getFieldChooseVMPath().getText()
+                    vmCreatePart2.getFieldChooseVMPath().getText()
                     + fileControl.getMachineModel().checks_extension(
-                            mysecondview.getFieldChooseVMPath()
+                            vmCreatePart2.getFieldChooseVMPath()
                             .getText())
                     + vmCreationModel.getChosenMachineName() + ".xml");
         } else if (e.getActionCommand().equals("Yes_option_pos_creation")) {
@@ -226,9 +224,9 @@ public class VMCreationControl implements ActionListener {
                     vmCreationModel.getChosenMachineName());
             fileControl.getMachineModel().setRamSize("128");
             fileControl.getMachineModel().saveToXML(
-                    mysecondview.getFieldChooseVMPath().getText()
+                    vmCreatePart2.getFieldChooseVMPath().getText()
                     + fileControl.getMachineModel().checks_extension(
-                            mysecondview.getFieldChooseVMPath()
+                            vmCreatePart2.getFieldChooseVMPath()
                             .getText())
                     + vmCreationModel.getChosenMachineName() + ".xml");
 
@@ -258,13 +256,13 @@ public class VMCreationControl implements ActionListener {
 
             emulationControl.setJPanel();
         } else if (e.getActionCommand().equals("VM_Path_Chooser")) {
-            mysecondview.setFileDescription("VM Path Directory");
-            if (mysecondview.chooseDirectoryForDefaultVMPath()) {
-                mysecondview.getFieldChooseVMPath().setText(
-                        mysecondview.getChoice());
+            vmCreatePart2.setFileDescription("VM Path Directory");
+            if (vmCreatePart2.chooseDirectoryForDefaultVMPath()) {
+                vmCreatePart2.getFieldChooseVMPath().setText(
+                        vmCreatePart2.getChoice());
             }
         } else if (e.getActionCommand().equals("DiskExtension")) {
-            mythirdview.addsComponent((String) mythirdview
+            vmCreatePart3.addsComponent((String) vmCreatePart3
                     .getDiskExtension().getSelectedItem());
         }
         emulationControl.change_options(OptionsEnumModel.RAMSIZE.getValor(),
@@ -273,12 +271,12 @@ public class VMCreationControl implements ActionListener {
     }
 
     public void starts() {
-        myfirstview.initialize();
-        myfirstview.setVisible(true);
+        vmCreatePart1.initialize();
+        vmCreatePart1.setVisible(true);
 
-        mysecondview.initialize();
+        vmCreatePart2.initialize();
 
-        mythirdview.initialize();
+        vmCreatePart3.initialize();
 
         vmCreationViewEnd.initialize();
     }
@@ -411,24 +409,24 @@ public class VMCreationControl implements ActionListener {
     private List<JCheckBox> getJCheckBox(String option) {
         List<JCheckBox> result = new ArrayList<JCheckBox>();
         if (option.equals(".qcow")) {
-            result.add(mythirdview.getEncryption_box());
+            result.add(vmCreatePart3.getEncryption_box());
         } else if (option.equals(".qcow2")) {
-            if (mythirdview.getEncryption_box().isSelected()) {
-                result.add(mythirdview.getEncryption_box());
+            if (vmCreatePart3.getEncryption_box().isSelected()) {
+                result.add(vmCreatePart3.getEncryption_box());
             }
-            if (mythirdview.getPreallocation_metadata_box()
+            if (vmCreatePart3.getPreallocation_metadata_box()
                     .isSelected()) {
-                result.add(mythirdview.getPreallocation_metadata_box());
+                result.add(vmCreatePart3.getPreallocation_metadata_box());
             }
-            if (mythirdview.getCluster_size_box().isSelected()) {
-                result.add(mythirdview.getCluster_size_box());
+            if (vmCreatePart3.getCluster_size_box().isSelected()) {
+                result.add(vmCreatePart3.getCluster_size_box());
             }
         } else if (option.equals(".vmdk")) {
-            if (mythirdview.getCompat6_vmdk_box().isSelected()) {
-                result.add(mythirdview.getCompat6_vmdk_box());
+            if (vmCreatePart3.getCompat6_vmdk_box().isSelected()) {
+                result.add(vmCreatePart3.getCompat6_vmdk_box());
             }
-            if (mythirdview.getSubformat_vmdk_box().isSelected()) {
-                result.add(mythirdview.getSubformat_vmdk_box());
+            if (vmCreatePart3.getSubformat_vmdk_box().isSelected()) {
+                result.add(vmCreatePart3.getSubformat_vmdk_box());
             }
         }
         return result;
@@ -437,12 +435,12 @@ public class VMCreationControl implements ActionListener {
     private List<ItemSelectable> getJRadioButton(String option) {
         List<ItemSelectable> result = new ArrayList<ItemSelectable>();
         if (option.equals(".vdi")) {
-            if (mythirdview.getStatic_vdi_box().isSelected()) {
-                result.add(mythirdview.getStatic_vdi_box());
+            if (vmCreatePart3.getStatic_vdi_box().isSelected()) {
+                result.add(vmCreatePart3.getStatic_vdi_box());
             }
         } else if (option.equals(".vpc")) {
-            if (mythirdview.getSubformat_vpc_box().isSelected()) {
-                result.add(mythirdview.getSubformat_vpc_box());
+            if (vmCreatePart3.getSubformat_vpc_box().isSelected()) {
+                result.add(vmCreatePart3.getSubformat_vpc_box());
             }
         }
         return result;
@@ -455,16 +453,16 @@ public class VMCreationControl implements ActionListener {
                 Object selected[] = item.getSelectedObjects();
                 if (selected != null) {
                     if (((String) selected[0]).equals("Cluster_size:")) {
-                        result.add(mythirdview.getCluster_size_options());
+                        result.add(vmCreatePart3.getCluster_size_options());
                     } else if (((String) selected[0]).equals("VMDK subformat option:")) {
-                        result.add(mythirdview.getSubformat_vmdk_combo());
+                        result.add(vmCreatePart3.getSubformat_vmdk_combo());
                     }
                 }
             } else if (item instanceof JRadioButton) {
                 Object selected[] = item.getSelectedObjects();
                 if (selected != null) {
                     if (((String) selected[0]).equals("VPC subformat option:")) {
-                        result.add(mythirdview.getSubformat_vpc_combo());
+                        result.add(vmCreatePart3.getSubformat_vpc_combo());
                     }
                 }
             }

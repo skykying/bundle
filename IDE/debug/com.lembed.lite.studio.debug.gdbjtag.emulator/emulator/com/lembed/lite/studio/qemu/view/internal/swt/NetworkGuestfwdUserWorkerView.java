@@ -197,79 +197,79 @@ public class NetworkGuestfwdUserWorkerView extends DeviceBaseView {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		switch (position) {
         case 1:
-            if (fileControl.getMachineModel().getFirstNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel()
+            if (eQControl.getMachineModel().getFirstNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel()
                         .getFirstNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel()
+                    this.buildTextArea(eQControl.getMachineModel()
                             .getFirstNetworkExtraOption());
                 }
             }
             break;
         case 2:
-            if (fileControl.getMachineModel().getSecondNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel()
+            if (eQControl.getMachineModel().getSecondNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel()
                         .getSecondNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel()
+                    this.buildTextArea(eQControl.getMachineModel()
                             .getSecondNetworkExtraOption());
                 }
             }
             break;
         case 3:
-            if (fileControl.getMachineModel().getThirdNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getThirdNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getThirdNetworkExtraOption());
+            if (eQControl.getMachineModel().getThirdNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getThirdNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getThirdNetworkExtraOption());
                 }
             }
             break;
         case 4:
-            if (fileControl.getMachineModel().getFourthNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getFourthNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getFourthNetworkExtraOption());
+            if (eQControl.getMachineModel().getFourthNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getFourthNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getFourthNetworkExtraOption());
                 }
             }
             break;
         case 5:
-            if (fileControl.getMachineModel().getFifthNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getFifthNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getFifthNetworkExtraOption());
+            if (eQControl.getMachineModel().getFifthNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getFifthNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getFifthNetworkExtraOption());
                 }
             }
             break;
         case 6:
-            if (fileControl.getMachineModel().getSixthNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getSixthNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getSixthNetworkExtraOption());
+            if (eQControl.getMachineModel().getSixthNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getSixthNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getSixthNetworkExtraOption());
                 }
             }
             break;
         case 7:
-            if (fileControl.getMachineModel().getSeventhNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getSeventhNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getSeventhNetworkExtraOption());
+            if (eQControl.getMachineModel().getSeventhNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getSeventhNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getSeventhNetworkExtraOption());
                 }
             }
             break;
         case 8:
-            if (fileControl.getMachineModel().getEighthNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getEighthNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getEighthNetworkExtraOption());
+            if (eQControl.getMachineModel().getEighthNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getEighthNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getEighthNetworkExtraOption());
                 }
             }
             break;
         case 9:
-            if (fileControl.getMachineModel().getNinthNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getNinthNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getNinthNetworkExtraOption());
+            if (eQControl.getMachineModel().getNinthNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getNinthNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getNinthNetworkExtraOption());
                 }
             }
             break;
         case 10:
-            if (fileControl.getMachineModel().getTenthNetworkExtraOption() != null) {
-                if (this.contains(fileControl.getMachineModel().getTenthNetworkExtraOption())) {
-                    this.buildTextArea(fileControl.getMachineModel().getTenthNetworkExtraOption());
+            if (eQControl.getMachineModel().getTenthNetworkExtraOption() != null) {
+                if (this.contains(eQControl.getMachineModel().getTenthNetworkExtraOption())) {
+                    this.buildTextArea(eQControl.getMachineModel().getTenthNetworkExtraOption());
                 }
             }
             break;

@@ -234,7 +234,7 @@ public class VMCreationViewPart3 extends JPanel {
     }
 
     public void initialize() {
-//        this.setContentPane(windowContent);
+        this.add(windowContent);
 //        this.setTitle("Create a new machine - Part 3");
 //        this.pack();
     }
@@ -470,7 +470,7 @@ public class VMCreationViewPart3 extends JPanel {
             oldDiskExtension = ".vpc";
             suboptions = true;
         }
-//        this.pack();
+
         this.repaint();
     }
 

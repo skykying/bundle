@@ -139,7 +139,7 @@ public class UtilitiesView extends DeviceBaseView {
     }
     
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		
 	}
 	

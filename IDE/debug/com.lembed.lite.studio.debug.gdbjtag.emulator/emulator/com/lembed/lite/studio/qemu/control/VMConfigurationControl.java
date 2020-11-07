@@ -3,7 +3,7 @@ package com.lembed.lite.studio.qemu.control;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.VMConfigurationView;
 
 public class VMConfigurationControl implements ActionListener {
@@ -36,7 +36,7 @@ public class VMConfigurationControl implements ActionListener {
         return myName;
     }
 
-    public VMConfigurationControl(EmulationControl myemulation, JQemuView view,
+    public VMConfigurationControl(EmulationControl myemulation, JContainerView view,
             FileControl myfile) {
         myram = new RAMControl(myemulation, myfile);
         myview = new VMConfigurationView(view,

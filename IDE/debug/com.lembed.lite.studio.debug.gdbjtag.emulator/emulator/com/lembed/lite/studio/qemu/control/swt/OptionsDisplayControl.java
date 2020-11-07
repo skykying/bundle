@@ -9,7 +9,7 @@ import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.OptionsDisplayView;
 import com.lembed.lite.studio.qemu.view.internal.swt.VNCDisplayView;
 
-public class OptionsDisplayControl implements ActionListener {
+public class OptionsDisplayControl implements BaseControl {
 
     private OptionsDisplayView myview;
     private OptionsDisplayModel mymodel;
@@ -30,7 +30,7 @@ public class OptionsDisplayControl implements ActionListener {
         tcpPort = "";
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 
@@ -61,7 +61,7 @@ public class OptionsDisplayControl implements ActionListener {
                 this.myview.getNoframeOption().setSelected(false);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
             ;
         } else if (e.getActionCommand().equals("okButton")) {
             if (this.myview.getDisplayType().isSelected()) {
@@ -141,7 +141,7 @@ public class OptionsDisplayControl implements ActionListener {
                 this.mymodel.unsetOption("no-frame");
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         } else if (e.getActionCommand().equals("showVNCOptions")) {
             this.mysecondview.setVisible(true);
         } else if (e.getActionCommand().equals("eraseButton2")) {

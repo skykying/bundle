@@ -9,7 +9,7 @@ import java.util.Locale;
 import com.lembed.lite.studio.qemu.model.swt.NetworkHostfwdUserWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkHostfwdUserWorkerView;
 
-public class NetworkHostfwdUserWorkerControl implements ActionListener {
+public class NetworkHostfwdUserWorkerControl implements BaseControl {
 
     private NetworkHostfwdUserWorkerModel mymodel;
     private NetworkHostfwdUserWorkerView myview;

@@ -13,7 +13,7 @@ public class FileView extends DeviceViewWithFileChooser {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 	
 		
 	}

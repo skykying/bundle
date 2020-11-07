@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkTCPSocketWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkTCPSocketWorkerView;
 
-public class NetworkTCPSocketWorkerControl implements ActionListener {
+public class NetworkTCPSocketWorkerControl implements BaseControl {
 
     private NetworkTCPSocketWorkerModel mymodel;
     private NetworkTCPSocketWorkerView myview;
@@ -23,7 +23,7 @@ public class NetworkTCPSocketWorkerControl implements ActionListener {
         this.date = Calendar.getInstance();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

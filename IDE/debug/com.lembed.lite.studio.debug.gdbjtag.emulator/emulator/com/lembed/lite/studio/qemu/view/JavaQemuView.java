@@ -19,7 +19,7 @@ public class JavaQemuView extends ViewPart{
     public static void main(String[] args) {
         javax.swing.SwingUtilities.invokeLater(new Runnable() {
             public void run() {
-                JQemuView view = new JQemuView();
+                JContainerView view = new JContainerView();
                 Control control = new Control(view);
 
                 control.starts();

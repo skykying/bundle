@@ -147,31 +147,31 @@ public class SMPView extends DeviceBaseView {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 
-        if (fileControl.getMachineModel().getSmpCpusNumber() != null) {
+        if (eQControl.getMachineModel().getSmpCpusNumber() != null) {
             this.getCpuNumbers().setSelectedItem(
-                    fileControl.getMachineModel().getSmpCpusNumber());
+                    eQControl.getMachineModel().getSmpCpusNumber());
         }
 
-        if (fileControl.getMachineModel().getSmpCoresNumber() != null) {
+        if (eQControl.getMachineModel().getSmpCoresNumber() != null) {
             this.getCoreNumbers().setSelectedItem(
-                    fileControl.getMachineModel().getSmpCoresNumber());
+                    eQControl.getMachineModel().getSmpCoresNumber());
         }
 
-        if (fileControl.getMachineModel().getSmpThreadsNumber() != null) {
+        if (eQControl.getMachineModel().getSmpThreadsNumber() != null) {
             this.getThreadNumbers().setSelectedItem(
-                    fileControl.getMachineModel().getSmpThreadsNumber());
+                    eQControl.getMachineModel().getSmpThreadsNumber());
         }
 
-        if (fileControl.getMachineModel().getSmpSocketsNumber() != null) {
+        if (eQControl.getMachineModel().getSmpSocketsNumber() != null) {
             this.getSocketNumbers().setSelectedItem(
-                    fileControl.getMachineModel().getSmpSocketsNumber());
+                    eQControl.getMachineModel().getSmpSocketsNumber());
         }
 
-        if (fileControl.getMachineModel().getSmpCpusMaxNumber() != null) {
+        if (eQControl.getMachineModel().getSmpCpusMaxNumber() != null) {
             this.getMaxCpuNumbers().setSelectedItem(
-                    fileControl.getMachineModel().getSmpCpusMaxNumber());
+                    eQControl.getMachineModel().getSmpCpusMaxNumber());
         }
 
         this.rechecks();

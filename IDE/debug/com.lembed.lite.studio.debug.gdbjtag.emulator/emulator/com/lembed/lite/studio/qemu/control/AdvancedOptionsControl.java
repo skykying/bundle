@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.AdvancedOptionsModel;
 import com.lembed.lite.studio.qemu.model.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.model.VMConfigurationModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.AdvancedOptionsView;
 
 public class AdvancedOptionsControl implements ActionListener {
 
     private AdvancedOptionsModel mymodel;
     private AdvancedOptionsView myview;
-    private JQemuView myMainView;
+    private JContainerView myMainView;
 
     public AdvancedOptionsControl(EmulationControl myemulation,
-            FileControl myfile, JQemuView myView) {
+            FileControl myfile, JContainerView myView) {
         myview = new AdvancedOptionsView(myfile);
         myview.configureListener(this);
         myview.configureStandardMode();

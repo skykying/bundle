@@ -1,4 +1,4 @@
-package com.lembed.lite.studio.qemu.control.actions;
+package com.lembed.lite.studio.qemu.control.swt.actions;
 
 import java.awt.event.ActionEvent;
 import java.io.IOException;
@@ -14,17 +14,17 @@ import com.lembed.lite.studio.qemu.model.LastUsedFolderModel;
 import com.lembed.lite.studio.qemu.model.Model;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class StartEmulation implements BaseListener {
 
-	private JQemuView view;
+	private JContainerView view;
 	private ConfigurationControl configurationControl;
 	private EmulationControl emulationControl;
 	private LastUsedFolderModel lastUsedFolderModel;
 	private LastUsedFileModel lastUsedFileModel;
 
-	public StartEmulation(JQemuView jview) {
+	public StartEmulation(JContainerView jview) {
 		view = jview;
 		view.registerListener(this);
 		configurationControl = null;

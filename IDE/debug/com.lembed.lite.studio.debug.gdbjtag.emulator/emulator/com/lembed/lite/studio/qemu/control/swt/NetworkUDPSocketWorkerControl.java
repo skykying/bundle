@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkUDPSocketWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkUDPSocketWorkerView;
 
-public class NetworkUDPSocketWorkerControl implements ActionListener {
+public class NetworkUDPSocketWorkerControl implements BaseControl {
 
     private NetworkUDPSocketWorkerView myview;
     private NetworkUDPSocketWorkerModel mymodel;
@@ -23,7 +23,7 @@ public class NetworkUDPSocketWorkerControl implements ActionListener {
         this.date = Calendar.getInstance();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

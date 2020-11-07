@@ -7,7 +7,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkNICWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkNICWorkerView;
 
-public class NetworkNICWorkerControl implements ActionListener {
+public class NetworkNICWorkerControl implements BaseControl {
 
     private NetworkNICWorkerView myview;
     private NetworkNICWorkerModel mymodel;
@@ -20,7 +20,7 @@ public class NetworkNICWorkerControl implements ActionListener {
         this.myview.configureStandardMode();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

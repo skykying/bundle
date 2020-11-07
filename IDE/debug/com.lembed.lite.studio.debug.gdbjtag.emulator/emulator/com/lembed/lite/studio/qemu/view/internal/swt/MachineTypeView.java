@@ -31,7 +31,6 @@ public class MachineTypeView extends DeviceBaseView {
 
     private Boolean loaded;
 
-	private String title;
 
     public MachineTypeView(EmulatorQemuMachineControl myfile) {
     	super(myfile);
@@ -106,68 +105,59 @@ public class MachineTypeView extends DeviceBaseView {
         return loaded;
     }
 
-	@Override
-	public void setTitle(String string) {
-		title = string;
-	}
 
 	@Override
-	public String getTitle() {
-		return title;
-	}
+	public void applyView(IemultorStore store) {
 
-	@Override
-	public void doSave(IemultorStore store) {
-
-        if (fileControl.getMachineModel().getMachineType() != null) {
-            if (fileControl.getMachineModel().getMachineType().equals("")) {
-                this.machineTypes.setSelectedItem(fileControl.getMachineModel()
+        if (eQControl.getMachineModel().getMachineType() != null) {
+            if (eQControl.getMachineModel().getMachineType().equals("")) {
+                this.machineTypes.setSelectedItem(eQControl.getMachineModel()
                         .getMachineType());
-            } else if (fileControl.getMachineModel().getMachineType().equals("q35")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("q35")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: q35");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-q35-1.6")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-q35-1.6")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-q35-1.6");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-q35-1.5")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-q35-1.5")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-q35-1.5");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-q35-1.4")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-q35-1.4")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-q35-1.4");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc");
-            } else if (fileControl.getMachineModel().getMachineType()
+            } else if (eQControl.getMachineModel().getMachineType()
                     .equals("pc-i440fx-1.6")) {
                 this.machineTypes
                         .setSelectedItem("Standard ACPI PCI Based PC: pc-i440fx-1.6");
-            } else if (fileControl.getMachineModel().getMachineType()
+            } else if (eQControl.getMachineModel().getMachineType()
                     .equals("pc-i440fx-1.5")) {
                 this.machineTypes
                         .setSelectedItem("Standard ACPI PCI Based PC: pc-i440fx-1.5");
-            } else if (fileControl.getMachineModel().getMachineType()
+            } else if (eQControl.getMachineModel().getMachineType()
                     .equals("pc-i440fx-1.4")) {
                 this.machineTypes
                         .setSelectedItem("Standard ACPI PCI Based PC: pc-i440fx-1.4");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-1.3")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-1.3")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-1.3");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-1.2")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-1.2")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-1.2");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-1.1")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-1.1")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-1.1");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-1.0")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-1.0")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-1.0");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-0.15")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-0.15")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-0.15");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-0.14")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-0.14")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-0.14");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-0.13")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-0.13")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-0.13");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-0.12")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-0.12")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-0.12");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-0.11")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-0.11")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-0.11");
-            } else if (fileControl.getMachineModel().getMachineType().equals("pc-0.10")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("pc-0.10")) {
                 this.machineTypes.setSelectedItem("Standard ACPI PCI Based PC: pc-0.10");
-            } else if (fileControl.getMachineModel().getMachineType().equals("isapc")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("isapc")) {
                 this.machineTypes.setSelectedItem("Standard ISA Based PC: isapc");
-            } else if (fileControl.getMachineModel().getMachineType().equals("none")) {
+            } else if (eQControl.getMachineModel().getMachineType().equals("none")) {
                 this.machineTypes.setSelectedItem("None");
             }
             this.loaded = true;

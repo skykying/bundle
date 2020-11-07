@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.SoundHardwareView;
 
-public class SoundHardwareControl implements ActionListener {
+public class SoundHardwareControl implements BaseControl {
 
     private SoundHardwareModel mymodel;
     private SoundHardwareView myview;
@@ -20,7 +20,7 @@ public class SoundHardwareControl implements ActionListener {
         this.mymodel = new SoundHardwareModel(myemulation, myfile);
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 
@@ -33,7 +33,7 @@ public class SoundHardwareControl implements ActionListener {
                 this.myview.getSoundHardware().setSelectedIndex(0);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
 
             if (this.myview.getSoundHardware().getSelectedIndex() != 0) {
@@ -43,7 +43,7 @@ public class SoundHardwareControl implements ActionListener {
                 this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SOUNDHARDWAREOPTION.getValor()]);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         }
     }
 

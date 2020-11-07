@@ -8,47 +8,47 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.KeyboardView;
 
-public class KeyboardControl implements ActionListener {
+public class KeyboardControl implements BaseControl {
 
-    private KeyboardModel mymodel;
-    private KeyboardView myview;
+    private KeyboardModel keyboardModel;
+    private KeyboardView keyboardView;
 
-    public KeyboardControl(EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
-        this.myview = new KeyboardView(myfile);
-        this.myview.configureListener(this);
-        this.myview.configureStandardMode();
-        this.mymodel = new KeyboardModel(myemulation, myfile);
+    public KeyboardControl(EmulationControl ec, EmulatorQemuMachineControl emc) {
+        this.keyboardView = new KeyboardView(emc);
+        this.keyboardView.configureListener(this);
+        this.keyboardView.configureStandardMode();
+        this.keyboardModel = new KeyboardModel(ec, emc);
     }
 
-    public void change_my_visibility(boolean value) {
-        this.myview.setVisible(value);
+    public void setVisible(boolean value) {
+        this.keyboardView.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("eraseButton")) {
 
-            if (this.myview.getKeyboardLayoutLanguage().getSelectedIndex() != 0) {
-                this.myview.getKeyboardLayoutLanguage().setSelectedIndex(0);
+            if (this.keyboardView.getKeyboardLayoutLanguage().getSelectedIndex() != 0) {
+                this.keyboardView.getKeyboardLayoutLanguage().setSelectedIndex(0);
             }
 
-            this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.KEYBOARDOPTION.getValor()]);
+            this.keyboardModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.KEYBOARDOPTION.getValor()]);
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
 
-            if (this.myview.getKeyboardLayoutLanguage().getSelectedIndex() != 0) {
-                this.mymodel.setOption(this.myview
+            if (this.keyboardView.getKeyboardLayoutLanguage().getSelectedIndex() != 0) {
+                this.keyboardModel.setOption(this.keyboardView
                         .getKeyboardLayoutLanguage()
                         .getSelectedItem()
                         .toString()
-                        .substring(myview.getKeyboardLayoutLanguage().getSelectedItem().toString()
+                        .substring(keyboardView.getKeyboardLayoutLanguage().getSelectedItem().toString()
                                 .indexOf(":") + 2));
             } else {
-                this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.KEYBOARDOPTION.getValor()]);
+                this.keyboardModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.KEYBOARDOPTION.getValor()]);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         }
     }
 

@@ -1,156 +1,154 @@
 package com.lembed.lite.studio.qemu.control.swt;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkWorkerView;
 
-public class NetworkWorkerControl implements ActionListener {
+public class NetworkWorkerControl implements BaseControl {
 
-    private NetworkWorkerView myview;
-    private NetworkWorkerModel mymodel;
-    private NetworkNICWorkerControl myniccontrol;
-    private NetworkUserWorkerControl myusercontrol;
-    private NetworkTapWorkerControl mytapcontrol;
-    private NetworkBridgeWorkerControl mybridgecontrol;
-    private NetworkTCPSocketWorkerControl mytcpsocketcontrol;
-    private NetworkUDPSocketWorkerControl myudpsocketcontrol;
-    private NetworkVdeWorkerControl myvdecontrol;
-    private NetworkHubportWorkerControl myhubcontrol;
-    private NetworkDumpWorkerControl mydumpcontrol;
+    private NetworkWorkerView _view;
+    private NetworkWorkerModel _model;
+    private NetworkNICWorkerControl _niccontrol;
+    private NetworkUserWorkerControl _usercontrol;
+    private NetworkTapWorkerControl _tapcontrol;
+    private NetworkBridgeWorkerControl _bridgecontrol;
+    private NetworkTCPSocketWorkerControl _tcpsocketcontrol;
+    private NetworkUDPSocketWorkerControl _udpsocketcontrol;
+    private NetworkVdeWorkerControl _vdecontrol;
+    private NetworkHubportWorkerControl _hubcontrol;
+    private NetworkDumpWorkerControl _dumpcontrol;
 
-    public NetworkWorkerControl(EmulationControl myemulation, EmulatorQemuMachineControl myfile, int position) {
-        this.mymodel = new NetworkWorkerModel(myemulation, myfile, position);
-        this.myview = new NetworkWorkerView(myfile, position);
-        this.myniccontrol = new NetworkNICWorkerControl(myfile, this.mymodel, position);
-        this.myusercontrol = new NetworkUserWorkerControl(myfile, this.mymodel, position);
-        this.mytapcontrol = new NetworkTapWorkerControl(myfile, this.mymodel, position);
-        this.mybridgecontrol = new NetworkBridgeWorkerControl(myfile, this.mymodel, position);
-        this.mytcpsocketcontrol = new NetworkTCPSocketWorkerControl(myfile, this.mymodel, position);
-        this.myudpsocketcontrol = new NetworkUDPSocketWorkerControl(myfile, this.mymodel, position);
-        this.myvdecontrol = new NetworkVdeWorkerControl(myfile, this.mymodel, position);
-        this.myhubcontrol = new NetworkHubportWorkerControl(myfile, this.mymodel, position);
-        this.mydumpcontrol = new NetworkDumpWorkerControl(myfile, this.mymodel, position);
+    public NetworkWorkerControl(EmulationControl _emulation, EmulatorQemuMachineControl _file, int position) {
+        this._model = new NetworkWorkerModel(_emulation, _file, position);
+        this._view = new NetworkWorkerView(_file, position);
+        this._niccontrol = new NetworkNICWorkerControl(_file, this._model, position);
+        this._usercontrol = new NetworkUserWorkerControl(_file, this._model, position);
+        this._tapcontrol = new NetworkTapWorkerControl(_file, this._model, position);
+        this._bridgecontrol = new NetworkBridgeWorkerControl(_file, this._model, position);
+        this._tcpsocketcontrol = new NetworkTCPSocketWorkerControl(_file, this._model, position);
+        this._udpsocketcontrol = new NetworkUDPSocketWorkerControl(_file, this._model, position);
+        this._vdecontrol = new NetworkVdeWorkerControl(_file, this._model, position);
+        this._hubcontrol = new NetworkHubportWorkerControl(_file, this._model, position);
+        this._dumpcontrol = new NetworkDumpWorkerControl(_file, this._model, position);
     }
 
     public void starts() {
-        this.myview.configureStandardMode();
-        this.myview.configureListener(this);
+        this._view.configureStandardMode();
+        this._view.configureListener(this);
     }
 
     public void change_the_visibility_of_view(Boolean value) {
-        this.myview.setVisible(value);
+        this._view.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("disableButton")) {
-            if (this.myniccontrol.isSelected()
-                    || this.myusercontrol.isSelected()
-                    || this.mytapcontrol.isSelected()
-                    || this.mybridgecontrol.isSelected()
-                    || this.mytcpsocketcontrol.isSelected()
-                    || this.myudpsocketcontrol.isSelected()
-                    || this.myvdecontrol.isSelected()
-                    || this.myhubcontrol.isSelected()
-                    || this.mydumpcontrol.isSelected()) {
-                if (this.myview.getIsEnabled().isSelected()) {
-                    this.myview.getIsEnabled().setSelected(false);
+            if (this._niccontrol.isSelected()
+                    || this._usercontrol.isSelected()
+                    || this._tapcontrol.isSelected()
+                    || this._bridgecontrol.isSelected()
+                    || this._tcpsocketcontrol.isSelected()
+                    || this._udpsocketcontrol.isSelected()
+                    || this._vdecontrol.isSelected()
+                    || this._hubcontrol.isSelected()
+                    || this._dumpcontrol.isSelected()) {
+                if (this._view.getIsEnabled().isSelected()) {
+                    this._view.getIsEnabled().setSelected(false);
                 }
                 String[] options = new String[1];
                 options[0] = "";
-                this.mymodel.buildIt("-net", options);
+                this._model.buildIt("-net", options);
             }
-            this.myview.setVisible(false);
+            this._view.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
-            if (!this.myniccontrol.isSelected()
-                    && !this.myusercontrol.isSelected()
-                    && !this.mytapcontrol.isSelected()
-                    && !this.mybridgecontrol.isSelected()
-                    && !this.mytcpsocketcontrol.isSelected()
-                    && !this.myudpsocketcontrol.isSelected()
-                    && !this.myvdecontrol.isSelected()
-                    && !this.myhubcontrol.isSelected()
-                    && !this.mydumpcontrol.isSelected()
-                    && this.myview.getIsEnabled().isSelected()) {
+            if (!this._niccontrol.isSelected()
+                    && !this._usercontrol.isSelected()
+                    && !this._tapcontrol.isSelected()
+                    && !this._bridgecontrol.isSelected()
+                    && !this._tcpsocketcontrol.isSelected()
+                    && !this._udpsocketcontrol.isSelected()
+                    && !this._vdecontrol.isSelected()
+                    && !this._hubcontrol.isSelected()
+                    && !this._dumpcontrol.isSelected()
+                    && this._view.getIsEnabled().isSelected()) {
                 String[] options = new String[1];
                 options[0] = "";
-                this.mymodel.buildIt("-net", options);
+                this._model.buildIt("-net", options);
             }
-            this.myview.setVisible(false);
+            this._view.setVisible(false);
         } else if (e.getActionCommand().equals("nicOptions")) {
-            this.myniccontrol.change_my_visibility(true);
+            this._niccontrol.setVisible(true);
         } else if (e.getActionCommand().equals("userOption")) {
-            this.myusercontrol.change_my_visibility(true);
+            this._usercontrol.setVisible(true);
         } else if (e.getActionCommand().equals("tapOption")) {
-            this.mytapcontrol.change_my_visibility(true);
+            this._tapcontrol.setVisible(true);
         } else if (e.getActionCommand().equals("bridgeOption")) {
-            this.mybridgecontrol.change_my_visibility(true);
+            this._bridgecontrol.setVisible(true);
         } else if (e.getActionCommand().equals("tcpSocketOption")) {
-            this.mytcpsocketcontrol.change_my_visibility(true);
+            this._tcpsocketcontrol.setVisible(true);
         } else if (e.getActionCommand().equals("udpSocketOption")) {
-            this.myudpsocketcontrol.change_my_visibility(true);
+            this._udpsocketcontrol.setVisible(true);
         } else if (e.getActionCommand().equals("vdeOption")) {
-            this.myvdecontrol.change_my_visibility(true);
+            this._vdecontrol.setVisible(true);
         } else if (e.getActionCommand().equals("hubportOption")) {
-            this.myhubcontrol.change_my_visibility(true);
+            this._hubcontrol.setVisible(true);
         } else if (e.getActionCommand().equals("dumpOption")) {
-            this.mydumpcontrol.change_my_visibility(true);
+            this._dumpcontrol.setVisible(true);
         }
     }
 
     public Boolean isEnabled() {
-        return this.myview.getIsEnabled().isSelected();
+        return this._view.getIsEnabled().isSelected();
     }
 
     public void cleanMe() {
-        if (this.mymodel.getOption().equals("user")) {
-            this.mytapcontrol.cleanMe();
-            this.mybridgecontrol.cleanMe();
-            this.mytcpsocketcontrol.cleanMe();
-            this.myudpsocketcontrol.cleanMe();
-            this.myvdecontrol.cleanMe();
-            this.mydumpcontrol.cleanMe();
-        } else if (this.mymodel.getOption().equals("tap")) {
-            this.myusercontrol.cleanMe();
-            this.mybridgecontrol.cleanMe();
-            this.mytcpsocketcontrol.cleanMe();
-            this.myudpsocketcontrol.cleanMe();
-            this.myvdecontrol.cleanMe();
-            this.mydumpcontrol.cleanMe();
-        } else if (this.mymodel.getOption().equals("bridge")) {
-            this.mytapcontrol.cleanMe();
-            this.myusercontrol.cleanMe();
-            this.mytcpsocketcontrol.cleanMe();
-            this.myudpsocketcontrol.cleanMe();
-            this.myvdecontrol.cleanMe();
-            this.mydumpcontrol.cleanMe();
-        } else if (this.mymodel.getOption().equals("socket")) {
-            this.mytapcontrol.cleanMe();
-            this.myusercontrol.cleanMe();
-            this.mydumpcontrol.cleanMe();
-            this.mybridgecontrol.cleanMe();
-            this.myvdecontrol.cleanMe();
-            if (this.mytcpsocketcontrol.getDate().after(myudpsocketcontrol.getDate())) {
-                this.myudpsocketcontrol.cleanMe();
+        if (this._model.getOption().equals("user")) {
+            this._tapcontrol.cleanMe();
+            this._bridgecontrol.cleanMe();
+            this._tcpsocketcontrol.cleanMe();
+            this._udpsocketcontrol.cleanMe();
+            this._vdecontrol.cleanMe();
+            this._dumpcontrol.cleanMe();
+        } else if (this._model.getOption().equals("tap")) {
+            this._usercontrol.cleanMe();
+            this._bridgecontrol.cleanMe();
+            this._tcpsocketcontrol.cleanMe();
+            this._udpsocketcontrol.cleanMe();
+            this._vdecontrol.cleanMe();
+            this._dumpcontrol.cleanMe();
+        } else if (this._model.getOption().equals("bridge")) {
+            this._tapcontrol.cleanMe();
+            this._usercontrol.cleanMe();
+            this._tcpsocketcontrol.cleanMe();
+            this._udpsocketcontrol.cleanMe();
+            this._vdecontrol.cleanMe();
+            this._dumpcontrol.cleanMe();
+        } else if (this._model.getOption().equals("socket")) {
+            this._tapcontrol.cleanMe();
+            this._usercontrol.cleanMe();
+            this._dumpcontrol.cleanMe();
+            this._bridgecontrol.cleanMe();
+            this._vdecontrol.cleanMe();
+            if (this._tcpsocketcontrol.getDate().after(_udpsocketcontrol.getDate())) {
+                this._udpsocketcontrol.cleanMe();
             } else {
-                this.mytcpsocketcontrol.cleanMe();
+                this._tcpsocketcontrol.cleanMe();
             }
-        } else if (this.mymodel.getOption().equals("vde")) {
-            this.mytapcontrol.cleanMe();
-            this.myusercontrol.cleanMe();
-            this.mytcpsocketcontrol.cleanMe();
-            this.myudpsocketcontrol.cleanMe();
-            this.mydumpcontrol.cleanMe();
-            this.mybridgecontrol.cleanMe();
-        } else if (this.mymodel.getOption().equals("dump")) {
-            this.mytapcontrol.cleanMe();
-            this.myusercontrol.cleanMe();
-            this.mytcpsocketcontrol.cleanMe();
-            this.myudpsocketcontrol.cleanMe();
-            this.mybridgecontrol.cleanMe();
-            this.myvdecontrol.cleanMe();
+        } else if (this._model.getOption().equals("vde")) {
+            this._tapcontrol.cleanMe();
+            this._usercontrol.cleanMe();
+            this._tcpsocketcontrol.cleanMe();
+            this._udpsocketcontrol.cleanMe();
+            this._dumpcontrol.cleanMe();
+            this._bridgecontrol.cleanMe();
+        } else if (this._model.getOption().equals("dump")) {
+            this._tapcontrol.cleanMe();
+            this._usercontrol.cleanMe();
+            this._tcpsocketcontrol.cleanMe();
+            this._udpsocketcontrol.cleanMe();
+            this._bridgecontrol.cleanMe();
+            this._vdecontrol.cleanMe();
         }
     }
 }

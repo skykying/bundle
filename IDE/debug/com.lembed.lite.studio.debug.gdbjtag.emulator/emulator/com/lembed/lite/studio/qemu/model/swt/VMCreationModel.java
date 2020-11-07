@@ -34,7 +34,7 @@ public class VMCreationModel {
         this.Qemu_imgPath = Qemu_imgPath;
     }
 
-    public boolean checks_if_is_a_valid_directory(String path) {
+    public boolean validDirectory(String path) {
         File file = new File(path);
 
         if (!file.exists()) {

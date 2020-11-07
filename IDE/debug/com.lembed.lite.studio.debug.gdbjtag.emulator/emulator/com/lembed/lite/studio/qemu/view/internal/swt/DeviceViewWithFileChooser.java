@@ -45,7 +45,7 @@ public abstract class DeviceViewWithFileChooser extends DeviceBaseView {
 	}
 
     public DeviceViewWithFileChooser withFileControl(EmulatorQemuMachineControl myfile) {
-    	this.fileControl = myfile;
+    	this.eQControl = myfile;
         return this;
 	}
     

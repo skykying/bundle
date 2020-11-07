@@ -100,16 +100,16 @@ public class MemoryView extends DeviceViewWithFileChooser {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
-		 if (fileControl.getMachineModel().getMemPathOption() != null) {
-	            if (!fileControl.getMachineModel().getMemPathOption().isEmpty()) {
-	                this.memoryPath.setText(fileControl.getMachineModel().getMemPathOption());
+	public void applyView(IemultorStore store) {
+		 if (eQControl.getMachineModel().getMemPathOption() != null) {
+	            if (!eQControl.getMachineModel().getMemPathOption().isEmpty()) {
+	                this.memoryPath.setText(eQControl.getMachineModel().getMemPathOption());
 	            }
 	        }
 
-	        if (fileControl.getMachineModel().getMemPreallocOption() != null) {
-	            if (!fileControl.getMachineModel().getMemPreallocOption().isEmpty()) {
-	                if (fileControl.getMachineModel().getMemPreallocOption().equals("true")) {
+	        if (eQControl.getMachineModel().getMemPreallocOption() != null) {
+	            if (!eQControl.getMachineModel().getMemPreallocOption().isEmpty()) {
+	                if (eQControl.getMachineModel().getMemPreallocOption().equals("true")) {
 	                    this.memPrealloc.setSelected(true);
 	                }
 	            }

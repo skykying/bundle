@@ -10,8 +10,8 @@ import java.util.Map;
 import javax.annotation.Nonnegative;
 import javax.annotation.Nonnull;
 
+import com.lembed.lite.studio.qemu.exec.device.QEmuDevice;
 import com.lembed.lite.studio.qemu.exec.util.QEmuIdAllocator;
-import com.lembed.lite.studio.qemu.exec.vm.device.QEmuDevice;
 
 /**
  * A device frontend, exposed to the guest operating system.

@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import com.lembed.lite.studio.qemu.model.swt.EmulatorQemuMachineModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.FileView;
 
 public class EmulatorQemuMachineControl {
@@ -15,9 +15,9 @@ public class EmulatorQemuMachineControl {
     private final FileView fileView;
     
     private int position;
-    private JQemuView view;
+    private JContainerView view;
 
-    public EmulatorQemuMachineControl(JPanel jpanel, JQemuView view) {
+    public EmulatorQemuMachineControl(JPanel jpanel, JContainerView view) {
         super();
         fileModelList = new ArrayList<EmulatorQemuMachineModel>();
         fileView = new FileView(jpanel);

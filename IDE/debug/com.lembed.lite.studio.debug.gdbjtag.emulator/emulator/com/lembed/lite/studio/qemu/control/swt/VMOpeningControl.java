@@ -1,7 +1,7 @@
 package com.lembed.lite.studio.qemu.control.swt;
 
 import com.lembed.lite.studio.qemu.model.swt.VMOpeningModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.VMOpeningView;
 
 public class VMOpeningControl {
@@ -9,7 +9,7 @@ public class VMOpeningControl {
     private VMOpeningModel mymodel;
     private VMOpeningView myview;
 
-    public VMOpeningControl(JQemuView view, EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
+    public VMOpeningControl(JContainerView view, EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
         this.mymodel = new VMOpeningModel(myemulation, myfile);
         this.myview = new VMOpeningView(view, this.mymodel.getMyfile().getMachineModel().getMachineName());
     }
@@ -25,7 +25,7 @@ public class VMOpeningControl {
         return true;
     }
 
-    public void setView(JQemuView view) {
+    public void setView(JContainerView view) {
         this.myview.setView(view);
     }
 

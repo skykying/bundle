@@ -27,8 +27,8 @@ public class SpecificBootView extends DeviceViewWithFileChooser {
     private JButton okButton;
 
 
-    public SpecificBootView(EmulatorQemuMachineControl myfile) {
-        super(myfile,null);
+    public SpecificBootView(EmulatorQemuMachineControl emc) {
+        super(emc,null);
 
         windowContent = new JPanel();
 
@@ -56,8 +56,6 @@ public class SpecificBootView extends DeviceViewWithFileChooser {
         this.setJpanel(windowContent);
 
         this.setTitle("JavaQemu - Specific Boot Choice");
-
-
     }
 
     private void rechecks() {
@@ -83,10 +81,10 @@ public class SpecificBootView extends DeviceViewWithFileChooser {
 
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getKernelBootOption() != null) {
-            if (!fileControl.getMachineModel().getKernelBootOption().isEmpty()) {
-                this.kernel.setText(fileControl.getMachineModel().getKernelBootOption());
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getKernelBootOption() != null) {
+            if (!eQControl.getMachineModel().getKernelBootOption().isEmpty()) {
+                this.kernel.setText(eQControl.getMachineModel().getKernelBootOption());
             }
         }
 

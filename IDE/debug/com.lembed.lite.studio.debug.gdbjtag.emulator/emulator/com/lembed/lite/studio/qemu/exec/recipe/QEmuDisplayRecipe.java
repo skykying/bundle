@@ -9,8 +9,8 @@ import javax.annotation.Nonnull;
 
 import com.lembed.lite.studio.qemu.exec.QEmuDisplayOption;
 import com.lembed.lite.studio.qemu.exec.VncDisplay;
+import com.lembed.lite.studio.qemu.exec.device.QEmuVgaDevice;
 import com.lembed.lite.studio.qemu.exec.util.QEmuOptionsList;
-import com.lembed.lite.studio.qemu.exec.vm.device.QEmuVgaDevice;
 
 /**
  *

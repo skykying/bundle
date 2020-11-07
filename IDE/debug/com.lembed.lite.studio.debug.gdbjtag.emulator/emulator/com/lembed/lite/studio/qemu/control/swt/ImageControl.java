@@ -8,74 +8,74 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.ImageView;
 
-public class ImageControl implements ActionListener {
+public class ImageControl implements BaseControl {
 
-    private ImageModel mymodel;
-    private ImageView myview;
+    private ImageModel imageModel;
+    private ImageView imageView;
 
     public ImageControl(EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
-        this.mymodel = new ImageModel(myemulation, myfile);
-        this.myview = new ImageView(myfile);
+        this.imageModel = new ImageModel(myemulation, myfile);
+        this.imageView = new ImageView(myfile);
     }
 
     public void starts() {
-        this.myview.configureListener(this);
-        this.myview.configureStandardMode();
+        this.imageView.configureListener(this);
+        this.imageView.configureStandardMode();
     }
 
-    public void change_my_visibility(Boolean value) {
-        this.myview.setVisible(value);
+    public void setVisible(Boolean value) {
+        this.imageView.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("eraseButton")) {
-            this.myview.getMtdblock().setText("");
-            this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MTDBLOCKOPTION.getValor()]);
+            this.imageView.getMtdblock().setText("");
+            this.imageModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MTDBLOCKOPTION.getValor()]);
 
-            this.myview.getSd().setText("");
-            this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SDOPTION.getValor()]);
+            this.imageView.getSd().setText("");
+            this.imageModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SDOPTION.getValor()]);
 
-            this.myview.getPflash().setText("");
-            this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.PFLASHOPTION.getValor()]);
-            this.myview.setVisible(false);
+            this.imageView.getPflash().setText("");
+            this.imageModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.PFLASHOPTION.getValor()]);
+            this.imageView.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
-            if (!this.myview.getMtdblock().getText().isEmpty()) {
-                this.mymodel.setMtdblock(this.myview.getMtdblock().getText());
-                this.mymodel.setOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MTDBLOCKOPTION.getValor()]);
+            if (!this.imageView.getMtdblock().getText().isEmpty()) {
+                this.imageModel.setMtdblock(this.imageView.getMtdblock().getText());
+                this.imageModel.setOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MTDBLOCKOPTION.getValor()]);
             } else {
-                this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MTDBLOCKOPTION.getValor()]);
+                this.imageModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MTDBLOCKOPTION.getValor()]);
             }
-            if (!this.myview.getSd().getText().isEmpty()) {
-                this.mymodel.setSd(this.myview.getSd().getText());
-                this.mymodel.setOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SDOPTION.getValor()]);
+            if (!this.imageView.getSd().getText().isEmpty()) {
+                this.imageModel.setSd(this.imageView.getSd().getText());
+                this.imageModel.setOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SDOPTION.getValor()]);
             } else {
-                this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SDOPTION.getValor()]);
+                this.imageModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.SDOPTION.getValor()]);
             }
-            if (!this.myview.getPflash().getText().isEmpty()) {
-                this.mymodel.setPflash(this.myview.getPflash().getText());
-                this.mymodel.setOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.PFLASHOPTION.getValor()]);
+            if (!this.imageView.getPflash().getText().isEmpty()) {
+                this.imageModel.setPflash(this.imageView.getPflash().getText());
+                this.imageModel.setOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.PFLASHOPTION.getValor()]);
             } else {
-                this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.PFLASHOPTION.getValor()]);
+                this.imageModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.PFLASHOPTION.getValor()]);
             }
-            this.myview.setVisible(false);
+            this.imageView.setVisible(false);
         } else if (e.getActionCommand().equals("mtdblockChooser")) {
-            this.myview.setChoosertitle("Choose a file as the on-board Flash memory image!");
-            this.myview.setFileDescription("File - on-board Flash memory image");
-            if (this.myview.chooseAnyFile()) {
-                this.myview.getMtdblock().setText(this.myview.getChoice());
+            this.imageView.setChoosertitle("Choose a file as the on-board Flash memory image!");
+            this.imageView.setFileDescription("File - on-board Flash memory image");
+            if (this.imageView.chooseAnyFile()) {
+                this.imageView.getMtdblock().setText(this.imageView.getChoice());
             }
         } else if (e.getActionCommand().equals("sdChooser")) {
-            this.myview.setChoosertitle("Choose a file as the SecureDigital card image!");
-            this.myview.setFileDescription("File - SecureDigital card image");
-            if (this.myview.chooseAnyFile()) {
-                this.myview.getSd().setText(this.myview.getChoice());
+            this.imageView.setChoosertitle("Choose a file as the SecureDigital card image!");
+            this.imageView.setFileDescription("File - SecureDigital card image");
+            if (this.imageView.chooseAnyFile()) {
+                this.imageView.getSd().setText(this.imageView.getChoice());
             }
         } else if (e.getActionCommand().equals("pflashChooser")) {
-            this.myview.setChoosertitle("Choose a file as the parallel flash image!");
-            this.myview.setFileDescription("File - parallel flash image");
-            if (this.myview.chooseAnyFile()) {
-                this.myview.getPflash().setText(this.myview.getChoice());
+            this.imageView.setChoosertitle("Choose a file as the parallel flash image!");
+            this.imageView.setFileDescription("File - parallel flash image");
+            if (this.imageView.chooseAnyFile()) {
+                this.imageView.getPflash().setText(this.imageView.getChoice());
             }
         }
     }

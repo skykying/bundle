@@ -27,10 +27,8 @@ public class CPUIDFlagView extends DeviceBaseView  {
 
 	private String title;
 
-	private EmulatorQemuMachineControl myfile;
-
-    public CPUIDFlagView(EmulatorQemuMachineControl myfile) {
-    	super(myfile);
+    public CPUIDFlagView(EmulatorQemuMachineControl emc) {
+    	super(emc);
         this.jpanel = new JPanel();
 
 
@@ -143,10 +141,10 @@ public class CPUIDFlagView extends DeviceBaseView  {
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (myfile.getMachineModel().getCpuidFlags() != null) {
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getCpuidFlags() != null) {
 
-            String[] basis = myfile.getMachineModel().getCpuidFlags().split(",");
+            String[] basis = eQControl.getMachineModel().getCpuidFlags().split(",");
             DefaultListModel<String> model = (DefaultListModel<String>) this.getSelectedList().getModel();
 
             for (int i = 0; i < basis.length; i++) {

@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.NetworkManagerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkManagerView;
 
-public class NetworkManagerControl implements ActionListener {
+public class NetworkManagerControl implements BaseControl {
 
     private NetworkManagerView myview;
     private NetworkManagerModel mymodel;
@@ -34,7 +34,7 @@ public class NetworkManagerControl implements ActionListener {
         }
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

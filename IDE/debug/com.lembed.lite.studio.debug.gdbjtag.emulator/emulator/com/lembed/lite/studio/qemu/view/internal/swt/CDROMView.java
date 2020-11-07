@@ -91,9 +91,9 @@ public class CDROMView extends DeviceViewWithFileChooser {
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getCdrom() != null) {
-            cdromText.setText(fileControl.getMachineModel().getCdrom());
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getCdrom() != null) {
+            cdromText.setText(eQControl.getMachineModel().getCdrom());
         }
         
         this.rechecks();

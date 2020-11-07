@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkUserWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkUserWorkerView;
 
-public class NetworkUserWorkerControl implements ActionListener {
+public class NetworkUserWorkerControl implements BaseControl {
 
     private NetworkUserWorkerView myview;
     private NetworkUserWorkerModel mymodel;
@@ -27,7 +27,7 @@ public class NetworkUserWorkerControl implements ActionListener {
         this.myhostfwdcontrol = new NetworkHostfwdUserWorkerControl(myfile, position);
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

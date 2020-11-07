@@ -7,8 +7,6 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -71,9 +69,8 @@ public class VMCreationViewEnd extends JPanel {
     }
 
     public void initialize() {
-//        this.setContentPane(windowContent);
+        this.add(windowContent);
 //        this.setTitle("Create a new machine - The end");
-//        this.pack();
     }
 
     public void configureListener(ActionListener listener) {

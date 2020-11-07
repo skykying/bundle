@@ -133,6 +133,7 @@ public class VMCreationViewPart2 extends DeviceViewWithFileChooser {
         windowContent.add(cancelButton, gridBagConstraints);
 
         this.setChoosertitle("Please, choose a directory!");
+        initialize();
     }
 
     public void initialize() {
@@ -188,7 +189,7 @@ public class VMCreationViewPart2 extends DeviceViewWithFileChooser {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		// TODO Auto-generated method stub
 		
 	}

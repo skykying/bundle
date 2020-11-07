@@ -17,7 +17,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class VMConfigurationView extends JFileChooserView {
 
@@ -31,7 +31,7 @@ public class VMConfigurationView extends JFileChooserView {
 
     private JButton resetRamSizeButton;
 
-    private JQemuView myview;
+    private JContainerView myview;
 
     private JLabel ramDescription;
 
@@ -85,7 +85,7 @@ public class VMConfigurationView extends JFileChooserView {
 
     private JLabel temp[];
 
-    public VMConfigurationView(JQemuView myview, String initialRamValue) {
+    public VMConfigurationView(JContainerView myview, String initialRamValue) {
         super(null);
         this.gridLayout = new GridLayout(9, 3);
 

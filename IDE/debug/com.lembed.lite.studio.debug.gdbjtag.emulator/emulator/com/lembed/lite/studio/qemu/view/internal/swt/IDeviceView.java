@@ -8,6 +8,6 @@ public interface IDeviceView {
 
 	String getTitle();
 
-	void doSave(IemultorStore store);
+	void applyView(IemultorStore store);
 
 }

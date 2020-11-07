@@ -148,7 +148,7 @@ public class AdvancedOptionsView extends JPanel implements IDeviceView{
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
         if (myfile.getMachineModel().getWin2khackOption() != null) {
             if (myfile.getMachineModel().getWin2khackOption().equals("true")) {
                 this.win2kHackOption.setSelected(true);

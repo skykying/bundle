@@ -7,7 +7,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkDumpWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkDumpWorkerView;
 
-public class NetworkDumpWorkerControl implements ActionListener {
+public class NetworkDumpWorkerControl implements BaseControl {
 
     private NetworkDumpWorkerModel mymodel;
     private NetworkDumpWorkerView myview;
@@ -20,7 +20,7 @@ public class NetworkDumpWorkerControl implements ActionListener {
         myview.configureStandardMode();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         myview.setVisible(value);
     }
 

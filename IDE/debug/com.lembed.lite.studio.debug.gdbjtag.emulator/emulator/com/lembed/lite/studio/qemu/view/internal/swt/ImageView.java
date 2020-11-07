@@ -114,17 +114,17 @@ public class ImageView extends DeviceViewWithFileChooser {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getMtdblockOption() != null) {
-            this.mtdblock.setText(fileControl.getMachineModel().getMtdblockOption());
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getMtdblockOption() != null) {
+            this.mtdblock.setText(eQControl.getMachineModel().getMtdblockOption());
         }
 
-        if (fileControl.getMachineModel().getSdOption() != null) {
-            this.sd.setText(fileControl.getMachineModel().getSdOption());
+        if (eQControl.getMachineModel().getSdOption() != null) {
+            this.sd.setText(eQControl.getMachineModel().getSdOption());
         }
 
-        if (fileControl.getMachineModel().getPflashOption() != null) {
-            this.pflash.setText(fileControl.getMachineModel().getPflashOption());
+        if (eQControl.getMachineModel().getPflashOption() != null) {
+            this.pflash.setText(eQControl.getMachineModel().getPflashOption());
         }
 
         this.rechecks();

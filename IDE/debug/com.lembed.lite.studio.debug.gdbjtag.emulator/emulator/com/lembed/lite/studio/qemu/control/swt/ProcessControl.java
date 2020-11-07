@@ -5,27 +5,27 @@ import com.lembed.lite.studio.qemu.view.internal.swt.EmulationView;
 
 public class ProcessControl {
 
-    private ProcessModel myModel;
-    private EmulationView myView;
+    private ProcessModel processModel;
+    private EmulationView emulationView;
 
     public ProcessControl(Process myProcess, String machineName, EmulationView myView, String qemuPathDir) {
-        this.myView = myView;
-        this.myModel = new ProcessModel(myProcess, machineName, qemuPathDir, myView);
+        this.emulationView = myView;
+        this.processModel = new ProcessModel(myProcess, machineName, qemuPathDir, myView);
     }
 
     public ProcessModel getMyModel() {
-        return this.myModel;
+        return this.processModel;
     }
 
     public String getMachineName() {
-        return this.myModel.getMachineName();
+        return this.processModel.getMachineName();
     }
 
     public EmulationView getMyView() {
-        return myView;
+        return emulationView;
     }
 
     public void run() throws InterruptedException {
-        this.myModel.runMaster();
+        this.processModel.runMaster();
     }
 }

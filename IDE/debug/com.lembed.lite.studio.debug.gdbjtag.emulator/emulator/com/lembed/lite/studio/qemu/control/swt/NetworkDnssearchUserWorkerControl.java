@@ -8,7 +8,7 @@ import java.util.List;
 import com.lembed.lite.studio.qemu.model.swt.NetworkDnssearchUserWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkDnssearchUserWorkerView;
 
-public class NetworkDnssearchUserWorkerControl implements ActionListener {
+public class NetworkDnssearchUserWorkerControl implements BaseControl {
 
     private NetworkDnssearchUserWorkerView myview;
     private NetworkDnssearchUserWorkerModel mymodel;

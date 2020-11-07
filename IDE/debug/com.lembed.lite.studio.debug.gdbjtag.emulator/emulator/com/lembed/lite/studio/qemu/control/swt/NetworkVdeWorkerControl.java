@@ -7,7 +7,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkVdeWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkVdeWorkerView;
 
-public class NetworkVdeWorkerControl implements ActionListener {
+public class NetworkVdeWorkerControl implements BaseControl {
 
     private NetworkVdeWorkerModel mymodel;
     private NetworkVdeWorkerView myview;
@@ -20,7 +20,7 @@ public class NetworkVdeWorkerControl implements ActionListener {
         this.myview.configureStandardMode();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

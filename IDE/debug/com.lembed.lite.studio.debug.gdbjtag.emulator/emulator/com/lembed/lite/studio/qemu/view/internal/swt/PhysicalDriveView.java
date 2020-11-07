@@ -18,20 +18,16 @@ public class PhysicalDriveView extends DeviceBaseView {
     private JPanel windowContent;
 
     private GridLayout gridLayout;
-
     private JLabel physicalDriveLabel;
-
     private JComboBox<String> physicalDriveNumber;
-
     private JButton cancelButton;
-
     private JButton okButton;
 
 
 	private int position;
 
-    public PhysicalDriveView(EmulatorQemuMachineControl myfile, int position) {
-        super(myfile);
+    public PhysicalDriveView(EmulatorQemuMachineControl emc, int position) {
+        super(emc);
 
         this.position = position;
 
@@ -86,14 +82,14 @@ public class PhysicalDriveView extends DeviceBaseView {
     
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		 if (position == 1) {
-	            if (fileControl.getMachineModel().getFirstHardDiskOption() != null) {
-	                if (fileControl.getMachineModel().getFirstHardDiskOption()
+	            if (eQControl.getMachineModel().getFirstHardDiskOption() != null) {
+	                if (eQControl.getMachineModel().getFirstHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
-	                                    .parseInt(fileControl
+	                                    .parseInt(eQControl
 	                                            .getMachineModel()
 	                                            .getFirstHardDiskOption()
 	                                            .substring(
@@ -103,12 +99,12 @@ public class PhysicalDriveView extends DeviceBaseView {
 	                }
 	            }
 	        } else if (position == 2) {
-	            if (fileControl.getMachineModel().getSecondHardDiskOption() != null) {
-	                if (fileControl.getMachineModel().getSecondHardDiskOption()
+	            if (eQControl.getMachineModel().getSecondHardDiskOption() != null) {
+	                if (eQControl.getMachineModel().getSecondHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
-	                                    .parseInt(fileControl
+	                                    .parseInt(eQControl
 	                                            .getMachineModel()
 	                                            .getSecondHardDiskOption()
 	                                            .substring(
@@ -118,12 +114,12 @@ public class PhysicalDriveView extends DeviceBaseView {
 	                }
 	            }
 	        } else if (position == 3) {
-	            if (fileControl.getMachineModel().getThirdHardDiskOption() != null) {
-	                if (fileControl.getMachineModel().getThirdHardDiskOption()
+	            if (eQControl.getMachineModel().getThirdHardDiskOption() != null) {
+	                if (eQControl.getMachineModel().getThirdHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
-	                                    .parseInt(fileControl
+	                                    .parseInt(eQControl
 	                                            .getMachineModel()
 	                                            .getThirdHardDiskOption()
 	                                            .substring(
@@ -133,12 +129,12 @@ public class PhysicalDriveView extends DeviceBaseView {
 	                }
 	            }
 	        } else if (position == 4) {
-	            if (fileControl.getMachineModel().getFourthHardDiskOption() != null) {
-	                if (fileControl.getMachineModel().getFourthHardDiskOption()
+	            if (eQControl.getMachineModel().getFourthHardDiskOption() != null) {
+	                if (eQControl.getMachineModel().getFourthHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
-	                                    .parseInt(fileControl
+	                                    .parseInt(eQControl
 	                                            .getMachineModel()
 	                                            .getFourthHardDiskOption()
 	                                            .substring(

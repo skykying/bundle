@@ -1,4 +1,4 @@
-package com.lembed.lite.studio.qemu.control.actions;
+package com.lembed.lite.studio.qemu.control.swt.actions;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -11,16 +11,16 @@ import com.lembed.lite.studio.qemu.control.VMClosingControl;
 import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class ExitCommand implements BaseListener {
 
-	private JQemuView view;
+	private JContainerView view;
 	private EmulationControl emulationControl;
 	private VMClosingControl vMClosingControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
 	
-	public ExitCommand(JQemuView jview, EmulationControl emulationControl) {
+	public ExitCommand(JContainerView jview, EmulationControl emulationControl) {
 		view = jview;
 		view.registerListener(this);
 		this.emulationControl = emulationControl;

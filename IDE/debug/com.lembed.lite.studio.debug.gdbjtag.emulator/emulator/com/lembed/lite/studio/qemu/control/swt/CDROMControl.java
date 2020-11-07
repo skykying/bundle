@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.CDROMModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.CDROMView;
 
-public class CDROMControl implements ActionListener {
+public class CDROMControl implements BaseControl {
 
     private CDROMModel cdRomModel;
     private CDROMView cdRomView;
@@ -26,7 +26,7 @@ public class CDROMControl implements ActionListener {
         cdRomView.configureStandardMode();
     }
 
-    public void change_my_visibility(Boolean value) {
+    public void setVisible(Boolean value) {
         cdRomView.setVisible(value);
     }
 

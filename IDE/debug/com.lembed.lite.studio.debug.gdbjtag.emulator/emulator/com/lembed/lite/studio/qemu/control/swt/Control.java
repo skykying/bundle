@@ -16,12 +16,12 @@ import com.lembed.lite.studio.qemu.model.swt.Model;
 import com.lembed.lite.studio.qemu.model.swt.UtilitiesModel;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.UtilitiesView;
 
 public class Control implements BaseListener {
 
-	private JQemuView view;
+	private JContainerView view;
 	private ConfigurationControl configurationControl;
 	private EmulationControl emulationControl;
 	private VMCreationControl vMCreationControl;
@@ -36,7 +36,7 @@ public class Control implements BaseListener {
 	private LastUsedFolderModel lastUsedFolderModel;
 	private LastUsedFileModel lastUsedFileModel;
 
-	public Control(JQemuView jview) {
+	public Control(JContainerView jview) {
 		view = jview;
 		view.registerListener(this);
 		configurationControl = null;

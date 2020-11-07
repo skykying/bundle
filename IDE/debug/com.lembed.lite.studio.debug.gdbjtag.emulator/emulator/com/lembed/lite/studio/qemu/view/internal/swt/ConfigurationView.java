@@ -386,7 +386,7 @@ public class ConfigurationView extends DeviceViewWithFileChooser implements IDev
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		// TODO Auto-generated method stub
 		
 	}

@@ -11,18 +11,18 @@ import com.lembed.lite.studio.qemu.view.internal.swt.CPUIDFlagView;
 import com.lembed.lite.studio.qemu.view.internal.swt.CPUView;
 import com.lembed.lite.studio.qemu.view.internal.swt.UtilitiesView;
 
-public class CPUControl implements ActionListener {
+public class CPUControl implements BaseControl {
 
     private final CPUModel cpuModel;
     private final CPUView cpuView;
     private final CPUIDFlagView cpuIdFlagView;
     private final EmulatorQemuMachineControl cpuFileControl;
 
-    public CPUControl(EmulationControl myemulation, EmulatorQemuMachineControl fileControl) {
-        this.cpuModel = new CPUModel(myemulation);
-        this.cpuView = new CPUView(fileControl);
-        this.cpuIdFlagView = new CPUIDFlagView(fileControl);
-        this.cpuFileControl = fileControl;
+    public CPUControl(EmulationControl ec, EmulatorQemuMachineControl emc) {
+        this.cpuModel = new CPUModel(ec);
+        this.cpuView = new CPUView(emc);
+        this.cpuIdFlagView = new CPUIDFlagView(emc);
+        this.cpuFileControl = emc;
     }
 
     public void starts() {
@@ -30,7 +30,9 @@ public class CPUControl implements ActionListener {
         cpuView.configureStandardMode();
         cpuIdFlagView.configureListener(this);
         cpuIdFlagView.configureStandardMode();
+        
         if (cpuIdFlagView.getLoaded() || cpuView.getLoaded()) {
+        	
             cpuModel.buildCPUModel(cpuView.getCpuModels());
             JList<String> clist = cpuIdFlagView.getSelectedList();
             DefaultListModel<String> model = (DefaultListModel<String>) clist.getModel();

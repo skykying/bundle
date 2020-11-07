@@ -4,7 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.lembed.lite.studio.qemu.model.swt.EmulationModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.EmulationView;
 
 public class EmulationControl {
@@ -13,7 +13,7 @@ public class EmulationControl {
 
     private EmulationView emulationView;
 
-    public EmulationControl(JQemuView view) {
+    public EmulationControl(JContainerView view) {
         super();
         this.emulationView = new EmulationView();
         this.emulationModel = new EmulationModel(this.emulationView, view);

@@ -15,7 +15,7 @@ import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderModel;
 import com.lembed.lite.studio.qemu.model.swt.Model;
 import com.lembed.lite.studio.qemu.view.internal.swt.ConfigurationView;
 
-public class ConfigurationControl implements ActionListener {
+public class ConfigurationControl implements BaseControl {
 
     private ConfigurationView configurationView;
 

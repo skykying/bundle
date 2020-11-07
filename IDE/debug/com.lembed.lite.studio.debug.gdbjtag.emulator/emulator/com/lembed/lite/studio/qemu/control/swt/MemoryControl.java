@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.MemoryView;
 
-public class MemoryControl implements ActionListener {
+public class MemoryControl implements BaseControl {
 
     private MemoryView myview;
     private MemoryModel mymodel;

@@ -14,7 +14,7 @@ import javax.swing.JRadioButton;
 
 import com.lembed.lite.studio.qemu.model.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.model.VMCreationModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.VMCreationViewEnd;
 import com.lembed.lite.studio.qemu.view.internal.VMCreationViewPart1;
 import com.lembed.lite.studio.qemu.view.internal.VMCreationViewPart2;
@@ -36,7 +36,7 @@ public class VMCreationControl implements ActionListener {
 
     private FileControl fileControl;
 
-    private JQemuView jQemuView;
+    private JContainerView jQemuView;
 
     private EmulationControl emulationControl;
 
@@ -45,7 +45,7 @@ public class VMCreationControl implements ActionListener {
     private List<VMConfigurationControl> vmConfigurationControlList;
 
     public VMCreationControl(DiskCreationControl mydisk, String pathQemu_img,
-            String default_virtual_machines_path, JQemuView view, FileControl file,
+            String default_virtual_machines_path, JContainerView view, FileControl file,
             EmulationControl emulation,
             List<VMConfigurationControl> vmcontrol) {
         myfirstview = new VMCreationViewPart1();

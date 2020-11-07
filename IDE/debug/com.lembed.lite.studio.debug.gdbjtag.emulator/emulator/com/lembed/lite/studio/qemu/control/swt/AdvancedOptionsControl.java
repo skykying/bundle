@@ -6,17 +6,17 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.AdvancedOptionsModel;
 import com.lembed.lite.studio.qemu.model.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.model.VMConfigurationModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.AdvancedOptionsView;
 
-public class AdvancedOptionsControl implements ActionListener {
+public class AdvancedOptionsControl implements BaseControl {
 
     private AdvancedOptionsModel mymodel;
     private AdvancedOptionsView myview;
-    private JQemuView myMainView;
+    private JContainerView myMainView;
 
     public AdvancedOptionsControl(EmulationControl myemulation,
-            EmulatorQemuMachineControl myfile, JQemuView myView) {
+            EmulatorQemuMachineControl myfile, JContainerView myView) {
         myview = new AdvancedOptionsView(myfile);
         myview.configureListener(this);
         myview.configureStandardMode();
@@ -24,7 +24,7 @@ public class AdvancedOptionsControl implements ActionListener {
         myMainView = myView;
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         /*
 		 http://stackoverflow.com/questions/17305584/textfield-not-updating-dynamically
          */
@@ -66,7 +66,7 @@ public class AdvancedOptionsControl implements ActionListener {
         mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.NOHPETOPTION.getValor()]);
         myview.getNoHpetOption().setSelected(false);
 
-        change_my_visibility(false);
+        setVisible(false);
     }
     
     private void handleOK() {
@@ -107,6 +107,6 @@ public class AdvancedOptionsControl implements ActionListener {
         } else {
             mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.NOHPETOPTION.getValor()]);
         }
-        change_my_visibility(false);
+        setVisible(false);
     }
 }

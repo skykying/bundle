@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.SpecificBootView;
 
-public class SpecificBootControl implements ActionListener {
+public class SpecificBootControl implements BaseControl {
 
     private SpecificBootView myview;
     private KernelBootModel mykernel;
@@ -20,7 +20,7 @@ public class SpecificBootControl implements ActionListener {
         this.mykernel = new KernelBootModel(myemulation, myfile);
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

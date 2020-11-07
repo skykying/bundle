@@ -1,14 +1,12 @@
 package com.lembed.lite.studio.qemu.control.swt;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.JCheckBox;
 
 import com.lembed.lite.studio.qemu.model.swt.BootModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.BootView;
 
-public class BootControl implements ActionListener {
+public class BootControl implements BaseControl {
 
     private BootModel bootModel;
     private BootView bootView;
@@ -57,7 +55,7 @@ public class BootControl implements ActionListener {
         bootView.configureStandardMode();
     }
 
-    public void change_my_visibility(Boolean value) {
+    public void setVisible(Boolean value) {
         bootView.setVisible(value);
     }
 

@@ -6,279 +6,279 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.HardDiskModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.HardDiskView;
 
-public class HardDiskControl implements ActionListener {
+public class HardDiskControl implements BaseControl {
 
-    private HardDiskModel mymodel;
-    private HardDiskView myview;
-    private PhysicalDriveControl[] myphysicaldrives;
-    private EmulatorQemuMachineControl myfile;
+    private HardDiskModel hardDiskModel;
+    private HardDiskView hardDiskView;
+    private PhysicalDriveControl[] physicalDriveControls;
+    private EmulatorQemuMachineControl eQctl;
 
-    public HardDiskControl(EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
-        this.myview = new HardDiskView(myfile.getMachineModel().getFirstHardDiskOption(),
-                myfile.getMachineModel().getSecondHardDiskOption(), myfile
-                .getMachineModel().getThirdHardDiskOption(), myfile
+    public HardDiskControl(EmulationControl myemulation, EmulatorQemuMachineControl emc) {
+        this.hardDiskView = new HardDiskView(emc.getMachineModel().getFirstHardDiskOption(),
+        		emc.getMachineModel().getSecondHardDiskOption(), emc
+                .getMachineModel().getThirdHardDiskOption(), emc
                 .getMachineModel().getFourthHardDiskOption());
-        this.mymodel = new HardDiskModel(myemulation, myfile);
-        this.myfile = myfile;
-        this.myphysicaldrives = new PhysicalDriveControl[4];
+        this.hardDiskModel = new HardDiskModel(myemulation, emc);
+        this.eQctl = emc;
+        this.physicalDriveControls = new PhysicalDriveControl[4];
     }
 
     public void starts() {
-        this.myview.configureListener(this);
-        this.myview.configureStandardMode();
+        this.hardDiskView.configureListener(this);
+        this.hardDiskView.configureStandardMode();
     }
 
     public void setVisible(boolean value) {
-        this.myview.setVisible(value);
+        this.hardDiskView.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("ChangeDiskImagePathButton")) {
-            this.myview
+            this.hardDiskView
                     .setChoosertitle("Choose the first disk image path!");
-            if (this.myview.chooseFiles()) {
-                this.mymodel.setFirstHardDiskOption(this.myview.getChoice());
-                this.myview.changesFirstHardDiskOptionField(this.myview.getChoice());
+            if (this.hardDiskView.chooseFiles()) {
+                this.hardDiskModel.setFirstHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesFirstHardDiskOptionField(this.hardDiskView.getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetFirstPhysicalHardDiskDriveButton")) {
-            if (this.myphysicaldrives[0] == null) {
-                this.myphysicaldrives[0] = new PhysicalDriveControl(this, myfile, 1);
-                this.myphysicaldrives[0].change_my_visibility(true);
+            if (this.physicalDriveControls[0] == null) {
+                this.physicalDriveControls[0] = new PhysicalDriveControl(this, eQctl, 1);
+                this.physicalDriveControls[0].change_my_visibility(true);
             } else {
-                this.myphysicaldrives[0].change_my_visibility(true);
+                this.physicalDriveControls[0].change_my_visibility(true);
             }
         } else if (e.getActionCommand().equals("SetFirstLinuxPhysicalHardDiskDriveButton")) {
-            this.myview.setChoosertitle("JavaQemu - First Linux Physical Drive Choice");
-            this.myview.setFileDescription("Linux Hard Disk Device");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setFirstHardDiskOption(this.myview.getChoice());
-                this.myview.changesFirstHardDiskOptionField(this.myview.getChoice());
+            this.hardDiskView.setChoosertitle("JavaQemu - First Linux Physical Drive Choice");
+            this.hardDiskView.setFileDescription("Linux Hard Disk Device");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setFirstHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesFirstHardDiskOptionField(this.hardDiskView.getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetFirstReadOnlyVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the First Read-Only Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Only Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setFirstHardDiskOption(this.convertFatReadOnly(this.myview.getChoice()));
-                this.myview.changesFirstHardDiskOptionField(this.convertFatReadOnly(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the First Read-Only Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Only Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setFirstHardDiskOption(this.convertFatReadOnly(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesFirstHardDiskOptionField(this.convertFatReadOnly(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals(
                 "SetFirstReadWriteVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the First Read-Write Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Write Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setFirstHardDiskOption(this.convertFatReadWrite(this.myview.getChoice()));
-                this.myview.changesFirstHardDiskOptionField(this.convertFatReadWrite(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the First Read-Write Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Write Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setFirstHardDiskOption(this.convertFatReadWrite(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesFirstHardDiskOptionField(this.convertFatReadWrite(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals(
                 "ChangeSecondDiskImagePathButton")) {
-            this.myview
+            this.hardDiskView
                     .setChoosertitle("Choose the second disk image path!");
-            if (this.myview.chooseFiles()) {
-                this.mymodel.setSecondHardDiskOption(this.myview.getChoice());
-                this.myview.changesSecondHardDiskOptionField(this.myview
+            if (this.hardDiskView.chooseFiles()) {
+                this.hardDiskModel.setSecondHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesSecondHardDiskOptionField(this.hardDiskView
                         .getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetSecondPhysicalHardDiskDriveButton")) {
-            if (this.myphysicaldrives[1] == null) {
-                this.myphysicaldrives[1] = new PhysicalDriveControl(this, myfile, 2);
-                this.myphysicaldrives[1].change_my_visibility(true);
+            if (this.physicalDriveControls[1] == null) {
+                this.physicalDriveControls[1] = new PhysicalDriveControl(this, eQctl, 2);
+                this.physicalDriveControls[1].change_my_visibility(true);
             } else {
-                this.myphysicaldrives[1].change_my_visibility(true);
+                this.physicalDriveControls[1].change_my_visibility(true);
             }
         } else if (e.getActionCommand().equals("SetSecondLinuxPhysicalHardDiskDriveButton")) {
-            this.myview.setChoosertitle("JavaQemu - Second Linux Physical Drive Choice");
-            this.myview.setFileDescription("Linux Hard Disk Device");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setSecondHardDiskOption(this.myview.getChoice());
-                this.myview.changesSecondHardDiskOptionField(this.myview.getChoice());
+            this.hardDiskView.setChoosertitle("JavaQemu - Second Linux Physical Drive Choice");
+            this.hardDiskView.setFileDescription("Linux Hard Disk Device");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setSecondHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesSecondHardDiskOptionField(this.hardDiskView.getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetSecondReadOnlyVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the Second Read-Only Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Only Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setSecondHardDiskOption(this.convertFatReadOnly(this.myview.getChoice()));
-                this.myview.changesSecondHardDiskOptionField(this.convertFatReadOnly(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the Second Read-Only Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Only Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setSecondHardDiskOption(this.convertFatReadOnly(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesSecondHardDiskOptionField(this.convertFatReadOnly(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals(
                 "SetSecondReadWriteVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the Second Read-Write Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Write Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setSecondHardDiskOption(this.convertFatReadWrite(this.myview.getChoice()));
-                this.myview.changesSecondHardDiskOptionField(this.convertFatReadWrite(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the Second Read-Write Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Write Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setSecondHardDiskOption(this.convertFatReadWrite(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesSecondHardDiskOptionField(this.convertFatReadWrite(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand()
                 .equals("ChangeThirdDiskImagePathButton")) {
-            this.myview
+            this.hardDiskView
                     .setChoosertitle("Choose the third disk image path!");
-            if (this.myview.chooseFiles()) {
-                this.mymodel.setThirdHardDiskOption(this.myview.getChoice());
-                this.myview.changesThirdHardDiskOptionField(this.myview
+            if (this.hardDiskView.chooseFiles()) {
+                this.hardDiskModel.setThirdHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesThirdHardDiskOptionField(this.hardDiskView
                         .getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetThirdPhysicalHardDiskDriveButton")) {
-            if (this.myphysicaldrives[2] == null) {
-                this.myphysicaldrives[2] = new PhysicalDriveControl(this, myfile, 3);
-                this.myphysicaldrives[2].change_my_visibility(true);
+            if (this.physicalDriveControls[2] == null) {
+                this.physicalDriveControls[2] = new PhysicalDriveControl(this, eQctl, 3);
+                this.physicalDriveControls[2].change_my_visibility(true);
             } else {
-                this.myphysicaldrives[2].change_my_visibility(true);
+                this.physicalDriveControls[2].change_my_visibility(true);
             }
         } else if (e.getActionCommand().equals("SetThirdLinuxPhysicalHardDiskDriveButton")) {
-            this.myview.setChoosertitle("JavaQemu - Third Linux Physical Drive Choice");
-            this.myview.setFileDescription("Linux Hard Disk Device");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setThirdHardDiskOption(this.myview.getChoice());
-                this.myview.changesThirdHardDiskOptionField(this.myview.getChoice());
+            this.hardDiskView.setChoosertitle("JavaQemu - Third Linux Physical Drive Choice");
+            this.hardDiskView.setFileDescription("Linux Hard Disk Device");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setThirdHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesThirdHardDiskOptionField(this.hardDiskView.getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetThirdReadOnlyVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the Third Read-Only Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Only Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setThirdHardDiskOption(this.convertFatReadOnly(this.myview.getChoice()));
-                this.myview.changesThirdHardDiskOptionField(this.convertFatReadOnly(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the Third Read-Only Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Only Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setThirdHardDiskOption(this.convertFatReadOnly(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesThirdHardDiskOptionField(this.convertFatReadOnly(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals(
                 "SetThirdReadWriteVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the Third Read-Write Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Write Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setThirdHardDiskOption(this.convertFatReadWrite(this.myview.getChoice()));
-                this.myview.changesThirdHardDiskOptionField(this.convertFatReadWrite(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the Third Read-Write Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Write Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setThirdHardDiskOption(this.convertFatReadWrite(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesThirdHardDiskOptionField(this.convertFatReadWrite(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals(
                 "ChangeFourthDiskImagePathButton")) {
-            this.myview
+            this.hardDiskView
                     .setChoosertitle("Choose the fourth disk image path!");
-            if (this.myview.chooseFiles()) {
-                this.mymodel.setFourthHardDiskOption(this.myview.getChoice());
-                this.myview.changesFourthHardDiskOptionField(this.myview
+            if (this.hardDiskView.chooseFiles()) {
+                this.hardDiskModel.setFourthHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesFourthHardDiskOptionField(this.hardDiskView
                         .getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetFourthPhysicalHardDiskDriveButton")) {
-            if (this.myphysicaldrives[3] == null) {
-                this.myphysicaldrives[3] = new PhysicalDriveControl(this, myfile, 4);
-                this.myphysicaldrives[3].change_my_visibility(true);
+            if (this.physicalDriveControls[3] == null) {
+                this.physicalDriveControls[3] = new PhysicalDriveControl(this, eQctl, 4);
+                this.physicalDriveControls[3].change_my_visibility(true);
             } else {
-                this.myphysicaldrives[3].change_my_visibility(true);
+                this.physicalDriveControls[3].change_my_visibility(true);
             }
         } else if (e.getActionCommand().equals("SetFourthLinuxPhysicalHardDiskDriveButton")) {
-            this.myview.setChoosertitle("JavaQemu - Fourth Linux Physical Drive Choice");
-            this.myview.setFileDescription("Linux Hard Disk Device");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setFourthHardDiskOption(this.myview.getChoice());
-                this.myview.changesFourthHardDiskOptionField(this.myview.getChoice());
+            this.hardDiskView.setChoosertitle("JavaQemu - Fourth Linux Physical Drive Choice");
+            this.hardDiskView.setFileDescription("Linux Hard Disk Device");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setFourthHardDiskOption(this.hardDiskView.getChoice());
+                this.hardDiskView.changesFourthHardDiskOptionField(this.hardDiskView.getChoice());
             }
         } else if (e.getActionCommand().equals(
                 "SetFourthReadOnlyVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the Fourth Read-Only Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Only Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setFourthHardDiskOption(this.convertFatReadOnly(this.myview.getChoice()));
-                this.myview.changesFourthHardDiskOptionField(this.convertFatReadOnly(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the Fourth Read-Only Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Only Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setFourthHardDiskOption(this.convertFatReadOnly(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesFourthHardDiskOptionField(this.convertFatReadOnly(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals(
                 "SetFourthReadWriteVirtualFATHardDiskPathButton")) {
-            this.myview.setChoosertitle("Choose the Fourth Read-Write Virtual VFAT Path!");
-            this.myview.setFileDescription("Read-Write Virtual VFAT Directory");
-            if (this.myview.chooseDirectoryForDefaultVMPath()) {
-                this.mymodel.setFourthHardDiskOption(this.convertFatReadWrite(this.myview.getChoice()));
-                this.myview.changesFourthHardDiskOptionField(this.convertFatReadWrite(this.myview.getChoice()));
+            this.hardDiskView.setChoosertitle("Choose the Fourth Read-Write Virtual VFAT Path!");
+            this.hardDiskView.setFileDescription("Read-Write Virtual VFAT Directory");
+            if (this.hardDiskView.chooseDirectoryForDefaultVMPath()) {
+                this.hardDiskModel.setFourthHardDiskOption(this.convertFatReadWrite(this.hardDiskView.getChoice()));
+                this.hardDiskView.changesFourthHardDiskOptionField(this.convertFatReadWrite(this.hardDiskView.getChoice()));
             }
         } else if (e.getActionCommand().equals("okButtonHDI")) {
-            if (!this.myview.getFirstHardDiskOption().equals(
-                    this.mymodel.getFirstHardDiskOption())) {
-                this.mymodel.setFirstHardDiskOption(this.myview.getFirstHardDiskOption());
-                this.myview.changesFirstHardDiskOptionField(this.myview
+            if (!this.hardDiskView.getFirstHardDiskOption().equals(
+                    this.hardDiskModel.getFirstHardDiskOption())) {
+                this.hardDiskModel.setFirstHardDiskOption(this.hardDiskView.getFirstHardDiskOption());
+                this.hardDiskView.changesFirstHardDiskOptionField(this.hardDiskView
                         .getFirstHardDiskOption());
             }
 
-            if (!this.myview.getSecondHardDiskOption().equals(
-                    this.mymodel.getSecondHardDiskOption())) {
-                this.mymodel.setSecondHardDiskOption(this.myview
+            if (!this.hardDiskView.getSecondHardDiskOption().equals(
+                    this.hardDiskModel.getSecondHardDiskOption())) {
+                this.hardDiskModel.setSecondHardDiskOption(this.hardDiskView
                         .getSecondHardDiskOption());
-                this.myview.changesSecondHardDiskOptionField(this.myview
+                this.hardDiskView.changesSecondHardDiskOptionField(this.hardDiskView
                         .getSecondHardDiskOption());
             }
 
-            if (!this.myview.getThirdHardDiskOption().equals(
-                    this.mymodel.getThirdHardDiskOption())) {
-                this.mymodel.setThirdHardDiskOption(this.myview
+            if (!this.hardDiskView.getThirdHardDiskOption().equals(
+                    this.hardDiskModel.getThirdHardDiskOption())) {
+                this.hardDiskModel.setThirdHardDiskOption(this.hardDiskView
                         .getThirdHardDiskOption());
-                this.myview.changesThirdHardDiskOptionField(this.myview
+                this.hardDiskView.changesThirdHardDiskOptionField(this.hardDiskView
                         .getThirdHardDiskOption());
             }
 
-            if (!this.myview.getFourthHardDiskOption().equals(
-                    this.mymodel.getFourthHardDiskOption())) {
-                this.mymodel.setFourthHardDiskOption(this.myview
+            if (!this.hardDiskView.getFourthHardDiskOption().equals(
+                    this.hardDiskModel.getFourthHardDiskOption())) {
+                this.hardDiskModel.setFourthHardDiskOption(this.hardDiskView
                         .getFourthHardDiskOption());
-                this.myview.changesFourthHardDiskOptionField(this.myview
+                this.hardDiskView.changesFourthHardDiskOptionField(this.hardDiskView
                         .getFourthHardDiskOption());
             }
 
-            this.myview.setVisible(false);
+            this.hardDiskView.setVisible(false);
         } else if (e.getActionCommand().equals("eraseButtonHDI")) {
 
-            this.mymodel.setFirstHardDiskOption("");
-            this.myview.changesFirstHardDiskOptionField("");
+            this.hardDiskModel.setFirstHardDiskOption("");
+            this.hardDiskView.changesFirstHardDiskOptionField("");
 
-            this.mymodel.setSecondHardDiskOption("");
-            this.myview.changesSecondHardDiskOptionField("");
+            this.hardDiskModel.setSecondHardDiskOption("");
+            this.hardDiskView.changesSecondHardDiskOptionField("");
 
-            this.mymodel.setThirdHardDiskOption("");
-            this.myview.changesThirdHardDiskOptionField("");
+            this.hardDiskModel.setThirdHardDiskOption("");
+            this.hardDiskView.changesThirdHardDiskOptionField("");
 
-            this.mymodel.setFourthHardDiskOption("");
-            this.myview.changesFourthHardDiskOptionField("");
+            this.hardDiskModel.setFourthHardDiskOption("");
+            this.hardDiskView.changesFourthHardDiskOptionField("");
 
-            this.myview.setVisible(false);
+            this.hardDiskView.setVisible(false);
         }
     }
 
     public void setPhysicalDriveChoice(int position, String choice) {
         if (position == 1) {
             if (!choice.isEmpty()) {
-                this.mymodel.setFirstHardDiskOption(choice);
-                this.myview.changesFirstHardDiskOptionField(choice);
-            } else if (this.myview.getFirstHardDiskOption().startsWith(
+                this.hardDiskModel.setFirstHardDiskOption(choice);
+                this.hardDiskView.changesFirstHardDiskOptionField(choice);
+            } else if (this.hardDiskView.getFirstHardDiskOption().startsWith(
                     "\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
-                this.mymodel.setFirstHardDiskOption("");
-                this.myview.changesFirstHardDiskOptionField("");
+                this.hardDiskModel.setFirstHardDiskOption("");
+                this.hardDiskView.changesFirstHardDiskOptionField("");
             }
         } else if (position == 2) {
             if (!choice.isEmpty()) {
-                this.mymodel.setSecondHardDiskOption(choice);
-                this.myview.changesSecondHardDiskOptionField(choice);
-            } else if (this.myview.getSecondHardDiskOption().startsWith(
+                this.hardDiskModel.setSecondHardDiskOption(choice);
+                this.hardDiskView.changesSecondHardDiskOptionField(choice);
+            } else if (this.hardDiskView.getSecondHardDiskOption().startsWith(
                     "\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
-                this.mymodel.setSecondHardDiskOption("");
-                this.myview.changesSecondHardDiskOptionField("");
+                this.hardDiskModel.setSecondHardDiskOption("");
+                this.hardDiskView.changesSecondHardDiskOptionField("");
             }
         } else if (position == 3) {
             if (!choice.isEmpty()) {
-                this.mymodel.setThirdHardDiskOption(choice);
-                this.myview.changesThirdHardDiskOptionField(choice);
-            } else if (this.myview.getThirdHardDiskOption().startsWith(
+                this.hardDiskModel.setThirdHardDiskOption(choice);
+                this.hardDiskView.changesThirdHardDiskOptionField(choice);
+            } else if (this.hardDiskView.getThirdHardDiskOption().startsWith(
                     "\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
-                this.mymodel.setThirdHardDiskOption("");
-                this.myview.changesThirdHardDiskOptionField("");
+                this.hardDiskModel.setThirdHardDiskOption("");
+                this.hardDiskView.changesThirdHardDiskOptionField("");
             }
         } else if (position == 4) {
             if (!choice.isEmpty()) {
-                this.mymodel.setFourthHardDiskOption(choice);
-                this.myview.changesFourthHardDiskOptionField(choice);
-            } else if (this.myview.getFourthHardDiskOption().startsWith(
+                this.hardDiskModel.setFourthHardDiskOption(choice);
+                this.hardDiskView.changesFourthHardDiskOptionField(choice);
+            } else if (this.hardDiskView.getFourthHardDiskOption().startsWith(
                     "\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
-                this.mymodel.setFourthHardDiskOption("");
-                this.myview.changesFourthHardDiskOptionField("");
+                this.hardDiskModel.setFourthHardDiskOption("");
+                this.hardDiskView.changesFourthHardDiskOptionField("");
             }
         }
     }

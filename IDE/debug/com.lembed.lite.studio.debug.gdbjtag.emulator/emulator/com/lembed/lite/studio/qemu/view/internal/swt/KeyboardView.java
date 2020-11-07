@@ -27,8 +27,6 @@ public class KeyboardView extends DeviceBaseView {
 
     private JButton okButton;
 
-	private String title;
-
 
     public KeyboardView(EmulatorQemuMachineControl myfile) {
     	 super(myfile);
@@ -84,15 +82,6 @@ public class KeyboardView extends DeviceBaseView {
         this.repaint();
     }
 
-	@Override
-	public void setTitle(String string) {
-		title = string;
-	}
-
-	@Override
-	public String getTitle() {
-		return title;
-	}
 	
     public void configureListener(ActionListener listener) {
         eraseButton.addActionListener(listener);
@@ -109,108 +98,108 @@ public class KeyboardView extends DeviceBaseView {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getKeyboardLayoutLanguage() != null) {
-            if (fileControl.getMachineModel().getKeyboardLayoutLanguage().isEmpty()) {
-                this.keyboardLayoutLanguage.setSelectedItem(fileControl.getMachineModel()
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getKeyboardLayoutLanguage() != null) {
+            if (eQControl.getMachineModel().getKeyboardLayoutLanguage().isEmpty()) {
+                this.keyboardLayoutLanguage.setSelectedItem(eQControl.getMachineModel()
                         .getKeyboardLayoutLanguage());
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("ar")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Arabic: ar");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("de-ch")) {
                 this.keyboardLayoutLanguage.setSelectedItem("German (Switzerland): de-ch");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("es")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Spanish: es");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("fo")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Faroese (Faroe Islands): fo");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("fr-ca")) {
                 this.keyboardLayoutLanguage.setSelectedItem("French (Canada): fr-ca");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("hu")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Hungarian: hu");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("ja")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Japanese: ja");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("mk")) {
                 this.keyboardLayoutLanguage.setSelectedItem("FYRO Macedonian (Former Yugoslav Republic of Macedonia): mk");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("no")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Norwegian (Bokmal, Nynorsk): no");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("pt-br")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Portuguese (Brazil ABNT, ABNT2): pt-br");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("sv")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Swedish: sv");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("da")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Danish: da");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("en-gb")) {
                 this.keyboardLayoutLanguage.setSelectedItem("English (United Kingdom): en-gb");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("et")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Estonian: et");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("fr")) {
                 this.keyboardLayoutLanguage.setSelectedItem("French: fr");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("fr-ch")) {
                 this.keyboardLayoutLanguage.setSelectedItem("French (Switzerland): fr-ch");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("is")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Icelandic: is");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("lt")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Lithuanian: lt");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("nl")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Dutch: nl");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("pl")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Polish: pl");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("ru")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Russian: ru");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("th")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Thai: th");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("de")) {
                 this.keyboardLayoutLanguage.setSelectedItem("German: de");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("en-us")) {
                 this.keyboardLayoutLanguage.setSelectedItem("English (United States): en-us");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("fi")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Finnish (Finland): fi");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("fr-be")) {
                 this.keyboardLayoutLanguage.setSelectedItem("French (Belgium): fr-be");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("hr")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Croatian: hr");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("it")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Italian: it");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("lv")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Latvian (Latvia): lv");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("nl-be")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Dutch (Belgium): nl-be");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("pt")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Portuguese (Portugal): pt");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("sl")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Slovenian (Slovenia): sl");
-            } else if (fileControl.getMachineModel().getKeyboardLayoutLanguage()
+            } else if (eQControl.getMachineModel().getKeyboardLayoutLanguage()
                     .equals("tr")) {
                 this.keyboardLayoutLanguage.setSelectedItem("Turkish (Turkey): tr");
             }

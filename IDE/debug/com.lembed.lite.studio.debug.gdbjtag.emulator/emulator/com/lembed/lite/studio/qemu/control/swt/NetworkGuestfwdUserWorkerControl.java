@@ -8,7 +8,7 @@ import java.util.List;
 import com.lembed.lite.studio.qemu.model.swt.NetworkGuestfwdUserWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkGuestfwdUserWorkerView;
 
-public class NetworkGuestfwdUserWorkerControl implements ActionListener {
+public class NetworkGuestfwdUserWorkerControl implements BaseControl {
 
     private NetworkGuestfwdUserWorkerModel mymodel;
     private NetworkGuestfwdUserWorkerView myview;

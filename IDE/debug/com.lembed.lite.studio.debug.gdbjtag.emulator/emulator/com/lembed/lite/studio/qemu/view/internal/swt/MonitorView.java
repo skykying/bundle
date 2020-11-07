@@ -35,8 +35,8 @@ public class MonitorView extends DeviceBaseView {
     // Association "option" - "Description".
     private HashMap<String, String> falseOptions;
 
-    public MonitorView(EmulatorQemuMachineControl myfile) {
-        super(myfile);
+    public MonitorView(EmulatorQemuMachineControl emc) {
+        super(emc);
 
         windowContent = new JPanel();
 
@@ -99,21 +99,21 @@ public class MonitorView extends DeviceBaseView {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
         this.falseOptions = new HashMap<String, String>();
         falseOptions.put("", "");
         falseOptions.put("vc", "Graphical Mode");
         falseOptions.put("stdio", "Non Graphical Mode");
 
-        if (fileControl.getMachineModel().getMonitorOption() != null) {
+        if (eQControl.getMachineModel().getMonitorOption() != null) {
             this.monitor.setSelectedItem(
-                    this.falseOptions.get(fileControl.getMachineModel()
+                    this.falseOptions.get(eQControl.getMachineModel()
                             .getMonitorOption()));
         }
 
-        if (fileControl.getMachineModel().getQmpOption() != null) {
+        if (eQControl.getMachineModel().getQmpOption() != null) {
             this.qmp.setSelectedItem(
-                    this.falseOptions.get(fileControl.getMachineModel().getQmpOption())
+                    this.falseOptions.get(eQControl.getMachineModel().getQmpOption())
             );
         }
 

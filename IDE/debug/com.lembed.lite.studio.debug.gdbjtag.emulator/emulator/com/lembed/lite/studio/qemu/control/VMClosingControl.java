@@ -1,13 +1,13 @@
 package com.lembed.lite.studio.qemu.control;
 
 import com.lembed.lite.studio.qemu.model.VMClosingModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class VMClosingControl {
 
     private VMClosingModel mymodel;
 
-    public VMClosingControl(JQemuView view, EmulationControl myemulation) {
+    public VMClosingControl(JContainerView view, EmulationControl myemulation) {
         this.mymodel = new VMClosingModel(view, myemulation);
     }
 
@@ -15,7 +15,7 @@ public class VMClosingControl {
         return this.mymodel.starts(removeAll);
     }
 
-    public void setView(JQemuView view) {
+    public void setView(JContainerView view) {
         this.mymodel.setView(view);
     }
 

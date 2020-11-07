@@ -528,7 +528,7 @@ public class DiskCreationView extends JPanel implements IDeviceView{
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		// TODO Auto-generated method stub
 		
 	}

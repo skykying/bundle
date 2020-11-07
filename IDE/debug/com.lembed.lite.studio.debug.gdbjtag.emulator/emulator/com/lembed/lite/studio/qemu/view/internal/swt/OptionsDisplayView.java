@@ -44,8 +44,8 @@ public class OptionsDisplayView extends DeviceBaseView {
 
     private JButton okButton, eraseButton;
 
-    public OptionsDisplayView(EmulatorQemuMachineControl myfile) {
-    	super(myfile);
+    public OptionsDisplayView(EmulatorQemuMachineControl emc) {
+    	super(emc);
     	
         this.jpanel = new JPanel();
 
@@ -184,55 +184,55 @@ public class OptionsDisplayView extends DeviceBaseView {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 
-        if (fileControl.getMachineModel().getDisplayType() != null) {
+        if (eQControl.getMachineModel().getDisplayType() != null) {
             this.displayType.setSelected(true);
-            if (fileControl.getMachineModel().getDisplayType().equals("sdl")) {
+            if (eQControl.getMachineModel().getDisplayType().equals("sdl")) {
                 this.displayTypeChoice.setSelectedIndex(0);
-            } else if (fileControl.getMachineModel().getDisplayType().equals("curses")) {
+            } else if (eQControl.getMachineModel().getDisplayType().equals("curses")) {
                 this.displayTypeChoice.setSelectedIndex(1);
-            } else if (fileControl.getMachineModel().getDisplayType().equals("none")) {
+            } else if (eQControl.getMachineModel().getDisplayType().equals("none")) {
                 this.displayTypeChoice.setSelectedIndex(2);
-            } else if (fileControl.getMachineModel().getDisplayType().substring(0, 3).equals("vnc")) {
+            } else if (eQControl.getMachineModel().getDisplayType().substring(0, 3).equals("vnc")) {
                 this.displayTypeChoice.setSelectedIndex(3);
             }
         }
 
-        if (fileControl.getMachineModel().getNographicOption() != null) {
-            if (fileControl.getMachineModel().getNographicOption().equals("true")) {
+        if (eQControl.getMachineModel().getNographicOption() != null) {
+            if (eQControl.getMachineModel().getNographicOption().equals("true")) {
                 this.noGraphicOption.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getVgaType() != null) {
+        if (eQControl.getMachineModel().getVgaType() != null) {
             this.vgaType.setSelected(true);
-            if (fileControl.getMachineModel().getVgaType().equals("cirrus")) {
+            if (eQControl.getMachineModel().getVgaType().equals("cirrus")) {
                 this.vgaTypeChoice.setSelectedIndex(0);
-            } else if (fileControl.getMachineModel().getVgaType().equals("std")) {
+            } else if (eQControl.getMachineModel().getVgaType().equals("std")) {
                 this.vgaTypeChoice.setSelectedIndex(1);
-            } else if (fileControl.getMachineModel().getVgaType().equals("vmware")) {
+            } else if (eQControl.getMachineModel().getVgaType().equals("vmware")) {
                 this.vgaTypeChoice.setSelectedIndex(2);
-            } else if (fileControl.getMachineModel().getVgaType().equals("qxl")) {
+            } else if (eQControl.getMachineModel().getVgaType().equals("qxl")) {
                 this.vgaTypeChoice.setSelectedIndex(3);
-            } else if (fileControl.getMachineModel().getVgaType().equals("none")) {
+            } else if (eQControl.getMachineModel().getVgaType().equals("none")) {
                 this.vgaTypeChoice.setSelectedIndex(4);
             }
         }
 
-        if (fileControl.getMachineModel().getFullscreenOption() != null) {
-            if (fileControl.getMachineModel().getFullscreenOption().equals("true")) {
+        if (eQControl.getMachineModel().getFullscreenOption() != null) {
+            if (eQControl.getMachineModel().getFullscreenOption().equals("true")) {
                 this.fullScreenOption.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getNoFrameOption() != null) {
-            if (fileControl.getMachineModel().getNoFrameOption().equals("true")) {
+        if (eQControl.getMachineModel().getNoFrameOption() != null) {
+            if (eQControl.getMachineModel().getNoFrameOption().equals("true")) {
                 this.noframeOption.setSelected(true);
             }
         }
 
-//        this.pack();
+
         this.setVisible(false);
 		
 	}

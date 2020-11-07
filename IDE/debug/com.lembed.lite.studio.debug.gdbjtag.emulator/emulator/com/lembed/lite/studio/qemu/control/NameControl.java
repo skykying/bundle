@@ -3,14 +3,14 @@ package com.lembed.lite.studio.qemu.control;
 import com.lembed.lite.studio.qemu.model.NameModel;
 import com.lembed.lite.studio.qemu.model.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.model.VMConfigurationModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class NameControl {
 
-    private JQemuView myView;
+    private JContainerView myView;
     private NameModel myModel;
 
-    public NameControl(EmulationControl myemulation, FileControl myfile, JQemuView view) {
+    public NameControl(EmulationControl myemulation, FileControl myfile, JContainerView view) {
         myView = view;
         myModel = new NameModel(myemulation, myfile);
     }

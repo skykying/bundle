@@ -11,14 +11,14 @@ public abstract class DeviceBaseView extends JPanel implements IDeviceView{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String title;
-	EmulatorQemuMachineControl fileControl;
+	EmulatorQemuMachineControl eQControl;
 	
 	public DeviceBaseView(EmulatorQemuMachineControl fc) {
-		fileControl = fc;
+		eQControl = fc;
 	}
 
 	public DeviceBaseView() {
-		fileControl = null;
+		eQControl = null;
 	}
 	
 	@Override

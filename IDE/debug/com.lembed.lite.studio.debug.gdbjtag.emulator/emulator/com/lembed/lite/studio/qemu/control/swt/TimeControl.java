@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.TimeView;
 
-public class TimeControl implements ActionListener {
+public class TimeControl implements BaseControl {
 
     private TimeView myview;
     private TimeModel mymodel;

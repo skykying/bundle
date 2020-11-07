@@ -1,13 +1,11 @@
 package com.lembed.lite.studio.qemu.control.swt;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import com.lembed.lite.studio.qemu.model.swt.NetworkBridgeWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkBridgeWorkerView;
 
-public class NetworkBridgeWorkerControl implements ActionListener {
+public class NetworkBridgeWorkerControl implements BaseControl {
 
     private NetworkBridgeWorkerView myview;
     private NetworkBridgeWorkerModel mymodel;
@@ -20,7 +18,7 @@ public class NetworkBridgeWorkerControl implements ActionListener {
         myview.configureStandardMode();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         myview.setVisible(value);
     }
 

@@ -6,8 +6,6 @@ import java.util.HashMap;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
@@ -34,8 +32,8 @@ public class SoundHardwareView extends DeviceBaseView {
     private HashMap<String, String> falseOptions;
 
 
-    public SoundHardwareView(EmulatorQemuMachineControl myfile) {
-        super(myfile);
+    public SoundHardwareView(EmulatorQemuMachineControl emc) {
+        super(emc);
 
         windowContent = new JPanel();
 
@@ -90,7 +88,7 @@ public class SoundHardwareView extends DeviceBaseView {
     
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
         this.falseOptions = new HashMap<String, String>();
         falseOptions.put("", "");
         falseOptions.put("sb16", "Creative Sound Blaster 16");
@@ -103,9 +101,9 @@ public class SoundHardwareView extends DeviceBaseView {
         falseOptions.put("ac97", "Intel 82801AA AC97 Audio");
         falseOptions.put("all", "All of the above");
 
-        if (fileControl.getMachineModel().getSoundHardwareOption() != null) {
-            this.getSoundHardware().setSelectedItem(
-                    this.falseOptions.get(fileControl.getMachineModel()
+        if (eQControl.getMachineModel().getSoundHardwareOption() != null) {
+            getSoundHardware().setSelectedItem(
+                    falseOptions.get(eQControl.getMachineModel()
                             .getSoundHardwareOption()));
         }
 

@@ -8,7 +8,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.SMPView;
 
-public class SMPControl implements ActionListener {
+public class SMPControl implements BaseControl {
 
     private SMPView myview;
     private SMPModel mymodel;
@@ -23,7 +23,7 @@ public class SMPControl implements ActionListener {
         this.myview.configureListener(this);
     }
 
-    public void change_the_visibility_of_view(Boolean value) {
+    public void setVisible(Boolean value) {
         this.myview.setVisible(value);
     }
 

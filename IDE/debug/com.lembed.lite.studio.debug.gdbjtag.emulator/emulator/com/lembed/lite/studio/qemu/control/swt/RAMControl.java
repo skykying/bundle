@@ -4,18 +4,18 @@ import com.lembed.lite.studio.qemu.model.swt.RAMModel;
 
 public class RAMControl {
 
-    private RAMModel mymodel;
+    private RAMModel ramModel;
 
-    public RAMControl(EmulationControl myemulation,
-            EmulatorQemuMachineControl myfile) {
-        this.mymodel = new RAMModel(myemulation, myfile);
+    public RAMControl(EmulationControl ec,
+            EmulatorQemuMachineControl emc) {
+        this.ramModel = new RAMModel(ec, emc);
     }
 
     public void setOption(String option) {
-        this.mymodel.setOption(option);
+        this.ramModel.setOption(option);
     }
 
     public String getOption() {
-        return this.mymodel.getOption();
+        return this.ramModel.getOption();
     }
 }

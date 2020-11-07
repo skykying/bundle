@@ -7,7 +7,7 @@ import java.util.List;
 
 import com.lembed.lite.studio.qemu.control.swt.ProcessControl;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.EmulationView;
 
 public class EmulationModel {
@@ -15,7 +15,7 @@ public class EmulationModel {
     private List<Process> processList;
     private List<ProcessControl> processesControlList;
     private List<ScriptModel> scriptModelList;
-    private JQemuView view;
+    private JContainerView view;
     private List<JPanelModel> panelModelList;
 
     private String qemuPath;
@@ -32,7 +32,7 @@ public class EmulationModel {
 
     private List<List<String>> options;
 
-    public EmulationModel(EmulationView myview, JQemuView view) {
+    public EmulationModel(EmulationView myview, JContainerView view) {
         super();
         this.execQemu = new ArrayList<String[]>();
 

@@ -1,16 +1,16 @@
-package com.lembed.lite.studio.qemu.control.actions;
+package com.lembed.lite.studio.qemu.control.swt.actions;
 
 import java.awt.event.ActionEvent;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.UtilitiesView;
 
 public class Hide_Utilities implements BaseListener {
 
-	private JQemuView view;
+	private JContainerView view;
 	private UtilitiesView utilitiesView;
-	public Hide_Utilities(JQemuView jview, UtilitiesView utilitiesView) {
+	public Hide_Utilities(JContainerView jview, UtilitiesView utilitiesView) {
 		view = jview;
 		view.registerListener(this);
 

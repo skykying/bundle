@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.PhysicalDriveModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.PhysicalDriveView;
 
-public class PhysicalDriveControl implements ActionListener {
+public class PhysicalDriveControl implements BaseControl {
 
     private PhysicalDriveView myview;
     private PhysicalDriveModel mymodel;

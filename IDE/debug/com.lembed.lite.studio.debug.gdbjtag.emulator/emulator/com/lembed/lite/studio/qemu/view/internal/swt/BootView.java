@@ -517,41 +517,41 @@ public class BootView extends DeviceViewWithFileChooser {
 	}
 	
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getBootOrder1() != null) {
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getBootOrder1() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getMachineModel().getBootOrder1().equals(bootDevices[i].substring(0, 1))) {
+                    if (eQControl.getMachineModel().getBootOrder1().equals(bootDevices[i].substring(0, 1))) {
                         this.firstOrder.setSelectedIndex(i);
                     }
                 }
             }
         }
 
-        if (fileControl.getMachineModel().getBootOrder2() != null) {
+        if (eQControl.getMachineModel().getBootOrder2() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getMachineModel().getBootOrder2().equals(bootDevices[i].substring(0, 1))) {
+                    if (eQControl.getMachineModel().getBootOrder2().equals(bootDevices[i].substring(0, 1))) {
                         this.secondOrder.setSelectedIndex(i);
                     }
                 }
             }
         }
 
-        if (fileControl.getMachineModel().getBootOrder3() != null) {
+        if (eQControl.getMachineModel().getBootOrder3() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getMachineModel().getBootOrder3().equals(bootDevices[i].substring(0, 1))) {
+                    if (eQControl.getMachineModel().getBootOrder3().equals(bootDevices[i].substring(0, 1))) {
                         this.thirdOrder.setSelectedIndex(i);
                     }
                 }
             }
         }
 
-        if (fileControl.getMachineModel().getBootOnce1() != null) {
+        if (eQControl.getMachineModel().getBootOnce1() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getMachineModel().getBootOnce1()
+                    if (eQControl.getMachineModel().getBootOnce1()
                             .equals(bootDevices[i].substring(0, 1))) {
                         this.firstOnce.setSelectedIndex(i);
                     }
@@ -559,10 +559,10 @@ public class BootView extends DeviceViewWithFileChooser {
             }
         }
 
-        if (fileControl.getMachineModel().getBootOnce2() != null) {
+        if (eQControl.getMachineModel().getBootOnce2() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getMachineModel().getBootOnce2()
+                    if (eQControl.getMachineModel().getBootOnce2()
                             .equals(bootDevices[i].substring(0, 1))) {
                         this.secondOnce.setSelectedIndex(i);
                     }
@@ -570,10 +570,10 @@ public class BootView extends DeviceViewWithFileChooser {
             }
         }
 
-        if (fileControl.getMachineModel().getBootOnce3() != null) {
+        if (eQControl.getMachineModel().getBootOnce3() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getMachineModel().getBootOnce3()
+                    if (eQControl.getMachineModel().getBootOnce3()
                             .equals(bootDevices[i].substring(0, 1))) {
                         this.thirdOnce.setSelectedIndex(i);
                     }
@@ -581,26 +581,26 @@ public class BootView extends DeviceViewWithFileChooser {
             }
         }
 
-        if (fileControl.getMachineModel().getBootMenu() != null) {
-            this.menu.setSelectedItem(fileControl.getMachineModel().getBootMenu());
+        if (eQControl.getMachineModel().getBootMenu() != null) {
+            this.menu.setSelectedItem(eQControl.getMachineModel().getBootMenu());
         }
 
-        if (fileControl.getMachineModel().getBootSplash() != null) {
-            this.splashName.setText(fileControl.getMachineModel().getBootSplash());
+        if (eQControl.getMachineModel().getBootSplash() != null) {
+            this.splashName.setText(eQControl.getMachineModel().getBootSplash());
         }
 
-        if (fileControl.getMachineModel().getBootSplashTime() != null) {
+        if (eQControl.getMachineModel().getBootSplashTime() != null) {
             this.splashTime.setSelected(true);
-            this.editor1.getTextField().setText(fileControl.getMachineModel().getBootSplashTime());
+            this.editor1.getTextField().setText(eQControl.getMachineModel().getBootSplashTime());
         }
 
-        if (fileControl.getMachineModel().getBootRebootTimeout() != null) {
+        if (eQControl.getMachineModel().getBootRebootTimeout() != null) {
             this.rebootTimeout.setSelected(true);
-            this.editor2.getTextField().setText(fileControl.getMachineModel().getBootRebootTimeout());
+            this.editor2.getTextField().setText(eQControl.getMachineModel().getBootRebootTimeout());
         }
 
-        if (fileControl.getMachineModel().getBootStrict() != null) {
-            this.strict.setSelectedItem(fileControl.getMachineModel().getBootStrict());
+        if (eQControl.getMachineModel().getBootStrict() != null) {
+            this.strict.setSelectedItem(eQControl.getMachineModel().getBootStrict());
         }
 		
 	}

@@ -25,11 +25,11 @@ public class CPUModel extends OptionsControl {
         }
     }
 
-    public void buildCPUIDFlags(String[] mycpuidflagsoptions) {
+    public void buildCPUIDFlags(String[] cpuIDFlagsOptions) {
         StringBuilder result = new StringBuilder("");
-        for (int i = 0; i < mycpuidflagsoptions.length; i++) {
-            if (!mycpuidflagsoptions[i].isEmpty()) {
-                result.append(",+").append(mycpuidflagsoptions[i]);
+        for (int i = 0; i < cpuIDFlagsOptions.length; i++) {
+            if (!cpuIDFlagsOptions[i].isEmpty()) {
+                result.append(",+").append(cpuIDFlagsOptions[i]);
             }
         }
         cpuidFlags = result.toString();

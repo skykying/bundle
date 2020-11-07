@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.FloppyModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.FloppyView;
 
-public class FloppyControl implements ActionListener {
+public class FloppyControl implements BaseControl {
 
     private FloppyModel mymodel;
     private FloppyView myview;
@@ -31,7 +31,7 @@ public class FloppyControl implements ActionListener {
         this.myview.configureStandardMode();
     }
 
-    public void change_my_visibility(Boolean value) {
+    public void setVisible(Boolean value) {
         this.myview.setVisible(value);
     }
 

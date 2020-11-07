@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 import com.lembed.lite.studio.qemu.model.swt.NUMAModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NUMAView;
 
-public class NUMAControl implements ActionListener {
+public class NUMAControl implements BaseControl {
 
     private NUMAView myview;
     private NUMAModel mymodel;
@@ -21,7 +21,7 @@ public class NUMAControl implements ActionListener {
         this.myview.configureListener(this);
     }
 
-    public void change_the_visibility_of_view(Boolean value) {
+    public void setVisible(Boolean value) {
         this.myview.setVisible(value);
     }
 

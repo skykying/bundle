@@ -1,16 +1,16 @@
 package com.lembed.lite.studio.qemu.view.internal.swt;
 
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class VMOpeningView {
 
-    private JQemuView parent;
+    private JContainerView parent;
 
     private SwtPanelCreationView view;
 
     private String chosenMachineName;
 
-    public VMOpeningView(JQemuView parent, String chosenMachineName) {
+    public VMOpeningView(JContainerView parent, String chosenMachineName) {
         this.view = null;
         this.parent = parent;
         this.chosenMachineName = chosenMachineName;
@@ -32,7 +32,7 @@ public class VMOpeningView {
         return true;
     }
 
-    public void setView(JQemuView parent) {
+    public void setView(JContainerView parent) {
         this.parent = parent;
     }
 

@@ -58,7 +58,7 @@ public class VMCreationViewPart1 extends JPanel {
     }
 
     public void initialize() {
-//        this.setContentPane(windowContent);
+        this.add(windowContent);
 //        this.setTitle("Create a new machine - Part 1");
 //        this.pack();
     }

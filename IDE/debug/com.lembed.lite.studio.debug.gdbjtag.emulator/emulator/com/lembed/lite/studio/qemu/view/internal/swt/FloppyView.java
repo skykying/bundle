@@ -162,14 +162,14 @@ public class FloppyView extends DeviceViewWithFileChooser {
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getFloppyDiskA() != null) {
-            this.floppyDiskAText.setText(fileControl.getMachineModel()
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getFloppyDiskA() != null) {
+            this.floppyDiskAText.setText(eQControl.getMachineModel()
                     .getFloppyDiskA());
         }
 
-        if (fileControl.getMachineModel().getFloppyDiskB() != null) {
-            this.floppyDiskBText.setText(fileControl.getMachineModel()
+        if (eQControl.getMachineModel().getFloppyDiskB() != null) {
+            this.floppyDiskBText.setText(eQControl.getMachineModel()
                     .getFloppyDiskB());
         }
 

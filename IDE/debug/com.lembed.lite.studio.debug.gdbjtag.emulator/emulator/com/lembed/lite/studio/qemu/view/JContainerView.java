@@ -23,7 +23,7 @@ import javax.swing.event.ChangeListener;
 import com.lembed.lite.studio.qemu.model.Model;
 import com.lembed.lite.studio.qemu.view.internal.JPanelCreationView;
 
-public class JQemuView extends JQBaseView {
+public class JContainerView extends JQBaseView {
 
     private static final long serialVersionUID = 1L;
 
@@ -54,7 +54,7 @@ public class JQemuView extends JQBaseView {
     private JPanel myUntitledJPanel;
     private JButton useUtilities;
 
-    public JQemuView() {
+    public JContainerView() {
         super();
 
         menuBar = new JMenuBar();

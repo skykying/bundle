@@ -6,7 +6,7 @@ import java.util.List;
 import javax.swing.JPanel;
 
 import com.lembed.lite.studio.qemu.model.FileModel;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 import com.lembed.lite.studio.qemu.view.internal.FileView;
 
 public class FileControl {
@@ -15,9 +15,9 @@ public class FileControl {
     private final FileView fileView;
     
     private int position;
-    private JQemuView view;
+    private JContainerView view;
 
-    public FileControl(JPanel jpanel, JQemuView view) {
+    public FileControl(JPanel jpanel, JContainerView view) {
         super();
         fileModelList = new ArrayList<FileModel>();
         fileView = new FileView(jpanel);

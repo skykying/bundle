@@ -1,8 +1,6 @@
 package com.lembed.lite.studio.qemu.control.swt;
 
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import com.lembed.lite.studio.qemu.model.swt.USBBrailleModel;
 import com.lembed.lite.studio.qemu.model.swt.USBDiskModel;
 import com.lembed.lite.studio.qemu.model.swt.USBDriverModel;
@@ -16,7 +14,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.USBView;
 
-public class USBControl implements ActionListener {
+public class USBControl implements BaseControl {
 
     private USBView myview;
     private USBDriverModel mydrivermodel;
@@ -44,7 +42,7 @@ public class USBControl implements ActionListener {
         this.mynetmodel = new USBNetModel(myemulation, myfile);
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 
@@ -117,7 +115,7 @@ public class USBControl implements ActionListener {
                 this.myview.getVectorsNumber().setSelectedIndex(0);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
 
             if (this.myview.getUsb().isSelected()) {
@@ -211,7 +209,7 @@ public class USBControl implements ActionListener {
                 this.myview.getVectorsNumber().setSelectedIndex(0);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         } else if (e.getActionCommand().equals("fileChooser")) {
             this.myview.setChoosertitle("Choose the file  that is the basis for the USB Mass storage device!");
             if (this.myview.chooseFiles()) {

@@ -1,4 +1,4 @@
-package com.lembed.lite.studio.qemu.control.actions;
+package com.lembed.lite.studio.qemu.control.swt.actions;
 
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
@@ -8,15 +8,15 @@ import com.lembed.lite.studio.qemu.control.FileControl;
 import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class ChangeMachineConfiguration implements BaseListener {
 
-	private JQemuView view;
+	private JContainerView view;
 	private EmulationControl emulationControl;
 	private FileControl fileControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
-	public ChangeMachineConfiguration(JQemuView jview, EmulationControl emulationControl, FileControl fileControl) {
+	public ChangeMachineConfiguration(JContainerView jview, EmulationControl emulationControl, FileControl fileControl) {
 		view = jview;
 		view.registerListener(this);
 		this.emulationControl = emulationControl;

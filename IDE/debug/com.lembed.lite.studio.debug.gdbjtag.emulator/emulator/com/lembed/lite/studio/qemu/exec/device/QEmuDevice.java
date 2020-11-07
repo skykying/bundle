@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.lembed.lite.studio.qemu.exec.vm.device;
+package com.lembed.lite.studio.qemu.exec.device;
 
 import com.lembed.lite.studio.qemu.exec.QEmuDeviceOption;
 import com.lembed.lite.studio.qemu.exec.QEmuDisplayOption;

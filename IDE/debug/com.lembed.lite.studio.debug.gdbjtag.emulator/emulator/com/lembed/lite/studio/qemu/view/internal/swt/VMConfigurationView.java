@@ -18,7 +18,7 @@ import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
 import com.lembed.lite.studio.qemu.view.IemultorStore;
-import com.lembed.lite.studio.qemu.view.JQemuView;
+import com.lembed.lite.studio.qemu.view.JContainerView;
 
 public class VMConfigurationView extends DeviceViewWithFileChooser {
 
@@ -32,7 +32,7 @@ public class VMConfigurationView extends DeviceViewWithFileChooser {
 
     private JButton resetRamSizeButton;
 
-    private JQemuView myview;
+    private JContainerView myview;
 
     private JLabel ramDescription;
 
@@ -86,7 +86,7 @@ public class VMConfigurationView extends DeviceViewWithFileChooser {
 
     private JLabel temp[];
 
-    public VMConfigurationView(JQemuView myview, String initialRamValue) {
+    public VMConfigurationView(JContainerView myview, String initialRamValue) {
         super(null);
         this.gridLayout = new GridLayout(9, 3);
 
@@ -300,7 +300,7 @@ public class VMConfigurationView extends DeviceViewWithFileChooser {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		// TODO Auto-generated method stub
 		
 	}

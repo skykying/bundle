@@ -36,8 +36,8 @@ public class CustomOptionsView extends DeviceBaseView{
     private JScrollPane textBoxScrollPane;
 
 	
-    public CustomOptionsView(EmulatorQemuMachineControl myfile) {
-    	 super(myfile);
+    public CustomOptionsView(EmulatorQemuMachineControl emc) {
+    	 super(emc);
         this.jpanel = new JPanel();
        
 
@@ -152,9 +152,9 @@ public class CustomOptionsView extends DeviceBaseView{
 
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getCustomOptions() != null) {
-            String[] customOptions = fileControl.getMachineModel().getCustomOptions().split("\n");
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getCustomOptions() != null) {
+            String[] customOptions = eQControl.getMachineModel().getCustomOptions().split("\n");
             DefaultListModel<String> model = (DefaultListModel<String>) this.getListBox().getModel();
             for (String customOption : customOptions) {
                 model.addElement(customOption);

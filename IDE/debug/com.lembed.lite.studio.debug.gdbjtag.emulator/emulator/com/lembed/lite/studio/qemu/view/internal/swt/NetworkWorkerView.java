@@ -172,7 +172,7 @@ public class NetworkWorkerView extends JPanel implements IDeviceView {
 	}
 
 	@Override
-	public void doSave(IemultorStore store) {
+	public void applyView(IemultorStore store) {
 		 switch (position) {
          case 1:
              if (myfile.getMachineModel().getFirstNetworkNICOption() != null

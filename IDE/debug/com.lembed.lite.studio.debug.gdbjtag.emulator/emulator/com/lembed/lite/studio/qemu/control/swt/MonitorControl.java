@@ -9,7 +9,7 @@ import com.lembed.lite.studio.qemu.model.swt.VMConfigurationModel;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.MonitorView;
 
-public class MonitorControl implements ActionListener {
+public class MonitorControl implements BaseControl {
 
     private MonitorView myview;
     private MonitorModel mymodel;
@@ -23,7 +23,7 @@ public class MonitorControl implements ActionListener {
         this.myqmpmodel = new QMPModel(myemulation, myfile);
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 
@@ -41,7 +41,7 @@ public class MonitorControl implements ActionListener {
                 this.myview.getQmp().setSelectedIndex(0);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
 
             if (this.myview.getMonitor().getSelectedIndex() != 0) {
@@ -58,7 +58,7 @@ public class MonitorControl implements ActionListener {
                 this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.QMPOPTION.getValor()]);
             }
 
-            this.change_my_visibility(false);
+            this.setVisible(false);
         }
     }
 

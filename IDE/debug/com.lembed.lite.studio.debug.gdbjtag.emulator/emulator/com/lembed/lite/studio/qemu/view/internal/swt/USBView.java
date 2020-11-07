@@ -77,11 +77,10 @@ public class USBView extends DeviceViewWithFileChooser {
     private JLabel vectorsNumberDescription;
 
     private JComboBox<String> vectorsNumber;
-    private EmulatorQemuMachineControl fileControl;
     
     
-    public USBView(EmulatorQemuMachineControl fileControl) {
-        super(fileControl, null);
+    public USBView(EmulatorQemuMachineControl eQControl) {
+        super(eQControl, null);
         
         windowContent = new JPanel();
 
@@ -328,106 +327,106 @@ public class USBView extends DeviceViewWithFileChooser {
     }
 
 	@Override
-	public void doSave(IemultorStore store) {
-        if (fileControl.getMachineModel().getUsbDriverOption() != null) {
-            if (fileControl.getMachineModel().getUsbDriverOption().equals("true")) {
+	public void applyView(IemultorStore store) {
+        if (eQControl.getMachineModel().getUsbDriverOption() != null) {
+            if (eQControl.getMachineModel().getUsbDriverOption().equals("true")) {
                 this.usb.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getUsbMouseOption() != null) {
-            if (fileControl.getMachineModel().getUsbMouseOption().equals("true")) {
+        if (eQControl.getMachineModel().getUsbMouseOption() != null) {
+            if (eQControl.getMachineModel().getUsbMouseOption().equals("true")) {
                 this.mouse.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getUsbTabletOption() != null) {
-            if (fileControl.getMachineModel().getUsbTabletOption().equals("true")) {
+        if (eQControl.getMachineModel().getUsbTabletOption() != null) {
+            if (eQControl.getMachineModel().getUsbTabletOption().equals("true")) {
                 this.tablet.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getUsbWacomTabletOption() != null) {
-            if (fileControl.getMachineModel().getUsbWacomTabletOption().equals("true")) {
+        if (eQControl.getMachineModel().getUsbWacomTabletOption() != null) {
+            if (eQControl.getMachineModel().getUsbWacomTabletOption().equals("true")) {
                 this.wacomTablet.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getUsbKeyboardOption() != null) {
-            if (fileControl.getMachineModel().getUsbKeyboardOption().equals("true")) {
+        if (eQControl.getMachineModel().getUsbKeyboardOption() != null) {
+            if (eQControl.getMachineModel().getUsbKeyboardOption().equals("true")) {
                 this.keyboard.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getUsbBrailleOption() != null) {
-            if (fileControl.getMachineModel().getUsbBrailleOption().equals("true")) {
+        if (eQControl.getMachineModel().getUsbBrailleOption() != null) {
+            if (eQControl.getMachineModel().getUsbBrailleOption().equals("true")) {
                 this.braille.setSelected(true);
             }
         }
 
-        if (fileControl.getMachineModel().getUsbDiskOption() != null) {
-            if (!fileControl.getMachineModel().getUsbDiskOption().isEmpty()) {
+        if (eQControl.getMachineModel().getUsbDiskOption() != null) {
+            if (!eQControl.getMachineModel().getUsbDiskOption().isEmpty()) {
                 this.disk.setSelected(true);
-                this.file.setText(fileControl.getMachineModel().getUsbDiskOption());
+                this.file.setText(eQControl.getMachineModel().getUsbDiskOption());
             }
         }
 
-        if (fileControl.getMachineModel().getUsbSerialOption() != null) {
-            if (!fileControl.getMachineModel().getUsbSerialOption().isEmpty()) {
+        if (eQControl.getMachineModel().getUsbSerialOption() != null) {
+            if (!eQControl.getMachineModel().getUsbSerialOption().isEmpty()) {
                 this.serial.setSelected(true);
-                if (fileControl.getMachineModel().getUsbSerialOption()
+                if (eQControl.getMachineModel().getUsbSerialOption()
                         .contains("vendorid=")
-                        || fileControl.getMachineModel().getUsbSerialOption()
+                        || eQControl.getMachineModel().getUsbSerialOption()
                         .contains("productid=")) {
-                    if (fileControl.getMachineModel().getUsbSerialOption()
+                    if (eQControl.getMachineModel().getUsbSerialOption()
                             .contains("vendorid=")
-                            && !fileControl.getMachineModel().getUsbSerialOption()
+                            && !eQControl.getMachineModel().getUsbSerialOption()
                             .contains("productid=")) {
-                        if (fileControl.getMachineModel().getUsbSerialOption().contains(":")) {
-                            vendorid.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
-                                    fileControl.getMachineModel().getUsbSerialOption().indexOf(":")));
-                            dev.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
+                        if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
+                            vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
+                                    eQControl.getMachineModel().getUsbSerialOption().indexOf(":")));
+                            dev.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
                         } else {
-                            vendorid.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
+                            vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
                         }
 
-                    } else if (!fileControl.getMachineModel().getUsbSerialOption()
+                    } else if (!eQControl.getMachineModel().getUsbSerialOption()
                             .contains("vendorid=")
-                            && fileControl.getMachineModel().getUsbSerialOption()
+                            && eQControl.getMachineModel().getUsbSerialOption()
                             .contains("productid=")) {
-                        if (fileControl.getMachineModel().getUsbSerialOption().contains(":")) {
-                            productid.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
-                                    fileControl.getMachineModel().getUsbSerialOption().indexOf(":")));
-                            dev.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
+                        if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
+                            productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
+                                    eQControl.getMachineModel().getUsbSerialOption().indexOf(":")));
+                            dev.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
                         } else {
-                            productid.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
+                            productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
                         }
-                    } else if (fileControl.getMachineModel().getUsbSerialOption()
+                    } else if (eQControl.getMachineModel().getUsbSerialOption()
                             .contains("vendorid=")
-                            && fileControl.getMachineModel().getUsbSerialOption()
+                            && eQControl.getMachineModel().getUsbSerialOption()
                             .contains("productid=")) {
-                        if (fileControl.getMachineModel().getUsbSerialOption().contains(":")) {
-                            String work = fileControl.getMachineModel().getUsbSerialOption().substring(0, fileControl.getMachineModel().getUsbSerialOption().indexOf(":"));
+                        if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
+                            String work = eQControl.getMachineModel().getUsbSerialOption().substring(0, eQControl.getMachineModel().getUsbSerialOption().indexOf(":"));
                             vendorid.setText(work.substring(work.indexOf("=") + 1,
                                     work.indexOf(",")));
                             productid.setText(work.substring(work.indexOf(",") + 11));
-                            dev.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
+                            dev.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
                         } else {
-                            vendorid.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
-                                    fileControl.getMachineModel().getUsbSerialOption().indexOf(",")));
-                            productid.setText(fileControl.getMachineModel().getUsbSerialOption().substring(fileControl.getMachineModel().getUsbSerialOption().indexOf(",") + 11));
+                            vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
+                                    eQControl.getMachineModel().getUsbSerialOption().indexOf(",")));
+                            productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(",") + 11));
                         }
                     }
                 } else {
-                    this.dev.setText(fileControl.getMachineModel().getUsbSerialOption());
+                    this.dev.setText(eQControl.getMachineModel().getUsbSerialOption());
                 }
             }
         }
 
-        if (fileControl.getMachineModel().getUsbNetOption() != null) {
-            if (!fileControl.getMachineModel().getUsbNetOption().isEmpty()) {
+        if (eQControl.getMachineModel().getUsbNetOption() != null) {
+            if (!eQControl.getMachineModel().getUsbNetOption().isEmpty()) {
                 this.net.setSelected(true);
-                String[] options = fileControl.getMachineModel().getUsbNetOption().split(",");
+                String[] options = eQControl.getMachineModel().getUsbNetOption().split(",");
                 for (String option : options) {
                     if (option.startsWith("vlan=")) {
                         vlan.setSelectedItem(option.substring(option.indexOf("=") + 1));

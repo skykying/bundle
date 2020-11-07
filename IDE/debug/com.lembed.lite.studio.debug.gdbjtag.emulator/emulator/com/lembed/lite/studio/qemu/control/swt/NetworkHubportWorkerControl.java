@@ -7,7 +7,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkHubportWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkHubportWorkerView;
 
-public class NetworkHubportWorkerControl implements ActionListener {
+public class NetworkHubportWorkerControl implements BaseControl {
 
     private NetworkHubportWorkerModel mymodel;
     private NetworkHubportWorkerView myview;
@@ -20,7 +20,7 @@ public class NetworkHubportWorkerControl implements ActionListener {
         this.myview.configureStandardMode();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

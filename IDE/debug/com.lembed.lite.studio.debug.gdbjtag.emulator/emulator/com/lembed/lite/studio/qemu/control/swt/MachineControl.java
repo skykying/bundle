@@ -10,174 +10,174 @@ import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.MachineOptionsView;
 import com.lembed.lite.studio.qemu.view.internal.swt.MachineTypeView;
 
-public class MachineControl implements ActionListener {
+public class MachineControl implements BaseControl {
 
-    private MachineModel mymodel;
-    private MachineTypeView mytype;
-    private MachineOptionsView myoptions;
-    private EmulatorQemuMachineControl myfile;
+    private MachineModel machineModel;
+    private MachineTypeView machineTypeView;
+    private MachineOptionsView machineOptionsView;
+    private EmulatorQemuMachineControl eQctl;
 
-    public MachineControl(EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
-        this.mymodel = new MachineModel(myemulation);
-        myoptions = new MachineOptionsView(myfile);
-        mytype = new MachineTypeView(myfile);
-        this.myfile = myfile;
+    public MachineControl(EmulationControl myemulation, EmulatorQemuMachineControl emc) {
+        this.machineModel = new MachineModel(myemulation);
+        machineOptionsView = new MachineOptionsView(emc);
+        machineTypeView = new MachineTypeView(emc);
+        this.eQctl = emc;
     }
 
     public void starts() {
-        this.myoptions.configureStandardMode();
-        this.myoptions.configureListener(this);
-        this.mytype.configureStandardMode();
-        this.mytype.configureListener(this);
-        if (this.myoptions.getLoaded() || this.mytype.getLoaded()) {
-            if (this.mytype.getMachineTypes().getSelectedItem().toString()
+        this.machineOptionsView.configureStandardMode();
+        this.machineOptionsView.configureListener(this);
+        this.machineTypeView.configureStandardMode();
+        this.machineTypeView.configureListener(this);
+        if (this.machineOptionsView.getLoaded() || this.machineTypeView.getLoaded()) {
+            if (this.machineTypeView.getMachineTypes().getSelectedItem().toString()
                     .indexOf(":") != -1) {
-                this.mymodel.buildIt(
-                        this.mytype
+                this.machineModel.buildIt(
+                        this.machineTypeView
                         .getMachineTypes()
                         .getSelectedItem()
                         .toString()
                         .substring(
-                                this.mytype.getMachineTypes()
+                                this.machineTypeView.getMachineTypes()
                                 .getSelectedItem().toString()
                                 .indexOf(":") + 2),
-                        this.mymodel.buildAccel((String) this.myoptions
+                        this.machineModel.buildAccel((String) this.machineOptionsView
                                 .getFirstOption().getSelectedItem(),
-                                (String) this.myoptions.getSecondOption()
+                                (String) this.machineOptionsView.getSecondOption()
                                 .getSelectedItem(),
-                                (String) this.myoptions.getThirdOption()
+                                (String) this.machineOptionsView.getThirdOption()
                                 .getSelectedItem()),
-                        (String) this.myoptions.getKernel_irqchip()
+                        (String) this.machineOptionsView.getKernel_irqchip()
                         .getSelectedItem(), Double
-                        .parseDouble(this.myoptions.getEditor()
+                        .parseDouble(this.machineOptionsView.getEditor()
                                 .getTextField().getText()
                                 .replace(",", ".")),
-                        (String) this.myoptions.getDump_guest_core()
-                        .getSelectedItem(), (String) this.myoptions
+                        (String) this.machineOptionsView.getDump_guest_core()
+                        .getSelectedItem(), (String) this.machineOptionsView
                         .getMem_merge().getSelectedItem());
             } else {
-                this.mymodel.buildIt(this.mytype.getMachineTypes()
+                this.machineModel.buildIt(this.machineTypeView.getMachineTypes()
                         .getSelectedItem().toString().toLowerCase(Locale.ENGLISH),
-                        this.mymodel.buildAccel((String) this.myoptions
+                        this.machineModel.buildAccel((String) this.machineOptionsView
                                 .getFirstOption().getSelectedItem(),
-                                (String) this.myoptions.getSecondOption()
+                                (String) this.machineOptionsView.getSecondOption()
                                 .getSelectedItem(),
-                                (String) this.myoptions.getThirdOption()
+                                (String) this.machineOptionsView.getThirdOption()
                                 .getSelectedItem()),
-                        (String) this.myoptions.getKernel_irqchip()
+                        (String) this.machineOptionsView.getKernel_irqchip()
                         .getSelectedItem(), Double
-                        .parseDouble(this.myoptions.getEditor()
+                        .parseDouble(this.machineOptionsView.getEditor()
                                 .getTextField().getText()
                                 .replace(",", ".")),
-                        (String) this.myoptions.getDump_guest_core()
-                        .getSelectedItem(), (String) this.myoptions
+                        (String) this.machineOptionsView.getDump_guest_core()
+                        .getSelectedItem(), (String) this.machineOptionsView
                         .getMem_merge().getSelectedItem());
             }
         }
     }
 
     public void change_the_visibility_of_type_view(Boolean value) {
-        this.mytype.setVisible(value);
+        this.machineTypeView.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("eraseButton")) {
-            this.mytype.getMachineTypes().setSelectedIndex(0);
-            this.mymodel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MACHINEOPTION.getValor()]);
-            this.mytype.setVisible(false);
+            this.machineTypeView.getMachineTypes().setSelectedIndex(0);
+            this.machineModel.unsetOption(VMConfigurationModel.getTagsOptions()[OptionsEnumModel.MACHINEOPTION.getValor()]);
+            this.machineTypeView.setVisible(false);
         } else if (e.getActionCommand().equals("okButton")) {
-            if (this.mytype.getMachineTypes().getSelectedItem().toString()
+            if (this.machineTypeView.getMachineTypes().getSelectedItem().toString()
                     .indexOf(":") != -1) {
-                this.mymodel.buildIt(
-                        this.mytype
+                this.machineModel.buildIt(
+                        this.machineTypeView
                         .getMachineTypes()
                         .getSelectedItem()
                         .toString()
                         .substring(
-                                this.mytype.getMachineTypes()
+                                this.machineTypeView.getMachineTypes()
                                 .getSelectedItem().toString()
                                 .indexOf(":") + 2),
-                        this.mymodel.buildAccel((String) this.myoptions
+                        this.machineModel.buildAccel((String) this.machineOptionsView
                                 .getFirstOption().getSelectedItem(),
-                                (String) this.myoptions.getSecondOption()
+                                (String) this.machineOptionsView.getSecondOption()
                                 .getSelectedItem(),
-                                (String) this.myoptions.getThirdOption()
+                                (String) this.machineOptionsView.getThirdOption()
                                 .getSelectedItem()),
-                        (String) this.myoptions.getKernel_irqchip()
+                        (String) this.machineOptionsView.getKernel_irqchip()
                         .getSelectedItem(), Double
-                        .parseDouble(this.myoptions.getEditor()
+                        .parseDouble(this.machineOptionsView.getEditor()
                                 .getTextField().getText()
                                 .replace(",", ".")),
-                        (String) this.myoptions.getDump_guest_core()
-                        .getSelectedItem(), (String) this.myoptions
+                        (String) this.machineOptionsView.getDump_guest_core()
+                        .getSelectedItem(), (String) this.machineOptionsView
                         .getMem_merge().getSelectedItem());
-                myfile.getMachineModel().setMachineType(
-                        this.mytype
+                eQctl.getMachineModel().setMachineType(
+                        this.machineTypeView
                         .getMachineTypes()
                         .getSelectedItem()
                         .toString()
                         .substring(
-                                this.mytype.getMachineTypes()
+                                this.machineTypeView.getMachineTypes()
                                 .getSelectedItem().toString()
                                 .indexOf(":") + 2));
             } else {
-                this.mymodel.buildIt(this.mytype.getMachineTypes()
+                this.machineModel.buildIt(this.machineTypeView.getMachineTypes()
                         .getSelectedItem().toString().toLowerCase(Locale.ENGLISH),
-                        this.mymodel.buildAccel((String) this.myoptions
+                        this.machineModel.buildAccel((String) this.machineOptionsView
                                 .getFirstOption().getSelectedItem(),
-                                (String) this.myoptions.getSecondOption()
+                                (String) this.machineOptionsView.getSecondOption()
                                 .getSelectedItem(),
-                                (String) this.myoptions.getThirdOption()
+                                (String) this.machineOptionsView.getThirdOption()
                                 .getSelectedItem()),
-                        (String) this.myoptions.getKernel_irqchip()
+                        (String) this.machineOptionsView.getKernel_irqchip()
                         .getSelectedItem(), Double
-                        .parseDouble(this.myoptions.getEditor()
+                        .parseDouble(this.machineOptionsView.getEditor()
                                 .getTextField().getText()
                                 .replace(",", ".")),
-                        (String) this.myoptions.getDump_guest_core()
-                        .getSelectedItem(), (String) this.myoptions
+                        (String) this.machineOptionsView.getDump_guest_core()
+                        .getSelectedItem(), (String) this.machineOptionsView
                         .getMem_merge().getSelectedItem());
-                myfile.getMachineModel().setMachineType(
-                        this.mytype.getMachineTypes().getSelectedItem()
+                eQctl.getMachineModel().setMachineType(
+                        this.machineTypeView.getMachineTypes().getSelectedItem()
                         .toString().toLowerCase(Locale.ENGLISH));
             }
-            this.mytype.setVisible(false);
+            this.machineTypeView.setVisible(false);
         } else if (e.getActionCommand().equals("eraseButton2")) {
-            this.myoptions.getFirstOption().setSelectedIndex(0);
-            this.myoptions.getSecondOption().setSelectedIndex(0);
-            this.myoptions.getThirdOption().setSelectedIndex(0);
-            this.myoptions.getKernel_irqchip().setSelectedIndex(0);
-            this.myoptions.getEditor().getTextField().setText("0");
-            this.myoptions.getDump_guest_core().setSelectedIndex(0);
-            this.myoptions.getMem_merge().setSelectedIndex(0);
-            this.myoptions.setVisible(false);
+            this.machineOptionsView.getFirstOption().setSelectedIndex(0);
+            this.machineOptionsView.getSecondOption().setSelectedIndex(0);
+            this.machineOptionsView.getThirdOption().setSelectedIndex(0);
+            this.machineOptionsView.getKernel_irqchip().setSelectedIndex(0);
+            this.machineOptionsView.getEditor().getTextField().setText("0");
+            this.machineOptionsView.getDump_guest_core().setSelectedIndex(0);
+            this.machineOptionsView.getMem_merge().setSelectedIndex(0);
+            this.machineOptionsView.setVisible(false);
         } else if (e.getActionCommand().equals("okButton2")) {
-            myfile.getMachineModel().setMachineAccel1(
-                    (String) this.myoptions.getFirstOption().getSelectedItem());
-            myfile.getMachineModel()
+        	eQctl.getMachineModel().setMachineAccel1(
+                    (String) this.machineOptionsView.getFirstOption().getSelectedItem());
+        	eQctl.getMachineModel()
                     .setMachineAccel2(
-                            (String) this.myoptions.getSecondOption()
+                            (String) this.machineOptionsView.getSecondOption()
                             .getSelectedItem());
-            myfile.getMachineModel().setMachineAccel3(
-                    (String) this.myoptions.getThirdOption().getSelectedItem());
-            myfile.getMachineModel().setMachineKernel_irpchip(
-                    (String) this.myoptions.getKernel_irqchip()
+        	eQctl.getMachineModel().setMachineAccel3(
+                    (String) this.machineOptionsView.getThirdOption().getSelectedItem());
+        	eQctl.getMachineModel().setMachineKernel_irpchip(
+                    (String) this.machineOptionsView.getKernel_irqchip()
                     .getSelectedItem());
-            myfile.getMachineModel().setMachineKvm_shadow_mem(
-                    this.myoptions.getEditor().getTextField().getText());
-            myfile.getMachineModel().setMachineDump_guest_core(
-                    (String) this.myoptions.getDump_guest_core()
+            eQctl.getMachineModel().setMachineKvm_shadow_mem(
+                    this.machineOptionsView.getEditor().getTextField().getText());
+            eQctl.getMachineModel().setMachineDump_guest_core(
+                    (String) this.machineOptionsView.getDump_guest_core()
                     .getSelectedItem());
-            myfile.getMachineModel().setMachineMem_merge(
-                    (String) this.myoptions.getMem_merge().getSelectedItem());
-            this.myoptions.setVisible(false);
+            eQctl.getMachineModel().setMachineMem_merge(
+                    (String) this.machineOptionsView.getMem_merge().getSelectedItem());
+            this.machineOptionsView.setVisible(false);
         } else if (e.getActionCommand().equals("showOptionsButton")) {
-            this.myoptions.setVisible(true);
+            this.machineOptionsView.setVisible(true);
         } else if (e.getActionCommand().equals("firstOption")
                 || e.getActionCommand().equals("secondOption")
                 || e.getActionCommand().equals("thirdOption")) {
-            this.myoptions.resolveAccelOptions();
+            this.machineOptionsView.resolveAccelOptions();
         }
     }
 

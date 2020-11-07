@@ -7,7 +7,7 @@ import com.lembed.lite.studio.qemu.model.swt.NetworkTapWorkerModel;
 import com.lembed.lite.studio.qemu.model.swt.NetworkWorkerModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.NetworkTapWorkerView;
 
-public class NetworkTapWorkerControl implements ActionListener {
+public class NetworkTapWorkerControl implements BaseControl {
 
     private NetworkTapWorkerView myview;
     private NetworkTapWorkerModel mymodel;
@@ -20,7 +20,7 @@ public class NetworkTapWorkerControl implements ActionListener {
         this.myview.configureStandardMode();
     }
 
-    public void change_my_visibility(boolean value) {
+    public void setVisible(boolean value) {
         this.myview.setVisible(value);
     }
 

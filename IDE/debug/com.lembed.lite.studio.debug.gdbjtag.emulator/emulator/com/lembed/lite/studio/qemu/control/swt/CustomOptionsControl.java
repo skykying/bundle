@@ -3,8 +3,6 @@ package com.lembed.lite.studio.qemu.control.swt;
 import java.awt.Dimension;
 import java.awt.Insets;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
@@ -15,34 +13,34 @@ import com.lembed.lite.studio.qemu.model.swt.Model;
 import com.lembed.lite.studio.qemu.view.internal.swt.CustomOptionsView;
 import com.lembed.lite.studio.qemu.view.internal.swt.UtilitiesView;
 
-public class CustomOptionsControl implements ActionListener {
+public class CustomOptionsControl implements BaseControl {
 
-    private CustomOptionsView myView;
-    private CustomOptionsModel myModel;
+    private CustomOptionsView cOptView;
+    private CustomOptionsModel cOptModel;
 
     public CustomOptionsControl(EmulationControl myemulation, EmulatorQemuMachineControl myfile) {
-        this.myModel = new CustomOptionsModel(myemulation, myfile);
-        this.myView = new CustomOptionsView(myfile);
-        this.myView.configureStandardMode();
-        this.myView.configureListener(this);
+        this.cOptModel = new CustomOptionsModel(myemulation, myfile);
+        this.cOptView = new CustomOptionsView(myfile);
+        this.cOptView.configureStandardMode();
+        this.cOptView.configureListener(this);
     }
 
-    public void change_my_visibility(Boolean value) {
-        this.myView.setVisible(value);
+    public void setVisible(Boolean value) {
+        this.cOptView.setVisible(value);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getActionCommand().equals("eraseButton")) {
-            DefaultListModel<String> listModel = (DefaultListModel<String>) this.myView.getListBox().getModel();
+            DefaultListModel<String> listModel = (DefaultListModel<String>) this.cOptView.getListBox().getModel();
             listModel.removeAllElements();
-            this.myView.getTextBox().setText("");
-            this.myModel.setOption("");
-            this.myModel.setFileOption("");
-            this.myView.setVisible(false);
+            this.cOptView.getTextBox().setText("");
+            this.cOptModel.setOption("");
+            this.cOptModel.setFileOption("");
+            this.cOptView.setVisible(false);
         } else if (e.getActionCommand().equals("eraseSelectedButton")) {
-            DefaultListModel<String> model = (DefaultListModel<String>) this.myView.getListBox().getModel();
-            int selectedIndex = this.myView.getListBox().getSelectedIndex();
+            DefaultListModel<String> model = (DefaultListModel<String>) this.cOptView.getListBox().getModel();
+            int selectedIndex = this.cOptView.getListBox().getSelectedIndex();
             if (selectedIndex != -1) {
                 model.remove(selectedIndex);
 
@@ -59,18 +57,18 @@ public class CustomOptionsControl implements ActionListener {
                     }
                 }
 
-                this.myModel.setOption(sb.toString());
-                this.myModel.setFileOption(fileSb.toString());
+                this.cOptModel.setOption(sb.toString());
+                this.cOptModel.setFileOption(fileSb.toString());
             }
         } else if (e.getActionCommand().equals("addButton")) {
-            DefaultListModel<String> model = (DefaultListModel<String>) this.myView.getListBox().getModel();
-            if (model.contains(this.myView.getTextBox().getText())) {
+            DefaultListModel<String> model = (DefaultListModel<String>) this.cOptView.getListBox().getModel();
+            if (model.contains(this.cOptView.getTextBox().getText())) {
                 UtilitiesView.showMessageAnywhere("This element already is added to the list.");
-            } else if (Model.containCommonRoot(model, this.myView.getTextBox().getText())) {
+            } else if (Model.containCommonRoot(model, this.cOptView.getTextBox().getText())) {
                 UtilitiesView.showMessageAnywhere("Another element already is added to the list, for this option.");
             } else {
-                model.addElement(this.myView.getTextBox().getText());
-                this.myView.rechecks();
+                model.addElement(this.cOptView.getTextBox().getText());
+                this.cOptView.rechecks();
 
                 StringBuilder sb = new StringBuilder(1024);
                 StringBuilder fileSb = new StringBuilder(1024);
@@ -85,23 +83,23 @@ public class CustomOptionsControl implements ActionListener {
                     }
                 }
 
-                this.myModel.setOption(sb.toString());
-                this.myModel.setFileOption(fileSb.toString());
+                this.cOptModel.setOption(sb.toString());
+                this.cOptModel.setFileOption(fileSb.toString());
             }
         } else if (e.getActionCommand().equals("okButton")) {
-            this.myView.getTextBox().setText("");
-            this.myView.setVisible(false);
+            this.cOptView.getTextBox().setText("");
+            this.cOptView.setVisible(false);
         } else if (e.getActionCommand().equals("copyButton")) {
-            DefaultListModel<String> model = (DefaultListModel<String>) this.myView.getListBox().getModel();
-            int selectedIndex = this.myView.getListBox().getSelectedIndex();
+            DefaultListModel<String> model = (DefaultListModel<String>) this.cOptView.getListBox().getModel();
+            int selectedIndex = this.cOptView.getListBox().getSelectedIndex();
             if (selectedIndex != -1) {
-                this.myView.getTextBox().setText(model.getElementAt(selectedIndex));
+                this.cOptView.getTextBox().setText(model.getElementAt(selectedIndex));
             }
         } else if (e.getActionCommand().equals("modifyButton")) {
-            DefaultListModel<String> model = (DefaultListModel<String>) this.myView.getListBox().getModel();
-            int selectedIndex = this.myView.getListBox().getSelectedIndex();
+            DefaultListModel<String> model = (DefaultListModel<String>) this.cOptView.getListBox().getModel();
+            int selectedIndex = this.cOptView.getListBox().getSelectedIndex();
             if (selectedIndex != -1) {
-                if (this.myView.getTextBox().getText().isEmpty()) {
+                if (this.cOptView.getTextBox().getText().isEmpty()) {
                     String message = "Sorry! The box text is empty!";
                     System.out.println(message);
                     JScrollPane scrollPane = new JScrollPane();
@@ -116,7 +114,7 @@ public class CustomOptionsControl implements ActionListener {
                     JOptionPane.showMessageDialog(null, trueMessage);
                     
                 } else {
-                    model.setElementAt(this.myView.getTextBox().getText(), selectedIndex);
+                    model.setElementAt(this.cOptView.getTextBox().getText(), selectedIndex);
 
                     StringBuilder sb = new StringBuilder(1024);
                     StringBuilder fileSb = new StringBuilder(1024);
@@ -131,12 +129,13 @@ public class CustomOptionsControl implements ActionListener {
                         }
                     }
 
-                    this.myModel.setOption(sb.toString());
-                    this.myModel.setFileOption(fileSb.toString());
+                    this.cOptModel.setOption(sb.toString());
+                    this.cOptModel.setFileOption(fileSb.toString());
                 }
             } else {
                 String message = "Sorry! You should to select a line from list above, first!";
                 System.out.println(message);
+                
                 JScrollPane scrollPane = new JScrollPane();
                 scrollPane.setPreferredSize(new Dimension(500, 500));
                 JTextArea textArea = new JTextArea(message);
@@ -149,14 +148,16 @@ public class CustomOptionsControl implements ActionListener {
                 JOptionPane.showMessageDialog(null, trueMessage);
             }
         } else if (e.getActionCommand().equals("findButton")) {
-            if (!this.myView.getTextBox().getText().isEmpty()) {
-                DefaultListModel<String> model = (DefaultListModel<String>) this.myView.getListBox().getModel();
-                if (model.contains(this.myView.getTextBox().getText())) {
-                    UtilitiesView.showMessageAnywhere("The list contains the element: "
-                            + this.myView.getTextBox().getText() + ".");
+            if (!cOptView.getTextBox().getText().isEmpty()) {
+            	
+                DefaultListModel<String> model = (DefaultListModel<String>) cOptView.getListBox().getModel();
+                if (model.contains(this.cOptView.getTextBox().getText())) {
+                	String m = "The list contains the element: " + cOptView.getTextBox().getText() + ".";
+                	
+                    UtilitiesView.showMessageAnywhere(m);
                 } else {
-                    UtilitiesView.showMessageAnywhere("The list doesn't contain the element: "
-                            + this.myView.getTextBox().getText() + ".");
+                	String m = "The list doesn't contain the element: "+ cOptView.getTextBox().getText() + ".";
+                    UtilitiesView.showMessageAnywhere(m);
                 }
             } else {
                 UtilitiesView.showMessageAnywhere("Sorry! The box text is empty!");

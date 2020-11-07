@@ -50,8 +50,8 @@ public class TimeView extends DeviceBaseView {
     private JButton okButton;
 
 
-    public TimeView(EmulatorQemuMachineControl myfile) {
-        super(myfile);
+    public TimeView(EmulatorQemuMachineControl emc) {
+        super(emc);
 
         windowContent = new JPanel();
 
@@ -164,10 +164,10 @@ public class TimeView extends DeviceBaseView {
     
 
 	@Override
-	public void doSave(IemultorStore store) {
-		 if (fileControl.getMachineModel().getRtcOption() != null) {
+	public void applyView(IemultorStore store) {
+		 if (eQControl.getMachineModel().getRtcOption() != null) {
 	            this.isRTCEnabled.setSelected(true);
-	            String options[] = fileControl.getMachineModel().getRtcOption().split(",");
+	            String options[] = eQControl.getMachineModel().getRtcOption().split(",");
 	            for (String option : options) {
 	                if (option.startsWith("base=")) {
 	                    if (option.endsWith("utc")) {
