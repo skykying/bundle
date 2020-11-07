@@ -10,7 +10,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class CPUIDFlagView extends DeviceBaseView  {
@@ -27,9 +27,9 @@ public class CPUIDFlagView extends DeviceBaseView  {
 
 	private String title;
 
-	private FileControl myfile;
+	private EmulatorQemuMachineControl myfile;
 
-    public CPUIDFlagView(FileControl myfile) {
+    public CPUIDFlagView(EmulatorQemuMachineControl myfile) {
     	super(myfile);
         this.jpanel = new JPanel();
 
@@ -144,9 +144,9 @@ public class CPUIDFlagView extends DeviceBaseView  {
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (myfile.getFilemodel().getCpuidFlags() != null) {
+        if (myfile.getMachineModel().getCpuidFlags() != null) {
 
-            String[] basis = myfile.getFilemodel().getCpuidFlags().split(",");
+            String[] basis = myfile.getMachineModel().getCpuidFlags().split(",");
             DefaultListModel<String> model = (DefaultListModel<String>) this.getSelectedList().getModel();
 
             for (int i = 0; i < basis.length; i++) {

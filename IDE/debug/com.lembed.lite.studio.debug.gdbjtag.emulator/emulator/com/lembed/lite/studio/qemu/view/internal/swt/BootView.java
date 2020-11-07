@@ -20,7 +20,7 @@ import javax.swing.SwingConstants;
 
 import org.eclipse.swt.widgets.FontDialog;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class BootView extends DeviceViewWithFileChooser {
@@ -64,7 +64,7 @@ public class BootView extends DeviceViewWithFileChooser {
 	private String[] bootDevices = {"", "a - Floppy 1", "b - Floppy 2",
             "c - First Hard Disk", "d - First CDROM", "n - Network"};
 
-    public BootView(FileControl myfile) {
+    public BootView(EmulatorQemuMachineControl myfile) {
         super(myfile,null);
 
         windowContent = new JPanel();
@@ -518,40 +518,40 @@ public class BootView extends DeviceViewWithFileChooser {
 	
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getBootOrder1() != null) {
+        if (fileControl.getMachineModel().getBootOrder1() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getFilemodel().getBootOrder1().equals(bootDevices[i].substring(0, 1))) {
+                    if (fileControl.getMachineModel().getBootOrder1().equals(bootDevices[i].substring(0, 1))) {
                         this.firstOrder.setSelectedIndex(i);
                     }
                 }
             }
         }
 
-        if (fileControl.getFilemodel().getBootOrder2() != null) {
+        if (fileControl.getMachineModel().getBootOrder2() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getFilemodel().getBootOrder2().equals(bootDevices[i].substring(0, 1))) {
+                    if (fileControl.getMachineModel().getBootOrder2().equals(bootDevices[i].substring(0, 1))) {
                         this.secondOrder.setSelectedIndex(i);
                     }
                 }
             }
         }
 
-        if (fileControl.getFilemodel().getBootOrder3() != null) {
+        if (fileControl.getMachineModel().getBootOrder3() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getFilemodel().getBootOrder3().equals(bootDevices[i].substring(0, 1))) {
+                    if (fileControl.getMachineModel().getBootOrder3().equals(bootDevices[i].substring(0, 1))) {
                         this.thirdOrder.setSelectedIndex(i);
                     }
                 }
             }
         }
 
-        if (fileControl.getFilemodel().getBootOnce1() != null) {
+        if (fileControl.getMachineModel().getBootOnce1() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getFilemodel().getBootOnce1()
+                    if (fileControl.getMachineModel().getBootOnce1()
                             .equals(bootDevices[i].substring(0, 1))) {
                         this.firstOnce.setSelectedIndex(i);
                     }
@@ -559,10 +559,10 @@ public class BootView extends DeviceViewWithFileChooser {
             }
         }
 
-        if (fileControl.getFilemodel().getBootOnce2() != null) {
+        if (fileControl.getMachineModel().getBootOnce2() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getFilemodel().getBootOnce2()
+                    if (fileControl.getMachineModel().getBootOnce2()
                             .equals(bootDevices[i].substring(0, 1))) {
                         this.secondOnce.setSelectedIndex(i);
                     }
@@ -570,10 +570,10 @@ public class BootView extends DeviceViewWithFileChooser {
             }
         }
 
-        if (fileControl.getFilemodel().getBootOnce3() != null) {
+        if (fileControl.getMachineModel().getBootOnce3() != null) {
             for (int i = 0; i < bootDevices.length; i++) {
                 if (!bootDevices[i].isEmpty()) {
-                    if (fileControl.getFilemodel().getBootOnce3()
+                    if (fileControl.getMachineModel().getBootOnce3()
                             .equals(bootDevices[i].substring(0, 1))) {
                         this.thirdOnce.setSelectedIndex(i);
                     }
@@ -581,26 +581,26 @@ public class BootView extends DeviceViewWithFileChooser {
             }
         }
 
-        if (fileControl.getFilemodel().getBootMenu() != null) {
-            this.menu.setSelectedItem(fileControl.getFilemodel().getBootMenu());
+        if (fileControl.getMachineModel().getBootMenu() != null) {
+            this.menu.setSelectedItem(fileControl.getMachineModel().getBootMenu());
         }
 
-        if (fileControl.getFilemodel().getBootSplash() != null) {
-            this.splashName.setText(fileControl.getFilemodel().getBootSplash());
+        if (fileControl.getMachineModel().getBootSplash() != null) {
+            this.splashName.setText(fileControl.getMachineModel().getBootSplash());
         }
 
-        if (fileControl.getFilemodel().getBootSplashTime() != null) {
+        if (fileControl.getMachineModel().getBootSplashTime() != null) {
             this.splashTime.setSelected(true);
-            this.editor1.getTextField().setText(fileControl.getFilemodel().getBootSplashTime());
+            this.editor1.getTextField().setText(fileControl.getMachineModel().getBootSplashTime());
         }
 
-        if (fileControl.getFilemodel().getBootRebootTimeout() != null) {
+        if (fileControl.getMachineModel().getBootRebootTimeout() != null) {
             this.rebootTimeout.setSelected(true);
-            this.editor2.getTextField().setText(fileControl.getFilemodel().getBootRebootTimeout());
+            this.editor2.getTextField().setText(fileControl.getMachineModel().getBootRebootTimeout());
         }
 
-        if (fileControl.getFilemodel().getBootStrict() != null) {
-            this.strict.setSelectedItem(fileControl.getFilemodel().getBootStrict());
+        if (fileControl.getMachineModel().getBootStrict() != null) {
+            this.strict.setSelectedItem(fileControl.getMachineModel().getBootStrict());
         }
 		
 	}

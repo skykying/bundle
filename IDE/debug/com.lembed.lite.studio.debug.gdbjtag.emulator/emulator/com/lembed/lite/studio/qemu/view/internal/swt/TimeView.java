@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class TimeView extends DeviceBaseView {
@@ -50,7 +50,7 @@ public class TimeView extends DeviceBaseView {
     private JButton okButton;
 
 
-    public TimeView(FileControl myfile) {
+    public TimeView(EmulatorQemuMachineControl myfile) {
         super(myfile);
 
         windowContent = new JPanel();
@@ -165,9 +165,9 @@ public class TimeView extends DeviceBaseView {
 
 	@Override
 	public void doSave(IemultorStore store) {
-		 if (fileControl.getFilemodel().getRtcOption() != null) {
+		 if (fileControl.getMachineModel().getRtcOption() != null) {
 	            this.isRTCEnabled.setSelected(true);
-	            String options[] = fileControl.getFilemodel().getRtcOption().split(",");
+	            String options[] = fileControl.getMachineModel().getRtcOption().split(",");
 	            for (String option : options) {
 	                if (option.startsWith("base=")) {
 	                    if (option.endsWith("utc")) {

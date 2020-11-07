@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class ImageView extends DeviceViewWithFileChooser {
@@ -32,7 +32,7 @@ public class ImageView extends DeviceViewWithFileChooser {
 
     private GridLayout gridLayout;
 
-    public ImageView(FileControl myfile) {
+    public ImageView(EmulatorQemuMachineControl myfile) {
         super(myfile,null);
 
         this.jpanel = new JPanel();
@@ -115,16 +115,16 @@ public class ImageView extends DeviceViewWithFileChooser {
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getMtdblockOption() != null) {
-            this.mtdblock.setText(fileControl.getFilemodel().getMtdblockOption());
+        if (fileControl.getMachineModel().getMtdblockOption() != null) {
+            this.mtdblock.setText(fileControl.getMachineModel().getMtdblockOption());
         }
 
-        if (fileControl.getFilemodel().getSdOption() != null) {
-            this.sd.setText(fileControl.getFilemodel().getSdOption());
+        if (fileControl.getMachineModel().getSdOption() != null) {
+            this.sd.setText(fileControl.getMachineModel().getSdOption());
         }
 
-        if (fileControl.getFilemodel().getPflashOption() != null) {
-            this.pflash.setText(fileControl.getFilemodel().getPflashOption());
+        if (fileControl.getMachineModel().getPflashOption() != null) {
+            this.pflash.setText(fileControl.getMachineModel().getPflashOption());
         }
 
         this.rechecks();

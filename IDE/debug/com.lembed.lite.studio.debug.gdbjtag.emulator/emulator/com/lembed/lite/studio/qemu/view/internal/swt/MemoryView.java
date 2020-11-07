@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class MemoryView extends DeviceViewWithFileChooser {
@@ -34,7 +34,7 @@ public class MemoryView extends DeviceViewWithFileChooser {
 
     private JLabel temp[];
 
-    public MemoryView(FileControl myfile) {
+    public MemoryView(EmulatorQemuMachineControl myfile) {
         super(myfile,null);
 
         windowContent = new JPanel();
@@ -101,15 +101,15 @@ public class MemoryView extends DeviceViewWithFileChooser {
 
 	@Override
 	public void doSave(IemultorStore store) {
-		 if (fileControl.getFilemodel().getMemPathOption() != null) {
-	            if (!fileControl.getFilemodel().getMemPathOption().isEmpty()) {
-	                this.memoryPath.setText(fileControl.getFilemodel().getMemPathOption());
+		 if (fileControl.getMachineModel().getMemPathOption() != null) {
+	            if (!fileControl.getMachineModel().getMemPathOption().isEmpty()) {
+	                this.memoryPath.setText(fileControl.getMachineModel().getMemPathOption());
 	            }
 	        }
 
-	        if (fileControl.getFilemodel().getMemPreallocOption() != null) {
-	            if (!fileControl.getFilemodel().getMemPreallocOption().isEmpty()) {
-	                if (fileControl.getFilemodel().getMemPreallocOption().equals("true")) {
+	        if (fileControl.getMachineModel().getMemPreallocOption() != null) {
+	            if (!fileControl.getMachineModel().getMemPreallocOption().isEmpty()) {
+	                if (fileControl.getMachineModel().getMemPreallocOption().equals("true")) {
 	                    this.memPrealloc.setSelected(true);
 	                }
 	            }

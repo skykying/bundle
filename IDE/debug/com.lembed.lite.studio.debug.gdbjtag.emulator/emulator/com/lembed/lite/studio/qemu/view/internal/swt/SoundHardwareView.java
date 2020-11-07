@@ -11,7 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class SoundHardwareView extends DeviceBaseView {
@@ -34,7 +34,7 @@ public class SoundHardwareView extends DeviceBaseView {
     private HashMap<String, String> falseOptions;
 
 
-    public SoundHardwareView(FileControl myfile) {
+    public SoundHardwareView(EmulatorQemuMachineControl myfile) {
         super(myfile);
 
         windowContent = new JPanel();
@@ -103,9 +103,9 @@ public class SoundHardwareView extends DeviceBaseView {
         falseOptions.put("ac97", "Intel 82801AA AC97 Audio");
         falseOptions.put("all", "All of the above");
 
-        if (fileControl.getFilemodel().getSoundHardwareOption() != null) {
+        if (fileControl.getMachineModel().getSoundHardwareOption() != null) {
             this.getSoundHardware().setSelectedItem(
-                    this.falseOptions.get(fileControl.getFilemodel()
+                    this.falseOptions.get(fileControl.getMachineModel()
                             .getSoundHardwareOption()));
         }
 

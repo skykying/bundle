@@ -11,11 +11,11 @@ import com.lembed.lite.studio.qemu.view.internal.EmulationView;
 
 public class EmulationModel {
 
-    private List<Process> myprocesses;
-    private List<ProcessControl> myprocessescontrol;
-    private List<ScriptModel> myscripts;
+    private List<Process> processList;
+    private List<ProcessControl> processesControlList;
+    private List<ScriptModel> scriptModelList;
     private JQemuView view;
-    private List<JPanelModel> mypanels;
+    private List<JPanelModel> panelModelList;
 
     private String qemuPath;
 
@@ -27,7 +27,7 @@ public class EmulationModel {
 
     private List<String> execute_after_stop_qemu;
 
-    private EmulationView myview;
+    private EmulationView emulationView;
 
     private List<List<String>> options;
 
@@ -35,15 +35,15 @@ public class EmulationModel {
         super();
         this.execQemu = new ArrayList<String[]>();
 
-        this.myview = myview;
+        this.emulationView = myview;
 
         this.options = new ArrayList<List<String>>();
 
-        this.myprocesses = new ArrayList<Process>();
-        this.myprocessescontrol = new ArrayList<ProcessControl>();
-        myscripts = new ArrayList<ScriptModel>();
+        this.processList = new ArrayList<Process>();
+        this.processesControlList = new ArrayList<ProcessControl>();
+        this.scriptModelList = new ArrayList<ScriptModel>();
         this.view = view;
-        mypanels = new ArrayList<JPanelModel>();
+        this.panelModelList = new ArrayList<JPanelModel>();
     }
 
     public void setExecQemu() {
@@ -65,57 +65,57 @@ public class EmulationModel {
         }
     }
 
-    public Process getMyprocesses(int position) {
-        return myprocesses.get(position);
+    public Process getProcesses(int position) {
+        return processList.get(position);
     }
 
-    public ProcessControl getMyprocessesControl(int position) {
-        return this.myprocessescontrol.get(position);
+    public ProcessControl getProcessesControl(int position) {
+        return this.processesControlList.get(position);
     }
 
-    public ScriptModel getMyscripts(int position) {
-        return myscripts.get(position);
+    public ScriptModel getScriptModel(int position) {
+        return scriptModelList.get(position);
     }
 
-    public void setMyprocesses(Process myprocess, int position,
+    public void setProcessList(Process myprocess, int position,
             String machineName, Boolean isItAScript) {
-        if (this.myprocesses.size() <= position) {
-            for (int i = this.myprocesses.size(); i <= position; i++) {
-                this.myprocesses.add(i, null);
-                this.myprocessescontrol.add(i, null);
-                this.myscripts.add(i, null);
+        if (this.processList.size() <= position) {
+            for (int i = this.processList.size(); i <= position; i++) {
+                this.processList.add(i, null);
+                this.processesControlList.add(i, null);
+                this.scriptModelList.add(i, null);
             }
         }
-        this.myprocesses.set(position, myprocess);
+        this.processList.set(position, myprocess);
         if (!isItAScript) {
-            this.myprocessescontrol.set(position, new ProcessControl(myprocess,
-                    machineName, myview, qemuPathDir));
+            this.processesControlList.set(position, new ProcessControl(myprocess,
+                    machineName, emulationView, qemuPathDir));
             try {
-                this.myprocessescontrol.get(position).run();
+                this.processesControlList.get(position).run();
             } catch (InterruptedException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
         } else {
-            this.myscripts.set(position, new ScriptModel(myprocess, myview));
-            this.myscripts.get(position).start();
+            this.scriptModelList.set(position, new ScriptModel(myprocess, emulationView));
+            this.scriptModelList.get(position).start();
         }
     }
 
     public void removesAProcess(int position) {
-        if (this.myprocesses.size() > position) {
-            this.myprocesses.set(position, null);
-            this.myprocessescontrol.set(position, null);
-            this.myscripts.set(position, null);
+        if (this.processList.size() > position) {
+            this.processList.set(position, null);
+            this.processesControlList.set(position, null);
+            this.scriptModelList.set(position, null);
         }
     }
 
     public void removeAllProcesses() {
-        for (int i = 0; i < this.myprocesses.size(); i++) {
-            if (this.myprocesses.get(i) != null) {
-                this.myprocesses.set(i, null);
-                this.myprocessescontrol.set(i, null);
-                this.myscripts.set(i, null);
+        for (int i = 0; i < this.processList.size(); i++) {
+            if (this.processList.get(i) != null) {
+                this.processList.set(i, null);
+                this.processesControlList.set(i, null);
+                this.scriptModelList.set(i, null);
             }
         }
     }
@@ -139,17 +139,17 @@ public class EmulationModel {
                 try {
                     String given = execute_before_start_qemu.get(i);
                     if (!given.isEmpty()) {
-                        this.myview.showScriptCommand(given);
+                        this.emulationView.showScriptCommand(given);
                         String[] cmdLine = UsabilityModel.getCmdLine(given);
                         if (cmdLine.length == 0) {
-                            this.setMyprocesses(Runtime.getRuntime().exec(given),
+                            this.setProcessList(Runtime.getRuntime().exec(given),
                                     position, machineName, true);
                         } else {
-                            this.setMyprocesses(Runtime.getRuntime().exec(cmdLine),
+                            this.setProcessList(Runtime.getRuntime().exec(cmdLine),
                                     position, machineName, true);
                         }
-                        while (isRunning(this.getMyprocesses(position))) {
-                            this.myview
+                        while (isRunning(this.getProcesses(position))) {
+                            this.emulationView
                                     .showMessage("This (pre) script is still running!");
                         }
                     }
@@ -192,17 +192,17 @@ public class EmulationModel {
             for (String given : execute_after_stop_qemu) {
                 try {
                     if (!given.isEmpty()) {
-                        this.myview.showScriptCommand(given);
+                        this.emulationView.showScriptCommand(given);
                         String[] cmdLine = UsabilityModel.getCmdLine(given);
                         if (cmdLine.length == 0) {
-                            this.setMyprocesses(Runtime.getRuntime().exec(given),
+                            this.setProcessList(Runtime.getRuntime().exec(given),
                                     position, machineName, true);
                         } else {
-                            this.setMyprocesses(Runtime.getRuntime().exec(cmdLine),
+                            this.setProcessList(Runtime.getRuntime().exec(cmdLine),
                                     position, machineName, true);
                         }
-                        while (isRunning(this.getMyprocesses(position))) {
-                            this.myview
+                        while (isRunning(this.getProcesses(position))) {
+                            this.emulationView
                                     .showMessage("This (post) script is still running!");
                         }
                     }
@@ -227,25 +227,25 @@ public class EmulationModel {
         if (!this.getQemuPath().isEmpty()) {
             if (this.checks_if_is_a_valid_file(this.getQemuPath())) {
                 if (this.checks(position)) {
-                    if (this.mypanels.size() > this.view.getActivePanel()) {
-                        if (this.mypanels.get(this.view.getActivePanel()) != null) {
-                            this.mypanels.get(this.view.getActivePanel()).setEmulation(
+                    if (this.panelModelList.size() > this.view.getActivePanel()) {
+                        if (this.panelModelList.get(this.view.getActivePanel()) != null) {
+                            this.panelModelList.get(this.view.getActivePanel()).setEmulation(
                                     this.execQemu.get(position));
-                            this.myview.showThisAfterInTheRunProcess(this.mypanels.get(
+                            this.emulationView.showThisAfterInTheRunProcess(this.panelModelList.get(
                                     this.view.getActivePanel()).getExecQemu());
-                            String[] cmdLine = UsabilityModel.getCmdLine(this.mypanels.get(
+                            String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
                                     this.view.getActivePanel())
                                     .getEmulation());
                             if (cmdLine.length == 0) {
-                                this.setMyprocesses(
+                                this.setProcessList(
                                         Runtime.getRuntime().exec(
-                                                this.mypanels.get(
+                                                this.panelModelList.get(
                                                         this.view.getActivePanel())
                                                 .getEmulation(), null,
                                                 new File(this.qemuPathDir)), position,
                                         machineName, false);
                             } else {
-                                this.setMyprocesses(
+                                this.setProcessList(
                                         Runtime.getRuntime().exec(
                                                 cmdLine, null,
                                                 new File(this.qemuPathDir)), position,
@@ -259,7 +259,7 @@ public class EmulationModel {
                         return false;
                     }
                 } else {
-                    this.myview
+                    this.emulationView
                             .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
                 }
             }
@@ -272,16 +272,16 @@ public class EmulationModel {
         if (this.getQemuPath() != null && !this.getQemuPath().isEmpty()) {
             if (this.checks_if_is_a_valid_file(this.getQemuPath())) {
                 if (this.checks(position)) {
-                    if (this.mypanels.size() > this.view.getActivePanel()) {
-                        if (this.mypanels.get(this.view.getActivePanel()) != null) {
-                            this.mypanels.get(this.view.getActivePanel()).setEmulation(
+                    if (this.panelModelList.size() > this.view.getActivePanel()) {
+                        if (this.panelModelList.get(this.view.getActivePanel()) != null) {
+                            this.panelModelList.get(this.view.getActivePanel()).setEmulation(
                                     this.execQemu.get(position));
 
-                            String[] cmdLine = UsabilityModel.getCmdLine(this.mypanels.get(
+                            String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
                                     this.view.getActivePanel())
                                     .getEmulation());
                             if (cmdLine.length == 0) {
-                                result = this.mypanels.get(
+                                result = this.panelModelList.get(
                                         this.view.getActivePanel())
                                         .getEmulation();
                             } else {
@@ -299,22 +299,22 @@ public class EmulationModel {
                         return "";
                     }
                 } else {
-                    this.myview
+                    this.emulationView
                             .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
                     return "";
                 }
             }
         } else if (this.checks(position)) {
-            if (this.mypanels.size() > this.view.getActivePanel()) {
-                if (this.mypanels.get(this.view.getActivePanel()) != null) {
-                    this.mypanels.get(this.view.getActivePanel()).setEmulation(
+            if (this.panelModelList.size() > this.view.getActivePanel()) {
+                if (this.panelModelList.get(this.view.getActivePanel()) != null) {
+                    this.panelModelList.get(this.view.getActivePanel()).setEmulation(
                             this.execQemu.get(position));
 
-                    String[] cmdLine = UsabilityModel.getCmdLine(this.mypanels.get(
+                    String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
                             this.view.getActivePanel())
                             .getEmulation());
                     if (cmdLine.length == 0) {
-                        result = this.mypanels.get(
+                        result = this.panelModelList.get(
                                 this.view.getActivePanel())
                                 .getEmulation();
                     } else {
@@ -332,8 +332,7 @@ public class EmulationModel {
                 return "";
             }
         } else {
-            this.myview
-                    .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
+            this.emulationView.showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
             return "";
         }
 
@@ -346,8 +345,7 @@ public class EmulationModel {
                 if (!this.execQemu.get(position)[4].isEmpty()) {
                     if (this.options.get(position).size() > OptionsEnumModel.CDROMOPTION
                             .getValor()) {
-                        if (!this.options.get(position)
-                                .get(OptionsEnumModel.CDROMOPTION.getValor()).isEmpty()) {
+                        if (!this.options.get(position).get(OptionsEnumModel.CDROMOPTION.getValor()).isEmpty()) {
                             return false;
                         }
                     }
@@ -607,7 +605,7 @@ public class EmulationModel {
     }
 
     public Integer getNumberOfProcesses() {
-        return this.myprocesses.size();
+        return this.processList.size();
     }
 
     public boolean isRunning(Process process) {
@@ -620,19 +618,19 @@ public class EmulationModel {
     }
 
     public void setJPanel() {
-        if (this.mypanels.size() <= this.view.getActivePanel()) {
-            for (int i = this.mypanels.size(); i <= this.view.getActivePanel(); i++) {
-                this.mypanels.add(i, null);
+        if (this.panelModelList.size() <= this.view.getActivePanel()) {
+            for (int i = this.panelModelList.size(); i <= this.view.getActivePanel(); i++) {
+                this.panelModelList.add(i, null);
             }
         }
-        if (this.mypanels.get(this.view.getActivePanel()) == null) {
-            this.mypanels.set(this.view.getActivePanel(), new JPanelModel());
+        if (this.panelModelList.get(this.view.getActivePanel()) == null) {
+            this.panelModelList.set(this.view.getActivePanel(), new JPanelModel());
         }
         int position = getPosition();
         if (this.execQemu.size() > position) {
             for (int i = 0; i < execQemu.get(position).length; i++) {
                 if (!this.execQemu.get(position)[i].isEmpty()) {
-                    this.mypanels.get(this.view.getActivePanel()).setExecQemu(
+                    this.panelModelList.get(this.view.getActivePanel()).setExecQemu(
                             this.execQemu.get(position)[i], i);
                 }
             }
@@ -643,14 +641,14 @@ public class EmulationModel {
     public void close_emulation(int position) {
         this.execQemu.remove(position);
         this.options.remove(position);
-        this.mypanels.remove(position);
+        this.panelModelList.remove(position);
     }
 
     public void closeAllEmulation() {
         for (int i = 0; i < this.execQemu.size(); i++) {
             this.execQemu.remove(i);
             this.options.remove(i);
-            this.mypanels.remove(i);
+            this.panelModelList.remove(i);
         }
     }
 

@@ -13,7 +13,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 
 public class NetworkHostfwdUserWorkerView extends JPanel {
 
@@ -59,7 +59,7 @@ public class NetworkHostfwdUserWorkerView extends JPanel {
 
     private JButton okButton;
 
-    public NetworkHostfwdUserWorkerView(FileControl myfile, int position) {
+    public NetworkHostfwdUserWorkerView(EmulatorQemuMachineControl myfile, int position) {
         super();
 
         windowContent = new JPanel();
@@ -152,76 +152,76 @@ public class NetworkHostfwdUserWorkerView extends JPanel {
 
         switch (position) {
             case 1:
-                if (myfile.getFilemodel().getFirstNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getFirstNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getFirstNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel()
+                        this.buildTextArea(myfile.getMachineModel()
                                 .getFirstNetworkExtraOption());
                     }
                 }
                 break;
             case 2:
-                if (myfile.getFilemodel().getSecondNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getSecondNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getSecondNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel()
+                        this.buildTextArea(myfile.getMachineModel()
                                 .getSecondNetworkExtraOption());
                     }
                 }
                 break;
             case 3:
-                if (myfile.getFilemodel().getThirdNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getThirdNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getThirdNetworkExtraOption());
+                if (myfile.getMachineModel().getThirdNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getThirdNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getThirdNetworkExtraOption());
                     }
                 }
                 break;
             case 4:
-                if (myfile.getFilemodel().getFourthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getFourthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getFourthNetworkExtraOption());
+                if (myfile.getMachineModel().getFourthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getFourthNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getFourthNetworkExtraOption());
                     }
                 }
                 break;
             case 5:
-                if (myfile.getFilemodel().getFifthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getFifthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getFifthNetworkExtraOption());
+                if (myfile.getMachineModel().getFifthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getFifthNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getFifthNetworkExtraOption());
                     }
                 }
                 break;
             case 6:
-                if (myfile.getFilemodel().getSixthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getSixthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getSixthNetworkExtraOption());
+                if (myfile.getMachineModel().getSixthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getSixthNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getSixthNetworkExtraOption());
                     }
                 }
                 break;
             case 7:
-                if (myfile.getFilemodel().getSeventhNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getSeventhNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getSeventhNetworkExtraOption());
+                if (myfile.getMachineModel().getSeventhNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getSeventhNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getSeventhNetworkExtraOption());
                     }
                 }
                 break;
             case 8:
-                if (myfile.getFilemodel().getEighthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getEighthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getEighthNetworkExtraOption());
+                if (myfile.getMachineModel().getEighthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getEighthNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getEighthNetworkExtraOption());
                     }
                 }
                 break;
             case 9:
-                if (myfile.getFilemodel().getNinthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getNinthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getNinthNetworkExtraOption());
+                if (myfile.getMachineModel().getNinthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getNinthNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getNinthNetworkExtraOption());
                     }
                 }
                 break;
             case 10:
-                if (myfile.getFilemodel().getTenthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel().getTenthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getFilemodel().getTenthNetworkExtraOption());
+                if (myfile.getMachineModel().getTenthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel().getTenthNetworkExtraOption())) {
+                        this.buildTextArea(myfile.getMachineModel().getTenthNetworkExtraOption());
                     }
                 }
                 break;

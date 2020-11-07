@@ -9,7 +9,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class MonitorView extends DeviceBaseView {
@@ -35,7 +35,7 @@ public class MonitorView extends DeviceBaseView {
     // Association "option" - "Description".
     private HashMap<String, String> falseOptions;
 
-    public MonitorView(FileControl myfile) {
+    public MonitorView(EmulatorQemuMachineControl myfile) {
         super(myfile);
 
         windowContent = new JPanel();
@@ -105,15 +105,15 @@ public class MonitorView extends DeviceBaseView {
         falseOptions.put("vc", "Graphical Mode");
         falseOptions.put("stdio", "Non Graphical Mode");
 
-        if (fileControl.getFilemodel().getMonitorOption() != null) {
+        if (fileControl.getMachineModel().getMonitorOption() != null) {
             this.monitor.setSelectedItem(
-                    this.falseOptions.get(fileControl.getFilemodel()
+                    this.falseOptions.get(fileControl.getMachineModel()
                             .getMonitorOption()));
         }
 
-        if (fileControl.getFilemodel().getQmpOption() != null) {
+        if (fileControl.getMachineModel().getQmpOption() != null) {
             this.qmp.setSelectedItem(
-                    this.falseOptions.get(fileControl.getFilemodel().getQmpOption())
+                    this.falseOptions.get(fileControl.getMachineModel().getQmpOption())
             );
         }
 

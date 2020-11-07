@@ -7,7 +7,7 @@ package com.lembed.lite.studio.qemu.exec.host.disk;
 import java.io.File;
 import javax.annotation.Nonnull;
 
-import com.lembed.lite.studio.qemu.image.QEmuImage;
+import com.lembed.lite.studio.qemu.view.QEmuImage;
 
 /**
  *

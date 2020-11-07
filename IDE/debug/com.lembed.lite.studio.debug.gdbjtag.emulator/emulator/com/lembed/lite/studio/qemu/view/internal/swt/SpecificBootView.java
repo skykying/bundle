@@ -7,7 +7,7 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class SpecificBootView extends DeviceViewWithFileChooser {
@@ -27,7 +27,7 @@ public class SpecificBootView extends DeviceViewWithFileChooser {
     private JButton okButton;
 
 
-    public SpecificBootView(FileControl myfile) {
+    public SpecificBootView(EmulatorQemuMachineControl myfile) {
         super(myfile,null);
 
         windowContent = new JPanel();
@@ -84,9 +84,9 @@ public class SpecificBootView extends DeviceViewWithFileChooser {
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getKernelBootOption() != null) {
-            if (!fileControl.getFilemodel().getKernelBootOption().isEmpty()) {
-                this.kernel.setText(fileControl.getFilemodel().getKernelBootOption());
+        if (fileControl.getMachineModel().getKernelBootOption() != null) {
+            if (!fileControl.getMachineModel().getKernelBootOption().isEmpty()) {
+                this.kernel.setText(fileControl.getMachineModel().getKernelBootOption());
             }
         }
 

@@ -21,15 +21,15 @@ public class EmulationControl {
 
     public boolean stops(int position) {
         if (this.mymodel.getNumberOfProcesses() > position) {
-            if (this.mymodel.getMyprocessesControl(position) != null) {
-                if (this.mymodel.getMyprocessesControl(position).getMyModel()
+            if (this.mymodel.getProcessesControl(position) != null) {
+                if (this.mymodel.getProcessesControl(position).getModel()
                         .getMainThread().isAlive()) {
-                    this.mymodel.getMyprocessesControl(position).getMyModel()
+                    this.mymodel.getProcessesControl(position).getModel()
                             .getMainThread().interrupt();
                 }
             }
-            if (this.mymodel.getMyprocesses(position) != null) {
-                this.mymodel.getMyprocesses(position).destroy();
+            if (this.mymodel.getProcesses(position) != null) {
+                this.mymodel.getProcesses(position).destroy();
             }
         }
         return true;
@@ -130,25 +130,25 @@ public class EmulationControl {
     public void showsMessages() throws IOException {
         StringBuilder result = new StringBuilder("");
         for (int i = 1; i < this.mymodel.getNumberOfProcesses(); i++) {
-            if (this.mymodel.isRunning(this.mymodel.getMyprocesses(i))) {
-                if (this.mymodel.getMyprocessesControl(i) != null) {
+            if (this.mymodel.isRunning(this.mymodel.getProcesses(i))) {
+                if (this.mymodel.getProcessesControl(i) != null) {
                     result.append("The emulation process output of the '")
-                            .append(this.mymodel.getMyprocessesControl(i)
+                            .append(this.mymodel.getProcessesControl(i)
                                     .getMachineName()).append("' VM is:\n");
-                    result.append(this.mymodel.getMyprocessesControl(i)
-                            .getMyModel().getOutputs().getText());
+                    result.append(this.mymodel.getProcessesControl(i)
+                            .getModel().getOutputs().getText());
                     if (result.toString().equals(
                             "The emulation process output of the '"
-                            + this.mymodel.getMyprocessesControl(i)
+                            + this.mymodel.getProcessesControl(i)
                             .getMachineName() + "' VM is:\n")) {
                         result.append("(empty)\n");
                     } else {
                         result.append("\n");
                     }
-                } else if (this.mymodel.getMyscripts(i) != null) {
+                } else if (this.mymodel.getScriptModel(i) != null) {
                     result.append("The emulation process output of the script is:\n");
-                    result.append(this.mymodel.getMyscripts(i).getOutputs());
-                    result.append(this.mymodel.getMyscripts(i).getOutputs());
+                    result.append(this.mymodel.getScriptModel(i).getOutputs());
+                    result.append(this.mymodel.getScriptModel(i).getOutputs());
                     if (result.toString().equals(
                             "The emulation process output of the script is:\n")) {
                         result.append("(empty)\n");
@@ -165,16 +165,16 @@ public class EmulationControl {
 
         result = new StringBuilder("");
         for (int i = 1; i < this.mymodel.getNumberOfProcesses(); i++) {
-            if (this.mymodel.isRunning(this.mymodel.getMyprocesses(i))) {
-                if (this.mymodel.getMyprocessesControl(i) != null) {
+            if (this.mymodel.isRunning(this.mymodel.getProcesses(i))) {
+                if (this.mymodel.getProcessesControl(i) != null) {
                     result.append("The emulation process error of the '")
-                            .append(this.mymodel.getMyprocessesControl(i)
+                            .append(this.mymodel.getProcessesControl(i)
                                     .getMachineName()).append("' VM is:\n");
-                    result.append(this.mymodel.getMyprocessesControl(i)
-                            .getMyModel().getErrors().getText());
+                    result.append(this.mymodel.getProcessesControl(i)
+                            .getModel().getErrors().getText());
                     if (result.toString().equals(
                             "The emulation process error of the '"
-                            + this.mymodel.getMyprocessesControl(i)
+                            + this.mymodel.getProcessesControl(i)
                             .getMachineName() + "' VM is:\n")) {
                         result.append("(empty)\n");
                     } else {

@@ -9,16 +9,13 @@ import java.util.List;
 import javax.annotation.CheckForNull;
 import javax.annotation.Nonnull;
 
-/**
- *
- * @author shevek
- */
+
 public class QEmuMachineOption extends AbstractQEmuOption {
 
     public static enum Acceleration {
         kvm, tcg, xen;
     }
-    // accel=kvm:tcg :xen
+
     public QEmuMachine type;
     public List<Acceleration> acceleration;
 

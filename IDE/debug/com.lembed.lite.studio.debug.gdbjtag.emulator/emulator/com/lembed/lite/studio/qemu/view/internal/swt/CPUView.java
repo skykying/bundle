@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class CPUView extends DeviceBaseView {
@@ -26,7 +26,7 @@ public class CPUView extends DeviceBaseView {
 	private Boolean loaded;
 
 
-	public CPUView(FileControl myfile) {
+	public CPUView(EmulatorQemuMachineControl myfile) {
 		super(myfile);
 		
 		jpanel = new JPanel();
@@ -71,58 +71,58 @@ public class CPUView extends DeviceBaseView {
 
 	@Override
 	public void doSave(IemultorStore store) {
-		if (fileControl.getFilemodel().getCpuModel() != null) {
-			if (fileControl.getFilemodel().getCpuModel().isEmpty()) {
-				cpuModels.setSelectedItem(fileControl.getFilemodel().getCpuModel());
-			} else if (fileControl.getFilemodel().getCpuModel().equals("qemu64")) {
+		if (fileControl.getMachineModel().getCpuModel() != null) {
+			if (fileControl.getMachineModel().getCpuModel().isEmpty()) {
+				cpuModels.setSelectedItem(fileControl.getMachineModel().getCpuModel());
+			} else if (fileControl.getMachineModel().getCpuModel().equals("qemu64")) {
 				cpuModels.setSelectedItem("Qemu 64 bits: qemu64");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("phenom")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("phenom")) {
 				cpuModels.setSelectedItem("AMD Phenom: phenom");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("core2duo")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("core2duo")) {
 				cpuModels.setSelectedItem("Intel Core 2 Duo: core2duo");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("kvm64")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("kvm64")) {
 				cpuModels.setSelectedItem("KVM 64 bits: kvm64");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("qemu32")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("qemu32")) {
 				cpuModels.setSelectedItem("Qemu 32 bits: qemu32");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("kvm32")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("kvm32")) {
 				cpuModels.setSelectedItem("KVM 32 bits: kvm32");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("coreduo")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("coreduo")) {
 				cpuModels.setSelectedItem("Intel Core Duo: coreduo");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("486")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("486")) {
 				cpuModels.setSelectedItem("486: 486");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("pentium")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("pentium")) {
 				cpuModels.setSelectedItem("Intel Pentium: pentium");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("pentium2")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("pentium2")) {
 				cpuModels.setSelectedItem("Intel Pentium 2: pentium2");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("pentium3")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("pentium3")) {
 				cpuModels.setSelectedItem("Intel Pentium 3: pentium3");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("athlon")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("athlon")) {
 				cpuModels.setSelectedItem("AMD Athlon: athlon");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("n270")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("n270")) {
 				cpuModels.setSelectedItem("Intel n270: n270");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Conroe")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Conroe")) {
 				cpuModels.setSelectedItem("Intel Conroe: Conroe");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Penryn")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Penryn")) {
 				cpuModels.setSelectedItem("Intel Penryn: Penryn");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Nehalem")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Nehalem")) {
 				cpuModels.setSelectedItem("Intel Nehalem: Nehalem");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Westmere")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Westmere")) {
 				cpuModels.setSelectedItem("Intel Westmere: Westmere");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("SandyBridge")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("SandyBridge")) {
 				cpuModels.setSelectedItem("Intel Sandy Bridge: SandyBridge");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Haswell")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Haswell")) {
 				cpuModels.setSelectedItem("Intel Haswell: Haswell");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Opteron_G1")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Opteron_G1")) {
 				cpuModels.setSelectedItem("AMD Opteron: Opteron_G1");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Opteron_G2")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Opteron_G2")) {
 				cpuModels.setSelectedItem("AMD Opteron: Opteron_G2");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Opteron_G3")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Opteron_G3")) {
 				cpuModels.setSelectedItem("AMD Opteron: Opteron_G3");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Opteron_G4")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Opteron_G4")) {
 				cpuModels.setSelectedItem("AMD Opteron: Opteron_G4");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("Opteron_G5")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("Opteron_G5")) {
 				cpuModels.setSelectedItem("AMD Opteron: Opteron_G5");
-			} else if (fileControl.getFilemodel().getCpuModel().equals("host")) {
+			} else if (fileControl.getMachineModel().getCpuModel().equals("host")) {
 				cpuModels.setSelectedItem("Host: host");
 			}
 			loaded = true;

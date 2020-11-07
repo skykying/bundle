@@ -32,8 +32,7 @@ public class QEmuMonitorRecipe extends QEmuOptionsList implements QEmuRecipe {
     public QEmuMonitorRecipe(@Nonnull CharDevice device) {
         int index = 0;
         chardevOption = new QEmuChardevOption(device);
-        chardevOption
-                .withId("monitor-" + index);
+        chardevOption.withId("monitor-" + index);
         add(chardevOption);
         monitorOption = new QEmuMonitorOption(chardevOption);
         add(monitorOption);

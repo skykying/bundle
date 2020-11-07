@@ -171,8 +171,7 @@ public class JPanelCreationView extends JPanel {
                 stopButton.setActionCommand("StopEmulation");
                 closeButton.setActionCommand("CloseVM");
                 changeMachineNameButton.setActionCommand("ChangeMachineName");
-                changeMachineConfigurationButton
-                        .setActionCommand("ChangeMachineConfiguration");
+                changeMachineConfigurationButton.setActionCommand("ChangeMachineConfiguration");
                 saveVMButton.setActionCommand("SaveVM");
                 seeQemuEmulationCommandLineButton.setActionCommand("SeeQemuEmulationCommandLine");
             }
@@ -181,8 +180,7 @@ public class JPanelCreationView extends JPanel {
             stopButton.setActionCommand("StopEmulation");
             closeButton.setActionCommand("CloseVM");
             changeMachineNameButton.setActionCommand("ChangeMachineName");
-            changeMachineConfigurationButton
-                    .setActionCommand("ChangeMachineConfiguration");
+            changeMachineConfigurationButton.setActionCommand("ChangeMachineConfiguration");
             saveVMButton.setActionCommand("SaveVM");
             seeQemuEmulationCommandLineButton.setActionCommand("SeeQemuEmulationCommandLine");
         }

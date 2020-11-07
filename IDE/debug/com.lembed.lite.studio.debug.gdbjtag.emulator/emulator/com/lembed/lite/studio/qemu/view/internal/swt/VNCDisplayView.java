@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class VNCDisplayView extends DeviceBaseView {
@@ -41,7 +41,7 @@ public class VNCDisplayView extends DeviceBaseView {
     private JLabel temp[];
 
 
-    public VNCDisplayView(FileControl myfile) {
+    public VNCDisplayView(EmulatorQemuMachineControl myfile) {
     	super(myfile);
         this.jpanel = new JPanel();
         this.fileControl = myfile;
@@ -139,39 +139,39 @@ public class VNCDisplayView extends DeviceBaseView {
 	@Override
 	public void doSave(IemultorStore store) {
 
-        if (fileControl.getFilemodel().getDisplayType() != null) {
-            if (fileControl.getFilemodel().getDisplayType().substring(0, 3)
+        if (fileControl.getMachineModel().getDisplayType() != null) {
+            if (fileControl.getMachineModel().getDisplayType().substring(0, 3)
                     .equals("vnc")) {
                 this.iPAddressField.setText(fileControl
-                        .getFilemodel()
+                        .getMachineModel()
                         .getDisplayType()
                         .substring(
                                 4,
-                                fileControl.getFilemodel().getDisplayType()
+                                fileControl.getMachineModel().getDisplayType()
                                 .indexOf(":")));
-                if (fileControl.getFilemodel().getDisplayType().contains(",")) {
+                if (fileControl.getMachineModel().getDisplayType().contains(",")) {
                     this.tcpPortField.setText(fileControl
-                            .getFilemodel()
+                            .getMachineModel()
                             .getDisplayType()
                             .substring(
-                                    fileControl.getFilemodel().getDisplayType()
+                                    fileControl.getMachineModel().getDisplayType()
                                     .indexOf(":") + 1,
-                                    fileControl.getFilemodel().getDisplayType()
+                                    fileControl.getMachineModel().getDisplayType()
                                     .indexOf(",")));
                 } else {
                     this.tcpPortField.setText(fileControl
-                            .getFilemodel()
+                            .getMachineModel()
                             .getDisplayType()
                             .substring(
-                                    fileControl.getFilemodel().getDisplayType()
+                                    fileControl.getMachineModel().getDisplayType()
                                     .indexOf(":") + 1));
                 }
-                if (fileControl.getFilemodel().getDisplayType().contains(",")) {
+                if (fileControl.getMachineModel().getDisplayType().contains(",")) {
                     String[] otherOptions = fileControl
-                            .getFilemodel()
+                            .getMachineModel()
                             .getDisplayType()
                             .substring(
-                                    fileControl.getFilemodel().getDisplayType()
+                                    fileControl.getMachineModel().getDisplayType()
                                     .indexOf(",") + 1).split(",");
                     for (String option : otherOptions) {
                         if (option.equals("reverse")) {

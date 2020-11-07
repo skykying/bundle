@@ -8,7 +8,7 @@ import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class PhysicalDriveView extends DeviceBaseView {
@@ -30,7 +30,7 @@ public class PhysicalDriveView extends DeviceBaseView {
 
 	private int position;
 
-    public PhysicalDriveView(FileControl myfile, int position) {
+    public PhysicalDriveView(EmulatorQemuMachineControl myfile, int position) {
         super(myfile);
 
         this.position = position;
@@ -88,13 +88,13 @@ public class PhysicalDriveView extends DeviceBaseView {
 	@Override
 	public void doSave(IemultorStore store) {
 		 if (position == 1) {
-	            if (fileControl.getFilemodel().getFirstHardDiskOption() != null) {
-	                if (fileControl.getFilemodel().getFirstHardDiskOption()
+	            if (fileControl.getMachineModel().getFirstHardDiskOption() != null) {
+	                if (fileControl.getMachineModel().getFirstHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
 	                                    .parseInt(fileControl
-	                                            .getFilemodel()
+	                                            .getMachineModel()
 	                                            .getFirstHardDiskOption()
 	                                            .substring(
 	                                                    ("\\" + "\\" + "." + "\\"
@@ -103,13 +103,13 @@ public class PhysicalDriveView extends DeviceBaseView {
 	                }
 	            }
 	        } else if (position == 2) {
-	            if (fileControl.getFilemodel().getSecondHardDiskOption() != null) {
-	                if (fileControl.getFilemodel().getSecondHardDiskOption()
+	            if (fileControl.getMachineModel().getSecondHardDiskOption() != null) {
+	                if (fileControl.getMachineModel().getSecondHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
 	                                    .parseInt(fileControl
-	                                            .getFilemodel()
+	                                            .getMachineModel()
 	                                            .getSecondHardDiskOption()
 	                                            .substring(
 	                                                    ("\\" + "\\" + "." + "\\"
@@ -118,13 +118,13 @@ public class PhysicalDriveView extends DeviceBaseView {
 	                }
 	            }
 	        } else if (position == 3) {
-	            if (fileControl.getFilemodel().getThirdHardDiskOption() != null) {
-	                if (fileControl.getFilemodel().getThirdHardDiskOption()
+	            if (fileControl.getMachineModel().getThirdHardDiskOption() != null) {
+	                if (fileControl.getMachineModel().getThirdHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
 	                                    .parseInt(fileControl
-	                                            .getFilemodel()
+	                                            .getMachineModel()
 	                                            .getThirdHardDiskOption()
 	                                            .substring(
 	                                                    ("\\" + "\\" + "." + "\\"
@@ -133,13 +133,13 @@ public class PhysicalDriveView extends DeviceBaseView {
 	                }
 	            }
 	        } else if (position == 4) {
-	            if (fileControl.getFilemodel().getFourthHardDiskOption() != null) {
-	                if (fileControl.getFilemodel().getFourthHardDiskOption()
+	            if (fileControl.getMachineModel().getFourthHardDiskOption() != null) {
+	                if (fileControl.getMachineModel().getFourthHardDiskOption()
 	                        .startsWith("\\" + "\\" + "." + "\\" + "PhysicalDrive")) {
 	                    this.physicalDriveNumber
 	                            .setSelectedIndex(Integer
 	                                    .parseInt(fileControl
-	                                            .getFilemodel()
+	                                            .getMachineModel()
 	                                            .getFourthHardDiskOption()
 	                                            .substring(
 	                                                    ("\\" + "\\" + "." + "\\"

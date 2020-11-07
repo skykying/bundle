@@ -13,7 +13,7 @@ import com.lembed.lite.studio.qemu.exec.host.disk.Disk;
 import com.lembed.lite.studio.qemu.exec.host.disk.FileDisk;
 import com.lembed.lite.studio.qemu.exec.recipe.QEmuVirtioDriveRecipe;
 import com.lembed.lite.studio.qemu.exec.util.QEmuIdAllocator;
-import com.lembed.lite.studio.qemu.image.QEmuImageFormat;
+import com.lembed.lite.studio.qemu.view.QEmuImageFormat;
 
 /**
  * A disk device backend, usually paired with a {@link QEmuDeviceOption} frontend.

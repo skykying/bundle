@@ -2,7 +2,7 @@ package com.lembed.lite.studio.qemu.view.internal.swt;
 
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 
 public abstract class DeviceBaseView extends JPanel implements IDeviceView{
 	
@@ -11,9 +11,9 @@ public abstract class DeviceBaseView extends JPanel implements IDeviceView{
 	 */
 	private static final long serialVersionUID = 1L;
 	private String title;
-	FileControl fileControl;
+	EmulatorQemuMachineControl fileControl;
 	
-	public DeviceBaseView(FileControl fc) {
+	public DeviceBaseView(EmulatorQemuMachineControl fc) {
 		fileControl = fc;
 	}
 

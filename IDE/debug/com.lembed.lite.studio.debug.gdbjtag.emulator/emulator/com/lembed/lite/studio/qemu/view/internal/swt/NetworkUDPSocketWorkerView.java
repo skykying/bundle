@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 
 public class NetworkUDPSocketWorkerView extends JPanel {
 
@@ -54,7 +54,7 @@ public class NetworkUDPSocketWorkerView extends JPanel {
 
     private JButton okButton;
 
-    public NetworkUDPSocketWorkerView(FileControl myfile, int position) {
+    public NetworkUDPSocketWorkerView(EmulatorQemuMachineControl myfile, int position) {
         super();
 
         windowContent = new JPanel();
@@ -148,100 +148,100 @@ public class NetworkUDPSocketWorkerView extends JPanel {
 
         switch (position) {
             case 1:
-                if (myfile.getFilemodel().getFirstNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getFirstNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getFirstNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getFirstNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 2:
-                if (myfile.getFilemodel().getSecondNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getSecondNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getSecondNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getSecondNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 3:
-                if (myfile.getFilemodel().getThirdNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getThirdNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getThirdNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getThirdNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 4:
-                if (myfile.getFilemodel().getFourthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getFourthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getFourthNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getFourthNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 5:
-                if (myfile.getFilemodel().getFifthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getFifthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getFifthNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getFifthNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 6:
-                if (myfile.getFilemodel().getSixthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getSixthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getSixthNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getSixthNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 7:
-                if (myfile.getFilemodel().getSeventhNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getSeventhNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getSeventhNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getSeventhNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 8:
-                if (myfile.getFilemodel().getEighthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getEighthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getEighthNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getEighthNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 9:
-                if (myfile.getFilemodel().getNinthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getNinthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getNinthNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getNinthNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 10:
-                if (myfile.getFilemodel().getTenthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getFilemodel()
+                if (myfile.getMachineModel().getTenthNetworkExtraOption() != null) {
+                    if (this.contains(myfile.getMachineModel()
                             .getTenthNetworkExtraOption())) {
-                        this.buildMe(myfile.getFilemodel()
+                        this.buildMe(myfile.getMachineModel()
                                 .getTenthNetworkExtraOption());
                         this.isEnabled.setSelected(true);
                     }

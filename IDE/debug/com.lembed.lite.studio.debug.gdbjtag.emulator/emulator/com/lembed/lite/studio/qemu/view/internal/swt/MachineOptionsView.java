@@ -15,7 +15,7 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class MachineOptionsView extends DeviceBaseView {
@@ -62,7 +62,7 @@ public class MachineOptionsView extends DeviceBaseView {
 
 	private String title;
 
-    public MachineOptionsView(FileControl myfile) {
+    public MachineOptionsView(EmulatorQemuMachineControl myfile) {
     	 super(myfile);
     	 
     	this.fileControl = myfile;
@@ -264,32 +264,32 @@ public class MachineOptionsView extends DeviceBaseView {
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getMachineAccel1() != null) {
-            this.firstOption.setSelectedItem(fileControl.getFilemodel().getMachineAccel1());
+        if (fileControl.getMachineModel().getMachineAccel1() != null) {
+            this.firstOption.setSelectedItem(fileControl.getMachineModel().getMachineAccel1());
             this.loaded = true;
         }
-        if (fileControl.getFilemodel().getMachineAccel2() != null) {
-            this.secondOption.setSelectedItem(fileControl.getFilemodel().getMachineAccel2());
+        if (fileControl.getMachineModel().getMachineAccel2() != null) {
+            this.secondOption.setSelectedItem(fileControl.getMachineModel().getMachineAccel2());
             this.loaded = true;
         }
-        if (fileControl.getFilemodel().getMachineAccel3() != null) {
-            this.thirdOption.setSelectedItem(fileControl.getFilemodel().getMachineAccel3());
+        if (fileControl.getMachineModel().getMachineAccel3() != null) {
+            this.thirdOption.setSelectedItem(fileControl.getMachineModel().getMachineAccel3());
             this.loaded = true;
         }
-        if (fileControl.getFilemodel().getMachineKernel_irpchip() != null) {
-            this.kernel_irqchip.setSelectedItem(fileControl.getFilemodel().getMachineKernel_irpchip());
+        if (fileControl.getMachineModel().getMachineKernel_irpchip() != null) {
+            this.kernel_irqchip.setSelectedItem(fileControl.getMachineModel().getMachineKernel_irpchip());
             this.loaded = true;
         }
-        if (fileControl.getFilemodel().getMachineKvm_shadow_mem() != null) {
-            this.editor.getTextField().setText(fileControl.getFilemodel().getMachineKvm_shadow_mem());
+        if (fileControl.getMachineModel().getMachineKvm_shadow_mem() != null) {
+            this.editor.getTextField().setText(fileControl.getMachineModel().getMachineKvm_shadow_mem());
             this.loaded = true;
         }
-        if (fileControl.getFilemodel().getMachineDump_guest_core() != null) {
-            this.dump_guest_core.setSelectedItem(fileControl.getFilemodel().getMachineDump_guest_core());
+        if (fileControl.getMachineModel().getMachineDump_guest_core() != null) {
+            this.dump_guest_core.setSelectedItem(fileControl.getMachineModel().getMachineDump_guest_core());
             this.loaded = true;
         }
-        if (fileControl.getFilemodel().getMachineMem_merge() != null) {
-            this.mem_merge.setSelectedItem(fileControl.getFilemodel().getMachineMem_merge());
+        if (fileControl.getMachineModel().getMachineMem_merge() != null) {
+            this.mem_merge.setSelectedItem(fileControl.getMachineModel().getMachineMem_merge());
             this.loaded = true;
         }
 

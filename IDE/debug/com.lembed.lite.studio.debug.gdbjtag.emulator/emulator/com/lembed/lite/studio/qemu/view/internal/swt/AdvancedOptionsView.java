@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class AdvancedOptionsView extends JPanel implements IDeviceView{
@@ -40,9 +40,9 @@ public class AdvancedOptionsView extends JPanel implements IDeviceView{
 
 	private String title;
 
-	private FileControl myfile;
+	private EmulatorQemuMachineControl myfile;
 
-    public AdvancedOptionsView(FileControl myfile) {
+    public AdvancedOptionsView(EmulatorQemuMachineControl myfile) {
     	this.myfile = myfile;
         this.jpanel = new JPanel();
 
@@ -149,36 +149,36 @@ public class AdvancedOptionsView extends JPanel implements IDeviceView{
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (myfile.getFilemodel().getWin2khackOption() != null) {
-            if (myfile.getFilemodel().getWin2khackOption().equals("true")) {
+        if (myfile.getMachineModel().getWin2khackOption() != null) {
+            if (myfile.getMachineModel().getWin2khackOption().equals("true")) {
                 this.win2kHackOption.setSelected(true);
             }
         }
 
-        if (myfile.getFilemodel().getNoacpiOption() != null) {
-            if (myfile.getFilemodel().getNoacpiOption().equals("true")) {
+        if (myfile.getMachineModel().getNoacpiOption() != null) {
+            if (myfile.getMachineModel().getNoacpiOption().equals("true")) {
                 this.noAcpiOption.setSelected(true);
             }
         }
 
-        if (myfile.getFilemodel().getNameOption() != null) {
-            this.name.setText(myfile.getFilemodel().getNameOption());
+        if (myfile.getMachineModel().getNameOption() != null) {
+            this.name.setText(myfile.getMachineModel().getNameOption());
         }
 
-        if (myfile.getFilemodel().getSnapshotOption() != null) {
-            if (myfile.getFilemodel().getSnapshotOption().equals("true")) {
+        if (myfile.getMachineModel().getSnapshotOption() != null) {
+            if (myfile.getMachineModel().getSnapshotOption().equals("true")) {
                 this.snapshotOption.setSelected(true);
             }
         }
 
-        if (myfile.getFilemodel().getNoFdBootchkOption() != null) {
-            if (myfile.getFilemodel().getNoFdBootchkOption().equals("true")) {
+        if (myfile.getMachineModel().getNoFdBootchkOption() != null) {
+            if (myfile.getMachineModel().getNoFdBootchkOption().equals("true")) {
                 this.noFdBootchkOption.setSelected(true);
             }
         }
 
-        if (myfile.getFilemodel().getNoHpetOption() != null) {
-            if (myfile.getFilemodel().getNoHpetOption().equals("true")) {
+        if (myfile.getMachineModel().getNoHpetOption() != null) {
+            if (myfile.getMachineModel().getNoHpetOption().equals("true")) {
                 this.noHpetOption.setSelected(true);
             }
         }

@@ -11,7 +11,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class CustomOptionsView extends DeviceBaseView{
@@ -36,7 +36,7 @@ public class CustomOptionsView extends DeviceBaseView{
     private JScrollPane textBoxScrollPane;
 
 	
-    public CustomOptionsView(FileControl myfile) {
+    public CustomOptionsView(EmulatorQemuMachineControl myfile) {
     	 super(myfile);
         this.jpanel = new JPanel();
        
@@ -153,8 +153,8 @@ public class CustomOptionsView extends DeviceBaseView{
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getCustomOptions() != null) {
-            String[] customOptions = fileControl.getFilemodel().getCustomOptions().split("\n");
+        if (fileControl.getMachineModel().getCustomOptions() != null) {
+            String[] customOptions = fileControl.getMachineModel().getCustomOptions().split("\n");
             DefaultListModel<String> model = (DefaultListModel<String>) this.getListBox().getModel();
             for (String customOption : customOptions) {
                 model.addElement(customOption);

@@ -12,7 +12,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 
 public class NetworkNICWorkerView extends JPanel {
 
@@ -54,7 +54,7 @@ public class NetworkNICWorkerView extends JPanel {
 
     private JButton okButton;
 
-    public NetworkNICWorkerView(FileControl myfile, int position) {
+    public NetworkNICWorkerView(EmulatorQemuMachineControl myfile, int position) {
         super();
 
         windowContent = new JPanel();
@@ -152,64 +152,64 @@ public class NetworkNICWorkerView extends JPanel {
 
         switch (position) {
             case 1:
-                if (myfile.getFilemodel().getFirstNetworkNICOption() != null) {
-                    if (!myfile.getFilemodel().getFirstNetworkNICOption().equals("none")) {
-                        this.buildMe(myfile.getFilemodel().getFirstNetworkNICOption());
+                if (myfile.getMachineModel().getFirstNetworkNICOption() != null) {
+                    if (!myfile.getMachineModel().getFirstNetworkNICOption().equals("none")) {
+                        this.buildMe(myfile.getMachineModel().getFirstNetworkNICOption());
                         this.isEnabled.setSelected(true);
                     }
                 }
                 break;
             case 2:
-                if (myfile.getFilemodel().getSecondNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getSecondNetworkNICOption());
+                if (myfile.getMachineModel().getSecondNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getSecondNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 3:
-                if (myfile.getFilemodel().getThirdNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getThirdNetworkNICOption());
+                if (myfile.getMachineModel().getThirdNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getThirdNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 4:
-                if (myfile.getFilemodel().getFourthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getFourthNetworkNICOption());
+                if (myfile.getMachineModel().getFourthNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getFourthNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 5:
-                if (myfile.getFilemodel().getFifthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getFifthNetworkNICOption());
+                if (myfile.getMachineModel().getFifthNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getFifthNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 6:
-                if (myfile.getFilemodel().getSixthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getSixthNetworkNICOption());
+                if (myfile.getMachineModel().getSixthNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getSixthNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 7:
-                if (myfile.getFilemodel().getSeventhNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getSeventhNetworkNICOption());
+                if (myfile.getMachineModel().getSeventhNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getSeventhNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 8:
-                if (myfile.getFilemodel().getEighthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getEighthNetworkNICOption());
+                if (myfile.getMachineModel().getEighthNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getEighthNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 9:
-                if (myfile.getFilemodel().getNinthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getNinthNetworkNICOption());
+                if (myfile.getMachineModel().getNinthNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getNinthNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;
             case 10:
-                if (myfile.getFilemodel().getTenthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getFilemodel().getTenthNetworkNICOption());
+                if (myfile.getMachineModel().getTenthNetworkNICOption() != null) {
+                    this.buildMe(myfile.getMachineModel().getTenthNetworkNICOption());
                     this.isEnabled.setSelected(true);
                 }
                 break;

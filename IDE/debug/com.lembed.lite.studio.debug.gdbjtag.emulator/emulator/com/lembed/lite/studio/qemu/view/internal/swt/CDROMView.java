@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class CDROMView extends DeviceViewWithFileChooser {
@@ -25,7 +25,7 @@ public class CDROMView extends DeviceViewWithFileChooser {
 	private String title;
 
 
-    public CDROMView(FileControl myfile) {
+    public CDROMView(EmulatorQemuMachineControl myfile) {
         super(myfile,null);
  
 
@@ -92,8 +92,8 @@ public class CDROMView extends DeviceViewWithFileChooser {
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getCdrom() != null) {
-            cdromText.setText(fileControl.getFilemodel().getCdrom());
+        if (fileControl.getMachineModel().getCdrom() != null) {
+            cdromText.setText(fileControl.getMachineModel().getCdrom());
         }
         
         this.rechecks();

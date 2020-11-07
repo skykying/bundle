@@ -8,7 +8,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class NetworkWorkerView extends JPanel implements IDeviceView {
@@ -48,9 +48,9 @@ public class NetworkWorkerView extends JPanel implements IDeviceView {
 
 	private int position;
 
-	private FileControl myfile;
+	private EmulatorQemuMachineControl myfile;
 
-    public NetworkWorkerView(FileControl myfile, int position) {
+    public NetworkWorkerView(EmulatorQemuMachineControl myfile, int position) {
         super();
         this.myfile = myfile;
         this.position = position;
@@ -175,103 +175,103 @@ public class NetworkWorkerView extends JPanel implements IDeviceView {
 	public void doSave(IemultorStore store) {
 		 switch (position) {
          case 1:
-             if (myfile.getFilemodel().getFirstNetworkNICOption() != null
-                     || (myfile.getFilemodel().getFirstNetworkExtraOption() != null
-                     || myfile.getFilemodel().getFirstNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getFirstNetworkNICOption() != null
+                     || (myfile.getMachineModel().getFirstNetworkExtraOption() != null
+                     || myfile.getMachineModel().getFirstNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
-             } else if (myfile.getFilemodel().getFirstNetworkNICOption() == null
-                     && myfile.getFilemodel().getFirstNetworkExtraOption() == null
-                     && myfile.getFilemodel().getFirstNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getSecondNetworkNICOption() == null
-                     && myfile.getFilemodel().getSecondNetworkExtraOption() == null
-                     && myfile.getFilemodel().getSecondNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getThirdNetworkNICOption() == null
-                     && myfile.getFilemodel().getThirdNetworkExtraOption() == null
-                     && myfile.getFilemodel().getThirdNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getFourthNetworkNICOption() == null
-                     && myfile.getFilemodel().getFourthNetworkExtraOption() == null
-                     && myfile.getFilemodel().getFourthNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getFifthNetworkNICOption() == null
-                     && myfile.getFilemodel().getFifthNetworkExtraOption() == null
-                     && myfile.getFilemodel().getFifthNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getSixthNetworkNICOption() == null
-                     && myfile.getFilemodel().getSixthNetworkExtraOption() == null
-                     && myfile.getFilemodel().getSixthNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getSeventhNetworkNICOption() == null
-                     && myfile.getFilemodel().getSeventhNetworkExtraOption() == null
-                     && myfile.getFilemodel().getSeventhNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getEighthNetworkNICOption() == null
-                     && myfile.getFilemodel().getEighthNetworkExtraOption() == null
-                     && myfile.getFilemodel().getEighthNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getNinthNetworkNICOption() == null
-                     && myfile.getFilemodel().getNinthNetworkExtraOption() == null
-                     && myfile.getFilemodel().getNinthNetworkNetdevOption() == null
-                     && myfile.getFilemodel().getTenthNetworkNICOption() == null
-                     && myfile.getFilemodel().getTenthNetworkExtraOption() == null
-                     && myfile.getFilemodel().getTenthNetworkNetdevOption() == null) {
+             } else if (myfile.getMachineModel().getFirstNetworkNICOption() == null
+                     && myfile.getMachineModel().getFirstNetworkExtraOption() == null
+                     && myfile.getMachineModel().getFirstNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getSecondNetworkNICOption() == null
+                     && myfile.getMachineModel().getSecondNetworkExtraOption() == null
+                     && myfile.getMachineModel().getSecondNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getThirdNetworkNICOption() == null
+                     && myfile.getMachineModel().getThirdNetworkExtraOption() == null
+                     && myfile.getMachineModel().getThirdNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getFourthNetworkNICOption() == null
+                     && myfile.getMachineModel().getFourthNetworkExtraOption() == null
+                     && myfile.getMachineModel().getFourthNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getFifthNetworkNICOption() == null
+                     && myfile.getMachineModel().getFifthNetworkExtraOption() == null
+                     && myfile.getMachineModel().getFifthNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getSixthNetworkNICOption() == null
+                     && myfile.getMachineModel().getSixthNetworkExtraOption() == null
+                     && myfile.getMachineModel().getSixthNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getSeventhNetworkNICOption() == null
+                     && myfile.getMachineModel().getSeventhNetworkExtraOption() == null
+                     && myfile.getMachineModel().getSeventhNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getEighthNetworkNICOption() == null
+                     && myfile.getMachineModel().getEighthNetworkExtraOption() == null
+                     && myfile.getMachineModel().getEighthNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getNinthNetworkNICOption() == null
+                     && myfile.getMachineModel().getNinthNetworkExtraOption() == null
+                     && myfile.getMachineModel().getNinthNetworkNetdevOption() == null
+                     && myfile.getMachineModel().getTenthNetworkNICOption() == null
+                     && myfile.getMachineModel().getTenthNetworkExtraOption() == null
+                     && myfile.getMachineModel().getTenthNetworkNetdevOption() == null) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 2:
-             if (myfile.getFilemodel().getSecondNetworkNICOption() != null
-                     || (myfile.getFilemodel().getSecondNetworkExtraOption() != null
-                     || myfile.getFilemodel().getSecondNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getSecondNetworkNICOption() != null
+                     || (myfile.getMachineModel().getSecondNetworkExtraOption() != null
+                     || myfile.getMachineModel().getSecondNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 3:
-             if (myfile.getFilemodel().getThirdNetworkNICOption() != null
-                     || (myfile.getFilemodel().getThirdNetworkExtraOption() != null
-                     || myfile.getFilemodel().getThirdNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getThirdNetworkNICOption() != null
+                     || (myfile.getMachineModel().getThirdNetworkExtraOption() != null
+                     || myfile.getMachineModel().getThirdNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 4:
-             if (myfile.getFilemodel().getFourthNetworkNICOption() != null
-                     || (myfile.getFilemodel().getFourthNetworkExtraOption() != null
-                     || myfile.getFilemodel().getFourthNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getFourthNetworkNICOption() != null
+                     || (myfile.getMachineModel().getFourthNetworkExtraOption() != null
+                     || myfile.getMachineModel().getFourthNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 5:
-             if (myfile.getFilemodel().getFifthNetworkNICOption() != null
-                     || (myfile.getFilemodel().getFifthNetworkExtraOption() != null
-                     || myfile.getFilemodel().getFifthNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getFifthNetworkNICOption() != null
+                     || (myfile.getMachineModel().getFifthNetworkExtraOption() != null
+                     || myfile.getMachineModel().getFifthNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 6:
-             if (myfile.getFilemodel().getSixthNetworkNICOption() != null
-                     || (myfile.getFilemodel().getSixthNetworkExtraOption() != null
-                     || myfile.getFilemodel().getSixthNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getSixthNetworkNICOption() != null
+                     || (myfile.getMachineModel().getSixthNetworkExtraOption() != null
+                     || myfile.getMachineModel().getSixthNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 7:
-             if (myfile.getFilemodel().getSeventhNetworkNICOption() != null
-                     || (myfile.getFilemodel().getSeventhNetworkExtraOption() != null
-                     || myfile.getFilemodel().getSeventhNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getSeventhNetworkNICOption() != null
+                     || (myfile.getMachineModel().getSeventhNetworkExtraOption() != null
+                     || myfile.getMachineModel().getSeventhNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 8:
-             if (myfile.getFilemodel().getEighthNetworkNICOption() != null
-                     || (myfile.getFilemodel().getEighthNetworkExtraOption() != null
-                     || myfile.getFilemodel().getEighthNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getEighthNetworkNICOption() != null
+                     || (myfile.getMachineModel().getEighthNetworkExtraOption() != null
+                     || myfile.getMachineModel().getEighthNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 9:
-             if (myfile.getFilemodel().getNinthNetworkNICOption() != null
-                     || (myfile.getFilemodel().getNinthNetworkExtraOption() != null
-                     || myfile.getFilemodel().getNinthNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getNinthNetworkNICOption() != null
+                     || (myfile.getMachineModel().getNinthNetworkExtraOption() != null
+                     || myfile.getMachineModel().getNinthNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;
          case 10:
-             if (myfile.getFilemodel().getTenthNetworkNICOption() != null
-                     || (myfile.getFilemodel().getTenthNetworkExtraOption() != null
-                     || myfile.getFilemodel().getTenthNetworkNetdevOption() != null)) {
+             if (myfile.getMachineModel().getTenthNetworkNICOption() != null
+                     || (myfile.getMachineModel().getTenthNetworkExtraOption() != null
+                     || myfile.getMachineModel().getTenthNetworkNetdevOption() != null)) {
                  this.isEnabled.setSelected(true);
              }
              break;

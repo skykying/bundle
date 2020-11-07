@@ -10,7 +10,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class SMPView extends DeviceBaseView {
@@ -35,7 +35,7 @@ public class SMPView extends DeviceBaseView {
     private JButton okButton;
 
 
-    public SMPView(FileControl myfile) {
+    public SMPView(EmulatorQemuMachineControl myfile) {
         super(myfile);
         
         windowContent = new JPanel();
@@ -149,29 +149,29 @@ public class SMPView extends DeviceBaseView {
 	@Override
 	public void doSave(IemultorStore store) {
 
-        if (fileControl.getFilemodel().getSmpCpusNumber() != null) {
+        if (fileControl.getMachineModel().getSmpCpusNumber() != null) {
             this.getCpuNumbers().setSelectedItem(
-                    fileControl.getFilemodel().getSmpCpusNumber());
+                    fileControl.getMachineModel().getSmpCpusNumber());
         }
 
-        if (fileControl.getFilemodel().getSmpCoresNumber() != null) {
+        if (fileControl.getMachineModel().getSmpCoresNumber() != null) {
             this.getCoreNumbers().setSelectedItem(
-                    fileControl.getFilemodel().getSmpCoresNumber());
+                    fileControl.getMachineModel().getSmpCoresNumber());
         }
 
-        if (fileControl.getFilemodel().getSmpThreadsNumber() != null) {
+        if (fileControl.getMachineModel().getSmpThreadsNumber() != null) {
             this.getThreadNumbers().setSelectedItem(
-                    fileControl.getFilemodel().getSmpThreadsNumber());
+                    fileControl.getMachineModel().getSmpThreadsNumber());
         }
 
-        if (fileControl.getFilemodel().getSmpSocketsNumber() != null) {
+        if (fileControl.getMachineModel().getSmpSocketsNumber() != null) {
             this.getSocketNumbers().setSelectedItem(
-                    fileControl.getFilemodel().getSmpSocketsNumber());
+                    fileControl.getMachineModel().getSmpSocketsNumber());
         }
 
-        if (fileControl.getFilemodel().getSmpCpusMaxNumber() != null) {
+        if (fileControl.getMachineModel().getSmpCpusMaxNumber() != null) {
             this.getMaxCpuNumbers().setSelectedItem(
-                    fileControl.getFilemodel().getSmpCpusMaxNumber());
+                    fileControl.getMachineModel().getSmpCpusMaxNumber());
         }
 
         this.rechecks();

@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JSpinner;
 import javax.swing.JSpinner.NumberEditor;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 import javax.swing.SpinnerModel;
@@ -62,7 +62,7 @@ public class NUMAView extends DeviceBaseView{
 
 
     @SuppressWarnings("unchecked")
-    public NUMAView(FileControl myfile) {
+    public NUMAView(EmulatorQemuMachineControl myfile) {
         super(myfile);
 
         windowContent = new JPanel();
@@ -186,28 +186,28 @@ public class NUMAView extends DeviceBaseView{
 	@Override
 	public void doSave(IemultorStore store) {
 		 HashMap<Integer, String> checkingMemFile = new HashMap<Integer, String>();
-	        checkingMemFile.put(0, fileControl.getFilemodel().getFirstNumaNodeMem());
-	        checkingMemFile.put(1, fileControl.getFilemodel().getSecondNumaNodeMem());
-	        checkingMemFile.put(2, fileControl.getFilemodel().getThirdNumaNodeMem());
-	        checkingMemFile.put(3, fileControl.getFilemodel().getFourthNumaNodeMem());
-	        checkingMemFile.put(4, fileControl.getFilemodel().getFifthNumaNodeMem());
-	        checkingMemFile.put(5, fileControl.getFilemodel().getSixthNumaNodeMem());
-	        checkingMemFile.put(6, fileControl.getFilemodel().getSeventhNumaNodeMem());
-	        checkingMemFile.put(7, fileControl.getFilemodel().getEighthNumaNodeMem());
-	        checkingMemFile.put(8, fileControl.getFilemodel().getNinthNumaNodeMem());
-	        checkingMemFile.put(9, fileControl.getFilemodel().getTenthNumaNodeMem());
+	        checkingMemFile.put(0, fileControl.getMachineModel().getFirstNumaNodeMem());
+	        checkingMemFile.put(1, fileControl.getMachineModel().getSecondNumaNodeMem());
+	        checkingMemFile.put(2, fileControl.getMachineModel().getThirdNumaNodeMem());
+	        checkingMemFile.put(3, fileControl.getMachineModel().getFourthNumaNodeMem());
+	        checkingMemFile.put(4, fileControl.getMachineModel().getFifthNumaNodeMem());
+	        checkingMemFile.put(5, fileControl.getMachineModel().getSixthNumaNodeMem());
+	        checkingMemFile.put(6, fileControl.getMachineModel().getSeventhNumaNodeMem());
+	        checkingMemFile.put(7, fileControl.getMachineModel().getEighthNumaNodeMem());
+	        checkingMemFile.put(8, fileControl.getMachineModel().getNinthNumaNodeMem());
+	        checkingMemFile.put(9, fileControl.getMachineModel().getTenthNumaNodeMem());
 
 	        HashMap<Integer, String> checkingCpusFile = new HashMap<Integer, String>();
-	        checkingCpusFile.put(0, fileControl.getFilemodel().getFirstNumaNodeCpus());
-	        checkingCpusFile.put(1, fileControl.getFilemodel().getSecondNumaNodeCpus());
-	        checkingCpusFile.put(2, fileControl.getFilemodel().getThirdNumaNodeCpus());
-	        checkingCpusFile.put(3, fileControl.getFilemodel().getFourthNumaNodeCpus());
-	        checkingCpusFile.put(4, fileControl.getFilemodel().getFifthNumaNodeCpus());
-	        checkingCpusFile.put(5, fileControl.getFilemodel().getSixthNumaNodeCpus());
-	        checkingCpusFile.put(6, fileControl.getFilemodel().getSeventhNumaNodeCpus());
-	        checkingCpusFile.put(7, fileControl.getFilemodel().getEighthNumaNodeCpus());
-	        checkingCpusFile.put(8, fileControl.getFilemodel().getNinthNumaNodeCpus());
-	        checkingCpusFile.put(9, fileControl.getFilemodel().getTenthNumaNodeCpus());
+	        checkingCpusFile.put(0, fileControl.getMachineModel().getFirstNumaNodeCpus());
+	        checkingCpusFile.put(1, fileControl.getMachineModel().getSecondNumaNodeCpus());
+	        checkingCpusFile.put(2, fileControl.getMachineModel().getThirdNumaNodeCpus());
+	        checkingCpusFile.put(3, fileControl.getMachineModel().getFourthNumaNodeCpus());
+	        checkingCpusFile.put(4, fileControl.getMachineModel().getFifthNumaNodeCpus());
+	        checkingCpusFile.put(5, fileControl.getMachineModel().getSixthNumaNodeCpus());
+	        checkingCpusFile.put(6, fileControl.getMachineModel().getSeventhNumaNodeCpus());
+	        checkingCpusFile.put(7, fileControl.getMachineModel().getEighthNumaNodeCpus());
+	        checkingCpusFile.put(8, fileControl.getMachineModel().getNinthNumaNodeCpus());
+	        checkingCpusFile.put(9, fileControl.getMachineModel().getTenthNumaNodeCpus());
 
 	        for (int i = 0; i < itemNumbers; i++) {
 	            if (checkingMemFile.get(i) != null

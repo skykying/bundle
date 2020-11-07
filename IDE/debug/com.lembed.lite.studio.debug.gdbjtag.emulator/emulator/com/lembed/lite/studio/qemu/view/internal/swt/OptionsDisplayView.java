@@ -11,7 +11,7 @@ import javax.swing.JComboBox;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class OptionsDisplayView extends DeviceBaseView {
@@ -44,7 +44,7 @@ public class OptionsDisplayView extends DeviceBaseView {
 
     private JButton okButton, eraseButton;
 
-    public OptionsDisplayView(FileControl myfile) {
+    public OptionsDisplayView(EmulatorQemuMachineControl myfile) {
     	super(myfile);
     	
         this.jpanel = new JPanel();
@@ -186,48 +186,48 @@ public class OptionsDisplayView extends DeviceBaseView {
 	@Override
 	public void doSave(IemultorStore store) {
 
-        if (fileControl.getFilemodel().getDisplayType() != null) {
+        if (fileControl.getMachineModel().getDisplayType() != null) {
             this.displayType.setSelected(true);
-            if (fileControl.getFilemodel().getDisplayType().equals("sdl")) {
+            if (fileControl.getMachineModel().getDisplayType().equals("sdl")) {
                 this.displayTypeChoice.setSelectedIndex(0);
-            } else if (fileControl.getFilemodel().getDisplayType().equals("curses")) {
+            } else if (fileControl.getMachineModel().getDisplayType().equals("curses")) {
                 this.displayTypeChoice.setSelectedIndex(1);
-            } else if (fileControl.getFilemodel().getDisplayType().equals("none")) {
+            } else if (fileControl.getMachineModel().getDisplayType().equals("none")) {
                 this.displayTypeChoice.setSelectedIndex(2);
-            } else if (fileControl.getFilemodel().getDisplayType().substring(0, 3).equals("vnc")) {
+            } else if (fileControl.getMachineModel().getDisplayType().substring(0, 3).equals("vnc")) {
                 this.displayTypeChoice.setSelectedIndex(3);
             }
         }
 
-        if (fileControl.getFilemodel().getNographicOption() != null) {
-            if (fileControl.getFilemodel().getNographicOption().equals("true")) {
+        if (fileControl.getMachineModel().getNographicOption() != null) {
+            if (fileControl.getMachineModel().getNographicOption().equals("true")) {
                 this.noGraphicOption.setSelected(true);
             }
         }
 
-        if (fileControl.getFilemodel().getVgaType() != null) {
+        if (fileControl.getMachineModel().getVgaType() != null) {
             this.vgaType.setSelected(true);
-            if (fileControl.getFilemodel().getVgaType().equals("cirrus")) {
+            if (fileControl.getMachineModel().getVgaType().equals("cirrus")) {
                 this.vgaTypeChoice.setSelectedIndex(0);
-            } else if (fileControl.getFilemodel().getVgaType().equals("std")) {
+            } else if (fileControl.getMachineModel().getVgaType().equals("std")) {
                 this.vgaTypeChoice.setSelectedIndex(1);
-            } else if (fileControl.getFilemodel().getVgaType().equals("vmware")) {
+            } else if (fileControl.getMachineModel().getVgaType().equals("vmware")) {
                 this.vgaTypeChoice.setSelectedIndex(2);
-            } else if (fileControl.getFilemodel().getVgaType().equals("qxl")) {
+            } else if (fileControl.getMachineModel().getVgaType().equals("qxl")) {
                 this.vgaTypeChoice.setSelectedIndex(3);
-            } else if (fileControl.getFilemodel().getVgaType().equals("none")) {
+            } else if (fileControl.getMachineModel().getVgaType().equals("none")) {
                 this.vgaTypeChoice.setSelectedIndex(4);
             }
         }
 
-        if (fileControl.getFilemodel().getFullscreenOption() != null) {
-            if (fileControl.getFilemodel().getFullscreenOption().equals("true")) {
+        if (fileControl.getMachineModel().getFullscreenOption() != null) {
+            if (fileControl.getMachineModel().getFullscreenOption().equals("true")) {
                 this.fullScreenOption.setSelected(true);
             }
         }
 
-        if (fileControl.getFilemodel().getNoFrameOption() != null) {
-            if (fileControl.getFilemodel().getNoFrameOption().equals("true")) {
+        if (fileControl.getMachineModel().getNoFrameOption() != null) {
+            if (fileControl.getMachineModel().getNoFrameOption().equals("true")) {
                 this.noframeOption.setSelected(true);
             }
         }

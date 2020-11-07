@@ -8,7 +8,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class FloppyView extends DeviceViewWithFileChooser {
@@ -42,7 +42,7 @@ public class FloppyView extends DeviceViewWithFileChooser {
 	private String title;
 
 
-    public FloppyView(FileControl myfile) {
+    public FloppyView(EmulatorQemuMachineControl myfile) {
         super(myfile,null);
 
         this.jpanel = new JPanel();
@@ -163,13 +163,13 @@ public class FloppyView extends DeviceViewWithFileChooser {
 
 	@Override
 	public void doSave(IemultorStore store) {
-        if (fileControl.getFilemodel().getFloppyDiskA() != null) {
-            this.floppyDiskAText.setText(fileControl.getFilemodel()
+        if (fileControl.getMachineModel().getFloppyDiskA() != null) {
+            this.floppyDiskAText.setText(fileControl.getMachineModel()
                     .getFloppyDiskA());
         }
 
-        if (fileControl.getFilemodel().getFloppyDiskB() != null) {
-            this.floppyDiskBText.setText(fileControl.getFilemodel()
+        if (fileControl.getMachineModel().getFloppyDiskB() != null) {
+            this.floppyDiskBText.setText(fileControl.getMachineModel()
                     .getFloppyDiskB());
         }
 

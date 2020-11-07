@@ -13,7 +13,7 @@ public class ProcessControl {
         this.myModel = new ProcessModel(myProcess, machineName, qemuPathDir, myView);
     }
 
-    public ProcessModel getMyModel() {
+    public ProcessModel getModel() {
         return this.myModel;
     }
 

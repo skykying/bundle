@@ -6,7 +6,7 @@ import java.util.Locale;
 import javax.swing.JFileChooser;
 import javax.swing.JPanel;
 
-import com.lembed.lite.studio.qemu.control.FileControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 
 public abstract class DeviceViewWithFileChooser extends DeviceBaseView {
 
@@ -35,7 +35,7 @@ public abstract class DeviceViewWithFileChooser extends DeviceBaseView {
         this.setChooser(new JFileChooser());
     }
 
-    public DeviceViewWithFileChooser(FileControl myfile, JPanel jpanel) {
+    public DeviceViewWithFileChooser(EmulatorQemuMachineControl myfile, JPanel jpanel) {
     	super(myfile);
         this.jpanel = jpanel;
         this.choice = "";
@@ -44,7 +44,7 @@ public abstract class DeviceViewWithFileChooser extends DeviceBaseView {
         this.setChooser(new JFileChooser());
 	}
 
-    public DeviceViewWithFileChooser withFileControl(FileControl myfile) {
+    public DeviceViewWithFileChooser withFileControl(EmulatorQemuMachineControl myfile) {
     	this.fileControl = myfile;
         return this;
 	}
