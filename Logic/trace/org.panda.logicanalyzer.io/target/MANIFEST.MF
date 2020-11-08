@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: rxtx
 Bundle-SymbolicName: org.panda.logicanalyzer.io;singleton:=true
-Bundle-Version: 2.1.7.202011061619
+Bundle-Version: 2.1.7.202011070904
 Bundle-Vendor: org
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Export-Package: gnu.io,javax.usb,javax.usb.event,javax.usb.util,org.usb4

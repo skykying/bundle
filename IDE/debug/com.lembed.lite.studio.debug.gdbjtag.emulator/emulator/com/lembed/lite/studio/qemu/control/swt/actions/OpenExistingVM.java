@@ -3,27 +3,27 @@ package com.lembed.lite.studio.qemu.control.swt.actions;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import com.lembed.lite.studio.qemu.control.EmulationControl;
-import com.lembed.lite.studio.qemu.control.FileControl;
-import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
-import com.lembed.lite.studio.qemu.control.VMOpeningControl;
-import com.lembed.lite.studio.qemu.model.LastUsedFolderEnumModel;
-import com.lembed.lite.studio.qemu.model.LastUsedFolderModel;
-import com.lembed.lite.studio.qemu.model.Model;
+import com.lembed.lite.studio.qemu.control.swt.EmulationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
+import com.lembed.lite.studio.qemu.control.swt.VMConfigurationControl;
+import com.lembed.lite.studio.qemu.control.swt.VMOpeningControl;
+import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderEnumModel;
+import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderModel;
+import com.lembed.lite.studio.qemu.model.swt.Model;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class OpenExistingVM implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
 	private EmulationControl emulationControl;
-	private FileControl fileControl;
+	private EmulatorQemuMachineControl fileControl;
 	private VMOpeningControl vMOpeningControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
 	private LastUsedFolderModel lastUsedFolderModel;
 	
-	public OpenExistingVM(JContainerView jview) {
+	public OpenExistingVM(JSwtQemuView jview) {
 		view = jview;
 		view.registerListener(this);
 		
@@ -49,17 +49,17 @@ public class OpenExistingVM implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("OpenExistingVM")) {
 			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
+				emulationControl = new EmulationControl();
 			}
 			if (fileControl == null) {
-				fileControl = new FileControl(view.getMyUntitledJPanel(), view);
+				fileControl = new EmulatorQemuMachineControl();
 			}
 			
 			if (vMOpeningControl == null) {
@@ -72,7 +72,7 @@ public class OpenExistingVM implements BaseListener {
 			fileControl.getFileview().setCurrentDirectory(
 					lastUsedFolderModel.getLastUsedFolder(LastUsedFolderEnumModel.OPENEXISTINGVM.getValor()));
 			if (fileControl.getFileview().chooseFile()) {
-				if (fileControl.getFilemodel().readXML(fileControl.getFileview().getChoice())) {
+				if (fileControl.getMachineModel().readXML(fileControl.getFileview().getChoice())) {
 					lastUsedFolderModel.setLastUsedFolder(LastUsedFolderEnumModel.OPENEXISTINGVM.getValor(),
 							fileControl.getFileview().getChooser().getCurrentDirectory().getAbsolutePath());
 
@@ -90,7 +90,7 @@ public class OpenExistingVM implements BaseListener {
 					}
 					if (vMConfigurationControlist.get(position) == null) {
 						vMConfigurationControlist.set(position,
-								new VMConfigurationControl(emulationControl, view, fileControl));
+								new VMConfigurationControl(emulationControl, fileControl));
 						vMConfigurationControlist.get(position).starts();
 						vMConfigurationControlist.get(position).getMyName().updateMe();
 					}

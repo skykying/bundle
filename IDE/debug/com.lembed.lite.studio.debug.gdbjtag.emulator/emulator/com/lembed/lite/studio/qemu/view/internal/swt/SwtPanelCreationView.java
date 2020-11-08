@@ -16,223 +16,218 @@ import javax.swing.JTextArea;
 
 public class SwtPanelCreationView extends JPanel {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private String title;
+	private String title;
 
-    private JButton startButton;
+	private JButton startButton;
 
-    private JButton stopButton;
+	private JButton stopButton;
 
-    private GridBagLayout gridBagLayout;
+	private GridBagLayout gridBagLayout;
 
-    private GridBagConstraints gridBagConstraints;
+	private GridBagConstraints gridBagConstraints;
 
-    private JButton closeButton;
+	private JButton closeButton;
 
-    private JButton changeMachineNameButton;
+	private JButton changeMachineNameButton;
 
-    private JButton saveVMButton;
+	private JButton saveVMButton;
 
-    private JLabel titleLabel;
+	private JLabel titleLabel;
 
-    private JLabel machineNameLabel;
+	private JLabel machineNameLabel;
 
-    private JButton changeMachineConfigurationButton;
+	private JButton changeMachineConfigurationButton;
 
-    private JButton seeQemuEmulationCommandLineButton;
+	private JButton seeQemuEmulationCommandLineButton;
 
-    private String ramSize;
+	private String ramSize;
 
-    public SwtPanelCreationView(String title, JButton createNewVMoption,
-            JButton openExistingVMoption, ActionListener listener,
-            JButton useUtilities) {
-        super();
-        this.title = title;
-        if (title != null && title.equals("Untitled")) {
-            JLabel optionsDescription = new JLabel("Options:");
+	public SwtPanelCreationView(String title, JButton createNewVMoption, JButton openExistingVMoption,
+			ActionListener listener, JButton useUtilities) {
+		super();
+		this.title = title;
+		if (title != null && title.equals("Untitled")) {
+			JLabel optionsDescription = new JLabel("Options:");
 
-            optionsDescription.setHorizontalAlignment(JLabel.CENTER);
+			optionsDescription.setHorizontalAlignment(JLabel.CENTER);
 
-            this.setLayout(new GridLayout(4, 1));
-            this.add(optionsDescription);
-            this.add(createNewVMoption);
-            this.add(openExistingVMoption);
-            this.add(useUtilities);
+			this.setLayout(new GridLayout(4, 1));
+			this.add(optionsDescription);
+			this.add(createNewVMoption);
+			this.add(openExistingVMoption);
+			this.add(useUtilities);
 
-        } else {
+		} else {
 
-            this.gridBagLayout = new GridBagLayout();
-            this.gridBagConstraints = new GridBagConstraints();
+			this.gridBagLayout = new GridBagLayout();
+			this.gridBagConstraints = new GridBagConstraints();
 
-            this.setLayout(gridBagLayout);
+			this.setLayout(gridBagLayout);
 
-            this.title = title;
+			this.title = title;
 
-            this.titleLabel = new JLabel(title);
+			this.titleLabel = new JLabel(title);
 
-            this.closeButton = new JButton("Close this VM");
+			this.closeButton = new JButton("Close this VM");
 
-            this.changeMachineNameButton = new JButton(
-                    "Change the name of this VM");
+			this.changeMachineNameButton = new JButton("Change the name of this VM");
 
-            startButton = new JButton("Start");
+			startButton = new JButton("Start");
 
-            stopButton = new JButton("Stop");
+			stopButton = new JButton("Stop");
 
-            this.machineNameLabel = new JLabel("Machine name: ");
+			this.machineNameLabel = new JLabel("Machine name: ");
 
-            this.changeMachineConfigurationButton = new JButton(
-                    "Change VM Configuration");
+			this.changeMachineConfigurationButton = new JButton("Change VM Configuration");
 
-            this.saveVMButton = new JButton("Save this VM");
+			this.saveVMButton = new JButton("Save this VM");
 
-            this.seeQemuEmulationCommandLineButton = new JButton("See Qemu emulation command line");
+			this.seeQemuEmulationCommandLineButton = new JButton("See Qemu emulation command line");
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 0;
-            gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 0;
+			gridBagConstraints.weightx = 0.5;
 
-            this.add(this.machineNameLabel, gridBagConstraints);
+			this.add(this.machineNameLabel, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 0;
-            gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 0;
+			gridBagConstraints.weightx = 0.5;
 
-            this.add(this.titleLabel, gridBagConstraints);
+			this.add(this.titleLabel, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 1;
-            gridBagConstraints.weightx = 0.5;
-            gridBagConstraints.gridwidth = 2;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 1;
+			gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.gridwidth = 2;
 
-            this.add(changeMachineNameButton, gridBagConstraints);
+			this.add(changeMachineNameButton, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 2;
-            gridBagConstraints.weightx = 0.5;
-            gridBagConstraints.gridwidth = 2;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 2;
+			gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.gridwidth = 2;
 
-            this.add(saveVMButton, gridBagConstraints);
+			this.add(saveVMButton, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 3;
-            gridBagConstraints.weightx = 0.5;
-            gridBagConstraints.gridwidth = 2;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 3;
+			gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.gridwidth = 2;
 
-            this.add(closeButton, gridBagConstraints);
+			this.add(closeButton, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
-            gridBagConstraints.weightx = 0.5;
-            gridBagConstraints.gridwidth = 1;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
+			gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.gridwidth = 1;
 
-            this.add(startButton, gridBagConstraints);
+			this.add(startButton, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 4;
-            gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 4;
+			gridBagConstraints.weightx = 0.5;
 
-            this.add(stopButton, gridBagConstraints);
+			this.add(stopButton, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
-            gridBagConstraints.weightx = 0.5;
-            gridBagConstraints.gridwidth = 2;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 5;
+			gridBagConstraints.weightx = 0.5;
+			gridBagConstraints.gridwidth = 2;
 
-            this.add(changeMachineConfigurationButton, gridBagConstraints);
+			this.add(changeMachineConfigurationButton, gridBagConstraints);
 
-            gridBagConstraints.gridy = 6;
+			gridBagConstraints.gridy = 6;
 
-            this.add(seeQemuEmulationCommandLineButton, gridBagConstraints);
-        }
+			this.add(seeQemuEmulationCommandLineButton, gridBagConstraints);
+		}
 
-        this.configureStandardMode();
+		this.configureStandardMode();
 
-        this.configureListener(listener);
-    }
+		this.configureListener(listener);
+	}
 
-    public String getTitle() {
-        return title;
-    }
+	public String getTitle() {
+		return title;
+	}
 
-    public void configureStandardMode() {
-        if (this.title != null) {
-            if (!this.title.equals("Untitled")) {
-                startButton.setActionCommand("StartEmulation");
-                stopButton.setActionCommand("StopEmulation");
-                closeButton.setActionCommand("CloseVM");
-                changeMachineNameButton.setActionCommand("ChangeMachineName");
-                changeMachineConfigurationButton
-                        .setActionCommand("ChangeMachineConfiguration");
-                saveVMButton.setActionCommand("SaveVM");
-                seeQemuEmulationCommandLineButton.setActionCommand("SeeQemuEmulationCommandLine");
-            }
-        } else {
-            startButton.setActionCommand("StartEmulation");
-            stopButton.setActionCommand("StopEmulation");
-            closeButton.setActionCommand("CloseVM");
-            changeMachineNameButton.setActionCommand("ChangeMachineName");
-            changeMachineConfigurationButton
-                    .setActionCommand("ChangeMachineConfiguration");
-            saveVMButton.setActionCommand("SaveVM");
-            seeQemuEmulationCommandLineButton.setActionCommand("SeeQemuEmulationCommandLine");
-        }
-    }
+	public void configureStandardMode() {
+		if (this.title != null) {
+			if (!this.title.equals("Untitled")) {
+				startButton.setActionCommand("StartEmulation");
+				stopButton.setActionCommand("StopEmulation");
+				closeButton.setActionCommand("CloseVM");
+				changeMachineNameButton.setActionCommand("ChangeMachineName");
+				changeMachineConfigurationButton.setActionCommand("ChangeMachineConfiguration");
+				saveVMButton.setActionCommand("SaveVM");
+				seeQemuEmulationCommandLineButton.setActionCommand("SeeQemuEmulationCommandLine");
+			}
+		} else {
+			startButton.setActionCommand("StartEmulation");
+			stopButton.setActionCommand("StopEmulation");
+			closeButton.setActionCommand("CloseVM");
+			changeMachineNameButton.setActionCommand("ChangeMachineName");
+			changeMachineConfigurationButton.setActionCommand("ChangeMachineConfiguration");
+			saveVMButton.setActionCommand("SaveVM");
+			seeQemuEmulationCommandLineButton.setActionCommand("SeeQemuEmulationCommandLine");
+		}
+	}
 
-    public void showMessage(String message) {
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(500, 500));
-        JTextArea textArea = new JTextArea(message);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(5, 5, 5, 5));
-        scrollPane.getViewport().setView(textArea);
-        Object trueMessage = scrollPane;
-        JOptionPane.showMessageDialog(null, trueMessage);
-    }
+	public void showMessage(String message) {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(500, 500));
+		JTextArea textArea = new JTextArea(message);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setMargin(new Insets(5, 5, 5, 5));
+		scrollPane.getViewport().setView(textArea);
+		Object trueMessage = scrollPane;
+		JOptionPane.showMessageDialog(null, trueMessage);
+	}
 
-    public void configureListener(ActionListener listener) {
-        if (this.title != null) {
-            if (!this.title.equals("Untitled")) {
-                startButton.addActionListener(listener);
-                stopButton.addActionListener(listener);
-                closeButton.addActionListener(listener);
-                changeMachineNameButton.addActionListener(listener);
-                changeMachineConfigurationButton.addActionListener(listener);
-                saveVMButton.addActionListener(listener);
-                seeQemuEmulationCommandLineButton.addActionListener(listener);
-            }
-        } else {
-            startButton.addActionListener(listener);
-            stopButton.addActionListener(listener);
-            closeButton.addActionListener(listener);
-            changeMachineNameButton.addActionListener(listener);
-            changeMachineConfigurationButton.addActionListener(listener);
-            saveVMButton.addActionListener(listener);
-            seeQemuEmulationCommandLineButton.addActionListener(listener);
-        }
-    }
+	public void configureListener(ActionListener listener) {
+		if (this.title != null) {
+			if (!this.title.equals("Untitled")) {
+				startButton.addActionListener(listener);
+				stopButton.addActionListener(listener);
+				closeButton.addActionListener(listener);
+				changeMachineNameButton.addActionListener(listener);
+				changeMachineConfigurationButton.addActionListener(listener);
+				saveVMButton.addActionListener(listener);
+				seeQemuEmulationCommandLineButton.addActionListener(listener);
+			}
+		} else {
+			startButton.addActionListener(listener);
+			stopButton.addActionListener(listener);
+			closeButton.addActionListener(listener);
+			changeMachineNameButton.addActionListener(listener);
+			changeMachineConfigurationButton.addActionListener(listener);
+			saveVMButton.addActionListener(listener);
+			seeQemuEmulationCommandLineButton.addActionListener(listener);
+		}
+	}
 
-    public void setTitle(String title) {
-        this.title = title;
-        this.titleLabel.setText(title);
-    }
+	public void setTitle(String title) {
+		this.title = title;
+		this.titleLabel.setText(title);
+	}
 
-    public String getRamSize() {
-        return ramSize;
-    }
+	public String getRamSize() {
+		return ramSize;
+	}
 
-    public void setRamSize(String ramSize) {
-        this.ramSize = ramSize;
-    }
+	public void setRamSize(String ramSize) {
+		this.ramSize = ramSize;
+	}
 }

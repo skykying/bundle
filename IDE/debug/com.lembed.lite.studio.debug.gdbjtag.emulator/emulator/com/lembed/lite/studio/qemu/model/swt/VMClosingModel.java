@@ -2,13 +2,14 @@ package com.lembed.lite.studio.qemu.model.swt;
 
 import com.lembed.lite.studio.qemu.control.swt.EmulationControl;
 import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class VMClosingModel {
 
-    private JContainerView view;
+    private JSwtQemuView view;
     private EmulationControl myemulation;
 
-    public VMClosingModel(JContainerView view, EmulationControl myemulation) {
+    public VMClosingModel(JSwtQemuView view, EmulationControl myemulation) {
         this.view = view;
         this.myemulation = myemulation;
     }
@@ -30,7 +31,7 @@ public class VMClosingModel {
         return true;
     }
 
-    public void setView(JContainerView view) {
+    public void setView(JSwtQemuView view) {
         this.view = view;
     }
 

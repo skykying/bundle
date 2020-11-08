@@ -25,15 +25,14 @@ public class CPUView extends DeviceBaseView {
 	private JButton showsFlagsButton;
 	private Boolean loaded;
 
-
 	public CPUView(EmulatorQemuMachineControl myfile) {
 		super(myfile);
-		
+
 		jpanel = new JPanel();
 
 		gridLayout = new GridLayout(4, 1);
 
-		setTitle("JavaQemu - CPU Options");
+		setTitle("CPU");
 
 		jpanel.setLayout(gridLayout);
 

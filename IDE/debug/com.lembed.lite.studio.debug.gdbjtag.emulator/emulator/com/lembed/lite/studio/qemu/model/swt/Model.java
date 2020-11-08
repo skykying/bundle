@@ -15,7 +15,7 @@ import java.nio.charset.Charset;
 
 import javax.swing.DefaultListModel;
 
-import com.lembed.lite.studio.qemu.control.XStreamControl;
+import com.lembed.lite.studio.qemu.control.swt.XStreamControl;
 
 public class Model {
 
@@ -68,7 +68,7 @@ public class Model {
                 BufferedWriter bw = new BufferedWriter(fileWriter);
                 try {
                     bw.write(XStreamControl.getInstance()
-                            .getMyModel().getStream()
+                            .getXstreamModel().getStream()
                             .toXML(configuration));
                 } catch (IOException e2) {
 
@@ -113,10 +113,10 @@ public class Model {
                 BufferedReader br = new BufferedReader(fileReader);
                 if (className.equals(LastUsedFolderModel.class.getName())) {
                     result = (LastUsedFolderModel) XStreamControl.getInstance()
-                            .getMyModel().getStream().fromXML(br);
+                            .getXstreamModel().getStream().fromXML(br);
                 } else if (className.equals(LastUsedFileModel.class.getName())) {
                     result = (LastUsedFileModel) XStreamControl.getInstance()
-                            .getMyModel().getStream().fromXML(br);
+                            .getXstreamModel().getStream().fromXML(br);
                 }
                 try {
                     br.close();

@@ -9,17 +9,18 @@ import com.lembed.lite.studio.qemu.model.Model;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
 import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class CreateNewDiskImageFile implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
 	private ConfigurationControl configurationControl;
 	private DiskCreationControl diskCreationControl;
 
 	private LastUsedFolderModel lastUsedFolderModel;
 	private LastUsedFileModel lastUsedFileModel;
 
-	public CreateNewDiskImageFile(JContainerView jview) {
+	public CreateNewDiskImageFile(JSwtQemuView jview) {
 		view = jview;
 		view.registerListener(this);
 		configurationControl = null;
@@ -44,11 +45,11 @@ public class CreateNewDiskImageFile implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("CreateNewDiskImageFile")) {
 			if (diskCreationControl == null) {
 				diskCreationControl = new DiskCreationControl("0", this);

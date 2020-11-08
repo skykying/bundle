@@ -1,25 +1,25 @@
 package com.lembed.lite.studio.qemu.control.swt;
 
-import com.lembed.lite.studio.qemu.model.XStreamModel;
+import com.lembed.lite.studio.qemu.model.swt.XStreamModel;
 
 public class XStreamControl {
 
-    private XStreamModel myModel;
-    private static XStreamControl instance = null;
+	private XStreamModel xStreamModel;
+	private static XStreamControl instance = null;
 
-    public synchronized static XStreamControl getInstance() {
-        if (instance == null) {
-            instance = new XStreamControl();
-        }
+	public synchronized static XStreamControl getInstance() {
+		if (instance == null) {
+			instance = new XStreamControl();
+		}
 
-        return instance;
-    }
+		return instance;
+	}
 
-    public XStreamControl() {
-        myModel = new XStreamModel();
-    }
+	public XStreamControl() {
+		xStreamModel = new XStreamModel();
+	}
 
-    public XStreamModel getMyModel() {
-        return myModel;
-    }
+	public XStreamModel getXstreamModel() {
+		return xStreamModel;
+	}
 }

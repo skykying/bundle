@@ -17,185 +17,182 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class TimeView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JLabel rtcDescription;
+	private JLabel rtcDescription;
 
-    private JCheckBox isRTCEnabled;
+	private JCheckBox isRTCEnabled;
 
-    private JLabel temp[];
+	private JLabel temp[];
 
-    private JLabel baseDescription;
+	private JLabel baseDescription;
 
-    private JComboBox<String> base;
+	private JComboBox<String> base;
 
-    private JLabel dateDescription;
+	private JLabel dateDescription;
 
-    private JTextField date;
+	private JTextField date;
 
-    private JLabel clockDescription;
+	private JLabel clockDescription;
 
-    private JComboBox<String> clock;
+	private JComboBox<String> clock;
 
-    private JLabel driftfixDescription;
+	private JLabel driftfixDescription;
 
-    private JComboBox<String> driftfix;
+	private JComboBox<String> driftfix;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
+	public TimeView(EmulatorQemuMachineControl emc) {
+		super(emc);
 
-    public TimeView(EmulatorQemuMachineControl emc) {
-        super(emc);
+		windowContent = new JPanel();
 
-        windowContent = new JPanel();
+		gridLayout = new GridLayout(7, 2);
 
-        gridLayout = new GridLayout(7, 2);
+		windowContent.setLayout(gridLayout);
 
-        windowContent.setLayout(gridLayout);
+		rtcDescription = new JLabel("Choose the rtc option:");
 
-        rtcDescription = new JLabel("Choose the rtc option:");
+		windowContent.add(rtcDescription);
 
-        windowContent.add(rtcDescription);
+		temp = new JLabel[2];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = new JLabel();
+		}
 
-        temp = new JLabel[2];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = new JLabel();
-        }
+		windowContent.add(temp[0]);
 
-        windowContent.add(temp[0]);
+		isRTCEnabled = new JCheckBox("Enable the rtc option!");
 
-        isRTCEnabled = new JCheckBox("Enable the rtc option!");
+		windowContent.add(this.isRTCEnabled);
 
-        windowContent.add(this.isRTCEnabled);
+		windowContent.add(this.temp[1]);
 
-        windowContent.add(this.temp[1]);
+		baseDescription = new JLabel("Choose the base option:");
 
-        baseDescription = new JLabel("Choose the base option:");
+		windowContent.add(this.baseDescription);
 
-        windowContent.add(this.baseDescription);
+		String[] baseOptions = { "", "UTC - Universal Time Coordinated", "Local Time", "Specific Date" };
 
-        String[] baseOptions = {"", "UTC - Universal Time Coordinated",
-            "Local Time", "Specific Date"};
+		this.base = new JComboBox<String>(baseOptions);
 
-        this.base = new JComboBox<String>(baseOptions);
+		windowContent.add(this.base);
 
-        windowContent.add(this.base);
+		this.dateDescription = new JLabel("If you choose 'Specific Date' as base option, then specify it: ");
 
-        this.dateDescription = new JLabel("If you choose 'Specific Date' as base option, then specify it: ");
+		windowContent.add(this.dateDescription);
 
-        windowContent.add(this.dateDescription);
+		this.date = new JTextField();
 
-        this.date = new JTextField();
+		windowContent.add(this.date);
 
-        windowContent.add(this.date);
+		this.clockDescription = new JLabel("Choose the clock option:");
 
-        this.clockDescription = new JLabel("Choose the clock option:");
+		windowContent.add(this.clockDescription);
 
-        windowContent.add(this.clockDescription);
+		String[] clockOptions = { "", "Host", "Virtual Machine" };
 
-        String[] clockOptions = {"", "Host", "Virtual Machine"};
+		this.clock = new JComboBox<String>(clockOptions);
 
-        this.clock = new JComboBox<String>(clockOptions);
+		windowContent.add(this.clock);
 
-        windowContent.add(this.clock);
+		this.driftfixDescription = new JLabel("Choose the driftfix option:");
 
-        this.driftfixDescription = new JLabel("Choose the driftfix option:");
+		windowContent.add(this.driftfixDescription);
 
-        windowContent.add(this.driftfixDescription);
+		String[] driftfixOptions = { "", "None", "Slew" };
 
-        String[] driftfixOptions = {"", "None", "Slew"};
+		this.driftfix = new JComboBox<String>(driftfixOptions);
 
-        this.driftfix = new JComboBox<String>(driftfixOptions);
+		windowContent.add(this.driftfix);
 
-        windowContent.add(this.driftfix);
+		okButton = new JButton("OK");
 
-        okButton = new JButton("OK");
+		eraseButton = new JButton("Erase");
 
-        eraseButton = new JButton("Erase");
+		windowContent.add(okButton);
 
-        windowContent.add(okButton);
+		windowContent.add(eraseButton);
 
-        windowContent.add(eraseButton);
+		this.add(windowContent);
 
-        this.add(windowContent);
+		this.setTitle("Time");
+	}
 
-        this.setTitle("JavaQemu - Time Choice");
-    }
+	private void rechecks() {
+		this.repaint();
+	}
 
-    private void rechecks() {
-        this.repaint();
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+	}
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-    }
+	public JCheckBox getIsEnabled() {
+		return isRTCEnabled;
+	}
 
-    public JCheckBox getIsEnabled() {
-        return isRTCEnabled;
-    }
+	public JComboBox<String> getBase() {
+		return base;
+	}
 
-    public JComboBox<String> getBase() {
-        return base;
-    }
+	public JTextField getDate() {
+		return date;
+	}
 
-    public JTextField getDate() {
-        return date;
-    }
+	public JComboBox<String> getClock() {
+		return clock;
+	}
 
-    public JComboBox<String> getClock() {
-        return clock;
-    }
-
-    public JComboBox<String> getDriftfix() {
-        return driftfix;
-    }
-    
+	public JComboBox<String> getDriftfix() {
+		return driftfix;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-		 if (eQControl.getMachineModel().getRtcOption() != null) {
-	            this.isRTCEnabled.setSelected(true);
-	            String options[] = eQControl.getMachineModel().getRtcOption().split(",");
-	            for (String option : options) {
-	                if (option.startsWith("base=")) {
-	                    if (option.endsWith("utc")) {
-	                        this.base.setSelectedItem("UTC - Universal Time Coordinated");
-	                    } else if (option.endsWith("localtime")) {
-	                        this.base.setSelectedItem("Local Time");
-	                    } else {
-	                        this.base.setSelectedItem("Specific Date");
-	                        this.date.setText(option.substring(option.indexOf("=") + 1));
-	                    }
-	                } else if (option.startsWith("clock=")) {
-	                    if (option.endsWith("host")) {
-	                        this.clock.setSelectedItem("Host");
-	                    } else if (option.endsWith("vm")) {
-	                        this.clock.setSelectedItem("Virtual Machine");
-	                    }
-	                } else if (option.startsWith("driftfix=")) {
-	                    if (option.endsWith("none")) {
-	                        this.driftfix.setSelectedItem("None");
-	                    } else if (option.endsWith("slew")) {
-	                        this.driftfix.setSelectedItem("Slew");
-	                    }
-	                }
-	            }
-	        }
+		if (eQControl.getMachineModel().getRtcOption() != null) {
+			this.isRTCEnabled.setSelected(true);
+			String options[] = eQControl.getMachineModel().getRtcOption().split(",");
+			for (String option : options) {
+				if (option.startsWith("base=")) {
+					if (option.endsWith("utc")) {
+						this.base.setSelectedItem("UTC - Universal Time Coordinated");
+					} else if (option.endsWith("localtime")) {
+						this.base.setSelectedItem("Local Time");
+					} else {
+						this.base.setSelectedItem("Specific Date");
+						this.date.setText(option.substring(option.indexOf("=") + 1));
+					}
+				} else if (option.startsWith("clock=")) {
+					if (option.endsWith("host")) {
+						this.clock.setSelectedItem("Host");
+					} else if (option.endsWith("vm")) {
+						this.clock.setSelectedItem("Virtual Machine");
+					}
+				} else if (option.startsWith("driftfix=")) {
+					if (option.endsWith("none")) {
+						this.driftfix.setSelectedItem("None");
+					} else if (option.endsWith("slew")) {
+						this.driftfix.setSelectedItem("Slew");
+					}
+				}
+			}
+		}
 
-	        this.rechecks();
-		
+		this.rechecks();
+
 	}
-	
+
 }

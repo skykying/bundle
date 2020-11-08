@@ -32,10 +32,10 @@ public class SeeQemuEmulationCommandLine implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction(e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("SeeQemuEmulationCommandLine")) {
 			if (emulationControl == null) {
 				emulationControl = new EmulationControl(view);

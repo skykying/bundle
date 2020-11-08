@@ -19,289 +19,291 @@ import javax.swing.SwingConstants;
 
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class VMConfigurationView extends DeviceViewWithFileChooser {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel jContentPane = null; // @jve:decl-index=0:visual-constraint="105,58"
+	private JPanel jContentPane = null; // @jve:decl-index=0:visual-constraint="105,58"
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JButton okButton;
+	private JButton okButton;
 
-    private JButton resetRamSizeButton;
+	private JButton resetRamSizeButton;
 
-    private JContainerView myview;
 
-    private JLabel ramDescription;
 
-    private JSpinner ramSize;
+	private JLabel ramDescription;
 
-    private SpinnerModel spinnerModel;
+	private JSpinner ramSize;
 
-    private JSpinner.NumberEditor editor;
+	private SpinnerModel spinnerModel;
 
-    private DecimalFormat format;
+	private JSpinner.NumberEditor editor;
 
-    private JButton changeDiskImagePaths;
+	private DecimalFormat format;
 
-    private JButton showDisplayOptions;
+	private JButton changeDiskImagePaths;
 
-    private JButton showAdvancedOptions;
+	private JButton showDisplayOptions;
 
-    private JButton showMachineOptions;
+	private JButton showAdvancedOptions;
 
-    private JButton showCPUOptions;
+	private JButton showMachineOptions;
 
-    private JButton showCDROMOptions;
+	private JButton showCPUOptions;
 
-    private JButton showFloppyOptions;
+	private JButton showCDROMOptions;
 
-    private JButton showBootOptions;
+	private JButton showFloppyOptions;
 
-    private JButton showKeyboardOptions;
+	private JButton showBootOptions;
 
-    private JButton showSoundHardwareOptions;
+	private JButton showKeyboardOptions;
 
-    private JButton showSMPOptions;
+	private JButton showSoundHardwareOptions;
 
-    private JButton showNUMAOptions;
+	private JButton showSMPOptions;
 
-    private JButton showOtherMemoryOptions;
+	private JButton showNUMAOptions;
 
-    private JButton showNetworkOptions;
+	private JButton showOtherMemoryOptions;
 
-    private JButton showRtcOptions;
+	private JButton showNetworkOptions;
 
-    private JButton showImageOptions;
+	private JButton showRtcOptions;
 
-    private JButton showMonitorOptions;
+	private JButton showImageOptions;
 
-    private JButton showUSBOptions;
+	private JButton showMonitorOptions;
 
-    private JButton showSpecificBootOptions;
+	private JButton showUSBOptions;
 
-    private JButton showCustomOptions;
+	private JButton showSpecificBootOptions;
 
-    private JLabel temp[];
+	private JButton showCustomOptions;
 
-    public VMConfigurationView(JContainerView myview, String initialRamValue) {
-        super(null);
-        this.gridLayout = new GridLayout(9, 3);
+	private JLabel temp[];
 
-        this.initialize();
-        this.setJpanel(jContentPane);
+	public VMConfigurationView( String initialRamValue) {
+		super(null);
+		this.gridLayout = new GridLayout(9, 3);
 
-        this.okButton = new JButton("OK");
+		this.initialize();
+		this.setJpanel(jContentPane);
 
-        this.resetRamSizeButton = new JButton("Reset RAM Size & Hide");
+		this.okButton = new JButton("OK");
 
-        this.setChoosertitle("Please, choose a file!");
+		this.resetRamSizeButton = new JButton("Reset RAM Size & Hide");
 
-        this.setChoice("");
+		this.setChoosertitle("Please, choose a file!");
 
-        this.myview = myview;
+		this.setChoice("");
 
-        this.spinnerModel = new SpinnerNumberModel(
-                Double.parseDouble(initialRamValue), // initial value
-                0.0, // min
-                10240.0, // max
-                1); // step
+//		this.myview = myview;
 
-        this.ramSize = new JSpinner(spinnerModel);
+		this.spinnerModel = new SpinnerNumberModel(Double.parseDouble(initialRamValue), // initial
+																						// value
+				0.0, // min
+				10240.0, // max
+				1); // step
 
-        editor = (JSpinner.NumberEditor) this.ramSize.getEditor();
-        format = editor.getFormat();
-        format.setMinimumFractionDigits(3);
-        editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
+		this.ramSize = new JSpinner(spinnerModel);
 
-        this.ramDescription = new JLabel("Set the size of the RAM (MB): ");
+		editor = (JSpinner.NumberEditor) this.ramSize.getEditor();
+		format = editor.getFormat();
+		format.setMinimumFractionDigits(3);
+		editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 
-        this.jContentPane.add(this.ramDescription);
+		this.ramDescription = new JLabel("Set the size of the RAM (MB): ");
 
-        this.jContentPane.add(this.ramSize);
+		this.jContentPane.add(this.ramDescription);
 
-        changeDiskImagePaths = new JButton("Change the Hard Disk Options.");
+		this.jContentPane.add(this.ramSize);
 
-        showDisplayOptions = new JButton("Change Display Options!");
-        showAdvancedOptions = new JButton("Change Advanced Options!");
+		changeDiskImagePaths = new JButton("Change the Hard Disk Options.");
 
-        temp = new JLabel[3];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = new JLabel("");
-        }
+		showDisplayOptions = new JButton("Change Display Options!");
+		showAdvancedOptions = new JButton("Change Advanced Options!");
 
-        jContentPane.add(this.temp[0]);
-        jContentPane.add(this.changeDiskImagePaths);
-        jContentPane.add(this.showDisplayOptions);
-        jContentPane.add(this.showAdvancedOptions);
+		temp = new JLabel[3];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = new JLabel("");
+		}
 
-        showMachineOptions = new JButton("Change Machine Options!");
-        new JLabel("");
+		jContentPane.add(this.temp[0]);
+		jContentPane.add(this.changeDiskImagePaths);
+		jContentPane.add(this.showDisplayOptions);
+		jContentPane.add(this.showAdvancedOptions);
 
-        jContentPane.add(this.showMachineOptions);
+		showMachineOptions = new JButton("Change Machine Options!");
+		new JLabel("");
 
-        showCPUOptions = new JButton("Change CPU Options!");
-        jContentPane.add(this.showCPUOptions);
+		jContentPane.add(this.showMachineOptions);
 
-        this.showCDROMOptions = new JButton("Change CDROM Options!");
+		showCPUOptions = new JButton("Change CPU Options!");
+		jContentPane.add(this.showCPUOptions);
 
-        jContentPane.add(this.showCDROMOptions);
+		this.showCDROMOptions = new JButton("Change CDROM Options!");
 
-        this.showFloppyOptions = new JButton("Change Floppy Options!");
+		jContentPane.add(this.showCDROMOptions);
 
-        jContentPane.add(this.showFloppyOptions);
+		this.showFloppyOptions = new JButton("Change Floppy Options!");
 
-        this.showBootOptions = new JButton("Change Boot Options!");
+		jContentPane.add(this.showFloppyOptions);
 
-        jContentPane.add(this.showBootOptions);
+		this.showBootOptions = new JButton("Change Boot Options!");
 
-        this.showKeyboardOptions = new JButton("Change Keyboard Options!");
+		jContentPane.add(this.showBootOptions);
 
-        jContentPane.add(this.showKeyboardOptions);
+		this.showKeyboardOptions = new JButton("Change Keyboard Options!");
 
-        this.showSoundHardwareOptions = new JButton("Change Sound Hardware Options!");
+		jContentPane.add(this.showKeyboardOptions);
 
-        jContentPane.add(this.showSoundHardwareOptions);
+		this.showSoundHardwareOptions = new JButton("Change Sound Hardware Options!");
 
-        this.showSMPOptions = new JButton("Change SMP System Options!");
-        this.showNUMAOptions = new JButton("Change NUMA Options!");
-
-        jContentPane.add(this.showSMPOptions);
-        jContentPane.add(this.showNUMAOptions);
-
-        this.showOtherMemoryOptions = new JButton("Change Other Memory Options!");
-        jContentPane.add(this.showOtherMemoryOptions);
-
-        this.showNetworkOptions = new JButton("Change Network Options!");
-        jContentPane.add(this.showNetworkOptions);
-
-        this.showRtcOptions = new JButton("Change RTC Options!");
-        jContentPane.add(this.showRtcOptions);
-
-        this.showImageOptions = new JButton("Change Image Options!");
-        jContentPane.add(this.showImageOptions);
-
-        this.showMonitorOptions = new JButton("Change Monitor Options!");
-        jContentPane.add(this.showMonitorOptions);
-
-        this.showUSBOptions = new JButton("Change USB Options!");
-        jContentPane.add(this.showUSBOptions);
-
-        this.showSpecificBootOptions = new JButton("Change Specific Boot Options!");
-        jContentPane.add(this.showSpecificBootOptions);
-
-        this.showCustomOptions = new JButton("Change Custom Options!");
-        jContentPane.add(this.showCustomOptions);
-
-        jContentPane.add(this.temp[1]);
-        jContentPane.add(this.temp[2]);
-
-        jContentPane.add(this.okButton);
-        jContentPane.add(this.resetRamSizeButton);
-
-        this.rechecks();
-    }
-
-    private void initialize() {
-        this.add(getJContentPane());
-
-        this.setTitle("JavaQemu - VM Configuration");
-
-        this.jContentPane.setLayout(this.gridLayout);
-
-        this.repaint();
-    }
-
-    private JPanel getJContentPane() {
-        if (jContentPane == null) {
-            jContentPane = new JPanel();
-            jContentPane.setLayout(null);
-            // jContentPane.add(getNum1Field(), null);
-        }
-        return jContentPane;
-    }
-
-    public void configureStandardMode() {
-        okButton.setActionCommand("okButton");
-        resetRamSizeButton.setActionCommand("resetRamSizeButton");
-        changeDiskImagePaths.setActionCommand("changeDiskOptionsPaths");
-        showDisplayOptions.setActionCommand("showDisplayOptions");
-        showAdvancedOptions.setActionCommand("showAdvancedOptions");
-        showMachineOptions.setActionCommand("showMachineOptions");
-        showCPUOptions.setActionCommand("showCPUOptions");
-        showCDROMOptions.setActionCommand("showCDROMOptions");
-        showFloppyOptions.setActionCommand("showFloppyOptions");
-        showBootOptions.setActionCommand("showBootOptions");
-        showKeyboardOptions.setActionCommand("showKeyboardOptions");
-        showSoundHardwareOptions.setActionCommand("showSoundHardwareOptions");
-        showSMPOptions.setActionCommand("showSMPOptions");
-        showNUMAOptions.setActionCommand("showNUMAOptions");
-        showOtherMemoryOptions.setActionCommand("showOtherMemoryOptions");
-        showNetworkOptions.setActionCommand("showNetworkOptions");
-        showRtcOptions.setActionCommand("showRtcOptions");
-        showImageOptions.setActionCommand("showImageOptions");
-        showMonitorOptions.setActionCommand("showMonitorOptions");
-        showUSBOptions.setActionCommand("showUSBOptions");
-        showSpecificBootOptions.setActionCommand("showSpecificBootOptions");
-        showCustomOptions.setActionCommand("showCustomOptions");
-    }
-
-    public void configureListener(ActionListener listener) {
-        okButton.addActionListener(listener);
-        resetRamSizeButton.addActionListener(listener);
-        changeDiskImagePaths.addActionListener(listener);
-        showDisplayOptions.addActionListener(listener);
-        showAdvancedOptions.addActionListener(listener);
-        showMachineOptions.addActionListener(listener);
-        showCPUOptions.addActionListener(listener);
-        showCDROMOptions.addActionListener(listener);
-        showFloppyOptions.addActionListener(listener);
-        showBootOptions.addActionListener(listener);
-        showKeyboardOptions.addActionListener(listener);
-        showSoundHardwareOptions.addActionListener(listener);
-        showSMPOptions.addActionListener(listener);
-        showNUMAOptions.addActionListener(listener);
-        showOtherMemoryOptions.addActionListener(listener);
-        showNetworkOptions.addActionListener(listener);
-        showRtcOptions.addActionListener(listener);
-        showImageOptions.addActionListener(listener);
-        showMonitorOptions.addActionListener(listener);
-        showUSBOptions.addActionListener(listener);
-        showSpecificBootOptions.addActionListener(listener);
-        showCustomOptions.addActionListener(listener);
-    }
-
-    private void rechecks() {
-//        this.pack();
-        this.repaint();
-    }
-
-    public void showMessage(String message) {
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(500, 500));
-        JTextArea textArea = new JTextArea(message);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(5, 5, 5, 5));
-        scrollPane.getViewport().setView(textArea);
-        Object trueMessage = scrollPane;
-        JOptionPane.showMessageDialog(null, trueMessage);
-    }
-
-    public JSpinner.NumberEditor getEditor() {
-        return editor;
-    }
-
-    public void setRamSize(String aRamSize) {
-        this.myview.getSelectedPanel().setRamSize(aRamSize);
-    }
+		jContentPane.add(this.showSoundHardwareOptions);
+
+		this.showSMPOptions = new JButton("Change SMP System Options!");
+		this.showNUMAOptions = new JButton("Change NUMA Options!");
+
+		jContentPane.add(this.showSMPOptions);
+		jContentPane.add(this.showNUMAOptions);
+
+		this.showOtherMemoryOptions = new JButton("Change Other Memory Options!");
+		jContentPane.add(this.showOtherMemoryOptions);
+
+		this.showNetworkOptions = new JButton("Change Network Options!");
+		jContentPane.add(this.showNetworkOptions);
+
+		this.showRtcOptions = new JButton("Change RTC Options!");
+		jContentPane.add(this.showRtcOptions);
+
+		this.showImageOptions = new JButton("Change Image Options!");
+		jContentPane.add(this.showImageOptions);
+
+		this.showMonitorOptions = new JButton("Change Monitor Options!");
+		jContentPane.add(this.showMonitorOptions);
+
+		this.showUSBOptions = new JButton("Change USB Options!");
+		jContentPane.add(this.showUSBOptions);
+
+		this.showSpecificBootOptions = new JButton("Change Specific Boot Options!");
+		jContentPane.add(this.showSpecificBootOptions);
+
+		this.showCustomOptions = new JButton("Change Custom Options!");
+		jContentPane.add(this.showCustomOptions);
+
+		jContentPane.add(this.temp[1]);
+		jContentPane.add(this.temp[2]);
+
+		jContentPane.add(this.okButton);
+		jContentPane.add(this.resetRamSizeButton);
+		this.add(getJContentPane());
+		
+		this.rechecks();
+	}
+
+	private void initialize() {
+		this.add(getJContentPane());
+
+		this.setTitle("VM Configuration");
+
+		this.jContentPane.setLayout(this.gridLayout);
+
+		this.repaint();
+	}
+
+	private JPanel getJContentPane() {
+		if (jContentPane == null) {
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+			// jContentPane.add(getNum1Field(), null);
+		}
+		return jContentPane;
+	}
+
+	public void configureStandardMode() {
+		okButton.setActionCommand("okButton");
+		resetRamSizeButton.setActionCommand("resetRamSizeButton");
+		changeDiskImagePaths.setActionCommand("changeDiskOptionsPaths");
+		showDisplayOptions.setActionCommand("showDisplayOptions");
+		showAdvancedOptions.setActionCommand("showAdvancedOptions");
+		showMachineOptions.setActionCommand("showMachineOptions");
+		showCPUOptions.setActionCommand("showCPUOptions");
+		showCDROMOptions.setActionCommand("showCDROMOptions");
+		showFloppyOptions.setActionCommand("showFloppyOptions");
+		showBootOptions.setActionCommand("showBootOptions");
+		showKeyboardOptions.setActionCommand("showKeyboardOptions");
+		showSoundHardwareOptions.setActionCommand("showSoundHardwareOptions");
+		showSMPOptions.setActionCommand("showSMPOptions");
+		showNUMAOptions.setActionCommand("showNUMAOptions");
+		showOtherMemoryOptions.setActionCommand("showOtherMemoryOptions");
+		showNetworkOptions.setActionCommand("showNetworkOptions");
+		showRtcOptions.setActionCommand("showRtcOptions");
+		showImageOptions.setActionCommand("showImageOptions");
+		showMonitorOptions.setActionCommand("showMonitorOptions");
+		showUSBOptions.setActionCommand("showUSBOptions");
+		showSpecificBootOptions.setActionCommand("showSpecificBootOptions");
+		showCustomOptions.setActionCommand("showCustomOptions");
+	}
+
+	public void configureListener(ActionListener listener) {
+		okButton.addActionListener(listener);
+		resetRamSizeButton.addActionListener(listener);
+		changeDiskImagePaths.addActionListener(listener);
+		showDisplayOptions.addActionListener(listener);
+		showAdvancedOptions.addActionListener(listener);
+		showMachineOptions.addActionListener(listener);
+		showCPUOptions.addActionListener(listener);
+		showCDROMOptions.addActionListener(listener);
+		showFloppyOptions.addActionListener(listener);
+		showBootOptions.addActionListener(listener);
+		showKeyboardOptions.addActionListener(listener);
+		showSoundHardwareOptions.addActionListener(listener);
+		showSMPOptions.addActionListener(listener);
+		showNUMAOptions.addActionListener(listener);
+		showOtherMemoryOptions.addActionListener(listener);
+		showNetworkOptions.addActionListener(listener);
+		showRtcOptions.addActionListener(listener);
+		showImageOptions.addActionListener(listener);
+		showMonitorOptions.addActionListener(listener);
+		showUSBOptions.addActionListener(listener);
+		showSpecificBootOptions.addActionListener(listener);
+		showCustomOptions.addActionListener(listener);
+	}
+
+	private void rechecks() {
+		// this.pack();
+		this.repaint();
+	}
+
+	public void showMessage(String message) {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(500, 500));
+		JTextArea textArea = new JTextArea(message);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setMargin(new Insets(5, 5, 5, 5));
+		scrollPane.getViewport().setView(textArea);
+		Object trueMessage = scrollPane;
+		JOptionPane.showMessageDialog(null, trueMessage);
+	}
+
+	public JSpinner.NumberEditor getEditor() {
+		return editor;
+	}
+
+	public void setRamSize(String aRamSize) {
+//		this.myview.getSelectedPanel().setRamSize(aRamSize);
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

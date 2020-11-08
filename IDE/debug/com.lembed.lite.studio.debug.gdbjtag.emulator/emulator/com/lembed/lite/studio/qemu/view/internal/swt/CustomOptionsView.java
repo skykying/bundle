@@ -14,154 +14,147 @@ import javax.swing.JTextField;
 import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-public class CustomOptionsView extends DeviceBaseView{
+public class CustomOptionsView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel jpanel;
+	private JPanel jpanel;
 
-    private JButton addButton, okButton, eraseSelectedButton, eraseButton,
-            copyButton, modifyButton, findButton;
+	private JButton addButton, okButton, eraseSelectedButton, eraseButton, copyButton, modifyButton, findButton;
 
-    private JLabel infoLabel;
+	private JLabel infoLabel;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JList<String> listBox;
+	private JList<String> listBox;
 
-    private JTextField textBox;
+	private JTextField textBox;
 
-    private JScrollPane listScrollPane;
+	private JScrollPane listScrollPane;
 
-    private JScrollPane textBoxScrollPane;
+	private JScrollPane textBoxScrollPane;
 
-	
-    public CustomOptionsView(EmulatorQemuMachineControl emc) {
-    	 super(emc);
-        this.jpanel = new JPanel();
-       
+	public CustomOptionsView(EmulatorQemuMachineControl emc) {
+		super(emc);
+		this.jpanel = new JPanel();
 
-        this.gridLayout = new GridLayout(10, 1);
+		this.gridLayout = new GridLayout(10, 1);
 
+		this.jpanel.setLayout(gridLayout);
 
+		this.textBox = new JTextField(0);
 
-        this.jpanel.setLayout(gridLayout);
+		this.textBoxScrollPane = new JScrollPane();
+		this.textBoxScrollPane.setViewportView(this.textBox);
 
-        this.textBox = new JTextField(0);
+		okButton = new JButton("OK");
 
-        this.textBoxScrollPane = new JScrollPane();
-        this.textBoxScrollPane.setViewportView(this.textBox);
+		eraseButton = new JButton("Erase");
 
-        okButton = new JButton("OK");
+		addButton = new JButton("Add new custom option");
 
-        eraseButton = new JButton("Erase");
+		eraseSelectedButton = new JButton("Erase selected custom option");
 
-        addButton = new JButton("Add new custom option");
+		copyButton = new JButton("Copy selected custom option into text box");
 
-        eraseSelectedButton = new JButton("Erase selected custom option");
+		modifyButton = new JButton("Modify selected custom option from text box");
 
-        copyButton = new JButton("Copy selected custom option into text box");
+		findButton = new JButton("Find the text box option in the list");
 
-        modifyButton = new JButton("Modify selected custom option from text box");
+		infoLabel = new JLabel("Please, insert unimplemented options here! The list of your options is showed below!");
 
-        findButton = new JButton("Find the text box option in the list");
+		listBox = new JList<String>();
+		listBox.setVisibleRowCount(2);
+		listBox.setModel(new DefaultListModel<String>());
 
-        infoLabel = new JLabel("Please, insert unimplemented options here! The list of your options is showed below!");
+		listScrollPane = new JScrollPane();
+		listScrollPane.setViewportView(listBox);
 
-        listBox = new JList<String>();
-        listBox.setVisibleRowCount(2);
-        listBox.setModel(new DefaultListModel<String>());
+		this.jpanel.add(this.infoLabel);
 
-        listScrollPane = new JScrollPane();
-        listScrollPane.setViewportView(listBox);
+		this.jpanel.add(this.listScrollPane);
 
-        this.jpanel.add(this.infoLabel);
+		this.jpanel.add(this.textBoxScrollPane);
 
-        this.jpanel.add(this.listScrollPane);
+		this.jpanel.add(this.addButton);
 
-        this.jpanel.add(this.textBoxScrollPane);
+		this.jpanel.add(this.eraseSelectedButton);
 
-        this.jpanel.add(this.addButton);
+		this.jpanel.add(this.eraseButton);
 
-        this.jpanel.add(this.eraseSelectedButton);
+		this.jpanel.add(this.copyButton);
 
-        this.jpanel.add(this.eraseButton);
+		this.jpanel.add(this.modifyButton);
 
-        this.jpanel.add(this.copyButton);
+		this.jpanel.add(this.findButton);
 
-        this.jpanel.add(this.modifyButton);
+		this.jpanel.add(this.okButton);
 
-        this.jpanel.add(this.findButton);
+		this.setTitle("Custom");
 
-        this.jpanel.add(this.okButton);
+		this.add(jpanel);
 
-        this.setTitle("JavaQemu - Custom Options");
+	}
 
-        this.add(jpanel);
-        
+	public void rechecks() {
+		this.repaint();
+	}
 
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		eraseSelectedButton.addActionListener(listener);
+		addButton.addActionListener(listener);
+		copyButton.addActionListener(listener);
+		modifyButton.addActionListener(listener);
+		findButton.addActionListener(listener);
+	}
 
-    public void rechecks() {
-        this.repaint();
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+		eraseSelectedButton.setActionCommand("eraseSelectedButton");
+		addButton.setActionCommand("addButton");
+		copyButton.setActionCommand("copyButton");
+		modifyButton.setActionCommand("modifyButton");
+		findButton.setActionCommand("findButton");
+	}
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        eraseSelectedButton.addActionListener(listener);
-        addButton.addActionListener(listener);
-        copyButton.addActionListener(listener);
-        modifyButton.addActionListener(listener);
-        findButton.addActionListener(listener);
-    }
+	public JButton getAddButton() {
+		return addButton;
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-        eraseSelectedButton.setActionCommand("eraseSelectedButton");
-        addButton.setActionCommand("addButton");
-        copyButton.setActionCommand("copyButton");
-        modifyButton.setActionCommand("modifyButton");
-        findButton.setActionCommand("findButton");
-    }
+	public JButton getOkButton() {
+		return okButton;
+	}
 
-    public JButton getAddButton() {
-        return addButton;
-    }
+	public JButton getEraseSelectedButton() {
+		return eraseSelectedButton;
+	}
 
-    public JButton getOkButton() {
-        return okButton;
-    }
+	public JButton getEraseButton() {
+		return eraseButton;
+	}
 
-    public JButton getEraseSelectedButton() {
-        return eraseSelectedButton;
-    }
+	public JList<String> getListBox() {
+		return listBox;
+	}
 
-    public JButton getEraseButton() {
-        return eraseButton;
-    }
-
-    public JList<String> getListBox() {
-        return listBox;
-    }
-
-    public JTextField getTextBox() {
-        return textBox;
-    }
-
+	public JTextField getTextBox() {
+		return textBox;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-        if (eQControl.getMachineModel().getCustomOptions() != null) {
-            String[] customOptions = eQControl.getMachineModel().getCustomOptions().split("\n");
-            DefaultListModel<String> model = (DefaultListModel<String>) this.getListBox().getModel();
-            for (String customOption : customOptions) {
-                model.addElement(customOption);
-            }
-        }
+		if (eQControl.getMachineModel().getCustomOptions() != null) {
+			String[] customOptions = eQControl.getMachineModel().getCustomOptions().split("\n");
+			DefaultListModel<String> model = (DefaultListModel<String>) this.getListBox().getModel();
+			for (String customOption : customOptions) {
+				model.addElement(customOption);
+			}
+		}
 
-        this.rechecks();
-		
+		this.rechecks();
+
 	}
 }

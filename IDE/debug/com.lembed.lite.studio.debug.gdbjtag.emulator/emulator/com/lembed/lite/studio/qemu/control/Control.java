@@ -68,10 +68,10 @@ public class Control implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("ExitCommand")) {
 			// System.exit(0);
 			boolean runFurther = view.getSizeOfJTabbedPane() > 1;

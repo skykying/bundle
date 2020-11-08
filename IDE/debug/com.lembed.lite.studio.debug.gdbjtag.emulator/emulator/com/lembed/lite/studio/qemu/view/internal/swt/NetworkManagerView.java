@@ -4,107 +4,113 @@ import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class NetworkManagerView extends JPanel {
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-    private static final long serialVersionUID = 1L;
+public class NetworkManagerView extends DeviceBaseView {
 
-    private static final int emptyComponentsNumber = 7;
+	private static final long serialVersionUID = 1L;
 
-    private static final int numberOfEmptyComponentsFromAbove = 4;
+	private static final int emptyComponentsNumber = 7;
 
-    public static final int networkOptionsNumber = 10;
+	private static final int numberOfEmptyComponentsFromAbove = 4;
 
-    private JPanel windowContent;
+	public static final int networkOptionsNumber = 10;
 
-    private GridLayout gridLayout;
+	private JPanel windowContent;
 
-    private JLabel networkManagerLabel;
+	private GridLayout gridLayout;
 
-    private JButton networkoptions[];
+	private JLabel networkManagerLabel;
 
-    private JButton hideButton;
+	private JButton networkoptions[];
 
-    private JButton okButton;
+	private JButton hideButton;
 
-    private JLabel temp[];
+	private JButton okButton;
 
-    public NetworkManagerView() {
-        super();
+	private JLabel temp[];
 
-        windowContent = new JPanel();
+	public NetworkManagerView() {
+		super();
 
-        gridLayout = new GridLayout(4, 5);
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridLayout);
+		gridLayout = new GridLayout(4, 5);
 
-        networkManagerLabel = new JLabel("Choose a network option:");
+		windowContent.setLayout(gridLayout);
 
-        windowContent.add(networkManagerLabel);
+		networkManagerLabel = new JLabel("Choose a network option:");
 
-        this.temp = new JLabel[emptyComponentsNumber];
-        for (int i = 0; i < emptyComponentsNumber; i++) {
-            this.temp[i] = new JLabel();
-            if (i < numberOfEmptyComponentsFromAbove) {
-                windowContent.add(this.temp[i]);
-            }
-        }
+		windowContent.add(networkManagerLabel);
 
-        this.networkoptions = new JButton[networkOptionsNumber];
-        for (int i = 0; i < networkOptionsNumber; i++) {
-            this.networkoptions[i] = new JButton("Network Option " + (i + 1));
-            windowContent.add(this.networkoptions[i]);
-        }
+		this.temp = new JLabel[emptyComponentsNumber];
+		for (int i = 0; i < emptyComponentsNumber; i++) {
+			this.temp[i] = new JLabel();
+			if (i < numberOfEmptyComponentsFromAbove) {
+				windowContent.add(this.temp[i]);
+			}
+		}
 
-        for (int i = numberOfEmptyComponentsFromAbove; i < emptyComponentsNumber; i++) {
-            windowContent.add(this.temp[i]);
-        }
+		this.networkoptions = new JButton[networkOptionsNumber];
+		for (int i = 0; i < networkOptionsNumber; i++) {
+			this.networkoptions[i] = new JButton("Network Option " + (i + 1));
+			windowContent.add(this.networkoptions[i]);
+		}
 
-        okButton = new JButton("OK");
+		for (int i = numberOfEmptyComponentsFromAbove; i < emptyComponentsNumber; i++) {
+			windowContent.add(this.temp[i]);
+		}
 
-        hideButton = new JButton("Hide");
+		okButton = new JButton("OK");
 
-        windowContent.add(okButton);
+		hideButton = new JButton("Hide");
 
-        windowContent.add(hideButton);
+		windowContent.add(okButton);
 
-//        this.setContentPane(windowContent);
-//
-//        this.setTitle("JavaQemu - Network Manager Choice");
+		windowContent.add(hideButton);
 
-        this.rechecks();
-    }
+		this.add(windowContent);
 
-    private void rechecks() {
-//        this.pack();
-        this.repaint();
-    }
+		this.setTitle("Network Manager");
 
-    public void configureListener(ActionListener listener) {
-        hideButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        for (int i = 0; i < networkOptionsNumber; i++) {
-            this.networkoptions[i].addActionListener(listener);
-        }
-    }
+		this.rechecks();
+	}
 
-    public void configureStandardMode() {
-        hideButton.setActionCommand("hideButton");
-        okButton.setActionCommand("okButton");
+	private void rechecks() {
+		// this.pack();
+		this.repaint();
+	}
 
-        networkoptions[0].setActionCommand("networkOption1");
-        networkoptions[1].setActionCommand("networkOption2");
-        networkoptions[2].setActionCommand("networkOption3");
-        networkoptions[3].setActionCommand("networkOption4");
-        networkoptions[4].setActionCommand("networkOption5");
-        networkoptions[5].setActionCommand("networkOption6");
-        networkoptions[6].setActionCommand("networkOption7");
-        networkoptions[7].setActionCommand("networkOption8");
-        networkoptions[8].setActionCommand("networkOption9");
-        networkoptions[9].setActionCommand("networkOption10");
-    }
+	public void configureListener(ActionListener listener) {
+		hideButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		for (int i = 0; i < networkOptionsNumber; i++) {
+			this.networkoptions[i].addActionListener(listener);
+		}
+	}
+
+	public void configureStandardMode() {
+		hideButton.setActionCommand("hideButton");
+		okButton.setActionCommand("okButton");
+
+		networkoptions[0].setActionCommand("networkOption1");
+		networkoptions[1].setActionCommand("networkOption2");
+		networkoptions[2].setActionCommand("networkOption3");
+		networkoptions[3].setActionCommand("networkOption4");
+		networkoptions[4].setActionCommand("networkOption5");
+		networkoptions[5].setActionCommand("networkOption6");
+		networkoptions[6].setActionCommand("networkOption7");
+		networkoptions[7].setActionCommand("networkOption8");
+		networkoptions[8].setActionCommand("networkOption9");
+		networkoptions[9].setActionCommand("networkOption10");
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+		// TODO Auto-generated method stub
+
+	}
 }

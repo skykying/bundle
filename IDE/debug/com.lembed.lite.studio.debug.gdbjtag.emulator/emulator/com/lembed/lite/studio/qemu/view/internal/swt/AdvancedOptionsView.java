@@ -12,130 +12,130 @@ import javax.swing.JTextField;
 import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-public class AdvancedOptionsView extends JPanel implements IDeviceView{
+public class AdvancedOptionsView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel jpanel;
+	private JPanel jpanel;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JLabel temp[];
+	private JLabel temp[];
 
-    private JCheckBox win2kHackOption;
+	private JCheckBox win2kHackOption;
 
-    private JCheckBox noAcpiOption;
+	private JCheckBox noAcpiOption;
 
-    private JLabel nameDescription;
+	private JLabel nameDescription;
 
-    private JTextField name;
+	private JTextField name;
 
-    private JCheckBox snapshotOption;
+	private JCheckBox snapshotOption;
 
-    private JCheckBox noFdBootchkOption;
+	private JCheckBox noFdBootchkOption;
 
-    private JCheckBox noHpetOption;
+	private JCheckBox noHpetOption;
 
-    private JButton okButton, eraseButton;
+	private JButton okButton, eraseButton;
 
 	private String title;
 
 	private EmulatorQemuMachineControl myfile;
 
-    public AdvancedOptionsView(EmulatorQemuMachineControl myfile) {
-    	this.myfile = myfile;
-        this.jpanel = new JPanel();
+	public AdvancedOptionsView(EmulatorQemuMachineControl myfile) {
+		this.myfile = myfile;
+		this.jpanel = new JPanel();
 
-        this.gridLayout = new GridLayout(7, 2);
+		this.gridLayout = new GridLayout(7, 2);
 
-        jpanel.setLayout(gridLayout);
+		jpanel.setLayout(gridLayout);
 
-        this.temp = new JLabel[8];
-        for (int i = 0; i < this.temp.length; i++) {
-            this.temp[i] = new JLabel();
-        }
+		this.temp = new JLabel[8];
+		for (int i = 0; i < this.temp.length; i++) {
+			this.temp[i] = new JLabel();
+		}
 
-        win2kHackOption = new JCheckBox("Enable win2kHack Option!");
+		win2kHackOption = new JCheckBox("Enable win2kHack Option!");
 
-        jpanel.add(win2kHackOption);
-        jpanel.add(temp[0]);
+		jpanel.add(win2kHackOption);
+		jpanel.add(temp[0]);
 
-        noAcpiOption = new JCheckBox("Disable ACPI Support!");
+		noAcpiOption = new JCheckBox("Disable ACPI Support!");
 
-        jpanel.add(noAcpiOption);
-        jpanel.add(temp[1]);
+		jpanel.add(noAcpiOption);
+		jpanel.add(temp[1]);
 
-        nameDescription = new JLabel("Guest name:");
+		nameDescription = new JLabel("Guest name:");
 
-        name = new JTextField();
+		name = new JTextField();
 
-        jpanel.add(nameDescription);
+		jpanel.add(nameDescription);
 
-        jpanel.add(name);
+		jpanel.add(name);
 
-        snapshotOption = new JCheckBox("Enable Snapshot Option!");
+		snapshotOption = new JCheckBox("Enable Snapshot Option!");
 
-        jpanel.add(snapshotOption);
-        jpanel.add(this.temp[2]);
+		jpanel.add(snapshotOption);
+		jpanel.add(this.temp[2]);
 
-        noFdBootchkOption = new JCheckBox("Disable boot signature checking for floppy disks in BIOS!");
+		noFdBootchkOption = new JCheckBox("Disable boot signature checking for floppy disks in BIOS!");
 
-        jpanel.add(noFdBootchkOption);
-        jpanel.add(this.temp[3]);
+		jpanel.add(noFdBootchkOption);
+		jpanel.add(this.temp[3]);
 
-        noHpetOption = new JCheckBox("Disable HPET Support!");
+		noHpetOption = new JCheckBox("Disable HPET Support!");
 
-        jpanel.add(noHpetOption);
-        jpanel.add(this.temp[4]);
+		jpanel.add(noHpetOption);
+		jpanel.add(this.temp[4]);
 
-        okButton = new JButton("OK");
+		okButton = new JButton("OK");
 
-        eraseButton = new JButton("Erase");
+		eraseButton = new JButton("Erase");
 
-        jpanel.add(okButton);
+		jpanel.add(okButton);
 
-        jpanel.add(eraseButton);
-        
-        this.setTitle("JavaQemu - Advanced Options");
+		jpanel.add(eraseButton);
 
-        this.add(jpanel);
+		this.setTitle("Advanced");
 
-        this.setVisible(false);
-    }
+		this.add(jpanel);
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-    }
+		this.setVisible(false);
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+	}
 
-    public JCheckBox getWin2kHackOption() {
-        return win2kHackOption;
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+	}
 
-    public JCheckBox getNoAcpiOption() {
-        return noAcpiOption;
-    }
+	public JCheckBox getWin2kHackOption() {
+		return win2kHackOption;
+	}
 
-    public JTextField getNameContents() {
-        return name;
-    }
+	public JCheckBox getNoAcpiOption() {
+		return noAcpiOption;
+	}
 
-    public JCheckBox getSnapshotOption() {
-        return snapshotOption;
-    }
+	public JTextField getNameContents() {
+		return name;
+	}
 
-    public JCheckBox getNoFdBootchkOption() {
-        return noFdBootchkOption;
-    }
+	public JCheckBox getSnapshotOption() {
+		return snapshotOption;
+	}
 
-    public JCheckBox getNoHpetOption() {
-        return noHpetOption;
-    }
+	public JCheckBox getNoFdBootchkOption() {
+		return noFdBootchkOption;
+	}
+
+	public JCheckBox getNoHpetOption() {
+		return noHpetOption;
+	}
 
 	@Override
 	public void setTitle(String string) {
@@ -149,39 +149,39 @@ public class AdvancedOptionsView extends JPanel implements IDeviceView{
 
 	@Override
 	public void applyView(IemultorStore store) {
-        if (myfile.getMachineModel().getWin2khackOption() != null) {
-            if (myfile.getMachineModel().getWin2khackOption().equals("true")) {
-                this.win2kHackOption.setSelected(true);
-            }
-        }
+		if (myfile.getMachineModel().getWin2khackOption() != null) {
+			if (myfile.getMachineModel().getWin2khackOption().equals("true")) {
+				this.win2kHackOption.setSelected(true);
+			}
+		}
 
-        if (myfile.getMachineModel().getNoacpiOption() != null) {
-            if (myfile.getMachineModel().getNoacpiOption().equals("true")) {
-                this.noAcpiOption.setSelected(true);
-            }
-        }
+		if (myfile.getMachineModel().getNoacpiOption() != null) {
+			if (myfile.getMachineModel().getNoacpiOption().equals("true")) {
+				this.noAcpiOption.setSelected(true);
+			}
+		}
 
-        if (myfile.getMachineModel().getNameOption() != null) {
-            this.name.setText(myfile.getMachineModel().getNameOption());
-        }
+		if (myfile.getMachineModel().getNameOption() != null) {
+			this.name.setText(myfile.getMachineModel().getNameOption());
+		}
 
-        if (myfile.getMachineModel().getSnapshotOption() != null) {
-            if (myfile.getMachineModel().getSnapshotOption().equals("true")) {
-                this.snapshotOption.setSelected(true);
-            }
-        }
+		if (myfile.getMachineModel().getSnapshotOption() != null) {
+			if (myfile.getMachineModel().getSnapshotOption().equals("true")) {
+				this.snapshotOption.setSelected(true);
+			}
+		}
 
-        if (myfile.getMachineModel().getNoFdBootchkOption() != null) {
-            if (myfile.getMachineModel().getNoFdBootchkOption().equals("true")) {
-                this.noFdBootchkOption.setSelected(true);
-            }
-        }
+		if (myfile.getMachineModel().getNoFdBootchkOption() != null) {
+			if (myfile.getMachineModel().getNoFdBootchkOption().equals("true")) {
+				this.noFdBootchkOption.setSelected(true);
+			}
+		}
 
-        if (myfile.getMachineModel().getNoHpetOption() != null) {
-            if (myfile.getMachineModel().getNoHpetOption().equals("true")) {
-                this.noHpetOption.setSelected(true);
-            }
-        }
-		
+		if (myfile.getMachineModel().getNoHpetOption() != null) {
+			if (myfile.getMachineModel().getNoHpetOption().equals("true")) {
+				this.noHpetOption.setSelected(true);
+			}
+		}
+
 	}
 }

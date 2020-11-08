@@ -4,15 +4,15 @@ import javax.swing.JPanel;
 
 import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
 
-public abstract class DeviceBaseView extends JPanel implements IDeviceView{
-	
+public abstract class DeviceBaseView extends JPanel implements IDeviceView {
+
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 	private String title;
 	EmulatorQemuMachineControl eQControl;
-	
+
 	public DeviceBaseView(EmulatorQemuMachineControl fc) {
 		eQControl = fc;
 	}
@@ -20,7 +20,7 @@ public abstract class DeviceBaseView extends JPanel implements IDeviceView{
 	public DeviceBaseView() {
 		eQControl = null;
 	}
-	
+
 	@Override
 	public void setTitle(String string) {
 		title = string;
@@ -30,6 +30,5 @@ public abstract class DeviceBaseView extends JPanel implements IDeviceView{
 	public String getTitle() {
 		return title;
 	}
-
 
 }

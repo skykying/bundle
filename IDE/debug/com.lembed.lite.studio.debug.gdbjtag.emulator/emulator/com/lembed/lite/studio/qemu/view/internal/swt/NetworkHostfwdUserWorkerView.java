@@ -5,8 +5,6 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -14,298 +12,304 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
 import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-public class NetworkHostfwdUserWorkerView extends JPanel {
+public class NetworkHostfwdUserWorkerView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JLabel hostfwdDescription;
+	private JLabel hostfwdDescription;
 
-    private JTextArea hostfwd;
+	private JTextArea hostfwd;
 
-    private JButton add;
+	private JButton add;
 
-    private JLabel connectionTypeDescription;
+	private JLabel connectionTypeDescription;
 
-    private JComboBox<String> connectionType;
+	private JComboBox<String> connectionType;
 
-    private JLabel hostaddrDescription;
+	private JLabel hostaddrDescription;
 
-    private JTextField hostaddr;
+	private JTextField hostaddr;
 
-    private JLabel hostportDescription;
+	private JLabel hostportDescription;
 
-    private JTextField hostport;
+	private JTextField hostport;
 
-    private JLabel guestaddrDescription;
+	private JLabel guestaddrDescription;
 
-    private JTextField guestaddr;
+	private JTextField guestaddr;
 
-    private JLabel guestportDescription;
+	private JLabel guestportDescription;
 
-    private JTextField guestport;
+	private JTextField guestport;
 
-    private JLabel temp;
+	private JLabel temp;
 
-    private JTextField option;
+	private JTextField option;
 
-    private JButton remove;
+	private JButton remove;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
-    public NetworkHostfwdUserWorkerView(EmulatorQemuMachineControl myfile, int position) {
-        super();
+	private int position;
 
-        windowContent = new JPanel();
+	public NetworkHostfwdUserWorkerView(EmulatorQemuMachineControl eQControl, int position) {
+		super(eQControl);
+		this.position = position;
 
-        gridLayout = new GridLayout(9, 2);
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridLayout);
+		gridLayout = new GridLayout(9, 2);
 
-        hostfwdDescription = new JLabel("'hostfwd' Option(s):");
+		windowContent.setLayout(gridLayout);
 
-        windowContent.add(hostfwdDescription);
+		hostfwdDescription = new JLabel("'hostfwd' Option(s):");
 
-        hostfwd = new JTextArea("", 3, 30);
-        hostfwd.setLineWrap(true);
-        hostfwd.setWrapStyleWord(true);
+		windowContent.add(hostfwdDescription);
 
-        JScrollPane scrollPane = new JScrollPane(this.hostfwd);
+		hostfwd = new JTextArea("", 3, 30);
+		hostfwd.setLineWrap(true);
+		hostfwd.setWrapStyleWord(true);
 
-        windowContent.add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane(this.hostfwd);
 
-        this.add = new JButton("Add the following option:");
+		windowContent.add(scrollPane);
 
-        windowContent.add(this.add);
+		this.add = new JButton("Add the following option:");
 
-        this.temp = new JLabel();
+		windowContent.add(this.add);
 
-        windowContent.add(this.temp);
+		this.temp = new JLabel();
 
-        connectionTypeDescription = new JLabel("Choose the connection type:");
+		windowContent.add(this.temp);
 
-        windowContent.add(this.connectionTypeDescription);
+		connectionTypeDescription = new JLabel("Choose the connection type:");
 
-        String[] connections = {"TCP", "UDP"};
+		windowContent.add(this.connectionTypeDescription);
 
-        connectionType = new JComboBox<String>(connections);
+		String[] connections = { "TCP", "UDP" };
 
-        windowContent.add(this.connectionType);
+		connectionType = new JComboBox<String>(connections);
 
-        hostaddrDescription = new JLabel("Choose the host address:");
+		windowContent.add(this.connectionType);
 
-        windowContent.add(this.hostaddrDescription);
+		hostaddrDescription = new JLabel("Choose the host address:");
 
-        hostaddr = new JTextField();
+		windowContent.add(this.hostaddrDescription);
 
-        windowContent.add(this.hostaddr);
+		hostaddr = new JTextField();
 
-        hostportDescription = new JLabel("Choose the host port:");
+		windowContent.add(this.hostaddr);
 
-        windowContent.add(this.hostportDescription);
+		hostportDescription = new JLabel("Choose the host port:");
 
-        hostport = new JTextField();
+		windowContent.add(this.hostportDescription);
 
-        windowContent.add(hostport);
+		hostport = new JTextField();
 
-        guestaddrDescription = new JLabel("Choose the guest address:");
-
-        windowContent.add(guestaddrDescription);
-
-        guestaddr = new JTextField();
-
-        windowContent.add(this.guestaddr);
-
-        guestportDescription = new JLabel("Choose the guest port:");
-
-        windowContent.add(this.guestportDescription);
-
-        guestport = new JTextField();
-
-        windowContent.add(guestport);
-
-        this.remove = new JButton("Remove a option:");
-
-        windowContent.add(this.remove);
-
-        this.option = new JTextField();
-
-        windowContent.add(this.option);
-
-        okButton = new JButton("OK");
-
-        eraseButton = new JButton("Erase");
-
-        windowContent.add(okButton);
-
-        windowContent.add(eraseButton);
-
-//        this.setContentPane(windowContent);
-//
-//        this.setTitle("JavaQemu - Network User Choice");
-
-        switch (position) {
-            case 1:
-                if (myfile.getMachineModel().getFirstNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getFirstNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel()
-                                .getFirstNetworkExtraOption());
-                    }
-                }
-                break;
-            case 2:
-                if (myfile.getMachineModel().getSecondNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getSecondNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel()
-                                .getSecondNetworkExtraOption());
-                    }
-                }
-                break;
-            case 3:
-                if (myfile.getMachineModel().getThirdNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getThirdNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getThirdNetworkExtraOption());
-                    }
-                }
-                break;
-            case 4:
-                if (myfile.getMachineModel().getFourthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getFourthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getFourthNetworkExtraOption());
-                    }
-                }
-                break;
-            case 5:
-                if (myfile.getMachineModel().getFifthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getFifthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getFifthNetworkExtraOption());
-                    }
-                }
-                break;
-            case 6:
-                if (myfile.getMachineModel().getSixthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getSixthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getSixthNetworkExtraOption());
-                    }
-                }
-                break;
-            case 7:
-                if (myfile.getMachineModel().getSeventhNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getSeventhNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getSeventhNetworkExtraOption());
-                    }
-                }
-                break;
-            case 8:
-                if (myfile.getMachineModel().getEighthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getEighthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getEighthNetworkExtraOption());
-                    }
-                }
-                break;
-            case 9:
-                if (myfile.getMachineModel().getNinthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getNinthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getNinthNetworkExtraOption());
-                    }
-                }
-                break;
-            case 10:
-                if (myfile.getMachineModel().getTenthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel().getTenthNetworkExtraOption())) {
-                        this.buildTextArea(myfile.getMachineModel().getTenthNetworkExtraOption());
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-
-        this.rechecks();
-    }
-
-    private void rechecks() {
-//        this.pack();
-        this.repaint();
-    }
-
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        add.addActionListener(listener);
-        remove.addActionListener(listener);
-    }
-
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-        add.setActionCommand("add");
-        remove.setActionCommand("remove");
-    }
-
-    public void buildMe(String option) {
-        this.hostfwd.append(option + "\n");
-    }
-
-    public void buildTextArea(String optionString) {
-        String[] options = optionString.split(",");
-        for (String option : options) {
-            if (option.startsWith("hostfwd=")) {
-                this.hostfwd.append(option.substring(option.indexOf("=") + 1) + "\n");
-            }
-        }
-    }
-
-    public void removeMe(String option) {
-        String options[] = hostfwd.getText().split("\n");
-        hostfwd.setText("");
-        for (String anOption : options) {
-            if (!anOption.equals(option)) {
-                hostfwd.append(anOption + "\n");
-            }
-        }
-    }
-
-    private boolean contains(String option) {
-        if (option.contains("user")) {
-            return true;
-        }
-        return false;
-    }
-
-    public JTextArea getHostfwd() {
-        return hostfwd;
-    }
-
-    public JComboBox<String> getConnectionType() {
-        return connectionType;
-    }
-
-    public JTextField getHostaddr() {
-        return hostaddr;
-    }
-
-    public JTextField getHostport() {
-        return hostport;
-    }
-
-    public JTextField getGuestaddr() {
-        return guestaddr;
-    }
-
-    public JTextField getGuestport() {
-        return guestport;
-    }
-
-    public JTextField getOption() {
-        return option;
-    }
+		windowContent.add(hostport);
+
+		guestaddrDescription = new JLabel("Choose the guest address:");
+
+		windowContent.add(guestaddrDescription);
+
+		guestaddr = new JTextField();
+
+		windowContent.add(this.guestaddr);
+
+		guestportDescription = new JLabel("Choose the guest port:");
+
+		windowContent.add(this.guestportDescription);
+
+		guestport = new JTextField();
+
+		windowContent.add(guestport);
+
+		this.remove = new JButton("Remove a option:");
+
+		windowContent.add(this.remove);
+
+		this.option = new JTextField();
+
+		windowContent.add(this.option);
+
+		okButton = new JButton("OK");
+
+		eraseButton = new JButton("Erase");
+
+		windowContent.add(okButton);
+
+		windowContent.add(eraseButton);
+
+		this.add(windowContent);
+
+		this.setTitle("JavaQemu - Network User Choice");
+
+	}
+
+	private void rechecks() {
+		// this.pack();
+		this.repaint();
+	}
+
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		add.addActionListener(listener);
+		remove.addActionListener(listener);
+	}
+
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+		add.setActionCommand("add");
+		remove.setActionCommand("remove");
+	}
+
+	public void buildMe(String option) {
+		this.hostfwd.append(option + "\n");
+	}
+
+	public void buildTextArea(String optionString) {
+		String[] options = optionString.split(",");
+		for (String option : options) {
+			if (option.startsWith("hostfwd=")) {
+				this.hostfwd.append(option.substring(option.indexOf("=") + 1) + "\n");
+			}
+		}
+	}
+
+	public void removeMe(String option) {
+		String options[] = hostfwd.getText().split("\n");
+		hostfwd.setText("");
+		for (String anOption : options) {
+			if (!anOption.equals(option)) {
+				hostfwd.append(anOption + "\n");
+			}
+		}
+	}
+
+	private boolean contains(String option) {
+		if (option.contains("user")) {
+			return true;
+		}
+		return false;
+	}
+
+	public JTextArea getHostfwd() {
+		return hostfwd;
+	}
+
+	public JComboBox<String> getConnectionType() {
+		return connectionType;
+	}
+
+	public JTextField getHostaddr() {
+		return hostaddr;
+	}
+
+	public JTextField getHostport() {
+		return hostport;
+	}
+
+	public JTextField getGuestaddr() {
+		return guestaddr;
+	}
+
+	public JTextField getGuestport() {
+		return guestport;
+	}
+
+	public JTextField getOption() {
+		return option;
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+
+		switch (position) {
+		case 1:
+			if (eQControl.getMachineModel().getFirstNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFirstNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getFirstNetworkExtraOption());
+				}
+			}
+			break;
+		case 2:
+			if (eQControl.getMachineModel().getSecondNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSecondNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getSecondNetworkExtraOption());
+				}
+			}
+			break;
+		case 3:
+			if (eQControl.getMachineModel().getThirdNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getThirdNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getThirdNetworkExtraOption());
+				}
+			}
+			break;
+		case 4:
+			if (eQControl.getMachineModel().getFourthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFourthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getFourthNetworkExtraOption());
+				}
+			}
+			break;
+		case 5:
+			if (eQControl.getMachineModel().getFifthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFifthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getFifthNetworkExtraOption());
+				}
+			}
+			break;
+		case 6:
+			if (eQControl.getMachineModel().getSixthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSixthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getSixthNetworkExtraOption());
+				}
+			}
+			break;
+		case 7:
+			if (eQControl.getMachineModel().getSeventhNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSeventhNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getSeventhNetworkExtraOption());
+				}
+			}
+			break;
+		case 8:
+			if (eQControl.getMachineModel().getEighthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getEighthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getEighthNetworkExtraOption());
+				}
+			}
+			break;
+		case 9:
+			if (eQControl.getMachineModel().getNinthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getNinthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getNinthNetworkExtraOption());
+				}
+			}
+			break;
+		case 10:
+			if (eQControl.getMachineModel().getTenthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getTenthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getTenthNetworkExtraOption());
+				}
+			}
+			break;
+		default:
+			break;
+		}
+
+		this.rechecks();
+
+	}
 }

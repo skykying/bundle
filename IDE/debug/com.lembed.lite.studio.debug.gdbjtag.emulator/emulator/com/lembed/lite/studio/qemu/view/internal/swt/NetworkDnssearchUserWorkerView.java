@@ -15,225 +15,221 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class NetworkDnssearchUserWorkerView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JLabel dnssearchDescription;
+	private JLabel dnssearchDescription;
 
-    private JTextArea dnssearch;
+	private JTextArea dnssearch;
 
-    private JButton add;
+	private JButton add;
 
-    private JTextField text;
+	private JTextField text;
 
-    private JTextField option;
+	private JTextField option;
 
-    private JButton remove;
+	private JButton remove;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
 	private int position;
 
-    public NetworkDnssearchUserWorkerView(EmulatorQemuMachineControl emc, int position) {
-        super(emc);
+	public NetworkDnssearchUserWorkerView(EmulatorQemuMachineControl emc, int position) {
+		super(emc);
 
-        this.position = position;
-        
-        windowContent = new JPanel();
+		this.position = position;
 
-        gridLayout = new GridLayout(4, 2);
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridLayout);
+		gridLayout = new GridLayout(4, 2);
 
-        dnssearchDescription = new JLabel("'dnssearch' Option(s):");
+		windowContent.setLayout(gridLayout);
 
-        windowContent.add(dnssearchDescription);
+		dnssearchDescription = new JLabel("'dnssearch' Option(s):");
 
-        dnssearch = new JTextArea("", 3, 30);
-        dnssearch.setLineWrap(true);
-        dnssearch.setWrapStyleWord(true);
+		windowContent.add(dnssearchDescription);
 
-        JScrollPane scrollPane = new JScrollPane(this.dnssearch);
+		dnssearch = new JTextArea("", 3, 30);
+		dnssearch.setLineWrap(true);
+		dnssearch.setWrapStyleWord(true);
 
-        windowContent.add(scrollPane);
+		JScrollPane scrollPane = new JScrollPane(this.dnssearch);
 
-        this.option = new JTextField();
+		windowContent.add(scrollPane);
 
-        this.add = new JButton("Add the option:");
+		this.option = new JTextField();
 
-        windowContent.add(this.add);
+		this.add = new JButton("Add the option:");
 
-        this.text = new JTextField();
+		windowContent.add(this.add);
 
-        windowContent.add(this.text);
+		this.text = new JTextField();
 
-        this.remove = new JButton("Remove the option:");
+		windowContent.add(this.text);
 
-        windowContent.add(this.remove);
+		this.remove = new JButton("Remove the option:");
 
-        windowContent.add(this.option);
+		windowContent.add(this.remove);
 
-        okButton = new JButton("OK");
+		windowContent.add(this.option);
 
-        eraseButton = new JButton("Erase");
+		okButton = new JButton("OK");
 
-        windowContent.add(okButton);
+		eraseButton = new JButton("Erase");
 
-        windowContent.add(eraseButton);
+		windowContent.add(okButton);
 
-        this.add(windowContent);
+		windowContent.add(eraseButton);
 
-        this.setTitle("JavaQemu - Network User Choice");
+		this.add(windowContent);
 
-    }
+		this.setTitle("Network User");
 
-    private void rechecks() {
-        this.repaint();
-    }
+	}
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        add.addActionListener(listener);
-        remove.addActionListener(listener);
-    }
+	private void rechecks() {
+		this.repaint();
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-        add.setActionCommand("add");
-        remove.setActionCommand("remove");
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		add.addActionListener(listener);
+		remove.addActionListener(listener);
+	}
 
-    public void buildMe(String option) {
-        this.dnssearch.append(option + "\n");
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+		add.setActionCommand("add");
+		remove.setActionCommand("remove");
+	}
 
-    public void buildTextArea(String optionString) {
-        String[] options = optionString.split(",");
-        for (String option : options) {
-            if (option.startsWith("dnssearch=")) {
-                this.dnssearch.append(option.substring(option.indexOf("=") + 1) + "\n");
-            }
-        }
-    }
+	public void buildMe(String option) {
+		this.dnssearch.append(option + "\n");
+	}
 
-    public void removeMe(String option) {
-        String options[] = dnssearch.getText().split("\n");
-        dnssearch.setText("");
-        for (String anOption : options) {
-            if (!anOption.equals(option)) {
-                dnssearch.append(anOption + "\n");
-            }
-        }
-    }
+	public void buildTextArea(String optionString) {
+		String[] options = optionString.split(",");
+		for (String option : options) {
+			if (option.startsWith("dnssearch=")) {
+				this.dnssearch.append(option.substring(option.indexOf("=") + 1) + "\n");
+			}
+		}
+	}
 
-    private boolean contains(String option) {
-        if (option.contains("user")) {
-            return true;
-        }
-        return false;
-    }
+	public void removeMe(String option) {
+		String options[] = dnssearch.getText().split("\n");
+		dnssearch.setText("");
+		for (String anOption : options) {
+			if (!anOption.equals(option)) {
+				dnssearch.append(anOption + "\n");
+			}
+		}
+	}
 
-    public JTextArea getDnssearch() {
-        return dnssearch;
-    }
+	private boolean contains(String option) {
+		if (option.contains("user")) {
+			return true;
+		}
+		return false;
+	}
 
-    public JTextField getOption() {
-        return option;
-    }
+	public JTextArea getDnssearch() {
+		return dnssearch;
+	}
 
-    public JTextField getText() {
-        return text;
-    }
+	public JTextField getOption() {
+		return option;
+	}
+
+	public JTextField getText() {
+		return text;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-		 switch (position) {
-         case 1:
-             if (eQControl.getMachineModel().getFirstNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel()
-                         .getFirstNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel()
-                             .getFirstNetworkExtraOption());
-                 }
-             }
-             break;
-         case 2:
-             if (eQControl.getMachineModel().getSecondNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel()
-                         .getSecondNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel()
-                             .getSecondNetworkExtraOption());
-                 }
-             }
-             break;
-         case 3:
-             if (eQControl.getMachineModel().getThirdNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getThirdNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getThirdNetworkExtraOption());
-                 }
-             }
-             break;
-         case 4:
-             if (eQControl.getMachineModel().getFourthNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getFourthNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getFourthNetworkExtraOption());
-                 }
-             }
-             break;
-         case 5:
-             if (eQControl.getMachineModel().getFifthNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getFifthNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getFifthNetworkExtraOption());
-                 }
-             }
-             break;
-         case 6:
-             if (eQControl.getMachineModel().getSixthNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getSixthNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getSixthNetworkExtraOption());
-                 }
-             }
-             break;
-         case 7:
-             if (eQControl.getMachineModel().getSeventhNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getSeventhNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getSeventhNetworkExtraOption());
-                 }
-             }
-             break;
-         case 8:
-             if (eQControl.getMachineModel().getEighthNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getEighthNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getEighthNetworkExtraOption());
-                 }
-             }
-             break;
-         case 9:
-             if (eQControl.getMachineModel().getNinthNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getNinthNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getNinthNetworkExtraOption());
-                 }
-             }
-             break;
-         case 10:
-             if (eQControl.getMachineModel().getTenthNetworkExtraOption() != null) {
-                 if (this.contains(eQControl.getMachineModel().getTenthNetworkExtraOption())) {
-                     this.buildTextArea(eQControl.getMachineModel().getTenthNetworkExtraOption());
-                 }
-             }
-             break;
-         default:
-             break;
-     }
+		switch (position) {
+		case 1:
+			if (eQControl.getMachineModel().getFirstNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFirstNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getFirstNetworkExtraOption());
+				}
+			}
+			break;
+		case 2:
+			if (eQControl.getMachineModel().getSecondNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSecondNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getSecondNetworkExtraOption());
+				}
+			}
+			break;
+		case 3:
+			if (eQControl.getMachineModel().getThirdNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getThirdNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getThirdNetworkExtraOption());
+				}
+			}
+			break;
+		case 4:
+			if (eQControl.getMachineModel().getFourthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFourthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getFourthNetworkExtraOption());
+				}
+			}
+			break;
+		case 5:
+			if (eQControl.getMachineModel().getFifthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFifthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getFifthNetworkExtraOption());
+				}
+			}
+			break;
+		case 6:
+			if (eQControl.getMachineModel().getSixthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSixthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getSixthNetworkExtraOption());
+				}
+			}
+			break;
+		case 7:
+			if (eQControl.getMachineModel().getSeventhNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSeventhNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getSeventhNetworkExtraOption());
+				}
+			}
+			break;
+		case 8:
+			if (eQControl.getMachineModel().getEighthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getEighthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getEighthNetworkExtraOption());
+				}
+			}
+			break;
+		case 9:
+			if (eQControl.getMachineModel().getNinthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getNinthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getNinthNetworkExtraOption());
+				}
+			}
+			break;
+		case 10:
+			if (eQControl.getMachineModel().getTenthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getTenthNetworkExtraOption())) {
+					this.buildTextArea(eQControl.getMachineModel().getTenthNetworkExtraOption());
+				}
+			}
+			break;
+		default:
+			break;
+		}
 
-     this.rechecks();
-		
+		this.rechecks();
+
 	}
 }

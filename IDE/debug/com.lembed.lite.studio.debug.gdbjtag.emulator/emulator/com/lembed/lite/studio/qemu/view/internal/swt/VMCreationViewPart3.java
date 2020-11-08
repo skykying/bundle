@@ -19,521 +19,528 @@ import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 
-public class VMCreationViewPart3 extends JPanel {
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-    private static final long serialVersionUID = 1L;
+public class VMCreationViewPart3 extends DeviceBaseView {
 
-    private JPanel windowContent;
+	private static final long serialVersionUID = 1L;
 
-    private GridBagLayout gridBagLayout;
+	private JPanel windowContent;
 
-    private GridBagConstraints gridBagConstraints;
+	private GridBagLayout gridBagLayout;
 
-    private JLabel windowDescription;
+	private GridBagConstraints gridBagConstraints;
 
-    private JLabel diskImageSizeDescription;
+	private JLabel windowDescription;
 
-    private JSpinner diskImageSize;
+	private JLabel diskImageSizeDescription;
 
-    private SpinnerModel spinnerModel;
+	private JSpinner diskImageSize;
 
-    private JSpinner.NumberEditor editor;
+	private SpinnerModel spinnerModel;
 
-    private DecimalFormat format;
+	private JSpinner.NumberEditor editor;
 
-    private JLabel measureUnity;
+	private DecimalFormat format;
 
-    private JButton cancelButton;
+	private JLabel measureUnity;
 
-    private JButton backButton;
+	private JButton cancelButton;
 
-    private JButton finishButton;
+	private JButton backButton;
 
-    private JLabel diskNameDescription;
+	private JButton finishButton;
 
-    private JTextField diskName;
+	private JLabel diskNameDescription;
 
-    private JLabel diskExtensionDescription;
+	private JTextField diskName;
 
-    private JComboBox<String> diskExtension;
+	private JLabel diskExtensionDescription;
 
-    private String oldDiskExtension;
+	private JComboBox<String> diskExtension;
 
-    private boolean suboptions;
+	private String oldDiskExtension;
 
-    private JCheckBox encryption_box;
+	private boolean suboptions;
 
-    private JCheckBox preallocation_metadata_box;
+	private JCheckBox encryption_box;
 
-    private JCheckBox cluster_size_box;
+	private JCheckBox preallocation_metadata_box;
 
-    private JComboBox<String> cluster_size_options;
+	private JCheckBox cluster_size_box;
 
-    private JRadioButton static_vdi_box;
+	private JComboBox<String> cluster_size_options;
 
-    private JCheckBox compat6_vmdk_box;
+	private JRadioButton static_vdi_box;
 
-    private JCheckBox subformat_vmdk_box;
+	private JCheckBox compat6_vmdk_box;
 
-    private JComboBox<String> subformat_vmdk_combo;
+	private JCheckBox subformat_vmdk_box;
 
-    private JRadioButton subformat_vpc_box;
+	private JComboBox<String> subformat_vmdk_combo;
 
-    private JComboBox<String> subformat_vpc_combo;
+	private JRadioButton subformat_vpc_box;
 
-    public VMCreationViewPart3() {
-        super();
+	private JComboBox<String> subformat_vpc_combo;
 
-        windowContent = new JPanel();
+	public VMCreationViewPart3() {
+		super();
 
-        gridBagLayout = new GridBagLayout();
-        this.gridBagConstraints = new GridBagConstraints();
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridBagLayout);
+		gridBagLayout = new GridBagLayout();
+		this.gridBagConstraints = new GridBagConstraints();
 
-        windowDescription = new JLabel("Specify disk image details:");
+		windowContent.setLayout(gridBagLayout);
 
-        diskImageSizeDescription = new JLabel("Disk image size:");
+		windowDescription = new JLabel("Specify disk image details:");
 
-        this.spinnerModel = new SpinnerNumberModel(0.0, // initial value
-                0.0, // min
-                4096.0, // max
-                1); // step
+		diskImageSizeDescription = new JLabel("Disk image size:");
 
-        this.diskImageSize = new JSpinner(spinnerModel);
+		this.spinnerModel = new SpinnerNumberModel(0.0, // initial value
+				0.0, // min
+				4096.0, // max
+				1); // step
 
-        editor = (JSpinner.NumberEditor) this.diskImageSize
-                .getEditor();
-        format = editor.getFormat();
-        format.setMinimumFractionDigits(3);
-        editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
+		this.diskImageSize = new JSpinner(spinnerModel);
 
-        this.measureUnity = new JLabel("GB");
+		editor = (JSpinner.NumberEditor) this.diskImageSize.getEditor();
+		format = editor.getFormat();
+		format.setMinimumFractionDigits(3);
+		editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
 
-        cancelButton = new JButton("Cancel");
+		this.measureUnity = new JLabel("GB");
 
-        backButton = new JButton("< Back");
+		cancelButton = new JButton("Cancel");
 
-        finishButton = new JButton("Finish");
+		backButton = new JButton("< Back");
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 3;
+		finishButton = new JButton("Finish");
 
-        windowContent.add(windowDescription, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.gridwidth = 3;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.gridwidth = 1;
+		windowContent.add(windowDescription, gridBagConstraints);
 
-        windowContent.add(diskImageSizeDescription, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.weightx = 0.5;
+		gridBagConstraints.gridwidth = 1;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.5;
+		windowContent.add(diskImageSizeDescription, gridBagConstraints);
 
-        windowContent.add(diskImageSize, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.weightx = 0.5;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.5;
+		windowContent.add(diskImageSize, gridBagConstraints);
 
-        windowContent.add(measureUnity, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.weightx = 0.5;
 
-        diskNameDescription = new JLabel("Type the name of the disk image file:");
+		windowContent.add(measureUnity, gridBagConstraints);
 
-        diskName = new JTextField("");
+		diskNameDescription = new JLabel("Type the name of the disk image file:");
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+		diskName = new JTextField("");
 
-        windowContent.add(diskNameDescription, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+		windowContent.add(diskNameDescription, gridBagConstraints);
 
-        windowContent.add(diskName, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 2;
 
-        diskExtensionDescription = new JLabel("Choose the format of the disk image file:");
+		windowContent.add(diskName, gridBagConstraints);
 
-        String[] formats = {".img", ".qcow2", ".qcow", ".cow", ".vdi", ".vmdk", ".vpc"};
+		diskExtensionDescription = new JLabel("Choose the format of the disk image file:");
 
-        diskExtension = new JComboBox<String>(formats);
-        diskExtension.setSelectedIndex(0);
+		String[] formats = { ".img", ".qcow2", ".qcow", ".cow", ".vdi", ".vmdk", ".vpc" };
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+		diskExtension = new JComboBox<String>(formats);
+		diskExtension.setSelectedIndex(0);
 
-        windowContent.add(diskExtensionDescription, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 3;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+		windowContent.add(diskExtensionDescription, gridBagConstraints);
 
-        windowContent.add(diskExtension, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 3;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+		windowContent.add(diskExtension, gridBagConstraints);
 
-        windowContent.add(backButton, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 4;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+		windowContent.add(backButton, gridBagConstraints);
 
-        windowContent.add(finishButton, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 4;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 2;
-        gridBagConstraints.gridy = 4;
+		windowContent.add(finishButton, gridBagConstraints);
 
-        windowContent.add(cancelButton, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 2;
+		gridBagConstraints.gridy = 4;
 
-        suboptions = false;
+		windowContent.add(cancelButton, gridBagConstraints);
 
-        oldDiskExtension = (String) diskExtension.getSelectedItem();
+		suboptions = false;
 
-        encryption_box = new JCheckBox("Encryption mode: on");
+		oldDiskExtension = (String) diskExtension.getSelectedItem();
 
-        preallocation_metadata_box = new JCheckBox("Preallocation mode: metadata");
+		encryption_box = new JCheckBox("Encryption mode: on");
 
-        cluster_size_box = new JCheckBox("Cluster_size:");
+		preallocation_metadata_box = new JCheckBox("Preallocation mode: metadata");
 
-        String[] sizes = {"512k", "1M", "2M"};
+		cluster_size_box = new JCheckBox("Cluster_size:");
 
-        cluster_size_options = new JComboBox<String>(sizes);
-        cluster_size_options.setSelectedIndex(0);
+		String[] sizes = { "512k", "1M", "2M" };
 
-        static_vdi_box = new JRadioButton("Static option: on");
+		cluster_size_options = new JComboBox<String>(sizes);
+		cluster_size_options.setSelectedIndex(0);
 
-        compat6_vmdk_box = new JCheckBox("Compat6 option: on");
+		static_vdi_box = new JRadioButton("Static option: on");
 
-        subformat_vmdk_box = new JCheckBox("VMDK subformat option:");
+		compat6_vmdk_box = new JCheckBox("Compat6 option: on");
 
-        String[] subformats_vmdk = {"monolithicSparse", "monolithicFlat", "twoGbMaxExtentSparse",
-            "twoGbMaxExtentFlat", "streamOptimized"};
+		subformat_vmdk_box = new JCheckBox("VMDK subformat option:");
 
-        subformat_vmdk_combo = new JComboBox<String>(subformats_vmdk);
-        subformat_vmdk_combo.setSelectedIndex(0);
+		String[] subformats_vmdk = { "monolithicSparse", "monolithicFlat", "twoGbMaxExtentSparse", "twoGbMaxExtentFlat",
+				"streamOptimized" };
 
-        subformat_vpc_box = new JRadioButton("VPC subformat option:");
+		subformat_vmdk_combo = new JComboBox<String>(subformats_vmdk);
+		subformat_vmdk_combo.setSelectedIndex(0);
 
-        String[] subformats_vpc = {"dynamic", "fixed"};
+		subformat_vpc_box = new JRadioButton("VPC subformat option:");
 
-        subformat_vpc_combo = new JComboBox<String>(subformats_vpc);
+		String[] subformats_vpc = { "dynamic", "fixed" };
 
-    }
+		subformat_vpc_combo = new JComboBox<String>(subformats_vpc);
 
-    public void initialize() {
-        this.add(windowContent);
-//        this.setTitle("Create a new machine - Part 3");
-//        this.pack();
-    }
+	}
 
-    public void configureListener(ActionListener listener) {
-        backButton.addActionListener(listener);
-        cancelButton.addActionListener(listener);
-        finishButton.addActionListener(listener);
-        diskExtension.addActionListener(listener);
-    }
+	public void initialize() {
+		this.add(windowContent);
+		this.setTitle("Create a new machine - Part 3");
+		// this.pack();
+	}
 
-    public void configureStandardMode() {
-        backButton.setActionCommand("Back2");
-        cancelButton.setActionCommand("Cancel3");
-        finishButton.setActionCommand("Finish");
-        diskExtension.setActionCommand("DiskExtension");
-    }
+	public void configureListener(ActionListener listener) {
+		backButton.addActionListener(listener);
+		cancelButton.addActionListener(listener);
+		finishButton.addActionListener(listener);
+		diskExtension.addActionListener(listener);
+	}
 
-    public JSpinner.NumberEditor getEditor() {
-        return editor;
-    }
+	public void configureStandardMode() {
+		backButton.setActionCommand("Back2");
+		cancelButton.setActionCommand("Cancel3");
+		finishButton.setActionCommand("Finish");
+		diskExtension.setActionCommand("DiskExtension");
+	}
 
-    public JTextField getDiskName() {
-        return diskName;
-    }
+	public JSpinner.NumberEditor getEditor() {
+		return editor;
+	}
 
-    public JComboBox<String> getDiskExtension() {
-        return diskExtension;
-    }
+	public JTextField getDiskName() {
+		return diskName;
+	}
 
-    public void addsComponent(String diskExtension) {
-        if (suboptions) {
-            this.removesComponent(oldDiskExtension);
-            suboptions = false;
-            this.addsComponent(diskExtension);
-        } else if (diskExtension.equals(".img")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
+	public JComboBox<String> getDiskExtension() {
+		return diskExtension;
+	}
 
-            windowContent.add(cancelButton, gridBagConstraints);
+	public void addsComponent(String diskExtension) {
+		if (suboptions) {
+			this.removesComponent(oldDiskExtension);
+			suboptions = false;
+			this.addsComponent(diskExtension);
+		} else if (diskExtension.equals(".img")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 4;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 4;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".img";
-        } else if (diskExtension.equals(".cow")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 4;
 
-            windowContent.add(cancelButton, gridBagConstraints);
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".img";
+		} else if (diskExtension.equals(".cow")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 4;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 4;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".cow";
-        } else if (diskExtension.equals(".qcow")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
-            windowContent.add(encryption_box, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".cow";
+		} else if (diskExtension.equals(".qcow")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
+			windowContent.add(encryption_box, gridBagConstraints);
 
-            windowContent.add(cancelButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".qcow";
-            suboptions = true;
-        } else if (diskExtension.equals(".qcow2")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
-            windowContent.add(encryption_box, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 4;
-            windowContent.add(preallocation_metadata_box, gridBagConstraints);
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".qcow";
+			suboptions = true;
+		} else if (diskExtension.equals(".qcow2")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
+			windowContent.add(encryption_box, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
-            windowContent.add(cluster_size_box, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 4;
+			windowContent.add(preallocation_metadata_box, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 5;
-            windowContent.add(cluster_size_options, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 5;
+			windowContent.add(cluster_size_box, gridBagConstraints);
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 6;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 5;
+			windowContent.add(cluster_size_options, gridBagConstraints);
 
-            windowContent.add(cancelButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 6;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 6;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 6;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 6;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".qcow2";
-            suboptions = true;
-        } else if (diskExtension.equals(".vdi")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 6;
 
-            windowContent.add(static_vdi_box, gridBagConstraints);
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".qcow2";
+			suboptions = true;
+		} else if (diskExtension.equals(".vdi")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(static_vdi_box, gridBagConstraints);
 
-            windowContent.add(cancelButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".vdi";
-            suboptions = true;
-        } else if (diskExtension.equals(".vmdk")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 5;
 
-            windowContent.add(compat6_vmdk_box, gridBagConstraints);
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".vdi";
+			suboptions = true;
+		} else if (diskExtension.equals(".vmdk")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(compat6_vmdk_box, gridBagConstraints);
 
-            windowContent.add(subformat_vmdk_box, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(subformat_vmdk_box, gridBagConstraints);
 
-            windowContent.add(subformat_vmdk_combo, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 6;
+			windowContent.add(subformat_vmdk_combo, gridBagConstraints);
 
-            windowContent.add(cancelButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 6;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 6;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 6;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 6;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".vmdk";
-            suboptions = true;
-        } else if (diskExtension.equals(".vpc")) {
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 4;
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 6;
 
-            windowContent.add(subformat_vpc_box, gridBagConstraints);
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".vmdk";
+			suboptions = true;
+		} else if (diskExtension.equals(".vpc")) {
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 4;
+			windowContent.add(subformat_vpc_box, gridBagConstraints);
 
-            windowContent.add(subformat_vpc_combo, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 4;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 0;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(subformat_vpc_combo, gridBagConstraints);
 
-            windowContent.add(cancelButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 0;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 1;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(cancelButton, gridBagConstraints);
 
-            windowContent.add(backButton, gridBagConstraints);
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 1;
+			gridBagConstraints.gridy = 5;
 
-            gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-            gridBagConstraints.gridx = 2;
-            gridBagConstraints.gridy = 5;
+			windowContent.add(backButton, gridBagConstraints);
 
-            windowContent.add(finishButton, gridBagConstraints);
-            oldDiskExtension = ".vpc";
-            suboptions = true;
-        }
+			gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+			gridBagConstraints.gridx = 2;
+			gridBagConstraints.gridy = 5;
 
-        this.repaint();
-    }
+			windowContent.add(finishButton, gridBagConstraints);
+			oldDiskExtension = ".vpc";
+			suboptions = true;
+		}
 
-    public void removesComponent(String diskExtension) {
-        if (diskExtension.equals(".qcow")) {
-            windowContent.remove(encryption_box);
-        } else if (diskExtension.equals(".qcow2")) {
-            windowContent.remove(encryption_box);
-            windowContent.remove(preallocation_metadata_box);
-            windowContent.remove(cluster_size_box);
-            windowContent.remove(cluster_size_options);
-        } else if (diskExtension.equals(".vdi")) {
-            windowContent.remove(static_vdi_box);
-        } else if (diskExtension.equals(".vmdk")) {
-            windowContent.remove(compat6_vmdk_box);
-            windowContent.remove(subformat_vmdk_box);
-            windowContent.remove(subformat_vmdk_combo);
-        } else if (diskExtension.equals(".vpc")) {
-            windowContent.remove(subformat_vpc_box);
-            windowContent.remove(subformat_vpc_combo);
-        }
-        windowContent.remove(cancelButton);
-        windowContent.remove(backButton);
-        windowContent.remove(finishButton);
-    }
+		this.repaint();
+	}
 
-    public JCheckBox getEncryption_box() {
-        return encryption_box;
-    }
+	public void removesComponent(String diskExtension) {
+		if (diskExtension.equals(".qcow")) {
+			windowContent.remove(encryption_box);
+		} else if (diskExtension.equals(".qcow2")) {
+			windowContent.remove(encryption_box);
+			windowContent.remove(preallocation_metadata_box);
+			windowContent.remove(cluster_size_box);
+			windowContent.remove(cluster_size_options);
+		} else if (diskExtension.equals(".vdi")) {
+			windowContent.remove(static_vdi_box);
+		} else if (diskExtension.equals(".vmdk")) {
+			windowContent.remove(compat6_vmdk_box);
+			windowContent.remove(subformat_vmdk_box);
+			windowContent.remove(subformat_vmdk_combo);
+		} else if (diskExtension.equals(".vpc")) {
+			windowContent.remove(subformat_vpc_box);
+			windowContent.remove(subformat_vpc_combo);
+		}
+		windowContent.remove(cancelButton);
+		windowContent.remove(backButton);
+		windowContent.remove(finishButton);
+	}
 
-    public JCheckBox getPreallocation_metadata_box() {
-        return preallocation_metadata_box;
-    }
+	public JCheckBox getEncryption_box() {
+		return encryption_box;
+	}
 
-    public JCheckBox getCluster_size_box() {
-        return cluster_size_box;
-    }
+	public JCheckBox getPreallocation_metadata_box() {
+		return preallocation_metadata_box;
+	}
 
-    public JComboBox<String> getCluster_size_options() {
-        return cluster_size_options;
-    }
+	public JCheckBox getCluster_size_box() {
+		return cluster_size_box;
+	}
 
-    public JRadioButton getStatic_vdi_box() {
-        return static_vdi_box;
-    }
+	public JComboBox<String> getCluster_size_options() {
+		return cluster_size_options;
+	}
 
-    public JCheckBox getCompat6_vmdk_box() {
-        return compat6_vmdk_box;
-    }
+	public JRadioButton getStatic_vdi_box() {
+		return static_vdi_box;
+	}
 
-    public JCheckBox getSubformat_vmdk_box() {
-        return subformat_vmdk_box;
-    }
+	public JCheckBox getCompat6_vmdk_box() {
+		return compat6_vmdk_box;
+	}
 
-    public JComboBox<String> getSubformat_vmdk_combo() {
-        return subformat_vmdk_combo;
-    }
+	public JCheckBox getSubformat_vmdk_box() {
+		return subformat_vmdk_box;
+	}
 
-    public JRadioButton getSubformat_vpc_box() {
-        return subformat_vpc_box;
-    }
+	public JComboBox<String> getSubformat_vmdk_combo() {
+		return subformat_vmdk_combo;
+	}
 
-    public JComboBox<String> getSubformat_vpc_combo() {
-        return subformat_vpc_combo;
-    }
+	public JRadioButton getSubformat_vpc_box() {
+		return subformat_vpc_box;
+	}
+
+	public JComboBox<String> getSubformat_vpc_combo() {
+		return subformat_vpc_combo;
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+		// TODO Auto-generated method stub
+
+	}
 }

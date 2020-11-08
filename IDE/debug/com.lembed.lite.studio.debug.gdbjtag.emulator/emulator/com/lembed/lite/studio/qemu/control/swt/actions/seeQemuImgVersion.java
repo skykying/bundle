@@ -48,10 +48,10 @@ public class seeQemuImgVersion implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction(e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("seeQemuImgVersion")) {
 			if (utilitiesModel == null) {
 				try {

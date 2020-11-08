@@ -35,10 +35,10 @@ public class StopEmulation implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("StopEmulation")) {
 			if (emulationControl == null) {
 				emulationControl = new EmulationControl(view);

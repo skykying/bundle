@@ -8,10 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -20,251 +16,200 @@ import javax.swing.JTextArea;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
 
-import com.lembed.lite.studio.qemu.model.Model;
-import com.lembed.lite.studio.qemu.view.internal.JPanelCreationView;
 import com.lembed.lite.studio.qemu.view.internal.swt.SwtPanelCreationView;
 
-public class JSwtQemuView extends JQBaseView {
+public class JSwtQemuView extends JPanel {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel jContentPane = null; // @jve:decl-index=0:visual-constraint="105,58"
+	private JPanel jContentPane = null; 
 
-    private JMenuBar menuBar;
 
-    private JMenu fileMenu;
-    private JMenuItem configureCommand;
-    private JMenuItem exitCommand;
+	private GridLayout gridLayout;
+	private JTabbedPane tabbedPane;
+	private List<SwtPanelCreationView> myPanels;
+	private JButton createNewVMOption;
+	private JButton openExistingVMOption;
 
-    private JMenu emulationMenu;
-    private JMenuItem startEmulation;
-    private JMenuItem stopEmulation;
+	private int activePanel;
 
-    private JMenu helpMenu;
-    private JMenuItem aboutCommand;
+	private ActionListener listener;
+	private JPanel myUntitledJPanel;
+	private JButton useUtilities;
 
-    private GridLayout gridLayout;
-    private JTabbedPane tabbedPane;
-    private List<SwtPanelCreationView> myPanels;
-    private JButton createNewVMOption;
-    private JButton openExistingVMOption;
+	public JSwtQemuView() {
+		super();
 
-    private int activePanel;
 
-    private ActionListener listener;
-    private JPanel myUntitledJPanel;
-    private JButton useUtilities;
+		tabbedPane = new JTabbedPane();
 
-    public JSwtQemuView() {
-        super();
+		myPanels = new ArrayList<SwtPanelCreationView>();
 
-        menuBar = new JMenuBar();
+		activePanel = 0;
 
-        fileMenu = new JMenu("File");
-        configureCommand = new JMenuItem("Configure");
-        exitCommand = new JMenuItem("Quit");
+		createNewVMOption = new JButton("Create a new virtual machine");
+		openExistingVMOption = new JButton("Open a existing virtual machine");
+		useUtilities = new JButton("Use the available utilities from JavaQemu!");
 
-        fileMenu.add(configureCommand);
-        fileMenu.add(exitCommand);
-        menuBar.add(fileMenu);
+		SwtPanelCreationView untitledPanel = makeVMPanel("Untitled");
+		myUntitledJPanel = untitledPanel;
+		 myPanels.add(this.myPanels.size(), untitledPanel);
 
-        emulationMenu = new JMenu("Emulation");
-        startEmulation = new JMenuItem("Start emulation");
-        stopEmulation = new JMenuItem("Stop emulation");
+		tabbedPane.addTab("Untitled", untitledPanel);
 
-        emulationMenu.add(startEmulation);
-        emulationMenu.add(stopEmulation);
-        menuBar.add(emulationMenu);
+		tabbedPane.addChangeListener(new ChangeListener() {
+			public void stateChanged(ChangeEvent e) {
+				processTabChange();
+			}
+		});
 
-        helpMenu = new JMenu("Help");
-        aboutCommand = new JMenuItem("About JavaQemu");
+		gridLayout = new GridLayout(1, 1);
+		this.initialize();
+		this.initialize_window();
+		this.rechecks();
+	}
 
-        helpMenu.add(aboutCommand);
-        menuBar.add(helpMenu);
+	private void initialize() {
+		this.add(getJContentPane());
 
-        tabbedPane = new JTabbedPane();
 
-        myPanels = new ArrayList<SwtPanelCreationView>();
+		this.jContentPane.setLayout(this.gridLayout);
+		this.repaint();
+	}
 
-        activePanel = 0;
+	private JPanel getJContentPane() {
+		if (jContentPane == null) {
+			jContentPane = new JPanel();
+			jContentPane.setLayout(null);
+		}
+		return jContentPane;
+	}
 
-        createNewVMOption = new JButton("Create a new virtual machine");
-        openExistingVMOption = new JButton("Open a existing virtual machine");
-        useUtilities = new JButton("Use the available utilities from JavaQemu!");
+	public void configureStandardMode() {
 
-        SwtPanelCreationView untitledPanel = makeVMPanel("Untitled");
-        myUntitledJPanel = untitledPanel;
-        //myPanels.add(this.myPanels.size(), untitledPanel); TODO 2020.11.6
 
-        tabbedPane.addTab("Untitled", untitledPanel);
 
-        tabbedPane.addChangeListener(new ChangeListener() {
-            public void stateChanged(ChangeEvent e) {
-                processTabChange();
-            }
-        });
+		createNewVMOption.setActionCommand("CreateNewVM");
 
-        gridLayout = new GridLayout(1, 1);
-        this.initialize();
-        this.initialize_window();
-        this.rechecks();
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-    }
+		openExistingVMOption.setActionCommand("OpenExistingVM");
 
-    private void initialize() {
-        this.setContentPane(getJContentPane());
-        this.setJMenuBar(menuBar);
-        this.setTitle("JavaQemu " + Model.getApplicationVersionString());
+		useUtilities.setActionCommand("useUtilities");
+	}
 
-        this.jContentPane.setLayout(this.gridLayout);
+	public void registerListener(BaseListener listener) {
 
-        this.pack();
-        this.repaint();
-    }
 
-    private JPanel getJContentPane() {
-        if (jContentPane == null) {
-            jContentPane = new JPanel();
-            jContentPane.setLayout(null);
-        }
-        return jContentPane;
-    }
+		createNewVMOption.addActionListener(listener);
 
-    public void configureStandardMode() {
-        exitCommand.setActionCommand("ExitCommand");
-        configureCommand.setActionCommand("ConfigureCommand");
+		openExistingVMOption.addActionListener(listener);
 
-        startEmulation.setActionCommand("StartEmulation");
-        stopEmulation.setActionCommand("StopEmulation");
+		useUtilities.addActionListener(listener);
 
-        aboutCommand.setActionCommand("AboutCommand");
+		this.listener = listener;
+	}
 
-        createNewVMOption.setActionCommand("CreateNewVM");
-
-        openExistingVMOption.setActionCommand("OpenExistingVM");
-
-        useUtilities.setActionCommand("useUtilities");
-    }
-
-    public void registerListener(BaseListener listener) {
-        exitCommand.addActionListener(listener);
-        configureCommand.addActionListener(listener);
-
-        startEmulation.addActionListener(listener);
-        stopEmulation.addActionListener(listener);
-
-        aboutCommand.addActionListener(listener);
-
-        createNewVMOption.addActionListener(listener);
-
-        openExistingVMOption.addActionListener(listener);
-
-        useUtilities.addActionListener(listener);
-
-        this.listener = listener;
-    }
-
-    public void showMessage(String message) {
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(500, 500));
-        JTextArea textArea = new JTextArea(message);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(5, 5, 5, 5));
-        scrollPane.getViewport().setView(textArea);
-        Object trueMessage = scrollPane;
-        JOptionPane.showMessageDialog(null, trueMessage);
-    }
-
-    public String getInputMessage(String message) {
-        return JOptionPane.showInputDialog(message);
-    }
-
-    private void initialize_window() {
-        this.jContentPane.add(tabbedPane);
-    }
-
-    private void rechecks() {
-        this.pack();
-        this.repaint();
-    }
-
-    public SwtPanelCreationView makeVMPanel(String machineName) {
-        SwtPanelCreationView panel = null;
-        panel = new SwtPanelCreationView(machineName,
-                this.createNewVMOption,
-                this.openExistingVMOption,
-                this.listener,
-                this.useUtilities);
-        return panel;
-    }
-
-    public void addCreationNewJPanel(SwtPanelCreationView jpanel, String title) {
-        this.myPanels.add(this.myPanels.size(), jpanel);
-
-        this.tabbedPane.addTab(title, jpanel);
-
-        this.tabbedPane.setSelectedIndex(this.myPanels.size() - 1);
-
-        this.activePanel = tabbedPane.getSelectedIndex();
-
-        this.rechecks();
-    }
-
-    private void processTabChange() {
-        this.activePanel = tabbedPane.getSelectedIndex();
-    }
-
-    public SwtPanelCreationView getSelectedPanel() {
-        return this.myPanels.get(activePanel);
-    }
-
-    public SwtPanelCreationView getAnyPanel(int position) {
-        if (position >= this.myPanels.size()) {
-            this.showMessage("Illegal Event!View!getAnyPanel!\nSelect another position!");
-            return null;
-        } else {
-            return this.myPanels.get(position);
-        }
-    }
-
-    public int getActivePanel() {
-        return activePanel;
-    }
-
-    public void removeCreationNewJPanel() {
-        this.myPanels.remove(this.activePanel);
-
-        this.tabbedPane.remove(this.activePanel);
-    }
-
-    public void removeAllJPanels() {
-        for (int i = 0; i < this.myPanels.size(); i++) {
-            this.myPanels.remove(i);
-
-            this.tabbedPane.remove(i);
-        }
-    }
-
-    public void showAboutContents() {
-        this.showMessage("");
-    }
-
-    public JPanel getMyUntitledJPanel() {
-        return this.myUntitledJPanel;
-    }
-
-    public void changeNameJPanel(String name) {
-        this.tabbedPane.setTitleAt(activePanel, name);
-        this.getSelectedPanel().setTitle(name);
-    }
-
-    public String getActiveTitle() {
-        return this.getSelectedPanel().getTitle();
-    }
-
-    public int getSizeOfJTabbedPane() {
-        return this.myPanels.size();
-    }
+	public static void showMessage(String message) {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(500, 500));
+		JTextArea textArea = new JTextArea(message);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setMargin(new Insets(5, 5, 5, 5));
+		scrollPane.getViewport().setView(textArea);
+		Object trueMessage = scrollPane;
+		JOptionPane.showMessageDialog(null, trueMessage);
+	}
+
+	public String getInputMessage(String message) {
+		return JOptionPane.showInputDialog(message);
+	}
+
+	private void initialize_window() {
+		this.jContentPane.add(tabbedPane);
+	}
+
+	private void rechecks() {
+		this.repaint();
+	}
+
+	public SwtPanelCreationView makeVMPanel(String machineName) {
+		SwtPanelCreationView panel = null;
+		panel = new SwtPanelCreationView(machineName, this.createNewVMOption, this.openExistingVMOption, this.listener,
+				this.useUtilities);
+		return panel;
+	}
+
+	public void addCreationNewJPanel(SwtPanelCreationView jpanel, String title) {
+		this.myPanels.add(this.myPanels.size(), jpanel);
+
+		this.tabbedPane.addTab(title, jpanel);
+
+		this.tabbedPane.setSelectedIndex(this.myPanels.size() - 1);
+
+		this.activePanel = tabbedPane.getSelectedIndex();
+
+		this.rechecks();
+	}
+
+	private void processTabChange() {
+		this.activePanel = tabbedPane.getSelectedIndex();
+	}
+
+	public SwtPanelCreationView getSelectedPanel() {
+		return this.myPanels.get(activePanel);
+	}
+
+	public SwtPanelCreationView getAnyPanel(int position) {
+		if (position >= this.myPanels.size()) {
+			JSwtQemuView.showMessage("Illegal Event!View!getAnyPanel!\nSelect another position!");
+			return null;
+		} else {
+			return this.myPanels.get(position);
+		}
+	}
+
+	public int getActivePanel() {
+		return activePanel;
+	}
+
+	public void removeCreationNewJPanel() {
+		this.myPanels.remove(this.activePanel);
+
+		this.tabbedPane.remove(this.activePanel);
+	}
+
+	public void removeAllJPanels() {
+		for (int i = 0; i < this.myPanels.size(); i++) {
+			this.myPanels.remove(i);
+
+			this.tabbedPane.remove(i);
+		}
+	}
+
+	public void showAboutContents() {
+		JSwtQemuView.showMessage("");
+	}
+
+	public JPanel getMyUntitledJPanel() {
+		return this.myUntitledJPanel;
+	}
+
+	public void changeNameJPanel(String name) {
+		this.tabbedPane.setTitleAt(activePanel, name);
+		this.getSelectedPanel().setTitle(name);
+	}
+
+	public String getActiveTitle() {
+		return this.getSelectedPanel().getTitle();
+	}
+
+	public int getSizeOfJTabbedPane() {
+		return this.myPanels.size();
+	}
+
+	public void dispose() {
+		// TODO Auto-generated method stub
+		
+	}
 }

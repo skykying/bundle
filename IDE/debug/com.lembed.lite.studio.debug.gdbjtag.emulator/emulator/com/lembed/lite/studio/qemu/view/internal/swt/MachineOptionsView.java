@@ -20,269 +20,265 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class MachineOptionsView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel jpanel;
+	private JPanel jpanel;
 
-    private JButton okButton, eraseButton;
+	private JButton okButton, eraseButton;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JLabel accelLabel, temp1, temp2, others;
+	private JLabel accelLabel, temp1, temp2, others;
 
-    private JComboBox<String> firstOption, secondOption, thirdOption;
+	private JComboBox<String> firstOption, secondOption, thirdOption;
 
-    private JLabel first, second, third;
+	private JLabel first, second, third;
 
-    private JLabel kernel_irqchipLabel;
+	private JLabel kernel_irqchipLabel;
 
-    private JComboBox<String> kernel_irqchip;
+	private JComboBox<String> kernel_irqchip;
 
-    private JLabel kvm_shadow_memLabel;
+	private JLabel kvm_shadow_memLabel;
 
-    private JSpinner kvm_shadow_memSize;
+	private JSpinner kvm_shadow_memSize;
 
-    private SpinnerModel spinnerModel;
+	private SpinnerModel spinnerModel;
 
-    private JSpinner.NumberEditor editor;
+	private JSpinner.NumberEditor editor;
 
-    private DecimalFormat format;
+	private DecimalFormat format;
 
-    private JLabel dump_guest_coreLabel;
+	private JLabel dump_guest_coreLabel;
 
-    private JComboBox<String> dump_guest_core;
+	private JComboBox<String> dump_guest_core;
 
-    private JLabel mem_mergeLabel;
+	private JLabel mem_mergeLabel;
 
-    private JComboBox<String> mem_merge;
+	private JComboBox<String> mem_merge;
 
-    private String[] on_off;
+	private String[] on_off;
 
-    private Boolean loaded;
+	private Boolean loaded;
 
+	public MachineOptionsView(EmulatorQemuMachineControl myfile) {
+		super(myfile);
 
-    public MachineOptionsView(EmulatorQemuMachineControl myfile) {
-    	 super(myfile);
-    	 
-    	this.eQControl = myfile;
-        this.jpanel = new JPanel();
+		this.eQControl = myfile;
+		this.jpanel = new JPanel();
 
-        this.gridLayout = new GridLayout(10, 2);
+		this.gridLayout = new GridLayout(10, 2);
 
+		this.jpanel.setLayout(gridLayout);
 
-        this.jpanel.setLayout(gridLayout);
+		okButton = new JButton("OK");
 
-        okButton = new JButton("OK");
+		eraseButton = new JButton("Erase");
 
-        eraseButton = new JButton("Erase");
+		String[] accels = { "", "kvm", "xen", "tcg" };
 
-        String[] accels = {"", "kvm", "xen", "tcg"};
+		firstOption = new JComboBox<String>(accels);
+		firstOption.setSelectedIndex(0);
 
-        firstOption = new JComboBox<String>(accels);
-        firstOption.setSelectedIndex(0);
+		secondOption = new JComboBox<String>(accels);
+		secondOption.setSelectedIndex(0);
 
-        secondOption = new JComboBox<String>(accels);
-        secondOption.setSelectedIndex(0);
+		thirdOption = new JComboBox<String>(accels);
+		thirdOption.setSelectedIndex(0);
 
-        thirdOption = new JComboBox<String>(accels);
-        thirdOption.setSelectedIndex(0);
+		accelLabel = new JLabel("Select the order of the accelerator(s):");
+		temp1 = new JLabel("");
 
-        accelLabel = new JLabel("Select the order of the accelerator(s):");
-        temp1 = new JLabel("");
+		first = new JLabel("First:");
+		second = new JLabel("Second");
+		third = new JLabel("Third");
 
-        first = new JLabel("First:");
-        second = new JLabel("Second");
-        third = new JLabel("Third");
+		this.jpanel.add(accelLabel);
 
-        this.jpanel.add(accelLabel);
+		this.jpanel.add(temp1);
+		this.jpanel.add(first);
+		this.jpanel.add(firstOption);
+		this.jpanel.add(second);
+		this.jpanel.add(secondOption);
+		this.jpanel.add(third);
+		this.jpanel.add(thirdOption);
 
-        this.jpanel.add(temp1);
-        this.jpanel.add(first);
-        this.jpanel.add(firstOption);
-        this.jpanel.add(second);
-        this.jpanel.add(secondOption);
-        this.jpanel.add(third);
-        this.jpanel.add(thirdOption);
+		this.temp2 = new JLabel("");
+		this.others = new JLabel("Others options:");
 
-        this.temp2 = new JLabel("");
-        this.others = new JLabel("Others options:");
+		this.jpanel.add(this.others);
+		this.jpanel.add(this.temp2);
 
-        this.jpanel.add(this.others);
-        this.jpanel.add(this.temp2);
+		on_off = new String[] { "", "on", "off" };
+		kernel_irqchipLabel = new JLabel("kernel_irqchip=");
+		kernel_irqchip = new JComboBox<String>(on_off);
 
-        on_off = new String[]{"", "on", "off"};
-        kernel_irqchipLabel = new JLabel("kernel_irqchip=");
-        kernel_irqchip = new JComboBox<String>(on_off);
+		kvm_shadow_memLabel = new JLabel("size(kvm_shadow_mem)=");
 
-        kvm_shadow_memLabel = new JLabel("size(kvm_shadow_mem)=");
+		this.jpanel.add(this.kernel_irqchipLabel);
+		this.jpanel.add(this.kernel_irqchip);
+		this.jpanel.add(kvm_shadow_memLabel);
 
-        this.jpanel.add(this.kernel_irqchipLabel);
-        this.jpanel.add(this.kernel_irqchip);
-        this.jpanel.add(kvm_shadow_memLabel);
-
-        this.spinnerModel = new SpinnerNumberModel(0.0, // initial value
-                0.0, // min
-                4096.0, // max
-                1); // step
-
-        this.kvm_shadow_memSize = new JSpinner(spinnerModel);
-
-        editor = (JSpinner.NumberEditor) this.kvm_shadow_memSize.getEditor();
-        format = editor.getFormat();
-        format.setMinimumFractionDigits(3);
-        editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
-
-        this.jpanel.add(kvm_shadow_memSize);
-
-        dump_guest_coreLabel = new JLabel("dump_guest-core=");
-        dump_guest_core = new JComboBox<String>(on_off);
-
-        this.jpanel.add(dump_guest_coreLabel);
-        this.jpanel.add(dump_guest_core);
-
-        mem_mergeLabel = new JLabel("mem-merge=");
-        mem_merge = new JComboBox<String>(on_off);
-
-        this.jpanel.add(mem_mergeLabel);
-        this.jpanel.add(mem_merge);
-        this.jpanel.add(this.okButton);
-        this.jpanel.add(this.eraseButton);
-
-        this.loaded = false;
-        
-
-        this.setTitle("JavaQemu - Machine Options");
-
-        this.add(jpanel);
-
-    }
-
-    private void rechecks() {
-//        this.pack();
-        this.repaint();
-    }
-
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        firstOption.addActionListener(listener);
-        secondOption.addActionListener(listener);
-        thirdOption.addActionListener(listener);
-    }
-
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton2");
-        okButton.setActionCommand("okButton2");
-        firstOption.setActionCommand("firstOption");
-        secondOption.setActionCommand("secondOption");
-        thirdOption.setActionCommand("thirdOption");
-    }
-
-    public void resolveAccelOptions() {
-        List<String> selectedobjects = new ArrayList<String>();
-        String[] accels = {"", "kvm", "xen", "tcg"};
-        if (firstOption.getSelectedIndex() != 0) {
-            selectedobjects.add((String) firstOption.getSelectedItem());
-        }
-        if (secondOption.getSelectedIndex() != 0) {
-            selectedobjects.add((String) secondOption.getSelectedItem());
-        }
-        if (thirdOption.getSelectedIndex() != 0) {
-            selectedobjects.add((String) thirdOption.getSelectedItem());
-        }
-        if (firstOption.getSelectedIndex() == 0) {
-            firstOption.removeAllItems();
-            for (int i = 0; i < accels.length; i++) {
-                if (!selectedobjects.contains(accels[i])) {
-                    firstOption.addItem(accels[i]);
-                }
-            }
-            firstOption.setSelectedIndex(0);
-        }
-        if (secondOption.getSelectedIndex() == 0) {
-            secondOption.removeAllItems();
-            for (int i = 0; i < accels.length; i++) {
-                if (!selectedobjects.contains(accels[i])) {
-                    secondOption.addItem(accels[i]);
-                }
-            }
-            secondOption.setSelectedIndex(0);
-        }
-        if (thirdOption.getSelectedIndex() == 0) {
-            thirdOption.removeAllItems();
-            for (int i = 0; i < accels.length; i++) {
-                if (!selectedobjects.contains(accels[i])) {
-                    thirdOption.addItem(accels[i]);
-                }
-            }
-            thirdOption.setSelectedIndex(0);
-        }
-    }
-
-    public JComboBox<String> getFirstOption() {
-        return firstOption;
-    }
-
-    public JComboBox<String> getSecondOption() {
-        return secondOption;
-    }
-
-    public JComboBox<String> getThirdOption() {
-        return thirdOption;
-    }
-
-    public JComboBox<String> getKernel_irqchip() {
-        return kernel_irqchip;
-    }
-
-    public JComboBox<String> getDump_guest_core() {
-        return dump_guest_core;
-    }
-
-    public JComboBox<String> getMem_merge() {
-        return mem_merge;
-    }
-
-    public JSpinner.NumberEditor getEditor() {
-        return editor;
-    }
-
-    public Boolean getLoaded() {
-        return loaded;
-    }
-
+		this.spinnerModel = new SpinnerNumberModel(0.0, // initial value
+				0.0, // min
+				4096.0, // max
+				1); // step
+
+		this.kvm_shadow_memSize = new JSpinner(spinnerModel);
+
+		editor = (JSpinner.NumberEditor) this.kvm_shadow_memSize.getEditor();
+		format = editor.getFormat();
+		format.setMinimumFractionDigits(3);
+		editor.getTextField().setHorizontalAlignment(SwingConstants.CENTER);
+
+		this.jpanel.add(kvm_shadow_memSize);
+
+		dump_guest_coreLabel = new JLabel("dump_guest-core=");
+		dump_guest_core = new JComboBox<String>(on_off);
+
+		this.jpanel.add(dump_guest_coreLabel);
+		this.jpanel.add(dump_guest_core);
+
+		mem_mergeLabel = new JLabel("mem-merge=");
+		mem_merge = new JComboBox<String>(on_off);
+
+		this.jpanel.add(mem_mergeLabel);
+		this.jpanel.add(mem_merge);
+		this.jpanel.add(this.okButton);
+		this.jpanel.add(this.eraseButton);
+
+		this.loaded = false;
+
+		this.setTitle("Machine");
+
+		this.add(jpanel);
+
+	}
+
+	private void rechecks() {
+		// this.pack();
+		this.repaint();
+	}
+
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		firstOption.addActionListener(listener);
+		secondOption.addActionListener(listener);
+		thirdOption.addActionListener(listener);
+	}
+
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton2");
+		okButton.setActionCommand("okButton2");
+		firstOption.setActionCommand("firstOption");
+		secondOption.setActionCommand("secondOption");
+		thirdOption.setActionCommand("thirdOption");
+	}
+
+	public void resolveAccelOptions() {
+		List<String> selectedobjects = new ArrayList<String>();
+		String[] accels = { "", "kvm", "xen", "tcg" };
+		if (firstOption.getSelectedIndex() != 0) {
+			selectedobjects.add((String) firstOption.getSelectedItem());
+		}
+		if (secondOption.getSelectedIndex() != 0) {
+			selectedobjects.add((String) secondOption.getSelectedItem());
+		}
+		if (thirdOption.getSelectedIndex() != 0) {
+			selectedobjects.add((String) thirdOption.getSelectedItem());
+		}
+		if (firstOption.getSelectedIndex() == 0) {
+			firstOption.removeAllItems();
+			for (int i = 0; i < accels.length; i++) {
+				if (!selectedobjects.contains(accels[i])) {
+					firstOption.addItem(accels[i]);
+				}
+			}
+			firstOption.setSelectedIndex(0);
+		}
+		if (secondOption.getSelectedIndex() == 0) {
+			secondOption.removeAllItems();
+			for (int i = 0; i < accels.length; i++) {
+				if (!selectedobjects.contains(accels[i])) {
+					secondOption.addItem(accels[i]);
+				}
+			}
+			secondOption.setSelectedIndex(0);
+		}
+		if (thirdOption.getSelectedIndex() == 0) {
+			thirdOption.removeAllItems();
+			for (int i = 0; i < accels.length; i++) {
+				if (!selectedobjects.contains(accels[i])) {
+					thirdOption.addItem(accels[i]);
+				}
+			}
+			thirdOption.setSelectedIndex(0);
+		}
+	}
+
+	public JComboBox<String> getFirstOption() {
+		return firstOption;
+	}
+
+	public JComboBox<String> getSecondOption() {
+		return secondOption;
+	}
+
+	public JComboBox<String> getThirdOption() {
+		return thirdOption;
+	}
+
+	public JComboBox<String> getKernel_irqchip() {
+		return kernel_irqchip;
+	}
+
+	public JComboBox<String> getDump_guest_core() {
+		return dump_guest_core;
+	}
+
+	public JComboBox<String> getMem_merge() {
+		return mem_merge;
+	}
+
+	public JSpinner.NumberEditor getEditor() {
+		return editor;
+	}
+
+	public Boolean getLoaded() {
+		return loaded;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-        if (eQControl.getMachineModel().getMachineAccel1() != null) {
-            this.firstOption.setSelectedItem(eQControl.getMachineModel().getMachineAccel1());
-            this.loaded = true;
-        }
-        if (eQControl.getMachineModel().getMachineAccel2() != null) {
-            this.secondOption.setSelectedItem(eQControl.getMachineModel().getMachineAccel2());
-            this.loaded = true;
-        }
-        if (eQControl.getMachineModel().getMachineAccel3() != null) {
-            this.thirdOption.setSelectedItem(eQControl.getMachineModel().getMachineAccel3());
-            this.loaded = true;
-        }
-        if (eQControl.getMachineModel().getMachineKernel_irpchip() != null) {
-            this.kernel_irqchip.setSelectedItem(eQControl.getMachineModel().getMachineKernel_irpchip());
-            this.loaded = true;
-        }
-        if (eQControl.getMachineModel().getMachineKvm_shadow_mem() != null) {
-            this.editor.getTextField().setText(eQControl.getMachineModel().getMachineKvm_shadow_mem());
-            this.loaded = true;
-        }
-        if (eQControl.getMachineModel().getMachineDump_guest_core() != null) {
-            this.dump_guest_core.setSelectedItem(eQControl.getMachineModel().getMachineDump_guest_core());
-            this.loaded = true;
-        }
-        if (eQControl.getMachineModel().getMachineMem_merge() != null) {
-            this.mem_merge.setSelectedItem(eQControl.getMachineModel().getMachineMem_merge());
-            this.loaded = true;
-        }
+		if (eQControl.getMachineModel().getMachineAccel1() != null) {
+			this.firstOption.setSelectedItem(eQControl.getMachineModel().getMachineAccel1());
+			this.loaded = true;
+		}
+		if (eQControl.getMachineModel().getMachineAccel2() != null) {
+			this.secondOption.setSelectedItem(eQControl.getMachineModel().getMachineAccel2());
+			this.loaded = true;
+		}
+		if (eQControl.getMachineModel().getMachineAccel3() != null) {
+			this.thirdOption.setSelectedItem(eQControl.getMachineModel().getMachineAccel3());
+			this.loaded = true;
+		}
+		if (eQControl.getMachineModel().getMachineKernel_irpchip() != null) {
+			this.kernel_irqchip.setSelectedItem(eQControl.getMachineModel().getMachineKernel_irpchip());
+			this.loaded = true;
+		}
+		if (eQControl.getMachineModel().getMachineKvm_shadow_mem() != null) {
+			this.editor.getTextField().setText(eQControl.getMachineModel().getMachineKvm_shadow_mem());
+			this.loaded = true;
+		}
+		if (eQControl.getMachineModel().getMachineDump_guest_core() != null) {
+			this.dump_guest_core.setSelectedItem(eQControl.getMachineModel().getMachineDump_guest_core());
+			this.loaded = true;
+		}
+		if (eQControl.getMachineModel().getMachineMem_merge() != null) {
+			this.mem_merge.setSelectedItem(eQControl.getMachineModel().getMachineMem_merge());
+			this.loaded = true;
+		}
 
-        this.rechecks();
+		this.rechecks();
 	}
 }

@@ -6,21 +6,22 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.lembed.lite.studio.qemu.control.EmulationControl;
-import com.lembed.lite.studio.qemu.control.VMClosingControl;
-import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulationControl;
+import com.lembed.lite.studio.qemu.control.swt.VMClosingControl;
+import com.lembed.lite.studio.qemu.control.swt.VMConfigurationControl;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
 import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class ExitCommand implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
 	private EmulationControl emulationControl;
 	private VMClosingControl vMClosingControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
 	
-	public ExitCommand(JContainerView jview, EmulationControl emulationControl) {
+	public ExitCommand(JSwtQemuView jview, EmulationControl emulationControl) {
 		view = jview;
 		view.registerListener(this);
 		this.emulationControl = emulationControl;
@@ -41,10 +42,10 @@ public class ExitCommand implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("ExitCommand")) {
 
 			boolean runFurther = view.getSizeOfJTabbedPane() > 1;

@@ -1,7 +1,8 @@
 package com.lembed.lite.studio.qemu.model.swt;
 
 public enum LastUsedFolderEnumModel {
-    OPENEXISTINGVM("OpenExistingVM"), SAVEEXISTINGVM("SaveExistingVM"),
+    OPENEXISTINGVM("OpenExistingVM"), 
+    SAVEEXISTINGVM("SaveExistingVM"),
     OPENEXISTINGJAVAQEMUCONFIGURATION("OpenExistingJavaQemuConfiguration"),
     SAVEEXISTINGJAVAQEMUCONFIGURATION("SaveExistingJavaQemuConfiguration"),
     SETDEFAULTVMDIRECTORY("SetDefaultVMDirectory"),

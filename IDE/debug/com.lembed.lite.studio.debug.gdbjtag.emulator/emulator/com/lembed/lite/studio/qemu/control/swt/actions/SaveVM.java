@@ -42,11 +42,11 @@ public class SaveVM implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("SaveVM")) {
 			if (vMSavingControl == null) {
 				vMSavingControl = new VMSavingControl(view.getSelectedPanel());

@@ -3,32 +3,33 @@ package com.lembed.lite.studio.qemu.control.swt.actions;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import com.lembed.lite.studio.qemu.control.ConfigurationControl;
-import com.lembed.lite.studio.qemu.control.DiskCreationControl;
-import com.lembed.lite.studio.qemu.control.EmulationControl;
-import com.lembed.lite.studio.qemu.control.FileControl;
-import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
-import com.lembed.lite.studio.qemu.control.VMCreationControl;
-import com.lembed.lite.studio.qemu.model.LastUsedFileModel;
-import com.lembed.lite.studio.qemu.model.LastUsedFolderModel;
-import com.lembed.lite.studio.qemu.model.Model;
+import com.lembed.lite.studio.qemu.control.swt.ConfigurationControl;
+import com.lembed.lite.studio.qemu.control.swt.DiskCreationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
+import com.lembed.lite.studio.qemu.control.swt.VMConfigurationControl;
+import com.lembed.lite.studio.qemu.control.swt.VMCreationControl;
+import com.lembed.lite.studio.qemu.model.swt.LastUsedFileModel;
+import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderModel;
+import com.lembed.lite.studio.qemu.model.swt.Model;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
 import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class CreateNewVM implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
 	private ConfigurationControl configurationControl;
 	private EmulationControl emulationControl;
 	private VMCreationControl vMCreationControl;
 	private DiskCreationControl diskCreationControl;
-	private FileControl fileControl;
+	private EmulatorQemuMachineControl fileControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
 	private LastUsedFolderModel lastUsedFolderModel;
 	private LastUsedFileModel lastUsedFileModel;
 
-	public CreateNewVM(JContainerView jview) {
+	public CreateNewVM(JSwtQemuView jview) {
 		view = jview;
 		view.registerListener(this);
 		configurationControl = null;
@@ -57,34 +58,34 @@ public class CreateNewVM implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("CreateNewVM")) {
 			if (fileControl == null) {
-				fileControl = new FileControl(view.getMyUntitledJPanel(), view);
+				fileControl = new EmulatorQemuMachineControl();
 			}
 			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
+				emulationControl = new EmulationControl();
 			}
 			if (configurationControl == null) {
-				view.showMessage("Please, configure the required options first!\n"
+				JSwtQemuView.showMessage("Please, configure the required options first!\n"
 						+ "Please, configure the path of the qemu-img executable first!");
 				configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
 			} 
 			
 			if (configurationControl.getQemu_img_executable_path() == null
 					|| configurationControl.getQemu_img_executable_path().getText().isEmpty()) {
-				view.showMessage("Please, configure the path of the qemu-img executable first!");
-				configurationControl.do_my_view_visible();
+				JSwtQemuView.showMessage("Please, configure the path of the qemu-img executable first!");
+				configurationControl.setVisibleEnable();
 
 			} 
 			
 			if (configurationControl.getDefault_virtual_machines_path().isEmpty()) {
-				view.showMessage("Please, configure the path of the default Virtual Machines first!");
-				configurationControl.do_my_view_visible();
+				JSwtQemuView.showMessage("Please, configure the path of the default Virtual Machines first!");
+				configurationControl.setVisibleEnable();
 			} 
 			
 			vMCreationControl = new VMCreationControl(diskCreationControl,

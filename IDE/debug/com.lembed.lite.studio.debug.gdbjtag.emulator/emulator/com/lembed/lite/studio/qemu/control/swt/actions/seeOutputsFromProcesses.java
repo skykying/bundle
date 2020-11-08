@@ -29,7 +29,7 @@ public class seeOutputsFromProcesses implements BaseListener {
 		doAction(e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("seeOutputsFromProcesses")) {
 			try {
 				if (emulationControl == null) {
@@ -45,7 +45,7 @@ public class seeOutputsFromProcesses implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
 

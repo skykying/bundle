@@ -13,273 +13,276 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-public class NetworkNICWorkerView extends JPanel {
+public class NetworkNICWorkerView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JCheckBox isEnabled;
+	private JCheckBox isEnabled;
 
-    private JLabel temp[];
+	private JLabel temp[];
 
-    private JLabel vlanDescription;
+	private JLabel vlanDescription;
 
-    private JComboBox<String> vlan;
+	private JComboBox<String> vlan;
 
-    private JLabel macaddrDescription;
+	private JLabel macaddrDescription;
 
-    private JTextField macaddr;
+	private JTextField macaddr;
 
-    private JLabel modelDescription;
+	private JLabel modelDescription;
 
-    private JComboBox<String> model;
+	private JComboBox<String> model;
 
-    private JLabel nameDescription;
+	private JLabel nameDescription;
 
-    private JTextField name;
+	private JTextField name;
 
-    private JLabel addrDescription;
+	private JLabel addrDescription;
 
-    private JTextField addr;
+	private JTextField addr;
 
-    private JLabel vectorsNumberDescription;
+	private JLabel vectorsNumberDescription;
 
-    private JComboBox<String> vectorsNumber;
+	private JComboBox<String> vectorsNumber;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
-    public NetworkNICWorkerView(EmulatorQemuMachineControl myfile, int position) {
-        super();
+	private int position;
 
-        windowContent = new JPanel();
+	public NetworkNICWorkerView(EmulatorQemuMachineControl eQControl, int position) {
+		super(eQControl);
+		this.position = position;
 
-        gridLayout = new GridLayout(8, 2);
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridLayout);
+		gridLayout = new GridLayout(8, 2);
 
-        isEnabled = new JCheckBox("Enable this option!");
+		windowContent.setLayout(gridLayout);
 
-        windowContent.add(this.isEnabled);
+		isEnabled = new JCheckBox("Enable this option!");
 
-        temp = new JLabel[1];
-        for (int i = 0; i < temp.length; i++) {
-            temp[i] = new JLabel();
-        }
+		windowContent.add(this.isEnabled);
 
-        windowContent.add(temp[0]);
+		temp = new JLabel[1];
+		for (int i = 0; i < temp.length; i++) {
+			temp[i] = new JLabel();
+		}
 
-        vlanDescription = new JLabel("Choose the VLAN:");
+		windowContent.add(temp[0]);
 
-        windowContent.add(vlanDescription);
+		vlanDescription = new JLabel("Choose the VLAN:");
 
-        String[] numberOptions = {"", "0", "1", "2", "3", "4", "5", "6",
-            "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
-            "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
-            "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-            "37", "38", "39", "40", "41", "42", "43", "44", "45", "46",
-            "47", "48", "49", "50", "51", "52", "53", "54", "55", "56",
-            "57", "58", "59", "60", "61", "62", "63", "64", "65", "66",
-            "67", "68", "69", "70", "71", "72", "73", "74", "75", "76",
-            "77", "78", "79", "80", "81", "82", "83", "84", "85", "86",
-            "87", "88", "89", "90", "91", "92", "93", "94", "95", "96",
-            "97", "98", "99", "100"};
+		windowContent.add(vlanDescription);
 
-        this.vlan = new JComboBox<String>(numberOptions);
+		String[] numberOptions = { "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+				"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",
+				"32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
+				"49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65",
+				"66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82",
+				"83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
+				"100" };
 
-        windowContent.add(vlan);
+		this.vlan = new JComboBox<String>(numberOptions);
 
-        this.macaddrDescription = new JLabel("Choose the MAC address:");
+		windowContent.add(vlan);
 
-        windowContent.add(this.macaddrDescription);
+		this.macaddrDescription = new JLabel("Choose the MAC address:");
 
-        this.macaddr = new JTextField();
+		windowContent.add(this.macaddrDescription);
 
-        windowContent.add(this.macaddr);
+		this.macaddr = new JTextField();
 
-        this.modelDescription = new JLabel("Choose the network card model:");
+		windowContent.add(this.macaddr);
 
-        windowContent.add(this.modelDescription);
+		this.modelDescription = new JLabel("Choose the network card model:");
 
-        String[] modelOptions = {"", "virtio", "i82551", "i82557b",
-            "i82559er", "ne2k_pci", "ne2k_isa", "pcnet", "rtl8139",
-            "e1000", "smc91c111", "lance", "mcf_fec"};
+		windowContent.add(this.modelDescription);
 
-        this.model = new JComboBox<String>(modelOptions);
+		String[] modelOptions = { "", "virtio", "i82551", "i82557b", "i82559er", "ne2k_pci", "ne2k_isa", "pcnet",
+				"rtl8139", "e1000", "smc91c111", "lance", "mcf_fec" };
 
-        windowContent.add(this.model);
+		this.model = new JComboBox<String>(modelOptions);
 
-        this.nameDescription = new JLabel("Choose the name of the NIC:");
-
-        windowContent.add(this.nameDescription);
-
-        this.name = new JTextField();
-
-        windowContent.add(this.name);
-
-        this.addrDescription = new JLabel("Choose the device address:");
-
-        windowContent.add(this.addrDescription);
-
-        this.addr = new JTextField();
-
-        windowContent.add(this.addr);
-
-        vectorsNumberDescription = new JLabel("Choose the number of MSI-X vectors:");
-
-        windowContent.add(this.vectorsNumberDescription);
-
-        vectorsNumber = new JComboBox<String>(numberOptions);
-
-        windowContent.add(this.vectorsNumber);
-
-        okButton = new JButton("OK");
-
-        eraseButton = new JButton("Erase");
-
-        windowContent.add(okButton);
-
-        windowContent.add(eraseButton);
-
-//        this.setContentPane(windowContent);
-//
-//        this.setTitle("JavaQemu - Network NIC Choice");
-
-        switch (position) {
-            case 1:
-                if (myfile.getMachineModel().getFirstNetworkNICOption() != null) {
-                    if (!myfile.getMachineModel().getFirstNetworkNICOption().equals("none")) {
-                        this.buildMe(myfile.getMachineModel().getFirstNetworkNICOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 2:
-                if (myfile.getMachineModel().getSecondNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getSecondNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 3:
-                if (myfile.getMachineModel().getThirdNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getThirdNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 4:
-                if (myfile.getMachineModel().getFourthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getFourthNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 5:
-                if (myfile.getMachineModel().getFifthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getFifthNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 6:
-                if (myfile.getMachineModel().getSixthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getSixthNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 7:
-                if (myfile.getMachineModel().getSeventhNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getSeventhNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 8:
-                if (myfile.getMachineModel().getEighthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getEighthNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 9:
-                if (myfile.getMachineModel().getNinthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getNinthNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            case 10:
-                if (myfile.getMachineModel().getTenthNetworkNICOption() != null) {
-                    this.buildMe(myfile.getMachineModel().getTenthNetworkNICOption());
-                    this.isEnabled.setSelected(true);
-                }
-                break;
-            default:
-                break;
-        }
-
-        this.rechecks();
-
-    }
-
-    private void rechecks() {
-//        this.pack();
-        this.repaint();
-    }
-
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-    }
-
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-    }
-
-    private void buildMe(String optionString) {
-        String options[] = optionString.split(",");
-        for (String option : options) {
-            if (option.startsWith("vlan=")) {
-                this.vlan.setSelectedItem(option.substring(option.indexOf("=") + 1));
-            } else if (option.startsWith("macaddr=")) {
-                this.macaddr.setText(option.substring(option.indexOf("=") + 1));
-            } else if (option.startsWith("model=")) {
-                this.model.setSelectedItem(option.substring(option.indexOf("=") + 1));
-            } else if (option.startsWith("name=")) {
-                this.name.setText(option.substring(option.indexOf("=") + 1));
-            } else if (option.startsWith("addr=")) {
-                this.addr.setText(option.substring(option.indexOf("=") + 1));
-            } else if (option.startsWith("vectors=")) {
-                this.vectorsNumber.setSelectedItem(option.substring(option.indexOf("=") + 1));
-            }
-        }
-    }
-
-    public JCheckBox getIsEnabled() {
-        return isEnabled;
-    }
-
-    public JComboBox<String> getVlan() {
-        return vlan;
-    }
-
-    public JTextField getMacaddr() {
-        return macaddr;
-    }
-
-    public JComboBox<String> getModel() {
-        return model;
-    }
-
-    public JTextField getAddr() {
-        return addr;
-    }
-
-    public JComboBox<String> getVectorsNumber() {
-        return vectorsNumber;
-    }
-
-    public JTextField getNameContents() {
-        return name;
-    }
+		windowContent.add(this.model);
+
+		this.nameDescription = new JLabel("Choose the name of the NIC:");
+
+		windowContent.add(this.nameDescription);
+
+		this.name = new JTextField();
+
+		windowContent.add(this.name);
+
+		this.addrDescription = new JLabel("Choose the device address:");
+
+		windowContent.add(this.addrDescription);
+
+		this.addr = new JTextField();
+
+		windowContent.add(this.addr);
+
+		vectorsNumberDescription = new JLabel("Choose the number of MSI-X vectors:");
+
+		windowContent.add(this.vectorsNumberDescription);
+
+		vectorsNumber = new JComboBox<String>(numberOptions);
+
+		windowContent.add(this.vectorsNumber);
+
+		okButton = new JButton("OK");
+
+		eraseButton = new JButton("Erase");
+
+		windowContent.add(okButton);
+
+		windowContent.add(eraseButton);
+
+		this.add(windowContent);
+
+		this.setTitle("Network NIC");
+
+	}
+
+	private void rechecks() {
+		this.repaint();
+	}
+
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+	}
+
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+	}
+
+	private void buildMe(String optionString) {
+		String options[] = optionString.split(",");
+		for (String option : options) {
+			if (option.startsWith("vlan=")) {
+				this.vlan.setSelectedItem(option.substring(option.indexOf("=") + 1));
+			} else if (option.startsWith("macaddr=")) {
+				this.macaddr.setText(option.substring(option.indexOf("=") + 1));
+			} else if (option.startsWith("model=")) {
+				this.model.setSelectedItem(option.substring(option.indexOf("=") + 1));
+			} else if (option.startsWith("name=")) {
+				this.name.setText(option.substring(option.indexOf("=") + 1));
+			} else if (option.startsWith("addr=")) {
+				this.addr.setText(option.substring(option.indexOf("=") + 1));
+			} else if (option.startsWith("vectors=")) {
+				this.vectorsNumber.setSelectedItem(option.substring(option.indexOf("=") + 1));
+			}
+		}
+	}
+
+	public JCheckBox getIsEnabled() {
+		return isEnabled;
+	}
+
+	public JComboBox<String> getVlan() {
+		return vlan;
+	}
+
+	public JTextField getMacaddr() {
+		return macaddr;
+	}
+
+	public JComboBox<String> getModel() {
+		return model;
+	}
+
+	public JTextField getAddr() {
+		return addr;
+	}
+
+	public JComboBox<String> getVectorsNumber() {
+		return vectorsNumber;
+	}
+
+	public JTextField getNameContents() {
+		return name;
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+
+		switch (position) {
+		case 1:
+			if (eQControl.getMachineModel().getFirstNetworkNICOption() != null) {
+				if (!eQControl.getMachineModel().getFirstNetworkNICOption().equals("none")) {
+					this.buildMe(eQControl.getMachineModel().getFirstNetworkNICOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 2:
+			if (eQControl.getMachineModel().getSecondNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getSecondNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 3:
+			if (eQControl.getMachineModel().getThirdNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getThirdNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 4:
+			if (eQControl.getMachineModel().getFourthNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getFourthNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 5:
+			if (eQControl.getMachineModel().getFifthNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getFifthNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 6:
+			if (eQControl.getMachineModel().getSixthNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getSixthNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 7:
+			if (eQControl.getMachineModel().getSeventhNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getSeventhNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 8:
+			if (eQControl.getMachineModel().getEighthNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getEighthNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 9:
+			if (eQControl.getMachineModel().getNinthNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getNinthNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		case 10:
+			if (eQControl.getMachineModel().getTenthNetworkNICOption() != null) {
+				this.buildMe(eQControl.getMachineModel().getTenthNetworkNICOption());
+				this.isEnabled.setSelected(true);
+			}
+			break;
+		default:
+			break;
+		}
+
+		this.rechecks();
+
+	}
 }

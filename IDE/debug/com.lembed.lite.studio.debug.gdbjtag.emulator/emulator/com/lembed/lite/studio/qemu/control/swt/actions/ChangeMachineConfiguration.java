@@ -36,11 +36,11 @@ public class ChangeMachineConfiguration implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("ChangeMachineConfiguration")) {
 			int position;
 			if (view.getActivePanel() == 0) {

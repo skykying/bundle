@@ -3,21 +3,21 @@ package com.lembed.lite.studio.qemu.control.swt.actions;
 import java.awt.event.ActionEvent;
 import java.util.ArrayList;
 import java.util.List;
-import com.lembed.lite.studio.qemu.control.EmulationControl;
-import com.lembed.lite.studio.qemu.control.VMClosingControl;
-import com.lembed.lite.studio.qemu.control.VMConfigurationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulationControl;
+import com.lembed.lite.studio.qemu.control.swt.VMClosingControl;
+import com.lembed.lite.studio.qemu.control.swt.VMConfigurationControl;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class CloseVM implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
 	private EmulationControl emulationControl;
 	private VMClosingControl vMClosingControl;
 	private List<VMConfigurationControl> vMConfigurationControlist;
 	
-	public CloseVM(JContainerView jview, EmulationControl emulationControl,VMClosingControl vMClosingControl) {
+	public CloseVM(JSwtQemuView jview, EmulationControl emulationControl,VMClosingControl vMClosingControl) {
 		view = jview;
 		view.registerListener(this);
 		this.emulationControl = emulationControl;
@@ -37,10 +37,10 @@ public class CloseVM implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		
 		if (e.getActionCommand().equals("CloseVM")) {
 			int position;

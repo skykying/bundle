@@ -8,6 +8,7 @@ import java.util.List;
 import com.lembed.lite.studio.qemu.control.swt.ProcessControl;
 import com.lembed.lite.studio.qemu.model.swt.options.OptionsEnumModel;
 import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 import com.lembed.lite.studio.qemu.view.internal.swt.EmulationView;
 
 public class EmulationModel {
@@ -15,7 +16,7 @@ public class EmulationModel {
     private List<Process> processList;
     private List<ProcessControl> processesControlList;
     private List<ScriptModel> scriptModelList;
-    private JContainerView view;
+//    private JSwtQemuView view;
     private List<JPanelModel> panelModelList;
 
     private String qemuPath;
@@ -32,7 +33,7 @@ public class EmulationModel {
 
     private List<List<String>> options;
 
-    public EmulationModel(EmulationView myview, JContainerView view) {
+    public EmulationModel(EmulationView myview) {
         super();
         this.execQemu = new ArrayList<String[]>();
 
@@ -43,7 +44,7 @@ public class EmulationModel {
         this.processList = new ArrayList<Process>();
         this.processesControlList = new ArrayList<ProcessControl>();
         this.scriptModelList = new ArrayList<ScriptModel>();
-        this.view = view;
+//        this.view = view;
         this.panelModelList = new ArrayList<JPanelModel>();
     }
 
@@ -225,117 +226,117 @@ public class EmulationModel {
     public boolean runs(int position, String machineName) throws IOException,
             InterruptedException {
         // this.myview.showThisBeforeInTheRunProcess(qemuPath, execQemu);
-        if (!this.getQemuPath().isEmpty()) {
-            if (this.checks_if_is_a_valid_file(this.getQemuPath())) {
-                if (this.checks(position)) {
-                    if (this.panelModelList.size() > this.view.getActivePanel()) {
-                        if (this.panelModelList.get(this.view.getActivePanel()) != null) {
-                            this.panelModelList.get(this.view.getActivePanel()).setEmulation(
-                                    this.execQemu.get(position));
-                            this.emulationView.showThisAfterInTheRunProcess(this.panelModelList.get(
-                                    this.view.getActivePanel()).getExecQemu());
-                            String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
-                                    this.view.getActivePanel())
-                                    .getEmulation());
-                            if (cmdLine.length == 0) {
-                                this.setProcessList(
-                                        Runtime.getRuntime().exec(
-                                                this.panelModelList.get(
-                                                        this.view.getActivePanel())
-                                                .getEmulation(), null,
-                                                new File(this.qemuPathDir)), position,
-                                        machineName, false);
-                            } else {
-                                this.setProcessList(
-                                        Runtime.getRuntime().exec(
-                                                cmdLine, null,
-                                                new File(this.qemuPathDir)), position,
-                                        machineName, false);
-                            }
-                            return true;
-                        } else {
-                            return false;
-                        }
-                    } else {
-                        return false;
-                    }
-                } else {
-                    this.emulationView
-                            .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
-                }
-            }
-        }
+//        if (!this.getQemuPath().isEmpty()) {
+//            if (this.checks_if_is_a_valid_file(this.getQemuPath())) {
+//                if (this.checks(position)) {
+//                    if (this.panelModelList.size() > this.view.getActivePanel()) {
+//                        if (this.panelModelList.get(this.view.getActivePanel()) != null) {
+//                            this.panelModelList.get(this.view.getActivePanel()).setEmulation(
+//                                    this.execQemu.get(position));
+//                            this.emulationView.showThisAfterInTheRunProcess(this.panelModelList.get(
+//                                    this.view.getActivePanel()).getExecQemu());
+//                            String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
+//                                    this.view.getActivePanel())
+//                                    .getEmulation());
+//                            if (cmdLine.length == 0) {
+//                                this.setProcessList(
+//                                        Runtime.getRuntime().exec(
+//                                                this.panelModelList.get(
+//                                                        this.view.getActivePanel())
+//                                                .getEmulation(), null,
+//                                                new File(this.qemuPathDir)), position,
+//                                        machineName, false);
+//                            } else {
+//                                this.setProcessList(
+//                                        Runtime.getRuntime().exec(
+//                                                cmdLine, null,
+//                                                new File(this.qemuPathDir)), position,
+//                                        machineName, false);
+//                            }
+//                            return true;
+//                        } else {
+//                            return false;
+//                        }
+//                    } else {
+//                        return false;
+//                    }
+//                } else {
+//                    this.emulationView
+//                            .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
+//                }
+//            }
+//        }
         return false;
     }
 
     public String getFullCommandLine(int position) {
         String result = null;
-        if (this.getQemuPath() != null && !this.getQemuPath().isEmpty()) {
-            if (this.checks_if_is_a_valid_file(this.getQemuPath())) {
-                if (this.checks(position)) {
-                    if (this.panelModelList.size() > this.view.getActivePanel()) {
-                        if (this.panelModelList.get(this.view.getActivePanel()) != null) {
-                            this.panelModelList.get(this.view.getActivePanel()).setEmulation(
-                                    this.execQemu.get(position));
-
-                            String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
-                                    this.view.getActivePanel())
-                                    .getEmulation());
-                            if (cmdLine.length == 0) {
-                                result = this.panelModelList.get(
-                                        this.view.getActivePanel())
-                                        .getEmulation();
-                            } else {
-                                StringBuilder builder = new StringBuilder(1024);
-                                for (String s : cmdLine) {
-                                    builder.append(s).append(" ");
-                                }
-                                result = builder.toString();
-                            }
-                            return result;
-                        } else {
-                            return "";
-                        }
-                    } else {
-                        return "";
-                    }
-                } else {
-                    this.emulationView
-                            .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
-                    return "";
-                }
-            }
-        } else if (this.checks(position)) {
-            if (this.panelModelList.size() > this.view.getActivePanel()) {
-                if (this.panelModelList.get(this.view.getActivePanel()) != null) {
-                    this.panelModelList.get(this.view.getActivePanel()).setEmulation(
-                            this.execQemu.get(position));
-
-                    String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
-                            this.view.getActivePanel())
-                            .getEmulation());
-                    if (cmdLine.length == 0) {
-                        result = this.panelModelList.get(
-                                this.view.getActivePanel())
-                                .getEmulation();
-                    } else {
-                        StringBuilder builder = new StringBuilder(1024);
-                        for (String s : cmdLine) {
-                            builder.append(s).append(" ");
-                        }
-                        result = builder.toString();
-                    }
-                    return result;
-                } else {
-                    return "";
-                }
-            } else {
-                return "";
-            }
-        } else {
-            this.emulationView.showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
-            return "";
-        }
+//        if (this.getQemuPath() != null && !this.getQemuPath().isEmpty()) {
+//            if (this.checks_if_is_a_valid_file(this.getQemuPath())) {
+//                if (this.checks(position)) {
+//                    if (this.panelModelList.size() > this.view.getActivePanel()) {
+//                        if (this.panelModelList.get(this.view.getActivePanel()) != null) {
+//                            this.panelModelList.get(this.view.getActivePanel()).setEmulation(
+//                                    this.execQemu.get(position));
+//
+//                            String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
+//                                    this.view.getActivePanel())
+//                                    .getEmulation());
+//                            if (cmdLine.length == 0) {
+//                                result = this.panelModelList.get(
+//                                        this.view.getActivePanel())
+//                                        .getEmulation();
+//                            } else {
+//                                StringBuilder builder = new StringBuilder(1024);
+//                                for (String s : cmdLine) {
+//                                    builder.append(s).append(" ");
+//                                }
+//                                result = builder.toString();
+//                            }
+//                            return result;
+//                        } else {
+//                            return "";
+//                        }
+//                    } else {
+//                        return "";
+//                    }
+//                } else {
+//                    this.emulationView
+//                            .showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
+//                    return "";
+//                }
+//            }
+//        } else if (this.checks(position)) {
+//            if (this.panelModelList.size() > this.view.getActivePanel()) {
+//                if (this.panelModelList.get(this.view.getActivePanel()) != null) {
+//                    this.panelModelList.get(this.view.getActivePanel()).setEmulation(
+//                            this.execQemu.get(position));
+//
+//                    String[] cmdLine = UsabilityModel.getCmdLine(this.panelModelList.get(
+//                            this.view.getActivePanel())
+//                            .getEmulation());
+//                    if (cmdLine.length == 0) {
+//                        result = this.panelModelList.get(
+//                                this.view.getActivePanel())
+//                                .getEmulation();
+//                    } else {
+//                        StringBuilder builder = new StringBuilder(1024);
+//                        for (String s : cmdLine) {
+//                            builder.append(s).append(" ");
+//                        }
+//                        result = builder.toString();
+//                    }
+//                    return result;
+//                } else {
+//                    return "";
+//                }
+//            } else {
+//                return "";
+//            }
+//        } else {
+//            this.emulationView.showMessage("You shouldn�t to use \"-hdc\" and \"-cdrom\" options at the same time!");
+//            return "";
+//        }
 
         return "";
     }
@@ -619,23 +620,23 @@ public class EmulationModel {
     }
 
     public void setJPanel() {
-        if (this.panelModelList.size() <= this.view.getActivePanel()) {
-            for (int i = this.panelModelList.size(); i <= this.view.getActivePanel(); i++) {
-                this.panelModelList.add(i, null);
-            }
-        }
-        if (this.panelModelList.get(this.view.getActivePanel()) == null) {
-            this.panelModelList.set(this.view.getActivePanel(), new JPanelModel());
-        }
-        int position = getPosition();
-        if (this.execQemu.size() > position) {
-            for (int i = 0; i < execQemu.get(position).length; i++) {
-                if (!this.execQemu.get(position)[i].isEmpty()) {
-                    this.panelModelList.get(this.view.getActivePanel()).setExecQemu(
-                            this.execQemu.get(position)[i], i);
-                }
-            }
-        }
+//        if (this.panelModelList.size() <= this.view.getActivePanel()) {
+//            for (int i = this.panelModelList.size(); i <= this.view.getActivePanel(); i++) {
+//                this.panelModelList.add(i, null);
+//            }
+//        }
+//        if (this.panelModelList.get(this.view.getActivePanel()) == null) {
+//            this.panelModelList.set(this.view.getActivePanel(), new JPanelModel());
+//        }
+//        int position = getPosition();
+//        if (this.execQemu.size() > position) {
+//            for (int i = 0; i < execQemu.get(position).length; i++) {
+//                if (!this.execQemu.get(position)[i].isEmpty()) {
+//                    this.panelModelList.get(this.view.getActivePanel()).setExecQemu(
+//                            this.execQemu.get(position)[i], i);
+//                }
+//            }
+//        }
 
     }
 
@@ -654,10 +655,11 @@ public class EmulationModel {
     }
 
     public int getPosition() {
-        if (this.view.getActivePanel() == 0) {
-            return this.view.getSizeOfJTabbedPane();
-        } else {
-            return this.view.getActivePanel();
-        }
+//        if (this.view.getActivePanel() == 0) {
+//            return this.view.getSizeOfJTabbedPane();
+//        } else {
+//            return this.view.getActivePanel();
+//        }
+    	return 0;
     }
 }

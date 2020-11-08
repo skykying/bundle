@@ -14,100 +14,95 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class SoundHardwareView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JLabel soundHardwareLabel;
+	private JLabel soundHardwareLabel;
 
-    private JComboBox<String> soundHardware;
+	private JComboBox<String> soundHardware;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
-    // Association "option" - "Description".
-    private HashMap<String, String> falseOptions;
+	// Association "option" - "Description".
+	private HashMap<String, String> falseOptions;
 
+	public SoundHardwareView(EmulatorQemuMachineControl emc) {
+		super(emc);
 
-    public SoundHardwareView(EmulatorQemuMachineControl emc) {
-        super(emc);
+		windowContent = new JPanel();
 
-        windowContent = new JPanel();
+		gridLayout = new GridLayout(2, 2);
 
-        gridLayout = new GridLayout(2, 2);
+		windowContent.setLayout(gridLayout);
 
-        windowContent.setLayout(gridLayout);
+		soundHardwareLabel = new JLabel("Choose the sound hardware:");
 
-        soundHardwareLabel = new JLabel("Choose the sound hardware:");
+		windowContent.add(soundHardwareLabel);
 
-        windowContent.add(soundHardwareLabel);
+		String[] soundHardwareOptions = { "", "Creative Sound Blaster 16", "PC speaker", "Intel HD Audio",
+				"Gravis Ultrasound GF1", "ENSONIQ AudioPCI ES1370", "CS4231A", "Yamaha YM3812 (OPL2)",
+				"Intel 82801AA AC97 Audio", "All of the above" };
 
-        String[] soundHardwareOptions = {"", "Creative Sound Blaster 16",
-            "PC speaker", "Intel HD Audio", "Gravis Ultrasound GF1",
-            "ENSONIQ AudioPCI ES1370", "CS4231A", "Yamaha YM3812 (OPL2)",
-            "Intel 82801AA AC97 Audio", "All of the above"};
+		this.soundHardware = new JComboBox<String>(soundHardwareOptions);
 
-        this.soundHardware = new JComboBox<String>(soundHardwareOptions);
+		windowContent.add(soundHardware);
 
-        windowContent.add(soundHardware);
+		okButton = new JButton("OK");
 
-        okButton = new JButton("OK");
+		eraseButton = new JButton("Erase");
 
-        eraseButton = new JButton("Erase");
+		windowContent.add(okButton);
 
-        windowContent.add(okButton);
+		windowContent.add(eraseButton);
 
-        windowContent.add(eraseButton);
+		this.add(windowContent);
 
-        this.add(windowContent);
+		this.setTitle("Sound Hardware");
 
-        this.setTitle("JavaQemu - Sound Hardware Choice");
+	}
 
-    }
+	private void rechecks() {
+		this.repaint();
+	}
 
-    private void rechecks() {
-        this.repaint();
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+	}
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-    }
-
-    public JComboBox<String> getSoundHardware() {
-        return soundHardware;
-    }
-    
+	public JComboBox<String> getSoundHardware() {
+		return soundHardware;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-        this.falseOptions = new HashMap<String, String>();
-        falseOptions.put("", "");
-        falseOptions.put("sb16", "Creative Sound Blaster 16");
-        falseOptions.put("pcspk", "PC speaker");
-        falseOptions.put("hda", "Intel HD Audio");
-        falseOptions.put("gus", "Gravis Ultrasound GF1");
-        falseOptions.put("es1370", "ENSONIQ AudioPCI ES1370");
-        falseOptions.put("cs4231a", "CS4231A");
-        falseOptions.put("adlib", "Yamaha YM3812 (OPL2)");
-        falseOptions.put("ac97", "Intel 82801AA AC97 Audio");
-        falseOptions.put("all", "All of the above");
+		this.falseOptions = new HashMap<String, String>();
+		falseOptions.put("", "");
+		falseOptions.put("sb16", "Creative Sound Blaster 16");
+		falseOptions.put("pcspk", "PC speaker");
+		falseOptions.put("hda", "Intel HD Audio");
+		falseOptions.put("gus", "Gravis Ultrasound GF1");
+		falseOptions.put("es1370", "ENSONIQ AudioPCI ES1370");
+		falseOptions.put("cs4231a", "CS4231A");
+		falseOptions.put("adlib", "Yamaha YM3812 (OPL2)");
+		falseOptions.put("ac97", "Intel 82801AA AC97 Audio");
+		falseOptions.put("all", "All of the above");
 
-        if (eQControl.getMachineModel().getSoundHardwareOption() != null) {
-            getSoundHardware().setSelectedItem(
-                    falseOptions.get(eQControl.getMachineModel()
-                            .getSoundHardwareOption()));
-        }
+		if (eQControl.getMachineModel().getSoundHardwareOption() != null) {
+			getSoundHardware().setSelectedItem(falseOptions.get(eQControl.getMachineModel().getSoundHardwareOption()));
+		}
 
-        this.rechecks();
-		
+		this.rechecks();
+
 	}
 }

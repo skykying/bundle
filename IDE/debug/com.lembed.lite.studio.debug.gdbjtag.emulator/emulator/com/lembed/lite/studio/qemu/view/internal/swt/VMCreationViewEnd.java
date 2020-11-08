@@ -13,86 +13,94 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-public class VMCreationViewEnd extends JPanel {
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-    private static final long serialVersionUID = 1L;
+public class VMCreationViewEnd extends DeviceBaseView {
 
-    private JPanel windowContent;
+	private static final long serialVersionUID = 1L;
 
-    private GridBagLayout gridBagLayout;
+	private JPanel windowContent;
 
-    private GridBagConstraints gridBagConstraints;
+	private GridBagLayout gridBagLayout;
 
-    private JLabel windowDescription;
+	private GridBagConstraints gridBagConstraints;
 
-    private JButton noButton;
+	private JLabel windowDescription;
 
-    private JButton yesButton;
+	private JButton noButton;
 
-    public VMCreationViewEnd() {
-        super();
+	private JButton yesButton;
 
-        windowContent = new JPanel();
+	public VMCreationViewEnd() {
+		super();
 
-        gridBagLayout = new GridBagLayout();
-        this.gridBagConstraints = new GridBagConstraints();
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridBagLayout);
+		gridBagLayout = new GridBagLayout();
+		this.gridBagConstraints = new GridBagConstraints();
 
-        windowDescription = new JLabel("Do you want to open the new created virtual machine?");
+		windowContent.setLayout(gridBagLayout);
 
-        noButton = new JButton("No");
+		windowDescription = new JLabel("Do you want to open the new created virtual machine?");
 
-        yesButton = new JButton("Yes");
+		noButton = new JButton("No");
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
+		yesButton = new JButton("Yes");
 
-        windowContent.add(windowDescription, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
+		gridBagConstraints.gridwidth = 2;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.5;
-        gridBagConstraints.gridwidth = 1;
+		windowContent.add(windowDescription, gridBagConstraints);
 
-        windowContent.add(yesButton, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.weightx = 0.5;
+		gridBagConstraints.gridwidth = 1;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.weightx = 0.5;
+		windowContent.add(yesButton, gridBagConstraints);
 
-        windowContent.add(noButton, gridBagConstraints);
-    }
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 1;
+		gridBagConstraints.weightx = 0.5;
 
-    public void initialize() {
-        this.add(windowContent);
-//        this.setTitle("Create a new machine - The end");
-    }
+		windowContent.add(noButton, gridBagConstraints);
+	}
 
-    public void configureListener(ActionListener listener) {
-        noButton.addActionListener(listener);
-        yesButton.addActionListener(listener);
-    }
+	public void initialize() {
+		this.add(windowContent);
+		// this.setTitle("Create a new machine - The end");
+	}
 
-    public void configureStandardMode() {
-        noButton.setActionCommand("No_option_pos_creation");
-        yesButton.setActionCommand("Yes_option_pos_creation");
-    }
+	public void configureListener(ActionListener listener) {
+		noButton.addActionListener(listener);
+		yesButton.addActionListener(listener);
+	}
 
-    public void showMessage(String message) {
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(500, 500));
-        JTextArea textArea = new JTextArea(message);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(5, 5, 5, 5));
-        scrollPane.getViewport().setView(textArea);
-        Object trueMessage = scrollPane;
-        JOptionPane.showMessageDialog(null, trueMessage);
-    }
+	public void configureStandardMode() {
+		noButton.setActionCommand("No_option_pos_creation");
+		yesButton.setActionCommand("Yes_option_pos_creation");
+	}
+
+	public void showMessage(String message) {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(500, 500));
+		JTextArea textArea = new JTextArea(message);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setMargin(new Insets(5, 5, 5, 5));
+		scrollPane.getViewport().setView(textArea);
+		Object trueMessage = scrollPane;
+		JOptionPane.showMessageDialog(null, trueMessage);
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+		// TODO Auto-generated method stub
+
+	}
 }

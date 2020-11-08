@@ -6,8 +6,6 @@ import java.awt.Insets;
 import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -15,78 +13,87 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-public class VMCreationViewPart1 extends JPanel {
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-    private static final long serialVersionUID = 1L;
+public class VMCreationViewPart1 extends DeviceBaseView {
 
-    private JPanel windowContent;
+	private static final long serialVersionUID = 1L;
 
-    private GridLayout gridLayout;
+	private JPanel windowContent;
 
-    private JLabel chooseMachineNameLabel;
+	private GridLayout gridLayout;
 
-    private JTextField choooseMachineNameField;
+	private JLabel chooseMachineNameLabel;
 
-    private JButton cancelButton;
+	private JTextField choooseMachineNameField;
 
-    private JButton nextButton;
+	private JButton cancelButton;
 
-    public VMCreationViewPart1() {
-        super();
+	private JButton nextButton;
 
-        windowContent = new JPanel();
+	public VMCreationViewPart1() {
+		super();
 
-        gridLayout = new GridLayout(2, 2);
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridLayout);
+		gridLayout = new GridLayout(2, 2);
 
-        chooseMachineNameLabel = new JLabel("Choose the name of your new machine:");
+		windowContent.setLayout(gridLayout);
 
-        choooseMachineNameField = new JTextField(0);
+		chooseMachineNameLabel = new JLabel("Choose the name of your new machine:");
 
-        windowContent.add(chooseMachineNameLabel);
+		choooseMachineNameField = new JTextField(0);
 
-        windowContent.add(choooseMachineNameField);
+		windowContent.add(chooseMachineNameLabel);
 
-        cancelButton = new JButton("Cancel");
+		windowContent.add(choooseMachineNameField);
 
-        nextButton = new JButton("Next >");
+		cancelButton = new JButton("Cancel");
 
-        windowContent.add(nextButton);
+		nextButton = new JButton("Next >");
 
-        windowContent.add(cancelButton);
-    }
+		windowContent.add(nextButton);
 
-    public void initialize() {
-        this.add(windowContent);
-//        this.setTitle("Create a new machine - Part 1");
-//        this.pack();
-    }
+		windowContent.add(cancelButton);
+		
+		this.add(windowContent);
+		this.setTitle("Create a new machine - Part 1");
+	}
 
-    public void configureListener(ActionListener listener) {
-        cancelButton.addActionListener(listener);
-        nextButton.addActionListener(listener);
-    }
+	public void initialize() {
+		this.add(windowContent);
+		this.setTitle("Create a new machine - Part 1");
+	}
 
-    public void configureStandardMode() {
-        cancelButton.setActionCommand("Cancel1");
-        nextButton.setActionCommand("Next1");
-    }
+	public void configureListener(ActionListener listener) {
+		cancelButton.addActionListener(listener);
+		nextButton.addActionListener(listener);
+	}
 
-    public JTextField getFieldChoooseMachineName() {
-        return choooseMachineNameField;
-    }
+	public void configureStandardMode() {
+		cancelButton.setActionCommand("Cancel1");
+		nextButton.setActionCommand("Next1");
+	}
 
-    public void showMessage(String message) {
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(500, 500));
-        JTextArea textArea = new JTextArea(message);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(5, 5, 5, 5));
-        scrollPane.getViewport().setView(textArea);
-        Object trueMessage = scrollPane;
-        JOptionPane.showMessageDialog(null, trueMessage);
-    }
+	public JTextField getFieldChoooseMachineName() {
+		return choooseMachineNameField;
+	}
+
+	public void showMessage(String message) {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(500, 500));
+		JTextArea textArea = new JTextArea(message);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setMargin(new Insets(5, 5, 5, 5));
+		scrollPane.getViewport().setView(textArea);
+		Object trueMessage = scrollPane;
+		JOptionPane.showMessageDialog(null, trueMessage);
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+
+	}
 }

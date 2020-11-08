@@ -20,360 +20,342 @@ import javax.swing.JTextField;
 
 import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-public class ConfigurationView extends DeviceViewWithFileChooser implements IDeviceView{
+public class ConfigurationView extends DeviceViewWithFileChooser  {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JMenuBar menuBar;
+	private JMenuBar menuBar;
 
-    private JMenu fileMenu;
-    private JMenuItem saveConfiguration;
-    private JMenuItem openConfiguration;
-    private JMenuItem exitCommand;
+	private JMenu fileMenu;
+	private JMenuItem saveConfiguration;
+	private JMenuItem openConfiguration;
+	private JMenuItem exitCommand;
 
-    private JLabel default_virtual_machines_path_description;
+	private JLabel default_virtual_machines_path_description;
 
-    private JTextField default_virtual_machines_path_choice;
+	private JTextField default_virtual_machines_path_choice;
 
-    private JScrollPane default_virtual_machines_path_scroller;
+	private JScrollPane default_virtual_machines_path_scroller;
 
-    private JButton default_virtual_machines_path_chooser;
+	private JButton default_virtual_machines_path_chooser;
 
-    private JLabel execute_before_start_qemu_description;
+	private JLabel execute_before_start_qemu_description;
 
-    private JTextArea execute_before_start_qemu_choices;
+	private JTextArea execute_before_start_qemu_choices;
 
-    private JScrollPane ascrollpane_start, ascrollpane_stop;
+	private JScrollPane ascrollpane_start, ascrollpane_stop;
 
-    private JLabel firstEmptyLabel, thirdEmptyLabel;
+	private JLabel firstEmptyLabel, thirdEmptyLabel;
 
-    private JLabel qemu_executable_path_description;
+	private JLabel qemu_executable_path_description;
 
-    private JTextField qemu_executable_path_choice;
+	private JTextField qemu_executable_path_choice;
 
-    private JScrollPane qemu_executable_path_scroller;
+	private JScrollPane qemu_executable_path_scroller;
 
-    private JLabel qemu_img_executable_path_description;
+	private JLabel qemu_img_executable_path_description;
 
-    private JTextField qemu_img_executable_path_choice;
+	private JTextField qemu_img_executable_path_choice;
 
-    private JScrollPane qemu_img_executable_path_scroller;
+	private JScrollPane qemu_img_executable_path_scroller;
 
-    private JLabel execute_after_stop_qemu_description;
+	private JLabel execute_after_stop_qemu_description;
 
-    private JTextArea execute_after_stop_qemu_choices;
+	private JTextArea execute_after_stop_qemu_choices;
 
-    private JButton ok, hide;
+	private JButton ok, hide;
 
-    private JButton qemu_executable_path_chooser;
+	private JButton qemu_executable_path_chooser;
 
-    private JButton qemu_img_executable_path_chooser;
+	private JButton qemu_img_executable_path_chooser;
 
-    private String javaQemu_configuration_file_path;
+	private String javaQemu_configuration_file_path;
 
-    private JLabel empty;
+	private JLabel empty;
 
-    private JLabel bios_vga_bios_keymaps_path_description;
+	private JLabel bios_vga_bios_keymaps_path_description;
 
-    private JTextField bios_vga_bios_keymaps_path_choice;
+	private JTextField bios_vga_bios_keymaps_path_choice;
 
-    private JScrollPane bios_vga_bios_keymaps_path_scroller;
+	private JScrollPane bios_vga_bios_keymaps_path_scroller;
 
-    private JButton bios_vga_bios_keymaps_path_chooser;
+	private JButton bios_vga_bios_keymaps_path_chooser;
 
 	private String title;
 
-    public ConfigurationView() {
-        super(null);
-        windowContent = new JPanel();
+	public ConfigurationView() {
+		super(null);
+		windowContent = new JPanel();
 
-        this.setJpanel(windowContent);
+		this.setJpanel(windowContent);
 
-        gridLayout = new GridLayout(7, 3);
+		gridLayout = new GridLayout(7, 3);
 
-        windowContent.setLayout(gridLayout);
+		windowContent.setLayout(gridLayout);
 
-        menuBar = new JMenuBar();
+		menuBar = new JMenuBar();
 
-        fileMenu = new JMenu("File");
+		fileMenu = new JMenu("File");
 
-        openConfiguration = new JMenuItem("Open configuration");
-        fileMenu.add(openConfiguration);
+		openConfiguration = new JMenuItem("Open configuration");
+		fileMenu.add(openConfiguration);
 
-        saveConfiguration = new JMenuItem("Save Configuration");
-        fileMenu.add(saveConfiguration);
+		saveConfiguration = new JMenuItem("Save Configuration");
+		fileMenu.add(saveConfiguration);
 
-        exitCommand = new JMenuItem("Quit");
-        fileMenu.add(exitCommand);
+		exitCommand = new JMenuItem("Quit");
+		fileMenu.add(exitCommand);
 
-        menuBar.add(fileMenu);
+		menuBar.add(fileMenu);
 
-        default_virtual_machines_path_description = new JLabel(
-                "Default Virtual Machines Path: ");
-        default_virtual_machines_path_choice = new JTextField(0);
-        default_virtual_machines_path_scroller = new JScrollPane(
-                default_virtual_machines_path_choice);
-        default_virtual_machines_path_chooser = new JButton(
-                "Choose the Default VM Directory!");
-        windowContent.add(default_virtual_machines_path_description);
-        windowContent.add(default_virtual_machines_path_scroller);
-        windowContent.add(default_virtual_machines_path_chooser);
+		default_virtual_machines_path_description = new JLabel("Default Virtual Machines Path: ");
+		default_virtual_machines_path_choice = new JTextField(0);
+		default_virtual_machines_path_scroller = new JScrollPane(default_virtual_machines_path_choice);
+		default_virtual_machines_path_chooser = new JButton("Choose the Default VM Directory!");
+		windowContent.add(default_virtual_machines_path_description);
+		windowContent.add(default_virtual_machines_path_scroller);
+		windowContent.add(default_virtual_machines_path_chooser);
 
-        execute_before_start_qemu_description = new JLabel(
-                "Execute before start QEMU:");
-        windowContent.add(execute_before_start_qemu_description);
+		execute_before_start_qemu_description = new JLabel("Execute before start QEMU:");
+		windowContent.add(execute_before_start_qemu_description);
 
-        execute_before_start_qemu_choices = new JTextArea("", 3, 30);
-        execute_before_start_qemu_choices.setLineWrap(true);
-        execute_before_start_qemu_choices.setWrapStyleWord(true);
+		execute_before_start_qemu_choices = new JTextArea("", 3, 30);
+		execute_before_start_qemu_choices.setLineWrap(true);
+		execute_before_start_qemu_choices.setWrapStyleWord(true);
 
-        ascrollpane_start = new JScrollPane(execute_before_start_qemu_choices);
-        windowContent.add(ascrollpane_start);
+		ascrollpane_start = new JScrollPane(execute_before_start_qemu_choices);
+		windowContent.add(ascrollpane_start);
 
-        firstEmptyLabel = new JLabel("");
-        windowContent.add(firstEmptyLabel);
+		firstEmptyLabel = new JLabel("");
+		windowContent.add(firstEmptyLabel);
 
-        qemu_executable_path_description = new JLabel("Qemu Executable Path: ");
-        windowContent.add(qemu_executable_path_description);
+		qemu_executable_path_description = new JLabel("Qemu Executable Path: ");
+		windowContent.add(qemu_executable_path_description);
 
-        qemu_executable_path_choice = new JTextField(0);
-        qemu_executable_path_scroller = new JScrollPane(
-                qemu_executable_path_choice);
-        windowContent.add(qemu_executable_path_scroller);
+		qemu_executable_path_choice = new JTextField(0);
+		qemu_executable_path_scroller = new JScrollPane(qemu_executable_path_choice);
+		windowContent.add(qemu_executable_path_scroller);
 
-        qemu_executable_path_chooser = new JButton(
-                "Choose the Qemu Executable Path!");
-        windowContent.add(qemu_executable_path_chooser);
+		qemu_executable_path_chooser = new JButton("Choose the Qemu Executable Path!");
+		windowContent.add(qemu_executable_path_chooser);
 
-        execute_after_stop_qemu_description = new JLabel(
-                "Execute after stop QEMU:");
-        windowContent.add(execute_after_stop_qemu_description);
+		execute_after_stop_qemu_description = new JLabel("Execute after stop QEMU:");
+		windowContent.add(execute_after_stop_qemu_description);
 
-        execute_after_stop_qemu_choices = new JTextArea("", 3, 30);
-        execute_after_stop_qemu_choices.setLineWrap(true);
-        execute_after_stop_qemu_choices.setWrapStyleWord(true);
+		execute_after_stop_qemu_choices = new JTextArea("", 3, 30);
+		execute_after_stop_qemu_choices.setLineWrap(true);
+		execute_after_stop_qemu_choices.setWrapStyleWord(true);
 
-        ascrollpane_stop = new JScrollPane(execute_after_stop_qemu_choices);
-        windowContent.add(ascrollpane_stop);
+		ascrollpane_stop = new JScrollPane(execute_after_stop_qemu_choices);
+		windowContent.add(ascrollpane_stop);
 
-        thirdEmptyLabel = new JLabel("");
-        windowContent.add(thirdEmptyLabel);
+		thirdEmptyLabel = new JLabel("");
+		windowContent.add(thirdEmptyLabel);
 
-        qemu_img_executable_path_description = new JLabel(
-                "Qemu-img Executable Path: ");
-        windowContent.add(qemu_img_executable_path_description);
+		qemu_img_executable_path_description = new JLabel("Qemu-img Executable Path: ");
+		windowContent.add(qemu_img_executable_path_description);
 
-        qemu_img_executable_path_choice = new JTextField(0);
-        qemu_img_executable_path_scroller = new JScrollPane(
-                qemu_img_executable_path_choice);
-        windowContent.add(qemu_img_executable_path_scroller);
+		qemu_img_executable_path_choice = new JTextField(0);
+		qemu_img_executable_path_scroller = new JScrollPane(qemu_img_executable_path_choice);
+		windowContent.add(qemu_img_executable_path_scroller);
 
-        qemu_img_executable_path_chooser = new JButton(
-                "Choose the Qemu-img Executable Path!");
-        windowContent.add(qemu_img_executable_path_chooser);
+		qemu_img_executable_path_chooser = new JButton("Choose the Qemu-img Executable Path!");
+		windowContent.add(qemu_img_executable_path_chooser);
 
-        bios_vga_bios_keymaps_path_description = new JLabel(
-                "BIOS, VGA BIOS and keymaps Path:");
-        windowContent.add(bios_vga_bios_keymaps_path_description);
+		bios_vga_bios_keymaps_path_description = new JLabel("BIOS, VGA BIOS and keymaps Path:");
+		windowContent.add(bios_vga_bios_keymaps_path_description);
 
-        bios_vga_bios_keymaps_path_choice = new JTextField(0);
-        bios_vga_bios_keymaps_path_scroller = new JScrollPane(
-                bios_vga_bios_keymaps_path_choice);
-        windowContent.add(bios_vga_bios_keymaps_path_scroller);
+		bios_vga_bios_keymaps_path_choice = new JTextField(0);
+		bios_vga_bios_keymaps_path_scroller = new JScrollPane(bios_vga_bios_keymaps_path_choice);
+		windowContent.add(bios_vga_bios_keymaps_path_scroller);
 
-        bios_vga_bios_keymaps_path_chooser = new JButton(
-                "Set the BIOS, VGA BIOS and keymaps Path!");
-        windowContent.add(bios_vga_bios_keymaps_path_chooser);
+		bios_vga_bios_keymaps_path_chooser = new JButton("Set the BIOS, VGA BIOS and keymaps Path!");
+		windowContent.add(bios_vga_bios_keymaps_path_chooser);
 
-        empty = new JLabel("");
-        windowContent.add(empty);
+		empty = new JLabel("");
+		windowContent.add(empty);
 
-        ok = new JButton("OK");
-        windowContent.add(ok);
+		ok = new JButton("OK");
+		windowContent.add(ok);
 
-        hide = new JButton("Hide");
-        windowContent.add(hide);
-        
-        initialize();
-    }
+		hide = new JButton("Hide");
+		windowContent.add(hide);
 
-    private void initialize() {
-        this.add(windowContent);
-//        this.setJMenuBar(menuBar);
-        this.setTitle("JavaQemu Configuration");
-//        this.pack();
+		initialize();
+	}
 
-        GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
-        int width = gd.getDisplayMode().getWidth();
-        int height = gd.getDisplayMode().getHeight();
+	private void initialize() {
+		this.add(windowContent);
+		// this.setJMenuBar(menuBar);
+		this.setTitle("JavaQemu Configuration");
+		// this.pack();
 
-        if (this.getSize().width > width
-                || this.getSize().height > height) {
-            this.setSize(width, height);
-        }
-    }
+		GraphicsDevice gd = GraphicsEnvironment.getLocalGraphicsEnvironment().getDefaultScreenDevice();
+		int width = gd.getDisplayMode().getWidth();
+		int height = gd.getDisplayMode().getHeight();
 
-    public void configureListener(ActionListener listener) {
-        exitCommand.addActionListener(listener);
-        default_virtual_machines_path_chooser.addActionListener(listener);
-        ok.addActionListener(listener);
-        hide.addActionListener(listener);
-        qemu_executable_path_chooser.addActionListener(listener);
-        qemu_img_executable_path_chooser.addActionListener(listener);
-        saveConfiguration.addActionListener(listener);
-        openConfiguration.addActionListener(listener);
-        bios_vga_bios_keymaps_path_chooser.addActionListener(listener);
-    }
+		if (this.getSize().width > width || this.getSize().height > height) {
+			this.setSize(width, height);
+		}
+	}
 
-    public void configureStandardMode() {
-        exitCommand.setActionCommand("ExitCommand");
-        default_virtual_machines_path_chooser
-                .setActionCommand("DirectoryChooser");
-        ok.setActionCommand("OK");
-        hide.setActionCommand("Hide");
-        qemu_executable_path_chooser.setActionCommand("QemuChooser");
-        qemu_img_executable_path_chooser.setActionCommand("QemuImgChooser");
-        saveConfiguration.setActionCommand("SaveConfiguration");
-        openConfiguration.setActionCommand("OpenConfiguration");
-        bios_vga_bios_keymaps_path_chooser.setActionCommand("LDirectoryPathChooser");
-    }
+	public void configureListener(ActionListener listener) {
+		exitCommand.addActionListener(listener);
+		default_virtual_machines_path_chooser.addActionListener(listener);
+		ok.addActionListener(listener);
+		hide.addActionListener(listener);
+		qemu_executable_path_chooser.addActionListener(listener);
+		qemu_img_executable_path_chooser.addActionListener(listener);
+		saveConfiguration.addActionListener(listener);
+		openConfiguration.addActionListener(listener);
+		bios_vga_bios_keymaps_path_chooser.addActionListener(listener);
+	}
 
-    public JPanel getWindowContent() {
-        return windowContent;
-    }
+	public void configureStandardMode() {
+		exitCommand.setActionCommand("ExitCommand");
+		default_virtual_machines_path_chooser.setActionCommand("DirectoryChooser");
+		ok.setActionCommand("OK");
+		hide.setActionCommand("Hide");
+		qemu_executable_path_chooser.setActionCommand("QemuChooser");
+		qemu_img_executable_path_chooser.setActionCommand("QemuImgChooser");
+		saveConfiguration.setActionCommand("SaveConfiguration");
+		openConfiguration.setActionCommand("OpenConfiguration");
+		bios_vga_bios_keymaps_path_chooser.setActionCommand("LDirectoryPathChooser");
+	}
 
-    public void setDefault_virtual_machines_path_choice(
-            JTextField default_virtual_machines_path_choice) {
-        this.default_virtual_machines_path_choice = default_virtual_machines_path_choice;
-    }
+	public JPanel getWindowContent() {
+		return windowContent;
+	}
 
-    public void setDefault_virtual_machines_path_choiceText(String text) {
-        this.default_virtual_machines_path_choice.setText(text);
-    }
+	public void setDefault_virtual_machines_path_choice(JTextField default_virtual_machines_path_choice) {
+		this.default_virtual_machines_path_choice = default_virtual_machines_path_choice;
+	}
 
-    public JTextArea getExecute_before_start_qemu_choices() {
-        return execute_before_start_qemu_choices;
-    }
+	public void setDefault_virtual_machines_path_choiceText(String text) {
+		this.default_virtual_machines_path_choice.setText(text);
+	}
 
-    public JTextField getQemu_executable_path_choice() {
-        return qemu_executable_path_choice;
-    }
+	public JTextArea getExecute_before_start_qemu_choices() {
+		return execute_before_start_qemu_choices;
+	}
 
-    public JTextArea getExecute_after_stop_qemu_choices() {
-        return execute_after_stop_qemu_choices;
-    }
+	public JTextField getQemu_executable_path_choice() {
+		return qemu_executable_path_choice;
+	}
 
-    public JTextField getDefault_virtual_machines_path_choice() {
-        return default_virtual_machines_path_choice;
-    }
+	public JTextArea getExecute_after_stop_qemu_choices() {
+		return execute_after_stop_qemu_choices;
+	}
 
-    public JTextField getQemu_img_executable_path_choice() {
-        return qemu_img_executable_path_choice;
-    }
+	public JTextField getDefault_virtual_machines_path_choice() {
+		return default_virtual_machines_path_choice;
+	}
 
-    public void showMessage(String message) {
-        JScrollPane scrollPane = new JScrollPane();
-        scrollPane.setPreferredSize(new Dimension(500, 500));
-        JTextArea textArea = new JTextArea(message);
-        textArea.setLineWrap(true);
-        textArea.setWrapStyleWord(true);
-        textArea.setEditable(false);
-        textArea.setMargin(new Insets(5, 5, 5, 5));
-        scrollPane.getViewport().setView(textArea);
-        Object trueMessage = scrollPane;
-        JOptionPane.showMessageDialog(null, trueMessage);
-    }
+	public JTextField getQemu_img_executable_path_choice() {
+		return qemu_img_executable_path_choice;
+	}
 
-    public boolean chooseDirectoryForDefaultVMPath() {
-        boolean given = super.chooseDirectoryForDefaultVMPath();
+	public void showMessage(String message) {
+		JScrollPane scrollPane = new JScrollPane();
+		scrollPane.setPreferredSize(new Dimension(500, 500));
+		JTextArea textArea = new JTextArea(message);
+		textArea.setLineWrap(true);
+		textArea.setWrapStyleWord(true);
+		textArea.setEditable(false);
+		textArea.setMargin(new Insets(5, 5, 5, 5));
+		scrollPane.getViewport().setView(textArea);
+		Object trueMessage = scrollPane;
+		JOptionPane.showMessageDialog(null, trueMessage);
+	}
 
-        if (given) {
-            this.setDefault_virtual_machines_path_choiceText(this.getChoice());
-        }
+	public boolean chooseDirectoryForDefaultVMPath() {
+		boolean given = super.chooseDirectoryForDefaultVMPath();
 
-        return given;
-    }
+		if (given) {
+			this.setDefault_virtual_machines_path_choiceText(this.getChoice());
+		}
 
-    public boolean chooseDirectoryForBiosVgaBiosKeymapsPath() {
-        boolean given = super.chooseDirectoryForBiosVgaBiosKeymapsPath();
+		return given;
+	}
 
-        if (given) {
-            this.setBios_vga_bios_keymaps_path_choiceText(this.getChoice());
-        }
+	public boolean chooseDirectoryForBiosVgaBiosKeymapsPath() {
+		boolean given = super.chooseDirectoryForBiosVgaBiosKeymapsPath();
 
-        return given;
-    }
+		if (given) {
+			this.setBios_vga_bios_keymaps_path_choiceText(this.getChoice());
+		}
 
-    public boolean chooseFile(boolean itisqemu) {
-        boolean given = super.chooseAnyFile();
+		return given;
+	}
 
-        if (given) {
-            if (itisqemu) {
-                this.qemu_executable_path_choice.setText(this.getChoice());
-            } else {
-                this.qemu_img_executable_path_choice.setText(this.getChoice());
-            }
-        }
+	public boolean chooseFile(boolean itisqemu) {
+		boolean given = super.chooseAnyFile();
 
-        return given;
-    }
+		if (given) {
+			if (itisqemu) {
+				this.qemu_executable_path_choice.setText(this.getChoice());
+			} else {
+				this.qemu_img_executable_path_choice.setText(this.getChoice());
+			}
+		}
 
-    public boolean chooseConfigurationFileToBeSaved() {
-        boolean given = super.chooseConfigurationFileToBeSaved();
-        if (given) {
-            if (this.getChoice().length() > 4) {
-                if (this.getChoice().substring(this.getChoice().length() - 4).equals(".xml")) {
-                    this.javaQemu_configuration_file_path = this.getChoice();
-                } else {
-                    this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
-                }
-            } else {
-                this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
-            }
-        }
-        return given;
-    }
+		return given;
+	}
 
-    public boolean chooseConfigurationFileToBeOpened() {
-        super.setFileDescription("XML - JavaQemu Configuration Files");
-        super.setFileExtension(".xml");
+	public boolean chooseConfigurationFileToBeSaved() {
+		boolean given = super.chooseConfigurationFileToBeSaved();
+		if (given) {
+			if (this.getChoice().length() > 4) {
+				if (this.getChoice().substring(this.getChoice().length() - 4).equals(".xml")) {
+					this.javaQemu_configuration_file_path = this.getChoice();
+				} else {
+					this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
+				}
+			} else {
+				this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
+			}
+		}
+		return given;
+	}
 
-        boolean given = super.chooseFile();
-        if (given) {
-            if (this.getChoice().length() > 4) {
-                if (this.getChoice().substring(this.getChoice().length() - 4).equals(".xml")) {
-                    this.javaQemu_configuration_file_path = this.getChoice();
-                } else {
-                    this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
-                }
-            } else {
-                this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
-            }
-        }
-        return given;
-    }
+	public boolean chooseConfigurationFileToBeOpened() {
+		super.setFileDescription("XML - JavaQemu Configuration Files");
+		super.setFileExtension(".xml");
 
-    public String getJavaQemu_configuration_file_path() {
-        return javaQemu_configuration_file_path;
-    }
+		boolean given = super.chooseFile();
+		if (given) {
+			if (this.getChoice().length() > 4) {
+				if (this.getChoice().substring(this.getChoice().length() - 4).equals(".xml")) {
+					this.javaQemu_configuration_file_path = this.getChoice();
+				} else {
+					this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
+				}
+			} else {
+				this.javaQemu_configuration_file_path = this.getChoice() + ".xml";
+			}
+		}
+		return given;
+	}
 
-    public JTextField getBios_vga_bios_keymaps_path_choice() {
-        return bios_vga_bios_keymaps_path_choice;
-    }
+	public String getJavaQemu_configuration_file_path() {
+		return javaQemu_configuration_file_path;
+	}
 
-    public void setBios_vga_bios_keymaps_path_choice(
-            JTextField bios_vga_bios_keymaps_path_choice) {
-        this.bios_vga_bios_keymaps_path_choice = bios_vga_bios_keymaps_path_choice;
-    }
+	public JTextField getBios_vga_bios_keymaps_path_choice() {
+		return bios_vga_bios_keymaps_path_choice;
+	}
 
-    public void setBios_vga_bios_keymaps_path_choiceText(String text) {
-        this.bios_vga_bios_keymaps_path_choice.setText(text);
-    }
+	public void setBios_vga_bios_keymaps_path_choice(JTextField bios_vga_bios_keymaps_path_choice) {
+		this.bios_vga_bios_keymaps_path_choice = bios_vga_bios_keymaps_path_choice;
+	}
 
+	public void setBios_vga_bios_keymaps_path_choiceText(String text) {
+		this.bios_vga_bios_keymaps_path_choice.setText(text);
+	}
 
 	@Override
 	public void setTitle(String string) {
@@ -388,6 +370,6 @@ public class ConfigurationView extends DeviceViewWithFileChooser implements IDev
 	@Override
 	public void applyView(IemultorStore store) {
 		// TODO Auto-generated method stub
-		
+
 	}
 }

@@ -12,83 +12,80 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class SpecificBootView extends DeviceViewWithFileChooser {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JButton chooseKernel;
+	private JButton chooseKernel;
 
-    private JTextField kernel;
+	private JTextField kernel;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
+	public SpecificBootView(EmulatorQemuMachineControl emc) {
+		super(emc, null);
 
-    public SpecificBootView(EmulatorQemuMachineControl emc) {
-        super(emc,null);
+		windowContent = new JPanel();
 
-        windowContent = new JPanel();
+		gridLayout = new GridLayout(2, 2);
 
-        gridLayout = new GridLayout(2, 2);
+		windowContent.setLayout(gridLayout);
 
-        windowContent.setLayout(gridLayout);
+		chooseKernel = new JButton("Choose the kernel image:");
 
-        chooseKernel = new JButton("Choose the kernel image:");
+		windowContent.add(chooseKernel);
 
-        windowContent.add(chooseKernel);
+		kernel = new JTextField();
 
-        kernel = new JTextField();
+		windowContent.add(kernel);
 
-        windowContent.add(kernel);
+		okButton = new JButton("OK");
 
-        okButton = new JButton("OK");
+		eraseButton = new JButton("Erase");
 
-        eraseButton = new JButton("Erase");
+		windowContent.add(okButton);
 
-        windowContent.add(okButton);
+		windowContent.add(eraseButton);
 
-        windowContent.add(eraseButton);
+		this.add(windowContent);
+		this.setJpanel(windowContent);
 
-        this.add(windowContent);
-        this.setJpanel(windowContent);
+		this.setTitle("Specific Boot");
+	}
 
-        this.setTitle("JavaQemu - Specific Boot Choice");
-    }
+	private void rechecks() {
+		this.repaint();
+	}
 
-    private void rechecks() {
-        this.repaint();
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		chooseKernel.addActionListener(listener);
+	}
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        chooseKernel.addActionListener(listener);
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+		chooseKernel.setActionCommand("chooseKernel");
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-        chooseKernel.setActionCommand("chooseKernel");
-    }
-
-    public JTextField getKernel() {
-        return kernel;
-    }
-    
-
+	public JTextField getKernel() {
+		return kernel;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-        if (eQControl.getMachineModel().getKernelBootOption() != null) {
-            if (!eQControl.getMachineModel().getKernelBootOption().isEmpty()) {
-                this.kernel.setText(eQControl.getMachineModel().getKernelBootOption());
-            }
-        }
+		if (eQControl.getMachineModel().getKernelBootOption() != null) {
+			if (!eQControl.getMachineModel().getKernelBootOption().isEmpty()) {
+				this.kernel.setText(eQControl.getMachineModel().getKernelBootOption());
+			}
+		}
 
-        this.rechecks();
-		
+		this.rechecks();
+
 	}
 }

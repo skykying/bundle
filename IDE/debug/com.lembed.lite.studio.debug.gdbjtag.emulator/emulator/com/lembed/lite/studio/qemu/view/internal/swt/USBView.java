@@ -17,433 +17,428 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class USBView extends DeviceViewWithFileChooser {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JCheckBox usb;
-    private JCheckBox mouse;
-    private JCheckBox tablet;
-    private JCheckBox wacomTablet;
-    private JCheckBox keyboard;
-    private JCheckBox braille;
-    private JCheckBox disk;
+	private JCheckBox usb;
+	private JCheckBox mouse;
+	private JCheckBox tablet;
+	private JCheckBox wacomTablet;
+	private JCheckBox keyboard;
+	private JCheckBox braille;
+	private JCheckBox disk;
 
-    private JButton fileChooser;
+	private JButton fileChooser;
 
-    private JTextField file;
-    private JCheckBox serial;
+	private JTextField file;
+	private JCheckBox serial;
 
-    private JLabel vendoridText;
+	private JLabel vendoridText;
 
-    private JTextField vendorid;
+	private JTextField vendorid;
 
-    private JLabel productidText;
+	private JLabel productidText;
 
-    private JTextField productid;
+	private JTextField productid;
 
-    private JLabel devText;
+	private JLabel devText;
 
-    private JTextField dev;
+	private JTextField dev;
 
-    private JLabel temp[];
+	private JLabel temp[];
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
-    private JSeparator[] separators;
+	private JSeparator[] separators;
 
-    private int separatorArrayPosition;
+	private int separatorArrayPosition;
 
-    private JCheckBox net;
+	private JCheckBox net;
 
-    private JLabel vlanDescription;
+	private JLabel vlanDescription;
 
-    private JComboBox<String> vlan;
+	private JComboBox<String> vlan;
 
-    private JLabel macaddrDescription;
+	private JLabel macaddrDescription;
 
-    private JTextField macaddr;
+	private JTextField macaddr;
 
-    private JLabel nameDescription;
+	private JLabel nameDescription;
 
-    private JTextField name;
-    private JLabel addrDescription;
+	private JTextField name;
+	private JLabel addrDescription;
 
-    private JTextField addr;
-    private JLabel vectorsNumberDescription;
+	private JTextField addr;
+	private JLabel vectorsNumberDescription;
 
-    private JComboBox<String> vectorsNumber;
-    
-    
-    public USBView(EmulatorQemuMachineControl eQControl) {
-        super(eQControl, null);
-        
-        windowContent = new JPanel();
+	private JComboBox<String> vectorsNumber;
 
-        gridLayout = new GridLayout(24, 2);
+	public USBView(EmulatorQemuMachineControl eQControl) {
+		super(eQControl, null);
 
-        windowContent.setLayout(gridLayout);
+		windowContent = new JPanel();
 
-        usb = new JCheckBox("Enable the USB driver");
+		gridLayout = new GridLayout(24, 2);
 
-        windowContent.add(this.usb);
+		windowContent.setLayout(gridLayout);
 
-        this.temp = new JLabel[9];
+		usb = new JCheckBox("Enable the USB driver");
 
-        for (int i = 0; i < this.temp.length; i++) {
-            this.temp[i] = new JLabel();
-        }
+		windowContent.add(this.usb);
 
-        windowContent.add(this.temp[0]);
+		this.temp = new JLabel[9];
 
-        separators = new JSeparator[14];
-        for (int i = 0; i < separators.length; i++) {
-            separators[i] = new JSeparator(SwingConstants.HORIZONTAL);
-        }
-        separatorArrayPosition = 0;
+		for (int i = 0; i < this.temp.length; i++) {
+			this.temp[i] = new JLabel();
+		}
 
-        windowContent.add(this.separators[separatorArrayPosition++]);
-        windowContent.add(this.separators[separatorArrayPosition++]);
+		windowContent.add(this.temp[0]);
 
-        mouse = new JCheckBox("Add the USB Virtual Mouse device");
-        windowContent.add(this.mouse);
-        windowContent.add(this.temp[1]);
+		separators = new JSeparator[14];
+		for (int i = 0; i < separators.length; i++) {
+			separators[i] = new JSeparator(SwingConstants.HORIZONTAL);
+		}
+		separatorArrayPosition = 0;
 
-        tablet = new JCheckBox("Add the USB (touchscreen) Pointer device");
-        windowContent.add(this.tablet);
+		windowContent.add(this.separators[separatorArrayPosition++]);
+		windowContent.add(this.separators[separatorArrayPosition++]);
 
-        windowContent.add(this.temp[2]);
+		mouse = new JCheckBox("Add the USB Virtual Mouse device");
+		windowContent.add(this.mouse);
+		windowContent.add(this.temp[1]);
 
-        wacomTablet = new JCheckBox(
-                "Add the USB Virtual Wacom PenPartner tablet device");
-        windowContent.add(wacomTablet);
-        windowContent.add(this.temp[3]);
+		tablet = new JCheckBox("Add the USB (touchscreen) Pointer device");
+		windowContent.add(this.tablet);
 
-        keyboard = new JCheckBox("Add the Standard USB keyboard device");
-        windowContent.add(this.keyboard);
-        windowContent.add(this.temp[4]);
+		windowContent.add(this.temp[2]);
 
-        braille = new JCheckBox("Add the USB Braille device");
-        windowContent.add(this.braille);
-        windowContent.add(this.temp[5]);
+		wacomTablet = new JCheckBox("Add the USB Virtual Wacom PenPartner tablet device");
+		windowContent.add(wacomTablet);
+		windowContent.add(this.temp[3]);
 
-        windowContent.add(this.separators[separatorArrayPosition++]);
-        windowContent.add(this.separators[separatorArrayPosition++]);
+		keyboard = new JCheckBox("Add the Standard USB keyboard device");
+		windowContent.add(this.keyboard);
+		windowContent.add(this.temp[4]);
 
-        disk = new JCheckBox("Add the USB Mass storage device");
-        windowContent.add(this.disk);
-        windowContent.add(this.temp[6]);
+		braille = new JCheckBox("Add the USB Braille device");
+		windowContent.add(this.braille);
+		windowContent.add(this.temp[5]);
 
-        fileChooser = new JButton("Choose the file that is the basis for the USB Mass storage device:");
-        windowContent.add(this.fileChooser);
+		windowContent.add(this.separators[separatorArrayPosition++]);
+		windowContent.add(this.separators[separatorArrayPosition++]);
 
-        file = new JTextField();
-        windowContent.add(this.file);
-        windowContent.add(this.separators[separatorArrayPosition++]);
-        windowContent.add(this.separators[separatorArrayPosition++]);
+		disk = new JCheckBox("Add the USB Mass storage device");
+		windowContent.add(this.disk);
+		windowContent.add(this.temp[6]);
 
-        serial = new JCheckBox("Add the USB Serial converter to host character device");
-        windowContent.add(this.serial);
-        windowContent.add(this.temp[7]);
+		fileChooser = new JButton("Choose the file that is the basis for the USB Mass storage device:");
+		windowContent.add(this.fileChooser);
 
-        vendoridText = new JLabel("Choose the (USB Serial device) vendorid option:");
-        windowContent.add(this.vendoridText);
+		file = new JTextField();
+		windowContent.add(this.file);
+		windowContent.add(this.separators[separatorArrayPosition++]);
+		windowContent.add(this.separators[separatorArrayPosition++]);
 
-        vendorid = new JTextField();
+		serial = new JCheckBox("Add the USB Serial converter to host character device");
+		windowContent.add(this.serial);
+		windowContent.add(this.temp[7]);
 
-        windowContent.add(this.vendorid);
+		vendoridText = new JLabel("Choose the (USB Serial device) vendorid option:");
+		windowContent.add(this.vendoridText);
 
-        productidText = new JLabel("Choose the (USB Serial device) productid option:");
-        windowContent.add(this.productidText);
+		vendorid = new JTextField();
 
-        productid = new JTextField();
-        windowContent.add(this.productid);
+		windowContent.add(this.vendorid);
 
-        devText = new JLabel("Choose the USB Serial device:");
-        windowContent.add(this.devText);
+		productidText = new JLabel("Choose the (USB Serial device) productid option:");
+		windowContent.add(this.productidText);
 
-        dev = new JTextField();
+		productid = new JTextField();
+		windowContent.add(this.productid);
 
-        windowContent.add(this.dev);
+		devText = new JLabel("Choose the USB Serial device:");
+		windowContent.add(this.devText);
 
-        windowContent.add(this.separators[separatorArrayPosition++]);
-        windowContent.add(this.separators[separatorArrayPosition++]);
+		dev = new JTextField();
 
-        net = new JCheckBox("Add the USB Net device");
+		windowContent.add(this.dev);
 
-        windowContent.add(this.net);
-        windowContent.add(this.temp[8]);
+		windowContent.add(this.separators[separatorArrayPosition++]);
+		windowContent.add(this.separators[separatorArrayPosition++]);
 
-        vlanDescription = new JLabel("Choose the VLAN:");
-        windowContent.add(vlanDescription);
+		net = new JCheckBox("Add the USB Net device");
 
-        String[] numberOptions = {"", "0", "1", "2", "3", "4", "5", "6",
-            "7", "8", "9", "10", "11", "12", "13", "14", "15", "16",
-            "17", "18", "19", "20", "21", "22", "23", "24", "25", "26",
-            "27", "28", "29", "30", "31", "32", "33", "34", "35", "36",
-            "37", "38", "39", "40", "41", "42", "43", "44", "45", "46",
-            "47", "48", "49", "50", "51", "52", "53", "54", "55", "56",
-            "57", "58", "59", "60", "61", "62", "63", "64", "65", "66",
-            "67", "68", "69", "70", "71", "72", "73", "74", "75", "76",
-            "77", "78", "79", "80", "81", "82", "83", "84", "85", "86",
-            "87", "88", "89", "90", "91", "92", "93", "94", "95", "96",
-            "97", "98", "99", "100"};
+		windowContent.add(this.net);
+		windowContent.add(this.temp[8]);
 
-        this.vlan = new JComboBox<String>(numberOptions);
+		vlanDescription = new JLabel("Choose the VLAN:");
+		windowContent.add(vlanDescription);
 
-        windowContent.add(vlan);
+		String[] numberOptions = { "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+				"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",
+				"32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
+				"49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65",
+				"66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82",
+				"83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
+				"100" };
 
-        this.macaddrDescription = new JLabel("Choose the MAC address:");
-        windowContent.add(this.macaddrDescription);
+		this.vlan = new JComboBox<String>(numberOptions);
 
-        this.macaddr = new JTextField();
-        windowContent.add(this.macaddr);
+		windowContent.add(vlan);
 
-        this.nameDescription = new JLabel("Choose the name of the usb net device:");
-        windowContent.add(this.nameDescription);
+		this.macaddrDescription = new JLabel("Choose the MAC address:");
+		windowContent.add(this.macaddrDescription);
 
-        this.name = new JTextField();
-        windowContent.add(this.name);
+		this.macaddr = new JTextField();
+		windowContent.add(this.macaddr);
 
-        this.addrDescription = new JLabel("Choose the usb device address:");
-        windowContent.add(this.addrDescription);
+		this.nameDescription = new JLabel("Choose the name of the usb net device:");
+		windowContent.add(this.nameDescription);
 
-        this.addr = new JTextField();
-        windowContent.add(this.addr);
+		this.name = new JTextField();
+		windowContent.add(this.name);
 
-        vectorsNumberDescription = new JLabel("Choose the number of MSI-X vectors:");
-        windowContent.add(this.vectorsNumberDescription);
+		this.addrDescription = new JLabel("Choose the usb device address:");
+		windowContent.add(this.addrDescription);
 
-        vectorsNumber = new JComboBox<String>(numberOptions);
-        windowContent.add(this.vectorsNumber);
+		this.addr = new JTextField();
+		windowContent.add(this.addr);
 
-        windowContent.add(this.separators[separatorArrayPosition++]);
-        windowContent.add(this.separators[separatorArrayPosition++]);
+		vectorsNumberDescription = new JLabel("Choose the number of MSI-X vectors:");
+		windowContent.add(this.vectorsNumberDescription);
 
-        okButton = new JButton("OK");
-        eraseButton = new JButton("Erase");
-        windowContent.add(okButton);
-        windowContent.add(eraseButton);
-        
-        add(windowContent);
-        
-        this.setTitle("JavaQemu - USB Choice");
-    }
+		vectorsNumber = new JComboBox<String>(numberOptions);
+		windowContent.add(this.vectorsNumber);
 
-    private void rechecks() {
-        this.repaint();
-    }
+		windowContent.add(this.separators[separatorArrayPosition++]);
+		windowContent.add(this.separators[separatorArrayPosition++]);
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        fileChooser.addActionListener(listener);
-    }
+		okButton = new JButton("OK");
+		eraseButton = new JButton("Erase");
+		windowContent.add(okButton);
+		windowContent.add(eraseButton);
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-        fileChooser.setActionCommand("fileChooser");
-    }
+		add(windowContent);
 
-    public JCheckBox getUsb() {
-        return usb;
-    }
+		this.setTitle("USB");
+	}
 
-    public JCheckBox getMouse() {
-        return mouse;
-    }
+	private void rechecks() {
+		this.repaint();
+	}
 
-    public JCheckBox getTablet() {
-        return tablet;
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		fileChooser.addActionListener(listener);
+	}
 
-    public JCheckBox getWacomTablet() {
-        return wacomTablet;
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+		fileChooser.setActionCommand("fileChooser");
+	}
 
-    public JCheckBox getKeyboard() {
-        return keyboard;
-    }
+	public JCheckBox getUsb() {
+		return usb;
+	}
 
-    public JCheckBox getBraille() {
-        return braille;
-    }
+	public JCheckBox getMouse() {
+		return mouse;
+	}
 
-    public JCheckBox getDisk() {
-        return disk;
-    }
+	public JCheckBox getTablet() {
+		return tablet;
+	}
 
-    public JTextField getFile() {
-        return file;
-    }
+	public JCheckBox getWacomTablet() {
+		return wacomTablet;
+	}
 
-    public JCheckBox getSerial() {
-        return serial;
-    }
+	public JCheckBox getKeyboard() {
+		return keyboard;
+	}
 
-    public JTextField getVendorid() {
-        return vendorid;
-    }
+	public JCheckBox getBraille() {
+		return braille;
+	}
 
-    public JTextField getProductid() {
-        return productid;
-    }
+	public JCheckBox getDisk() {
+		return disk;
+	}
 
-    public JTextField getDev() {
-        return dev;
-    }
+	public JTextField getFile() {
+		return file;
+	}
 
-    public JCheckBox getNet() {
-        return net;
-    }
+	public JCheckBox getSerial() {
+		return serial;
+	}
 
-    public JComboBox<String> getVlan() {
-        return vlan;
-    }
+	public JTextField getVendorid() {
+		return vendorid;
+	}
 
-    public JTextField getMacaddr() {
-        return macaddr;
-    }
+	public JTextField getProductid() {
+		return productid;
+	}
 
-    public String getName() {
-        return name.getText();
-    }
+	public JTextField getDev() {
+		return dev;
+	}
 
-    public void setName(String name) {
-        this.name.setText(name);
-    }
+	public JCheckBox getNet() {
+		return net;
+	}
 
-    public JTextField getAddr() {
-        return addr;
-    }
+	public JComboBox<String> getVlan() {
+		return vlan;
+	}
 
-    public JComboBox<String> getVectorsNumber() {
-        return vectorsNumber;
-    }
+	public JTextField getMacaddr() {
+		return macaddr;
+	}
+
+	public String getName() {
+		return name.getText();
+	}
+
+	public void setName(String name) {
+		this.name.setText(name);
+	}
+
+	public JTextField getAddr() {
+		return addr;
+	}
+
+	public JComboBox<String> getVectorsNumber() {
+		return vectorsNumber;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
-        if (eQControl.getMachineModel().getUsbDriverOption() != null) {
-            if (eQControl.getMachineModel().getUsbDriverOption().equals("true")) {
-                this.usb.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getUsbDriverOption() != null) {
+			if (eQControl.getMachineModel().getUsbDriverOption().equals("true")) {
+				this.usb.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbMouseOption() != null) {
-            if (eQControl.getMachineModel().getUsbMouseOption().equals("true")) {
-                this.mouse.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getUsbMouseOption() != null) {
+			if (eQControl.getMachineModel().getUsbMouseOption().equals("true")) {
+				this.mouse.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbTabletOption() != null) {
-            if (eQControl.getMachineModel().getUsbTabletOption().equals("true")) {
-                this.tablet.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getUsbTabletOption() != null) {
+			if (eQControl.getMachineModel().getUsbTabletOption().equals("true")) {
+				this.tablet.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbWacomTabletOption() != null) {
-            if (eQControl.getMachineModel().getUsbWacomTabletOption().equals("true")) {
-                this.wacomTablet.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getUsbWacomTabletOption() != null) {
+			if (eQControl.getMachineModel().getUsbWacomTabletOption().equals("true")) {
+				this.wacomTablet.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbKeyboardOption() != null) {
-            if (eQControl.getMachineModel().getUsbKeyboardOption().equals("true")) {
-                this.keyboard.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getUsbKeyboardOption() != null) {
+			if (eQControl.getMachineModel().getUsbKeyboardOption().equals("true")) {
+				this.keyboard.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbBrailleOption() != null) {
-            if (eQControl.getMachineModel().getUsbBrailleOption().equals("true")) {
-                this.braille.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getUsbBrailleOption() != null) {
+			if (eQControl.getMachineModel().getUsbBrailleOption().equals("true")) {
+				this.braille.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbDiskOption() != null) {
-            if (!eQControl.getMachineModel().getUsbDiskOption().isEmpty()) {
-                this.disk.setSelected(true);
-                this.file.setText(eQControl.getMachineModel().getUsbDiskOption());
-            }
-        }
+		if (eQControl.getMachineModel().getUsbDiskOption() != null) {
+			if (!eQControl.getMachineModel().getUsbDiskOption().isEmpty()) {
+				this.disk.setSelected(true);
+				this.file.setText(eQControl.getMachineModel().getUsbDiskOption());
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbSerialOption() != null) {
-            if (!eQControl.getMachineModel().getUsbSerialOption().isEmpty()) {
-                this.serial.setSelected(true);
-                if (eQControl.getMachineModel().getUsbSerialOption()
-                        .contains("vendorid=")
-                        || eQControl.getMachineModel().getUsbSerialOption()
-                        .contains("productid=")) {
-                    if (eQControl.getMachineModel().getUsbSerialOption()
-                            .contains("vendorid=")
-                            && !eQControl.getMachineModel().getUsbSerialOption()
-                            .contains("productid=")) {
-                        if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
-                            vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
-                                    eQControl.getMachineModel().getUsbSerialOption().indexOf(":")));
-                            dev.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
-                        } else {
-                            vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
-                        }
+		if (eQControl.getMachineModel().getUsbSerialOption() != null) {
+			if (!eQControl.getMachineModel().getUsbSerialOption().isEmpty()) {
+				this.serial.setSelected(true);
+				if (eQControl.getMachineModel().getUsbSerialOption().contains("vendorid=")
+						|| eQControl.getMachineModel().getUsbSerialOption().contains("productid=")) {
+					if (eQControl.getMachineModel().getUsbSerialOption().contains("vendorid=")
+							&& !eQControl.getMachineModel().getUsbSerialOption().contains("productid=")) {
+						if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
+							vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(
+									eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
+									eQControl.getMachineModel().getUsbSerialOption().indexOf(":")));
+							dev.setText(eQControl.getMachineModel().getUsbSerialOption()
+									.substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
+						} else {
+							vendorid.setText(eQControl.getMachineModel().getUsbSerialOption()
+									.substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
+						}
 
-                    } else if (!eQControl.getMachineModel().getUsbSerialOption()
-                            .contains("vendorid=")
-                            && eQControl.getMachineModel().getUsbSerialOption()
-                            .contains("productid=")) {
-                        if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
-                            productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
-                                    eQControl.getMachineModel().getUsbSerialOption().indexOf(":")));
-                            dev.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
-                        } else {
-                            productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
-                        }
-                    } else if (eQControl.getMachineModel().getUsbSerialOption()
-                            .contains("vendorid=")
-                            && eQControl.getMachineModel().getUsbSerialOption()
-                            .contains("productid=")) {
-                        if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
-                            String work = eQControl.getMachineModel().getUsbSerialOption().substring(0, eQControl.getMachineModel().getUsbSerialOption().indexOf(":"));
-                            vendorid.setText(work.substring(work.indexOf("=") + 1,
-                                    work.indexOf(",")));
-                            productid.setText(work.substring(work.indexOf(",") + 11));
-                            dev.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
-                        } else {
-                            vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
-                                    eQControl.getMachineModel().getUsbSerialOption().indexOf(",")));
-                            productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(",") + 11));
-                        }
-                    }
-                } else {
-                    this.dev.setText(eQControl.getMachineModel().getUsbSerialOption());
-                }
-            }
-        }
+					} else if (!eQControl.getMachineModel().getUsbSerialOption().contains("vendorid=")
+							&& eQControl.getMachineModel().getUsbSerialOption().contains("productid=")) {
+						if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
+							productid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(
+									eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
+									eQControl.getMachineModel().getUsbSerialOption().indexOf(":")));
+							dev.setText(eQControl.getMachineModel().getUsbSerialOption()
+									.substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
+						} else {
+							productid.setText(eQControl.getMachineModel().getUsbSerialOption()
+									.substring(eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1));
+						}
+					} else if (eQControl.getMachineModel().getUsbSerialOption().contains("vendorid=")
+							&& eQControl.getMachineModel().getUsbSerialOption().contains("productid=")) {
+						if (eQControl.getMachineModel().getUsbSerialOption().contains(":")) {
+							String work = eQControl.getMachineModel().getUsbSerialOption().substring(0,
+									eQControl.getMachineModel().getUsbSerialOption().indexOf(":"));
+							vendorid.setText(work.substring(work.indexOf("=") + 1, work.indexOf(",")));
+							productid.setText(work.substring(work.indexOf(",") + 11));
+							dev.setText(eQControl.getMachineModel().getUsbSerialOption()
+									.substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(":") + 1));
+						} else {
+							vendorid.setText(eQControl.getMachineModel().getUsbSerialOption().substring(
+									eQControl.getMachineModel().getUsbSerialOption().indexOf("=") + 1,
+									eQControl.getMachineModel().getUsbSerialOption().indexOf(",")));
+							productid.setText(eQControl.getMachineModel().getUsbSerialOption()
+									.substring(eQControl.getMachineModel().getUsbSerialOption().indexOf(",") + 11));
+						}
+					}
+				} else {
+					this.dev.setText(eQControl.getMachineModel().getUsbSerialOption());
+				}
+			}
+		}
 
-        if (eQControl.getMachineModel().getUsbNetOption() != null) {
-            if (!eQControl.getMachineModel().getUsbNetOption().isEmpty()) {
-                this.net.setSelected(true);
-                String[] options = eQControl.getMachineModel().getUsbNetOption().split(",");
-                for (String option : options) {
-                    if (option.startsWith("vlan=")) {
-                        vlan.setSelectedItem(option.substring(option.indexOf("=") + 1));
-                    } else if (option.startsWith("macaddr=")) {
-                        macaddr.setText(option.substring(option.indexOf("=") + 1));
-                    } else if (option.startsWith("name=")) {
-                        this.name.setText(option.substring(option.indexOf("=") + 1));
-                    } else if (option.startsWith("addr=")) {
-                        this.addr.setText(option.substring(option.indexOf("=") + 1));
-                    } else if (option.startsWith("vectors=")) {
-                        this.vectorsNumber.setSelectedItem(option.substring(option.indexOf("=") + 1));
-                    }
-                }
-            }
-        }
+		if (eQControl.getMachineModel().getUsbNetOption() != null) {
+			if (!eQControl.getMachineModel().getUsbNetOption().isEmpty()) {
+				this.net.setSelected(true);
+				String[] options = eQControl.getMachineModel().getUsbNetOption().split(",");
+				for (String option : options) {
+					if (option.startsWith("vlan=")) {
+						vlan.setSelectedItem(option.substring(option.indexOf("=") + 1));
+					} else if (option.startsWith("macaddr=")) {
+						macaddr.setText(option.substring(option.indexOf("=") + 1));
+					} else if (option.startsWith("name=")) {
+						this.name.setText(option.substring(option.indexOf("=") + 1));
+					} else if (option.startsWith("addr=")) {
+						this.addr.setText(option.substring(option.indexOf("=") + 1));
+					} else if (option.startsWith("vectors=")) {
+						this.vectorsNumber.setSelectedItem(option.substring(option.indexOf("=") + 1));
+					}
+				}
+			}
+		}
 
-        this.rechecks();
-		
+		this.rechecks();
+
 	}
 }

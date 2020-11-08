@@ -6,332 +6,308 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
-import javax.swing.JComponent;
-import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
+import com.lembed.lite.studio.qemu.view.IemultorStore;
 
-public class NetworkUDPSocketWorkerView extends JPanel {
+public class NetworkUDPSocketWorkerView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel windowContent;
+	private JPanel windowContent;
 
-    private GridLayout gridLayout;
+	private GridLayout gridLayout;
 
-    private JCheckBox isEnabled;
+	private JCheckBox isEnabled;
 
-    private JLabel temp;
+	private JLabel temp;
 
-    private JLabel vlanDescription;
+	private JLabel vlanDescription;
 
-    private JComboBox<String> vlan;
+	private JComboBox<String> vlan;
 
-    private JLabel nameDescription;
+	private JLabel nameDescription;
 
-    private JTextField name;
+	private JTextField name;
 
-    private JLabel fdDescription;
+	private JLabel fdDescription;
 
-    private JTextField fd;
+	private JTextField fd;
 
-    private JLabel multicastAddressDescription;
+	private JLabel multicastAddressDescription;
 
-    private JTextField multicastAddress;
+	private JTextField multicastAddress;
 
-    private JLabel multicastPortDescription;
+	private JLabel multicastPortDescription;
 
-    private JTextField multicastPort;
+	private JTextField multicastPort;
 
-    private JLabel localAddressDescription;
+	private JLabel localAddressDescription;
 
-    private JTextField localAddress;
+	private JTextField localAddress;
 
-    private JButton eraseButton;
+	private JButton eraseButton;
 
-    private JButton okButton;
+	private JButton okButton;
 
-    public NetworkUDPSocketWorkerView(EmulatorQemuMachineControl myfile, int position) {
-        super();
+	private int position;
 
-        windowContent = new JPanel();
+	public NetworkUDPSocketWorkerView(EmulatorQemuMachineControl eQControl, int position) {
+		super(eQControl);
+		this.position = position;
 
-        gridLayout = new GridLayout(8, 2);
+		windowContent = new JPanel();
 
-        windowContent.setLayout(gridLayout);
+		gridLayout = new GridLayout(8, 2);
 
-        isEnabled = new JCheckBox("Enable this option!");
+		windowContent.setLayout(gridLayout);
 
-        windowContent.add(this.isEnabled);
+		isEnabled = new JCheckBox("Enable this option!");
 
-        temp = new JLabel();
+		windowContent.add(this.isEnabled);
 
-        windowContent.add(temp);
+		temp = new JLabel();
 
-        vlanDescription = new JLabel("Choose the VLAN:");
+		windowContent.add(temp);
 
-        windowContent.add(vlanDescription);
+		vlanDescription = new JLabel("Choose the VLAN:");
 
-        String[] numberOptions = {"", "0", "1", "2", "3", "4", "5", "6", "7",
-            "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18",
-            "19", "20", "21", "22", "23", "24", "25", "26", "27", "28",
-            "29", "30", "31", "32", "33", "34", "35", "36", "37", "38",
-            "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
-            "49", "50", "51", "52", "53", "54", "55", "56", "57", "58",
-            "59", "60", "61", "62", "63", "64", "65", "66", "67", "68",
-            "69", "70", "71", "72", "73", "74", "75", "76", "77", "78",
-            "79", "80", "81", "82", "83", "84", "85", "86", "87", "88",
-            "89", "90", "91", "92", "93", "94", "95", "96", "97", "98",
-            "99", "100"};
+		windowContent.add(vlanDescription);
 
-        this.vlan = new JComboBox<String>(numberOptions);
+		String[] numberOptions = { "", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14",
+				"15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31",
+				"32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48",
+				"49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59", "60", "61", "62", "63", "64", "65",
+				"66", "67", "68", "69", "70", "71", "72", "73", "74", "75", "76", "77", "78", "79", "80", "81", "82",
+				"83", "84", "85", "86", "87", "88", "89", "90", "91", "92", "93", "94", "95", "96", "97", "98", "99",
+				"100" };
 
-        windowContent.add(vlan);
+		this.vlan = new JComboBox<String>(numberOptions);
 
-        nameDescription = new JLabel("Choose the name or id:");
+		windowContent.add(vlan);
 
-        windowContent.add(this.nameDescription);
+		nameDescription = new JLabel("Choose the name or id:");
 
-        name = new JTextField();
+		windowContent.add(this.nameDescription);
 
-        windowContent.add(this.name);
+		name = new JTextField();
 
-        fdDescription = new JLabel("Choose the fd:");
+		windowContent.add(this.name);
 
-        windowContent.add(fdDescription);
+		fdDescription = new JLabel("Choose the fd:");
 
-        fd = new JTextField();
+		windowContent.add(fdDescription);
 
-        windowContent.add(fd);
+		fd = new JTextField();
 
-        multicastAddressDescription = new JLabel(
-                "Multicast address of the UDP multicast socket:");
+		windowContent.add(fd);
 
-        windowContent.add(multicastAddressDescription);
+		multicastAddressDescription = new JLabel("Multicast address of the UDP multicast socket:");
 
-        multicastAddress = new JTextField();
+		windowContent.add(multicastAddressDescription);
 
-        windowContent.add(multicastAddress);
-
-        multicastPortDescription = new JLabel(
-                "Multicast port of the UDP multicast socket:");
-
-        windowContent.add(multicastPortDescription);
-
-        multicastPort = new JTextField();
-
-        windowContent.add(multicastPort);
-
-        localAddressDescription = new JLabel(
-                "Local address:");
-
-        windowContent.add(localAddressDescription);
-
-        localAddress = new JTextField();
-
-        windowContent.add(localAddress);
-
-        okButton = new JButton("OK");
-
-        eraseButton = new JButton("Erase");
-
-        windowContent.add(okButton);
-
-        windowContent.add(eraseButton);
-
-//        this.setContentPane(windowContent);
-//
-//        this.setTitle("JavaQemu - Network UDP Socket Choice");
-
-        switch (position) {
-            case 1:
-                if (myfile.getMachineModel().getFirstNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getFirstNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getFirstNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 2:
-                if (myfile.getMachineModel().getSecondNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getSecondNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getSecondNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 3:
-                if (myfile.getMachineModel().getThirdNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getThirdNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getThirdNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 4:
-                if (myfile.getMachineModel().getFourthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getFourthNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getFourthNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 5:
-                if (myfile.getMachineModel().getFifthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getFifthNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getFifthNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 6:
-                if (myfile.getMachineModel().getSixthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getSixthNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getSixthNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 7:
-                if (myfile.getMachineModel().getSeventhNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getSeventhNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getSeventhNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 8:
-                if (myfile.getMachineModel().getEighthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getEighthNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getEighthNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 9:
-                if (myfile.getMachineModel().getNinthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getNinthNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getNinthNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            case 10:
-                if (myfile.getMachineModel().getTenthNetworkExtraOption() != null) {
-                    if (this.contains(myfile.getMachineModel()
-                            .getTenthNetworkExtraOption())) {
-                        this.buildMe(myfile.getMachineModel()
-                                .getTenthNetworkExtraOption());
-                        this.isEnabled.setSelected(true);
-                    }
-                }
-                break;
-            default:
-                break;
-        }
-
-        this.rechecks();
-    }
-
-    private void rechecks() {
-//        this.pack();
-        this.repaint();
-    }
-
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-    }
-
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-    }
-
-    private void buildMe(String optionString) {
-        String options[] = optionString.split(",");
-        Boolean doTheFinalFor = false;
-        for (String option : options) {
-            if (option.startsWith("mcast=") || option.startsWith("localaddr=")) {
-                doTheFinalFor = true;
-            }
-        }
-        if (doTheFinalFor) {
-            for (String option : options) {
-                if (option.startsWith("vlan=")) {
-                    this.vlan.setSelectedItem(option.substring(option
-                            .indexOf("=") + 1));
-                } else if (option.startsWith("name=")) {
-                    this.name
-                            .setText(option.substring(option.indexOf("=") + 1));
-                } else if (option.startsWith("fd=")) {
-                    this.fd.setText(option.substring(option.indexOf("=") + 1));
-                } else if (option.startsWith("mcast=")) {
-                    this.multicastAddress.setText(option.substring(
-                            option.indexOf("=") + 1, option.indexOf(":")));
-                    this.multicastPort.setText(option.substring(option
-                            .indexOf(":") + 1));
-                } else if (option.startsWith("localaddr=")) {
-                    this.localAddress.setText(option.substring(
-                            option.indexOf("=") + 1));
-                }
-            }
-        }
-    }
-
-    public JCheckBox getIsEnabled() {
-        return isEnabled;
-    }
-
-    public JComboBox<String> getVlan() {
-        return vlan;
-    }
-
-    public JTextField getNameContents() {
-        return name;
-    }
-
-    private boolean contains(String option) {
-        if (option.contains("socket")) {
-            return true;
-        }
-        return false;
-    }
-
-    public JTextField getFd() {
-        return fd;
-    }
-
-    public JTextField getMulticastAddress() {
-        return multicastAddress;
-    }
-
-    public JTextField getMulticastPort() {
-        return multicastPort;
-    }
-
-    public JTextField getLocalAddress() {
-        return localAddress;
-    }
+		multicastAddress = new JTextField();
+
+		windowContent.add(multicastAddress);
+
+		multicastPortDescription = new JLabel("Multicast port of the UDP multicast socket:");
+
+		windowContent.add(multicastPortDescription);
+
+		multicastPort = new JTextField();
+
+		windowContent.add(multicastPort);
+
+		localAddressDescription = new JLabel("Local address:");
+
+		windowContent.add(localAddressDescription);
+
+		localAddress = new JTextField();
+
+		windowContent.add(localAddress);
+
+		okButton = new JButton("OK");
+
+		eraseButton = new JButton("Erase");
+
+		windowContent.add(okButton);
+
+		windowContent.add(eraseButton);
+
+		this.add(windowContent);
+
+		this.setTitle("Network UDP");
+
+	}
+
+	private void rechecks() {
+		// this.pack();
+		this.repaint();
+	}
+
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+	}
+
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+	}
+
+	private void buildMe(String optionString) {
+		String options[] = optionString.split(",");
+		Boolean doTheFinalFor = false;
+		for (String option : options) {
+			if (option.startsWith("mcast=") || option.startsWith("localaddr=")) {
+				doTheFinalFor = true;
+			}
+		}
+		if (doTheFinalFor) {
+			for (String option : options) {
+				if (option.startsWith("vlan=")) {
+					this.vlan.setSelectedItem(option.substring(option.indexOf("=") + 1));
+				} else if (option.startsWith("name=")) {
+					this.name.setText(option.substring(option.indexOf("=") + 1));
+				} else if (option.startsWith("fd=")) {
+					this.fd.setText(option.substring(option.indexOf("=") + 1));
+				} else if (option.startsWith("mcast=")) {
+					this.multicastAddress.setText(option.substring(option.indexOf("=") + 1, option.indexOf(":")));
+					this.multicastPort.setText(option.substring(option.indexOf(":") + 1));
+				} else if (option.startsWith("localaddr=")) {
+					this.localAddress.setText(option.substring(option.indexOf("=") + 1));
+				}
+			}
+		}
+	}
+
+	public JCheckBox getIsEnabled() {
+		return isEnabled;
+	}
+
+	public JComboBox<String> getVlan() {
+		return vlan;
+	}
+
+	public JTextField getNameContents() {
+		return name;
+	}
+
+	private boolean contains(String option) {
+		if (option.contains("socket")) {
+			return true;
+		}
+		return false;
+	}
+
+	public JTextField getFd() {
+		return fd;
+	}
+
+	public JTextField getMulticastAddress() {
+		return multicastAddress;
+	}
+
+	public JTextField getMulticastPort() {
+		return multicastPort;
+	}
+
+	public JTextField getLocalAddress() {
+		return localAddress;
+	}
+
+	@Override
+	public void applyView(IemultorStore store) {
+
+		switch (position) {
+		case 1:
+			if (eQControl.getMachineModel().getFirstNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFirstNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getFirstNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 2:
+			if (eQControl.getMachineModel().getSecondNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSecondNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getSecondNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 3:
+			if (eQControl.getMachineModel().getThirdNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getThirdNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getThirdNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 4:
+			if (eQControl.getMachineModel().getFourthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFourthNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getFourthNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 5:
+			if (eQControl.getMachineModel().getFifthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getFifthNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getFifthNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 6:
+			if (eQControl.getMachineModel().getSixthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSixthNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getSixthNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 7:
+			if (eQControl.getMachineModel().getSeventhNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getSeventhNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getSeventhNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 8:
+			if (eQControl.getMachineModel().getEighthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getEighthNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getEighthNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 9:
+			if (eQControl.getMachineModel().getNinthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getNinthNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getNinthNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		case 10:
+			if (eQControl.getMachineModel().getTenthNetworkExtraOption() != null) {
+				if (this.contains(eQControl.getMachineModel().getTenthNetworkExtraOption())) {
+					this.buildMe(eQControl.getMachineModel().getTenthNetworkExtraOption());
+					this.isEnabled.setSelected(true);
+				}
+			}
+			break;
+		default:
+			break;
+		}
+
+		this.rechecks();
+
+	}
 }

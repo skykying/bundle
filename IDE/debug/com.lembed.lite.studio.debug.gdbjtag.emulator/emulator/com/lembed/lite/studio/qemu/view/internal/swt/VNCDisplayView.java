@@ -46,7 +46,7 @@ public class VNCDisplayView extends DeviceBaseView {
 
 		this.gridLayout = new GridLayout(7, 2);
 
-		this.setTitle("JavaQemu - VNC Display Options");
+		this.setTitle("VNC");
 
 		okButton = new JButton("OK");
 		eraseButton = new JButton("Erase");

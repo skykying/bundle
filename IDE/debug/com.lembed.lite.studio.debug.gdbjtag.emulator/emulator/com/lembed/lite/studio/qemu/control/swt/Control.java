@@ -9,19 +9,21 @@ import java.util.TimerTask;
 
 import javax.swing.JTextArea;
 
+import com.lembed.lite.studio.qemu.control.swt.actions.AboutCommand;
+import com.lembed.lite.studio.qemu.control.swt.actions.UseUtilities;
 import com.lembed.lite.studio.qemu.model.swt.LastUsedFileModel;
 import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderEnumModel;
 import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderModel;
-import com.lembed.lite.studio.qemu.model.swt.Model;
 import com.lembed.lite.studio.qemu.model.swt.UtilitiesModel;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 import com.lembed.lite.studio.qemu.view.internal.swt.UtilitiesView;
 
 public class Control implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
+	
 	private ConfigurationControl configurationControl;
 	private EmulationControl emulationControl;
 	private VMCreationControl vMCreationControl;
@@ -33,10 +35,13 @@ public class Control implements BaseListener {
 	private VMSavingControl vMSavingControl;
 	private UtilitiesView utilitiesView;
 	private UtilitiesModel utilitiesModel;
+	
 	private LastUsedFolderModel lastUsedFolderModel;
 	private LastUsedFileModel lastUsedFileModel;
+	
+	private UseUtilities useUtilitiesAction;
 
-	public Control(JContainerView jview) {
+	public Control(JSwtQemuView jview) {
 		view = jview;
 		view.registerListener(this);
 		configurationControl = null;
@@ -50,15 +55,22 @@ public class Control implements BaseListener {
 		vMSavingControl = null;
 		utilitiesView = null;
 		utilitiesModel = null;
-
-		lastUsedFolderModel = (LastUsedFolderModel) Model
-				.loadUserConfigurationLocally(LastUsedFolderModel.class.getName());
-		lastUsedFileModel = (LastUsedFileModel) Model.loadUserConfigurationLocally(LastUsedFileModel.class.getName());
+		
+		lastUsedFolderModel = new LastUsedFolderModel();
+		lastUsedFileModel = new LastUsedFileModel();
+		
+		useUtilitiesAction = new UseUtilities();
 	}
 
 	public void starts() {
 		view.setVisible(true);
 		view.configureStandardMode();
+		configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
+		emulationControl = new EmulationControl();
+		vMClosingControl = new VMClosingControl(view, emulationControl);
+		fileControl = new EmulatorQemuMachineControl();
+		
+		vMOpeningControl = new VMOpeningControl(view, emulationControl, fileControl);
 	}
 
 	@Override
@@ -68,21 +80,19 @@ public class Control implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction(e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("ExitCommand")) {
-			// System.exit(0);
+
 			boolean runFurther = view.getSizeOfJTabbedPane() > 1;
 			for (int i = 1; i < view.getSizeOfJTabbedPane(); i++) {
 				vMConfigurationControlist.remove(i);
 			}
 
 			if (runFurther) {
-				if (vMClosingControl == null) {
-					vMClosingControl = new VMClosingControl(view, emulationControl);
-				} else {
+				{
 					vMClosingControl.setView(view);
 					vMClosingControl.setEmulation(emulationControl);
 				}
@@ -106,20 +116,16 @@ public class Control implements BaseListener {
 			}, 1000, 1000);
 		} else if (e.getActionCommand().equals("AboutCommand")) {
 			view.showAboutContents();
+			AboutCommand about = new AboutCommand(view);
+			about.actionPerformed(e);
+			
 		} else if (e.getActionCommand().equals("ConfigureCommand")) {
-			if (configurationControl == null) {
-				configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
-			} else {
-				configurationControl.do_my_view_visible();
-			}
+			configurationControl.setVisibleEnable();
 		} else if (e.getActionCommand().equals("StartEmulation")) {
-			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
-			}
+
 			if (configurationControl == null) {
-				view.showMessage(
+				JSwtQemuView.showMessage(
 						"Please, configure the required parameters \nbefore starting the emulation with the qemu!");
-				configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
 			}
 
 			if (configurationControl.getQemu_executable_path() == null) {
@@ -128,7 +134,7 @@ public class Control implements BaseListener {
 			emulationControl.setExecute_before_start_qemu(
 					this.JTextAreaToArrayListOfStrings(configurationControl.getExecute_before_start_qemu()));
 			if (emulationControl.preruns(view.getActivePanel(), view.getSelectedPanel().getTitle())) {
-				view.showMessage("The pre-run script(s) is(are) gone.");
+				JSwtQemuView.showMessage("The pre-run script(s) is(are) gone.");
 			}
 			emulationControl.setPathQemu(configurationControl.getQemu_executable_path().getText());
 
@@ -139,15 +145,16 @@ public class Control implements BaseListener {
 			emulationControl.setBiosVgaBiosKeymapsPath(configurationControl.getBios_vga_bios_keymaps_path().getText());
 
 			if (view.getActivePanel() == 0) {
-				view.showMessage("Please, select an open virtual machine tab before starting the emulation.");
+				JSwtQemuView.showMessage("Please, select an open virtual machine tab before starting the emulation.");
 			}
 			try {
 				if (emulationControl.runs(view.getActivePanel(), view.getSelectedPanel().getTitle())) {
-					view.showMessage("If there were no errors so far, so the qemu should be running now!");
+					JSwtQemuView.showMessage("If there were no errors so far, so the qemu should be running now!");
 				} else if (!configurationControl.getIsConfigured()) {
-					configurationControl.do_my_view_visible();
-					view.showMessage("The qemu has not been started!\nPlease, check the configuration parameters!"
-							+ "\nPlease, configure the path of the qemu executable first!");
+					configurationControl.setVisibleEnable();
+					JSwtQemuView
+							.showMessage("The qemu has not been started!\nPlease, check the configuration parameters!"
+									+ "\nPlease, configure the path of the qemu executable first!");
 				}
 			} catch (IOException e1) {
 				e1.printStackTrace();
@@ -155,41 +162,36 @@ public class Control implements BaseListener {
 				e1.printStackTrace();
 			}
 		} else if (e.getActionCommand().equals("StopEmulation")) {
-			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
-			}
+
 			if (emulationControl.warns()) {
 				if (emulationControl.stops(view.getActivePanel())) {
-					view.showMessage("The Qemu is not running now!");
+					JSwtQemuView.showMessage("The Qemu is not running now!");
 				}
 
 				if (configurationControl != null) {
 					emulationControl.setExecute_after_stop_qemu(
 							this.JTextAreaToArrayListOfStrings(configurationControl.getExecute_after_stop_qemu()));
 					if (emulationControl.postruns(view.getActivePanel(), view.getSelectedPanel().getTitle())) {
-						view.showMessage("The post-run script(s) is(are) gone.");
+						JSwtQemuView.showMessage("The post-run script(s) is(are) gone.");
 					}
 				}
 			}
 		} else if (e.getActionCommand().equals("CreateNewVM")) {
 			if (fileControl == null) {
-				fileControl = new EmulatorQemuMachineControl(view.getMyUntitledJPanel(), view);
+				fileControl = new EmulatorQemuMachineControl();
 			}
-			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
-			}
+
 			if (configurationControl == null) {
-				view.showMessage("Please, configure the required options first!\n"
+				JSwtQemuView.showMessage("Please, configure the required options first!\n"
 						+ "Please, configure the path of the qemu-img executable first!");
-				configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
 			} else if (configurationControl.getQemu_img_executable_path() == null
 					|| configurationControl.getQemu_img_executable_path().getText().isEmpty()) {
-				view.showMessage("Please, configure the path of the qemu-img executable first!");
-				configurationControl.do_my_view_visible();
+				JSwtQemuView.showMessage("Please, configure the path of the qemu-img executable first!");
+				configurationControl.setVisibleEnable();
 
 			} else if (configurationControl.getDefault_virtual_machines_path().isEmpty()) {
-				view.showMessage("Please, configure the path of the default Virtual Machines first!");
-				configurationControl.do_my_view_visible();
+				JSwtQemuView.showMessage("Please, configure the path of the default Virtual Machines first!");
+				configurationControl.setVisibleEnable();
 			} else {
 				vMCreationControl = new VMCreationControl(diskCreationControl,
 						configurationControl.getQemu_img_executable_path().getText(),
@@ -198,11 +200,9 @@ public class Control implements BaseListener {
 				vMCreationControl.starts();
 			}
 		} else if (e.getActionCommand().equals("OpenExistingVM")) {
-			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
-			}
+
 			if (fileControl == null) {
-				fileControl = new EmulatorQemuMachineControl(view.getMyUntitledJPanel(), view);
+				fileControl = new EmulatorQemuMachineControl();
 			}
 			fileControl.getFileview().setFileExtension(".xml");
 			fileControl.getFileview().setChoosertitle("Choose an existing JavaQemu VM file!");
@@ -231,12 +231,12 @@ public class Control implements BaseListener {
 					}
 					if (vMConfigurationControlist.get(position) == null) {
 						vMConfigurationControlist.set(position,
-								new VMConfigurationControl(emulationControl, view, fileControl));
+								new VMConfigurationControl(emulationControl, fileControl));
 						vMConfigurationControlist.get(position).starts();
 						vMConfigurationControlist.get(position).getMyName().updateMe();
 					}
 				} else {
-					view.showMessage("Please, select a valid file (*.xml)!");
+					JSwtQemuView.showMessage("Please, select a valid file (*.xml)!");
 				}
 			}
 		} else if (e.getActionCommand().equals("CloseVM")) {
@@ -247,9 +247,7 @@ public class Control implements BaseListener {
 				position = view.getActivePanel();
 			}
 			vMConfigurationControlist.remove(position);
-			if (vMClosingControl == null) {
-				vMClosingControl = new VMClosingControl(view, emulationControl);
-			} else {
+			{
 				vMClosingControl.setView(view);
 				vMClosingControl.setEmulation(emulationControl);
 			}
@@ -268,7 +266,7 @@ public class Control implements BaseListener {
 					view.changeNameJPanel(machineName);
 					vMConfigurationControlist.get(position).getMyName().updateMe();
 				} else {
-					view.showMessage("Please, type a valid name for VM!");
+					JSwtQemuView.showMessage("Please, type a valid name for VM!");
 				}
 			}
 		} else if (e.getActionCommand().equals("ChangeMachineConfiguration")) {
@@ -287,7 +285,7 @@ public class Control implements BaseListener {
 					}
 				}
 				vMConfigurationControlist.set(position,
-						new VMConfigurationControl(emulationControl, view, fileControl));
+						new VMConfigurationControl(emulationControl, fileControl));
 				vMConfigurationControlist.get(position).starts();
 				vMConfigurationControlist.get(position).restarts();
 			}
@@ -320,18 +318,17 @@ public class Control implements BaseListener {
 				diskCreationControl = new DiskCreationControl("0", this);
 			}
 			if (configurationControl == null) {
-				view.showMessage("Please, configure the required options first!"
+				JSwtQemuView.showMessage("Please, configure the required options first!"
 						+ "\nPlease, configure the path of the default Virtual Machines first!");
-				configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
 			} else if (configurationControl.getDefault_virtual_machines_path().isEmpty()) {
-				view.showMessage("Please, configure the path of the default Virtual Machines first!");
-				configurationControl.do_my_view_visible();
+				JSwtQemuView.showMessage("Please, configure the path of the default Virtual Machines first!");
+				configurationControl.setVisibleEnable();
 			} else {
 				diskCreationControl
 						.setDefault_virtual_machines_path(configurationControl.getDefault_virtual_machines_path());
 				if (configurationControl.getQemu_img_executable_path() == null) {
-					view.showMessage("Please, configure the path of the qemu-img executable first!");
-					configurationControl.do_my_view_visible();
+					JSwtQemuView.showMessage("Please, configure the path of the qemu-img executable first!");
+					configurationControl.setVisibleEnable();
 				} else {
 					diskCreationControl.setPathQemu_img(configurationControl.getQemu_img_executable_path().getText());
 					diskCreationControl.change_visibility(true);
@@ -360,7 +357,7 @@ public class Control implements BaseListener {
 
 			if (diskCreationControl.getMessage().contains("Formatting")
 					|| diskCreationControl.getMessage().contains("Creating")) {
-				view.showMessage("The disk image was created!");
+				JSwtQemuView.showMessage("The disk image was created!");
 			}
 
 			diskCreationControl.unsetBoxSelections();
@@ -369,25 +366,14 @@ public class Control implements BaseListener {
 			diskCreationControl.addsComponent((String) diskCreationControl.getDiskExtension().getSelectedItem());
 		} else if (e.getActionCommand().equals("seeOutputsFromProcesses")) {
 			try {
-				if (emulationControl == null) {
-					emulationControl = new EmulationControl(view);
-				}
 				emulationControl.showsMessages();
 			} catch (IOException e1) {
 				e1.printStackTrace();
 			}
 		} else if (e.getActionCommand().equals("useUtilities")) {
-			if (utilitiesView == null) {
-				utilitiesView = new UtilitiesView();
-				utilitiesView.initialize();
-				utilitiesView.configureListener(this);
-				utilitiesView.configureStandardMode();
-				utilitiesView.setVisible(true);
-			} else {
-				utilitiesView.setVisible(true);
-			}
+			useUtilitiesAction.actionPerformed(e);
 		} else if (e.getActionCommand().equals("Hide_Utilities")) {
-			utilitiesView.setVisible(false);
+			useUtilitiesAction.actionPerformed(e);
 		} else if (e.getActionCommand().equals("seeQemuVersion")) {
 			if (utilitiesModel == null) {
 				try {
@@ -408,14 +394,13 @@ public class Control implements BaseListener {
 								}
 							}
 						} else {
-							view.showMessage("Please, configure the required options first!"
+							JSwtQemuView.showMessage("Please, configure the required options first!"
 									+ "\nPlease, configure the path of the default Virtual Machines first!");
-							configurationControl.do_my_view_visible();
+							configurationControl.setVisibleEnable();
 						}
 					} else {
-						view.showMessage("Please, configure the required options first!"
+						JSwtQemuView.showMessage("Please, configure the required options first!"
 								+ "\nPlease, configure the path of the default Virtual Machines first!");
-						configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
 					}
 				} catch (IOException e1) {
 					e1.printStackTrace();
@@ -454,12 +439,12 @@ public class Control implements BaseListener {
 								utilitiesView.showMessage("Sorry! The requested information can not be obtained.");
 							}
 						} else {
-							view.showMessage("Please, configure the required options first!"
+							JSwtQemuView.showMessage("Please, configure the required options first!"
 									+ "\nPlease, configure the path of the default Virtual Machines first!");
-							configurationControl.do_my_view_visible();
+							configurationControl.setVisibleEnable();
 						}
 					} else {
-						view.showMessage("Please, configure the required options first!"
+						JSwtQemuView.showMessage("Please, configure the required options first!"
 								+ "\nPlease, configure the path of the default Virtual Machines first!");
 						configurationControl = new ConfigurationControl(lastUsedFolderModel, lastUsedFileModel);
 					}
@@ -482,8 +467,6 @@ public class Control implements BaseListener {
 				}
 			}
 		} else if (e.getActionCommand().equals("SeeQemuEmulationCommandLine")) {
-			if (emulationControl == null) {
-				emulationControl = new EmulationControl(view);
 
 				if (configurationControl.getQemu_executable_path() != null) {
 					emulationControl.setPathQemu(configurationControl.getQemu_executable_path().getText());
@@ -505,17 +488,16 @@ public class Control implements BaseListener {
 			}
 
 			if (view.getActivePanel() == 0) {
-				view.showMessage(
+				JSwtQemuView.showMessage(
 						"Please, select an open virtual machine tab before seeing the Qemu emulation command line.");
 			} else if (!emulationControl.getFullCommandLine(view.getActivePanel()).isEmpty()) {
-				view.showMessage("The Qemu emulation command line is:\n"
+				JSwtQemuView.showMessage("The Qemu emulation command line is:\n"
 						+ emulationControl.getFullCommandLine(view.getActivePanel()) + "\n!");
 			} else {
-				view.showMessage("Sorry! There is no Qemu emulation command line, or it is empty!");
+				JSwtQemuView.showMessage("Sorry! There is no Qemu emulation command line, or it is empty!");
 			}
 		}
 
-	}
 
 	public List<String> JTextAreaToArrayListOfStrings(JTextArea given) {
 		List<String> result = new ArrayList<String>();

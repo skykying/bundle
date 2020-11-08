@@ -16,224 +16,224 @@ import com.lembed.lite.studio.qemu.view.IemultorStore;
 
 public class OptionsDisplayView extends DeviceBaseView {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    private JPanel jpanel;
+	private JPanel jpanel;
 
-    private GridBagLayout gridBagLayout;
+	private GridBagLayout gridBagLayout;
 
-    private GridBagConstraints gridBagConstraints;
+	private GridBagConstraints gridBagConstraints;
 
-    private JRadioButton displayType;
+	private JRadioButton displayType;
 
-    private JComboBox<String> displayTypeChoice;
+	private JComboBox<String> displayTypeChoice;
 
-    private JRadioButton noGraphicOption;
+	private JRadioButton noGraphicOption;
 
-    private ButtonGroup groupButtons;
+	private ButtonGroup groupButtons;
 
-    private JCheckBox vgaType;
+	private JCheckBox vgaType;
 
-    private JComboBox<String> vgaTypeChoice;
+	private JComboBox<String> vgaTypeChoice;
 
-    private JCheckBox fullScreenOption;
+	private JCheckBox fullScreenOption;
 
-    private JCheckBox noframeOption;
+	private JCheckBox noframeOption;
 
-    private JButton showVNCOptions;
+	private JButton showVNCOptions;
 
-    private JButton okButton, eraseButton;
+	private JButton okButton, eraseButton;
 
-    public OptionsDisplayView(EmulatorQemuMachineControl emc) {
-    	super(emc);
-    	
-        this.jpanel = new JPanel();
+	public OptionsDisplayView(EmulatorQemuMachineControl emc) {
+		super(emc);
 
-        this.setTitle("JavaQemu - Display Options");
+		this.jpanel = new JPanel();
 
-        this.add(jpanel);
+		this.setTitle("Display");
 
-        gridBagLayout = new GridBagLayout();
-        this.gridBagConstraints = new GridBagConstraints();
+		this.add(jpanel);
 
-        jpanel.setLayout(gridBagLayout);
+		gridBagLayout = new GridBagLayout();
+		this.gridBagConstraints = new GridBagConstraints();
 
-        this.displayType = new JRadioButton("Display type:");
+		jpanel.setLayout(gridBagLayout);
 
-        String[] displayTypeOptions = {"sdl", "curses", "none", "vnc"};
+		this.displayType = new JRadioButton("Display type:");
 
-        this.displayTypeChoice = new JComboBox<String>(displayTypeOptions);
+		String[] displayTypeOptions = { "sdl", "curses", "none", "vnc" };
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 0;
+		this.displayTypeChoice = new JComboBox<String>(displayTypeOptions);
 
-        jpanel.add(displayType, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 0;
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        jpanel.add(displayTypeChoice, gridBagConstraints);
+		jpanel.add(displayType, gridBagConstraints);
 
-        okButton = new JButton("OK");
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 0;
+		jpanel.add(displayTypeChoice, gridBagConstraints);
 
-        eraseButton = new JButton("Erase");
+		okButton = new JButton("OK");
 
-        noGraphicOption = new JRadioButton("-nographic option!");
+		eraseButton = new JButton("Erase");
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
-        jpanel.add(noGraphicOption, gridBagConstraints);
+		noGraphicOption = new JRadioButton("-nographic option!");
 
-        groupButtons = new ButtonGroup();
-        groupButtons.add(this.displayType);
-        groupButtons.add(this.noGraphicOption);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 1;
+		jpanel.add(noGraphicOption, gridBagConstraints);
 
-        vgaType = new JCheckBox("Vga type:");
+		groupButtons = new ButtonGroup();
+		groupButtons.add(this.displayType);
+		groupButtons.add(this.noGraphicOption);
 
-        String[] vgaTypeOptions = {"Cirrus Logic GD5446", "Standard VGA Card", "Vmware SVGA-II", "QXL Paravirtual VGA Card", "None"};
+		vgaType = new JCheckBox("Vga type:");
 
-        vgaTypeChoice = new JComboBox<String>(vgaTypeOptions);
+		String[] vgaTypeOptions = { "Cirrus Logic GD5446", "Standard VGA Card", "Vmware SVGA-II",
+				"QXL Paravirtual VGA Card", "None" };
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
-        jpanel.add(vgaType, gridBagConstraints);
+		vgaTypeChoice = new JComboBox<String>(vgaTypeOptions);
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        jpanel.add(vgaTypeChoice, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 2;
+		jpanel.add(vgaType, gridBagConstraints);
 
-        fullScreenOption = new JCheckBox("Full-screen");
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 2;
+		jpanel.add(vgaTypeChoice, gridBagConstraints);
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        jpanel.add(fullScreenOption, gridBagConstraints);
+		fullScreenOption = new JCheckBox("Full-screen");
 
-        noframeOption = new JCheckBox("-no-frame option!");
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 3;
+		jpanel.add(fullScreenOption, gridBagConstraints);
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
-        jpanel.add(noframeOption, gridBagConstraints);
+		noframeOption = new JCheckBox("-no-frame option!");
 
-        showVNCOptions = new JButton("Show VNC Options!");
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 4;
+		jpanel.add(noframeOption, gridBagConstraints);
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 5;
-        jpanel.add(showVNCOptions, gridBagConstraints);
+		showVNCOptions = new JButton("Show VNC Options!");
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 6;
-        jpanel.add(okButton, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 5;
+		jpanel.add(showVNCOptions, gridBagConstraints);
 
-        gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 6;
-        jpanel.add(eraseButton, gridBagConstraints);
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 0;
+		gridBagConstraints.gridy = 6;
+		jpanel.add(okButton, gridBagConstraints);
 
-    }
+		gridBagConstraints.fill = GridBagConstraints.HORIZONTAL;
+		gridBagConstraints.gridx = 1;
+		gridBagConstraints.gridy = 6;
+		jpanel.add(eraseButton, gridBagConstraints);
 
-    public void configureListener(ActionListener listener) {
-        eraseButton.addActionListener(listener);
-        okButton.addActionListener(listener);
-        showVNCOptions.addActionListener(listener);
-    }
+	}
 
-    public void configureStandardMode() {
-        eraseButton.setActionCommand("eraseButton");
-        okButton.setActionCommand("okButton");
-        showVNCOptions.setActionCommand("showVNCOptions");
-    }
+	public void configureListener(ActionListener listener) {
+		eraseButton.addActionListener(listener);
+		okButton.addActionListener(listener);
+		showVNCOptions.addActionListener(listener);
+	}
 
-    public JRadioButton getDisplayType() {
-        return displayType;
-    }
+	public void configureStandardMode() {
+		eraseButton.setActionCommand("eraseButton");
+		okButton.setActionCommand("okButton");
+		showVNCOptions.setActionCommand("showVNCOptions");
+	}
 
-    public JComboBox<String> getDisplayTypeChoice() {
-        return displayTypeChoice;
-    }
+	public JRadioButton getDisplayType() {
+		return displayType;
+	}
 
-    public JRadioButton getNoGraphicOption() {
-        return noGraphicOption;
-    }
+	public JComboBox<String> getDisplayTypeChoice() {
+		return displayTypeChoice;
+	}
 
-    public JCheckBox getVgaType() {
-        return vgaType;
-    }
+	public JRadioButton getNoGraphicOption() {
+		return noGraphicOption;
+	}
 
-    public JComboBox<String> getVgaTypeChoice() {
-        return vgaTypeChoice;
-    }
+	public JCheckBox getVgaType() {
+		return vgaType;
+	}
 
-    public JCheckBox getFullScreenOption() {
-        return fullScreenOption;
-    }
+	public JComboBox<String> getVgaTypeChoice() {
+		return vgaTypeChoice;
+	}
 
-    public ButtonGroup getGroupButtons() {
-        return groupButtons;
-    }
+	public JCheckBox getFullScreenOption() {
+		return fullScreenOption;
+	}
 
-    public JCheckBox getNoframeOption() {
-        return noframeOption;
-    }
+	public ButtonGroup getGroupButtons() {
+		return groupButtons;
+	}
+
+	public JCheckBox getNoframeOption() {
+		return noframeOption;
+	}
 
 	@Override
 	public void applyView(IemultorStore store) {
 
-        if (eQControl.getMachineModel().getDisplayType() != null) {
-            this.displayType.setSelected(true);
-            if (eQControl.getMachineModel().getDisplayType().equals("sdl")) {
-                this.displayTypeChoice.setSelectedIndex(0);
-            } else if (eQControl.getMachineModel().getDisplayType().equals("curses")) {
-                this.displayTypeChoice.setSelectedIndex(1);
-            } else if (eQControl.getMachineModel().getDisplayType().equals("none")) {
-                this.displayTypeChoice.setSelectedIndex(2);
-            } else if (eQControl.getMachineModel().getDisplayType().substring(0, 3).equals("vnc")) {
-                this.displayTypeChoice.setSelectedIndex(3);
-            }
-        }
+		if (eQControl.getMachineModel().getDisplayType() != null) {
+			this.displayType.setSelected(true);
+			if (eQControl.getMachineModel().getDisplayType().equals("sdl")) {
+				this.displayTypeChoice.setSelectedIndex(0);
+			} else if (eQControl.getMachineModel().getDisplayType().equals("curses")) {
+				this.displayTypeChoice.setSelectedIndex(1);
+			} else if (eQControl.getMachineModel().getDisplayType().equals("none")) {
+				this.displayTypeChoice.setSelectedIndex(2);
+			} else if (eQControl.getMachineModel().getDisplayType().substring(0, 3).equals("vnc")) {
+				this.displayTypeChoice.setSelectedIndex(3);
+			}
+		}
 
-        if (eQControl.getMachineModel().getNographicOption() != null) {
-            if (eQControl.getMachineModel().getNographicOption().equals("true")) {
-                this.noGraphicOption.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getNographicOption() != null) {
+			if (eQControl.getMachineModel().getNographicOption().equals("true")) {
+				this.noGraphicOption.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getVgaType() != null) {
-            this.vgaType.setSelected(true);
-            if (eQControl.getMachineModel().getVgaType().equals("cirrus")) {
-                this.vgaTypeChoice.setSelectedIndex(0);
-            } else if (eQControl.getMachineModel().getVgaType().equals("std")) {
-                this.vgaTypeChoice.setSelectedIndex(1);
-            } else if (eQControl.getMachineModel().getVgaType().equals("vmware")) {
-                this.vgaTypeChoice.setSelectedIndex(2);
-            } else if (eQControl.getMachineModel().getVgaType().equals("qxl")) {
-                this.vgaTypeChoice.setSelectedIndex(3);
-            } else if (eQControl.getMachineModel().getVgaType().equals("none")) {
-                this.vgaTypeChoice.setSelectedIndex(4);
-            }
-        }
+		if (eQControl.getMachineModel().getVgaType() != null) {
+			this.vgaType.setSelected(true);
+			if (eQControl.getMachineModel().getVgaType().equals("cirrus")) {
+				this.vgaTypeChoice.setSelectedIndex(0);
+			} else if (eQControl.getMachineModel().getVgaType().equals("std")) {
+				this.vgaTypeChoice.setSelectedIndex(1);
+			} else if (eQControl.getMachineModel().getVgaType().equals("vmware")) {
+				this.vgaTypeChoice.setSelectedIndex(2);
+			} else if (eQControl.getMachineModel().getVgaType().equals("qxl")) {
+				this.vgaTypeChoice.setSelectedIndex(3);
+			} else if (eQControl.getMachineModel().getVgaType().equals("none")) {
+				this.vgaTypeChoice.setSelectedIndex(4);
+			}
+		}
 
-        if (eQControl.getMachineModel().getFullscreenOption() != null) {
-            if (eQControl.getMachineModel().getFullscreenOption().equals("true")) {
-                this.fullScreenOption.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getFullscreenOption() != null) {
+			if (eQControl.getMachineModel().getFullscreenOption().equals("true")) {
+				this.fullScreenOption.setSelected(true);
+			}
+		}
 
-        if (eQControl.getMachineModel().getNoFrameOption() != null) {
-            if (eQControl.getMachineModel().getNoFrameOption().equals("true")) {
-                this.noframeOption.setSelected(true);
-            }
-        }
+		if (eQControl.getMachineModel().getNoFrameOption() != null) {
+			if (eQControl.getMachineModel().getNoFrameOption().equals("true")) {
+				this.noframeOption.setSelected(true);
+			}
+		}
 
+		this.setVisible(false);
 
-        this.setVisible(false);
-		
 	}
 }

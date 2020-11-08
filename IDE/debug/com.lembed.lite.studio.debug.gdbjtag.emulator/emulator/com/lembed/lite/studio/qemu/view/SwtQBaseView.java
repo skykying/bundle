@@ -5,8 +5,10 @@ import javax.swing.JComponent;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import org.apache.commons.lang3.tuple.ImmutablePair;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.jface.action.Action;
+import org.eclipse.jface.action.IContributionManager;
 import org.eclipse.jface.action.IMenuManager;
 import org.eclipse.jface.action.IToolBarManager;
 import org.eclipse.jface.action.Separator;
@@ -31,11 +33,17 @@ import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.PartInitException;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.part.MultiPageEditorPart;
-
 import com.lembed.lite.studio.debug.gdbjtag.emulator.EmulatorPlugin;
+import com.lembed.lite.studio.qemu.control.swt.ConfigurationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulationControl;
+import com.lembed.lite.studio.qemu.control.swt.EmulatorQemuMachineControl;
+import com.lembed.lite.studio.qemu.control.swt.VMConfigurationControl;
+import com.lembed.lite.studio.qemu.model.swt.LastUsedFileModel;
+import com.lembed.lite.studio.qemu.model.swt.LastUsedFolderModel;
 import com.lembed.lite.studio.qemu.view.internal.swt.CPUView;
+import com.lembed.lite.studio.qemu.view.internal.swt.ConfigurationView;
+import com.lembed.lite.studio.qemu.view.internal.swt.DeviceBaseView;
 import com.lembed.lite.studio.qemu.view.internal.swt.HardDiskView;
-import com.lembed.lite.studio.qemu.view.internal.swt.NetworkWorkerView;
 import com.lembed.lite.studio.qemu.view.internal.swt.PhysicalDriveView;
 import com.lembed.lite.studio.qemu.view.internal.swt.USBView;
 import com.lembed.lite.studio.qemu.view.internal.swt.VNCDisplayView;
@@ -85,6 +93,19 @@ public class SwtQBaseView extends MultiPageEditorPart {
 		initActions();
 	}
 
+	
+	private void addActionsToMenus() {
+
+		IContributionManager[] managers = { this.getEditorSite().getActionBars().getMenuManager(),
+				this.getEditorSite().getActionBars().getToolBarManager()
+		                                  };
+
+		for (IContributionManager manager : managers) {
+
+			manager.add(fResetAction);
+//			manager.add(createActionMonitor());
+		}
+	}
 	
 	private void initActions() {
 		fRemoveAction = new Action() {
@@ -148,6 +169,7 @@ public class SwtQBaseView extends MultiPageEditorPart {
 		IActionBars bars = site.getActionBars();
 		// registerLocalPullDown(bars.getMenuManager());
 		registerLocalToolBar(bars.getToolBarManager());
+		addActionsToMenus();
 	}
 
 	protected void registerLocalPullDown(IMenuManager manager) {
@@ -167,26 +189,22 @@ public class SwtQBaseView extends MultiPageEditorPart {
 	
 	@Override
 	public boolean isDirty() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public boolean isSaveAsAllowed() {
-		// TODO Auto-generated method stub
 		return false;
 	}
 
 	@Override
 	public void dispose() {
-		// TODO Auto-generated method stub
 		super.dispose();
 		isOpened = false;
 	}
 
 	@Override
 	public void setFocus() {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -196,121 +214,38 @@ public class SwtQBaseView extends MultiPageEditorPart {
 		isOpened = true;
 		contributeToActionBars(_site);
 		
-		 createUSBPage();
-		 createPage0();
-		 createPage1();
+		 createPageE();
 		 
-		 createNetworkPage();
-		 createPhysicalDriveView();
-		 createHardDiskView();
 		 setActivePage(0);
 	}
 	
-	
-	private void createPage0() {
-    	Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
+	public  void createPageE() {
+		EmulationControl emulationControl = new EmulationControl();
+		EmulatorQemuMachineControl fileControl = new EmulatorQemuMachineControl();
+		VMConfigurationControl vmc = new VMConfigurationControl(emulationControl, fileControl);
 		
-		VNCDisplayView view = new VNCDisplayView(null);
-		createComponent(composite,view);
-	
-		int index = addPage(composite);
-		setPageText(index, "VNC");
-		setPartName("Messages");
-		
+		for(DeviceBaseView dv : vmc.getViews()) {
+			
+	    	Composite composite = new Composite(getContainer(), SWT.NONE);
+			composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
+			JScrollPane jscp = new JScrollPane();
+			
+			
+	        jscp.setViewportView(dv);
+	        jscp.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
+	        jscp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
+	        jscp.revalidate();
+	        
+	        createComponentScroll(composite,jscp);
+			
+			int index = addPage(composite);
+			String title = dv.getTitle();
+			setPageText(index, title);
+		}
+
 	}
 
-	private void createPage1() {
-    	Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
-		
-		CPUView view = new CPUView(null);
-		createComponent(composite,view);
-	
-		int index = addPage(composite);
-		setPageText(index, "CPU");
-		setPartName("Messages");
-		
-	}
-	
-	private void createNetworkPage() {
-    	Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
-		
-		JScrollPane jscp = new JScrollPane();
-		NetworkWorkerView view = new NetworkWorkerView(null,0);
-        jscp.setViewportView(view);
-        jscp.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jscp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jscp.revalidate();
-        
-        createComponentScroll(composite,jscp);
-	
-		int index = addPage(composite);
-		setPageText(index, "Network");
-		setPartName("Messages");
-	}
-	
-	private void createPhysicalDriveView() {
-    	Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
-		
-		JScrollPane jscp = new JScrollPane();
-		PhysicalDriveView view = new PhysicalDriveView(null,0);
-        jscp.setViewportView(view);
-        jscp.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jscp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jscp.revalidate();
-        
-        createComponentScroll(composite,jscp);
-	
-		int index = addPage(composite);
-		setPageText(index, "PhysicalDrive");
-		setPartName("Messages");
-	}
-	
-	
-	private void createUSBPage() {
-    	Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
-		JScrollPane jscp = new JScrollPane();
-	
-		
-		USBView view = new USBView(null);
-		
-        jscp.setViewportView(view);
-        jscp.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jscp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jscp.revalidate();
-        
-        createComponentScroll(composite,jscp);
-	
-		int index = addPage(composite);
-		setPageText(index, "USB");
-		setPartName("Messages");
-		
-	}//HardDiskView
-	
-	private void createHardDiskView() {
-    	Composite composite = new Composite(getContainer(), SWT.NONE);
-		composite.setLayout(new FillLayout(SWT.HORIZONTAL));	
-		JScrollPane jscp = new JScrollPane();
-	
-		
-		HardDiskView view = new HardDiskView("","","","");
-		
-        jscp.setViewportView(view);
-        jscp.setBorder(BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        jscp.setVerticalScrollBarPolicy(JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED);
-        jscp.revalidate();
-        
-        createComponentScroll(composite,jscp);
-	
-		int index = addPage(composite);
-		setPageText(index, "HardDisk");
-		setPartName("Messages");
-		
-	}//HardDiskView
+
 	
 	protected void creatPart(Composite parent) {
 

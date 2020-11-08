@@ -4,13 +4,13 @@ import java.awt.event.ActionEvent;
 import com.lembed.lite.studio.qemu.control.DiskCreationControl;
 import com.lembed.lite.studio.qemu.view.BaseEvent;
 import com.lembed.lite.studio.qemu.view.BaseListener;
-import com.lembed.lite.studio.qemu.view.JContainerView;
+import com.lembed.lite.studio.qemu.view.JSwtQemuView;
 
 public class DiskExtension_CreateNewDiskImageFile implements BaseListener {
 
-	private JContainerView view;
+	private JSwtQemuView view;
 	private DiskCreationControl diskCreationControl;
-	public DiskExtension_CreateNewDiskImageFile(JContainerView jview, DiskCreationControl diskCreationControl) {
+	public DiskExtension_CreateNewDiskImageFile(JSwtQemuView jview, DiskCreationControl diskCreationControl) {
 		view = jview;
 		view.registerListener(this);
 		this.diskCreationControl = diskCreationControl;
@@ -28,10 +28,10 @@ public class DiskExtension_CreateNewDiskImageFile implements BaseListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		doAction((BaseEvent) e);
+		doAction((ActionEvent) e);
 	}
 
-	private void doAction(BaseEvent e) {
+	private void doAction(ActionEvent e) {
 		if (e.getActionCommand().equals("DiskExtension_CreateNewDiskImageFile")) {
 			diskCreationControl.addsComponent((String) diskCreationControl.getDiskExtension().getSelectedItem());
 		}
